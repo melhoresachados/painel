@@ -2,9 +2,9 @@
   "products": [
     {
       "name": "Camiseta Listrada",
-      "account": "shein",
-      "usuario": "@seulookperfeitoaqui",
-      "status": "processando",
+      "account": "shopee",
+      "usuario": "@happydayofertas",
+      "status": "pendente",
       "product_num": 1,
       "descricao_audio": "Camiseta listrada para praia",
       "flash_offer": "10% off",

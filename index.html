@@ -190,6 +190,8 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
 .btn-save:disabled { opacity: .6; cursor: default; }
 .btn-cancel { background: #f1f5f9; color: #475569; border: none; border-radius: 8px; padding: 10px 18px; font-size: 14px; cursor: pointer; transition: background .15s; font-weight: 500; }
 .btn-cancel:hover { background: #e2e8f0; }
+.btn-secondary { background: #fff; color: var(--brand-navy); border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 10px 18px; font-size: 14px; cursor: pointer; transition: all .15s; font-weight: 600; display: none; }
+.btn-secondary:hover { background: #f8fafc; border-color: var(--brand-navy); }
 .btn-delete { background: #fff; color: #dc2626; border: 1.5px solid #fca5a5; border-radius: 8px; padding: 10px 18px; font-size: 14px; cursor: pointer; transition: all .15s; font-weight: 500; margin-left: auto; display: none; }
 .btn-delete:hover { background: #fef2f2; border-color: #dc2626; }
 
@@ -273,6 +275,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
               <col><!-- Produto (flex) -->
               <col style="width:130px"><!-- Conta -->
               <col style="width:44px"><!-- # -->
+              <col style="width:150px"><!-- Etapa erro -->
               <col style="width:120px"><!-- Publicado em -->
               <col style="width:48px"><!-- Instagram -->
               <col style="width:48px"><!-- Facebook -->
@@ -285,6 +288,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                 <th>Produto</th>
                 <th>Conta</th>
                 <th style="text-align:center">#</th>
+                <th>Etapa erro</th>
                 <th>Publicado em</th>
                 <th class="th-platform" title="Instagram"><img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram"></th>
                 <th class="th-platform" title="Facebook"><img src="https://cdn.simpleicons.org/facebook/1877F2" alt="Facebook"></th>
@@ -442,6 +446,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
               <div class="form-actions">
                 <button type="submit" class="btn-save" id="btn-save">Salvar produto</button>
                 <button type="button" class="btn-cancel" onclick="showPage('list')">Cancelar</button>
+                <button type="button" class="btn-secondary" id="btn-regenerate" onclick="requestRegenerate()">Regerar</button>
                 <button type="button" class="btn-delete" id="btn-delete" onclick="deleteProduct()">🗑 Excluir</button>
               </div>
             </div>
@@ -471,6 +476,10 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                   <div class="field-group">
                     <label>Post ID (TikTok)</label>
                     <div id="r-tiktok_post_id" class="result-value empty">—</div>
+                  </div>
+                  <div id="r-error-stage-wrap" style="display:none;" class="field-group">
+                    <label>Etapa do erro</label>
+                    <div id="r-error_stage" class="result-value"></div>
                   </div>
                   <div id="r-error-wrap" style="display:none;" class="field-group">
                     <label>Erro</label>
@@ -696,6 +705,7 @@ function renderList() {
   const accountLabel = { shopee:'Shopee', shein:'Shein', mercadolivre:'Mercado Livre' };
   tbody.innerHTML = products.map(p => {
     const obs = p.status === 'erro' ? (p.error || '') : (p.descricao_audio || p.affiliate_url || '');
+    const errorStage = p.error_stage || '—';
     return `
     <tr onclick="openForm('${p._id}')">
       <td><span class="badge badge-${p.status||'pendente'}">${p.status||'pendente'}</span></td>
@@ -705,6 +715,8 @@ function renderList() {
       </td>
       <td><span class="account-tag">${escHtml(accountLabel[p.account]||p.account||'—')}</span></td>
       <td style="text-align:center;color:#94a3b8;font-size:13px;">${p.product_num||'—'}</td>
+      <td style="font-size:12px;color:${p.error_stage?'#b45309':'#94a3b8'};white-space:nowrap;"
+          title="${escHtml(errorStage)}">${escHtml(errorStage)}</td>
       <td style="color:#64748b;font-size:12px;white-space:nowrap;">${p.published_at||'—'}</td>
       <td class="plat-cell">${platIcon(p.post_id,          'instagram')}</td>
       <td class="plat-cell">${platIcon(p.facebook_post_id, 'facebook')}</td>
@@ -739,6 +751,7 @@ function openForm(id) {
   const p = id ? state.products.find(x => x._id === id) : null;
   document.getElementById('form-title').textContent = p ? `Editar produto${p.name ? ' — '+p.name : ''}` : 'Novo produto';
   document.getElementById('btn-delete').style.display = p ? 'block' : 'none';
+  document.getElementById('btn-regenerate').style.display = p ? 'inline-flex' : 'none';
 
   FORM_FIELDS.forEach(f => {
     const el = document.getElementById('f-' + f);
@@ -767,6 +780,13 @@ function openForm(id) {
       setResult('r-post_id',          p.post_id);
       setResult('r-facebook_post_id', p.facebook_post_id);
       setResult('r-tiktok_post_id',   p.tiktok_post_id);
+      const errStageWrap = document.getElementById('r-error-stage-wrap');
+      if (p.error_stage) {
+        document.getElementById('r-error_stage').textContent = p.error_stage;
+        errStageWrap.style.display = 'block';
+      } else {
+        errStageWrap.style.display = 'none';
+      }
       const errWrap = document.getElementById('r-error-wrap');
       if (p.error) {
         document.getElementById('r-error').textContent = p.error;
@@ -782,6 +802,34 @@ function openForm(id) {
   }
 
   showPage('form');
+}
+
+async function requestRegenerate() {
+  if (!state.editingId) return;
+  const idx = state.products.findIndex(p => p._id === state.editingId);
+  if (idx < 0) return;
+  const current = state.products[idx];
+  state.products[idx] = {
+    ...current,
+    status: 'pendente',
+    force_regenerate: '1',
+    error: '',
+    error_stage: '',
+    published_at: '',
+    post_id: '',
+    facebook_post_id: '',
+    facebook_published_at: '',
+    facebook_status: '',
+    facebook_error: '',
+  };
+
+  try {
+    await saveProducts();
+    alert('Regeração solicitada. Na próxima execução do pipeline, este produto será gerado novamente e republicado.');
+    openForm(state.editingId);
+  } catch (err) {
+    alert('Erro ao solicitar regeneração: ' + err.message);
+  }
 }
 
 function setResult(id, val) {

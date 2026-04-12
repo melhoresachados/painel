@@ -462,9 +462,9 @@ const CONFIG_URL = 'config.json';
 const GITHUB_API = 'https://api.github.com';
 
 const ACCOUNT_USERS = {
-  shopee:       ['@achados.shopee'],
-  shein:        ['@achei.na.shein'],
-  mercadolivre: ['@achados.ml'],
+  shopee:       ['@happydayofertas'],
+  shein:        ['@seulookperfeitoaqui'],
+  mercadolivre: ['@pricebestnet'],
 };
 
 const ACCOUNT_LABELS = { all:'Todas as contas', shopee:'Shopee', shein:'Shein', mercadolivre:'Mercado Livre' };
@@ -539,7 +539,8 @@ async function loadProducts() {
   if (r.status === 404) { state.products = []; state.sha = ''; return; }
   const data = await r.json();
   state.sha = data.sha;
-  const content = JSON.parse(atob(data.content.replace(/\n/g,'')));
+  const bytes = Uint8Array.from(atob(data.content.replace(/\n/g,'')), c => c.charCodeAt(0));
+  const content = JSON.parse(new TextDecoder('utf-8').decode(bytes));
   state.products = content.products || [];
 }
 async function saveProducts() {

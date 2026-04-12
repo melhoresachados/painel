@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel de Afiliados</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { background: #0f0f13; color: #e2e2e8; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .badge-pendente    { background:#3b3b00; color:#ffd700; }
+  .badge-processando { background:#003366; color:#66b2ff; }
+  .badge-gerado      { background:#003322; color:#55cc88; }
+  .badge-publicado   { background:#002200; color:#44ee66; }
+  .badge-erro        { background:#330000; color:#ff6655; }
+  input, select, textarea {
+    background:#1e1e26; border:1px solid #333; color:#e2e2e8;
+    border-radius:6px; padding:8px 12px; width:100%; outline:none;
+    transition: border .15s;
+  }
+  input:focus, select:focus, textarea:focus { border-color:#6c6cff; }
+  .btn-primary { background:#5555ff; color:#fff; border-radius:8px; padding:9px 20px; font-weight:600; cursor:pointer; transition:background .15s; }
+  .btn-primary:hover { background:#4444ee; }
+  .btn-secondary { background:#2a2a38; color:#aaa; border-radius:8px; padding:9px 20px; cursor:pointer; transition:background .15s; }
+  .btn-secondary:hover { background:#33334a; }
+  .btn-danger { background:#550000; color:#ff8877; border-radius:8px; padding:9px 20px; cursor:pointer; }
+  .btn-danger:hover { background:#770000; }
+  .card { background:#18181f; border:1px solid #2a2a38; border-radius:12px; }
+  .sidebar { background:#13131a; border-right:1px solid #222; }
+  ::-webkit-scrollbar { width:6px; } ::-webkit-scrollbar-track { background:#111; }
+  ::-webkit-scrollbar-thumb { background:#333; border-radius:3px; }
+  select option { background:#1e1e26; }
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- ── LOGIN ─────────────────────────────────────────────────────────────── -->
+<div id="login-screen" class="flex items-center justify-center min-h-screen">
+  <div class="card p-10 w-full max-w-sm text-center">
+    <div class="text-4xl mb-2">🛍️</div>
+    <h1 class="text-xl font-bold mb-1 text-white">Painel de Afiliados</h1>
+    <p class="text-sm text-gray-500 mb-8">melhoresachados</p>
+    <input id="pwd-input" type="password" placeholder="Senha" class="mb-4 text-center"
+           onkeydown="if(event.key==='Enter') doLogin()">
+    <button class="btn-primary w-full" onclick="doLogin()">Entrar</button>
+    <p id="login-error" class="text-red-400 text-sm mt-3 hidden">Senha incorreta.</p>
+  </div>
+</div>
+
+<!-- ── APP ───────────────────────────────────────────────────────────────── -->
+<div id="app-screen" class="hidden flex h-screen overflow-hidden">
+
+  <!-- Sidebar -->
+  <div class="sidebar w-56 flex-shrink-0 flex flex-col p-4 overflow-y-auto">
+    <div class="text-white font-bold text-lg mb-6 flex items-center gap-2">
+      <span>🛍️</span> Afiliados
+    </div>
+
+    <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Conta</p>
+    <div id="account-filters" class="flex flex-col gap-1 mb-6"></div>
+
+    <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Status</p>
+    <div id="status-filters" class="flex flex-col gap-1 mb-6"></div>
+
+    <div class="mt-auto">
+      <button class="btn-secondary w-full text-sm" onclick="logout()">Sair</button>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="flex-1 flex flex-col overflow-hidden">
+    <!-- Topbar -->
+    <div class="flex items-center justify-between px-6 py-4 border-b border-gray-800">
+      <div class="flex items-center gap-3">
+        <input id="search-input" type="text" placeholder="Buscar produto..."
+               class="w-64 text-sm" oninput="renderList()">
+        <span id="count-label" class="text-sm text-gray-500"></span>
+      </div>
+      <button class="btn-primary text-sm" onclick="openForm(null)">+ Novo produto</button>
+    </div>
+
+    <!-- List view -->
+    <div id="list-view" class="flex-1 overflow-y-auto p-6">
+      <div id="product-grid" class="grid grid-cols-1 gap-3"></div>
+      <p id="empty-msg" class="text-gray-600 text-center mt-20 hidden">Nenhum produto encontrado.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── MODAL FORM ─────────────────────────────────────────────────────────── -->
+<div id="modal-overlay" class="hidden fixed inset-0 bg-black/70 flex items-start justify-center pt-10 pb-10 z-50 overflow-y-auto">
+  <div class="card w-full max-w-2xl mx-4 p-8 relative">
+    <button onclick="closeForm()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-xl">✕</button>
+    <h2 id="form-title" class="text-white font-bold text-lg mb-6">Novo produto</h2>
+
+    <form id="product-form" onsubmit="submitForm(event)" class="space-y-5">
+
+      <!-- Seção: Identificação -->
+      <fieldset>
+        <legend class="text-xs text-gray-500 uppercase tracking-widest mb-3">Identificação</legend>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="col-span-2">
+            <label class="text-xs text-gray-400 mb-1 block">Nome do produto *</label>
+            <input id="f-name" type="text" required placeholder="Ex: Calça Skinny Com Cinto">
+          </div>
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Conta *</label>
+            <select id="f-account" required onchange="onAccountChange()">
+              <option value="">Selecione...</option>
+              <option value="shopee">Shopee</option>
+              <option value="shein">Shein</option>
+              <option value="mercadolivre">Mercado Livre</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Usuário (watermark)</label>
+            <select id="f-usuario">
+              <option value="">— selecione a conta primeiro —</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Status</label>
+            <select id="f-status">
+              <option value="pendente">pendente</option>
+              <option value="gerado">gerado</option>
+              <option value="publicado">publicado</option>
+              <option value="erro">erro</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Nº do produto</label>
+            <input id="f-product_num" type="number" min="1" placeholder="Auto">
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Seção: Conteúdo -->
+      <fieldset>
+        <legend class="text-xs text-gray-500 uppercase tracking-widest mb-3">Conteúdo</legend>
+        <div class="space-y-3">
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Descrição para narração</label>
+            <textarea id="f-descricao_audio" rows="2" placeholder="Frase curta sobre o produto para o áudio"></textarea>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs text-gray-400 mb-1 block">Oferta relâmpago</label>
+              <input id="f-flash_offer" type="text" placeholder="Ex: Só hoje 50% off">
+            </div>
+            <div>
+              <label class="text-xs text-gray-400 mb-1 block">Cupom</label>
+              <input id="f-coupon_text" type="text" placeholder="Ex: PROMO10">
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Seção: Estatísticas -->
+      <fieldset>
+        <legend class="text-xs text-gray-500 uppercase tracking-widest mb-3">Estatísticas</legend>
+        <div class="grid grid-cols-3 gap-4">
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Nota</label>
+            <input id="f-rating" type="text" placeholder="Ex: 4.8">
+          </div>
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Avaliações</label>
+            <input id="f-reviews" type="text" placeholder="Ex: 1500">
+          </div>
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Vendidos</label>
+            <input id="f-sold_count" type="text" placeholder="Ex: 30000">
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Seção: Mídia -->
+      <fieldset>
+        <legend class="text-xs text-gray-500 uppercase tracking-widest mb-3">Mídia</legend>
+        <div class="space-y-3">
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Imagens (URLs ou caminhos separados por ;)</label>
+            <textarea id="f-image_urls" rows="2" placeholder="https://img1.jpg; C:\midias\img2.jpg"></textarea>
+          </div>
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Vídeos (URLs ou caminhos separados por ;)</label>
+            <textarea id="f-video_urls" rows="2" placeholder="https://video.mp4; C:\midias\video2.mp4"></textarea>
+          </div>
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Thumbnail (URL ou caminho)</label>
+            <input id="f-thumbnail" type="text" placeholder="https://thumb.jpg ou C:\midias\thumb.jpg">
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Seção: Links -->
+      <fieldset>
+        <legend class="text-xs text-gray-500 uppercase tracking-widest mb-3">Links</legend>
+        <div class="space-y-3">
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Link de afiliado</label>
+            <input id="f-affiliate_url" type="text" placeholder="https://...">
+          </div>
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Link original do produto</label>
+            <input id="f-source_url" type="text" placeholder="https://...">
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Seção: Resultado (somente leitura) -->
+      <div id="result-section" class="hidden">
+        <fieldset>
+          <legend class="text-xs text-gray-500 uppercase tracking-widest mb-3">Resultado do pipeline</legend>
+          <div class="grid grid-cols-2 gap-3 text-sm">
+            <div><span class="text-gray-500">Vídeo:</span> <span id="r-video_path" class="text-gray-300 break-all"></span></div>
+            <div><span class="text-gray-500">Publicado em:</span> <span id="r-published_at" class="text-gray-300"></span></div>
+            <div><span class="text-gray-500">Post ID:</span> <span id="r-post_id" class="text-gray-300"></span></div>
+            <div><span class="text-gray-500">FB Post ID:</span> <span id="r-facebook_post_id" class="text-gray-300"></span></div>
+            <div class="col-span-2"><span class="text-gray-500">Erro:</span> <span id="r-error" class="text-red-400"></span></div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="flex gap-3 pt-2">
+        <button type="submit" class="btn-primary flex-1">Salvar</button>
+        <button type="button" class="btn-secondary" onclick="closeForm()">Cancelar</button>
+        <button type="button" id="btn-delete" class="btn-danger hidden" onclick="deleteProduct()">Excluir</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+// ── Config ────────────────────────────────────────────────────────────────────
+const CONFIG_URL = 'config.json';
+const DATA_URL   = 'produtos.json';
+const GITHUB_API = 'https://api.github.com';
+
+const ACCOUNT_USERS = {
+  shopee:       ['@achados.shopee'],
+  shein:        ['@achei.na.shein'],
+  mercadolivre: ['@achados.ml'],
+};
+
+// ── State ─────────────────────────────────────────────────────────────────────
+let state = {
+  token: null,
+  githubUser: null,
+  githubRepo: null,
+  products: [],
+  sha: '',
+  filterAccount: 'all',
+  filterStatus: 'all',
+  editingId: null,
+};
+
+// ── Crypto helpers ────────────────────────────────────────────────────────────
+async function sha256hex(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+async function deriveKey(password, saltB64) {
+  const salt = Uint8Array.from(atob(saltB64), c => c.charCodeAt(0));
+  const baseKey = await crypto.subtle.importKey('raw', new TextEncoder().encode(password),
+    'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey(
+    { name:'PBKDF2', salt, iterations:100000, hash:'SHA-256' },
+    baseKey,
+    { name:'AES-GCM', length:256 },
+    false, ['decrypt']
+  );
+}
+
+async function decryptToken(password, cfg) {
+  const key = await deriveKey(password, cfg.token_salt);
+  const iv  = Uint8Array.from(atob(cfg.token_iv),        c => c.charCodeAt(0));
+  const ct  = Uint8Array.from(atob(cfg.token_encrypted), c => c.charCodeAt(0));
+  const plain = await crypto.subtle.decrypt({ name:'AES-GCM', iv }, key, ct);
+  return new TextDecoder().decode(plain);
+}
+
+// ── Login ─────────────────────────────────────────────────────────────────────
+async function doLogin() {
+  const pwd = document.getElementById('pwd-input').value;
+  if (!pwd) return;
+
+  let cfg;
+  try {
+    const r = await fetch(CONFIG_URL + '?t=' + Date.now());
+    cfg = await r.json();
+  } catch {
+    alert('Erro ao carregar config.json'); return;
+  }
+
+  const hash = await sha256hex(pwd);
+  if (hash !== cfg.password_hash) {
+    document.getElementById('login-error').classList.remove('hidden');
+    return;
+  }
+
+  let token;
+  try {
+    token = await decryptToken(pwd, cfg);
+  } catch {
+    alert('Erro ao decifrar token. Rode o setup novamente.'); return;
+  }
+
+  state.token      = token;
+  state.githubUser = cfg.github_user;
+  state.githubRepo = cfg.github_repo;
+
+  sessionStorage.setItem('token',  token);
+  sessionStorage.setItem('guser',  cfg.github_user);
+  sessionStorage.setItem('grepo',  cfg.github_repo);
+
+  await loadProducts();
+  showApp();
+}
+
+function logout() {
+  sessionStorage.clear();
+  state.token = null;
+  document.getElementById('app-screen').classList.add('hidden');
+  document.getElementById('login-screen').classList.remove('hidden');
+  document.getElementById('pwd-input').value = '';
+}
+
+// ── GitHub data ───────────────────────────────────────────────────────────────
+function ghHeaders() {
+  return {
+    'Authorization': 'token ' + state.token,
+    'Accept': 'application/vnd.github.v3+json',
+  };
+}
+
+async function loadProducts() {
+  const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/produtos.json`;
+  const r = await fetch(url, { headers: ghHeaders() });
+  if (r.status === 404) { state.products = []; state.sha = ''; return; }
+  const data = await r.json();
+  state.sha = data.sha;
+  const content = JSON.parse(atob(data.content.replace(/\n/g,'')));
+  state.products = content.products || [];
+}
+
+async function saveProducts() {
+  const body = JSON.stringify({ products: state.products }, null, 2);
+  const encoded = btoa(unescape(encodeURIComponent(body)));
+  const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/produtos.json`;
+  const payload = {
+    message: 'painel: atualiza produtos.json',
+    content: encoded,
+    branch: 'main',
+  };
+  if (state.sha) payload.sha = state.sha;
+  const r = await fetch(url, { method:'PUT', headers:{...ghHeaders(),'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+  if (!r.ok) throw new Error(await r.text());
+  const data = await r.json();
+  state.sha = data.content.sha;
+}
+
+// ── App shell ─────────────────────────────────────────────────────────────────
+function showApp() {
+  document.getElementById('login-screen').classList.add('hidden');
+  document.getElementById('app-screen').classList.remove('hidden');
+  buildFilters();
+  renderList();
+}
+
+function buildFilters() {
+  const accounts = ['all','shopee','shein','mercadolivre'];
+  const statuses  = ['all','pendente','gerado','publicado','processando','erro'];
+  const aLabels   = { all:'Todas as contas', shopee:'Shopee', shein:'Shein', mercadolivre:'Mercado Livre' };
+  const sLabels   = { all:'Todos', pendente:'Pendente', gerado:'Gerado', publicado:'Publicado', processando:'Processando', erro:'Erro' };
+
+  const af = document.getElementById('account-filters');
+  af.innerHTML = accounts.map(a => `
+    <button onclick="setFilter('account','${a}')"
+      class="filter-btn text-left text-sm px-3 py-1.5 rounded-lg transition-colors
+             ${state.filterAccount===a ? 'bg-indigo-700 text-white' : 'text-gray-400 hover:bg-gray-800'}"
+      data-type="account" data-val="${a}">${aLabels[a]}</button>`).join('');
+
+  const sf = document.getElementById('status-filters');
+  sf.innerHTML = statuses.map(s => `
+    <button onclick="setFilter('status','${s}')"
+      class="filter-btn text-left text-sm px-3 py-1.5 rounded-lg transition-colors
+             ${state.filterStatus===s ? 'bg-indigo-700 text-white' : 'text-gray-400 hover:bg-gray-800'}"
+      data-type="status" data-val="${s}">${sLabels[s]}</button>`).join('');
+}
+
+function setFilter(type, val) {
+  if (type === 'account') state.filterAccount = val;
+  else state.filterStatus = val;
+  buildFilters();
+  renderList();
+}
+
+function renderList() {
+  const q = (document.getElementById('search-input').value || '').toLowerCase();
+  let products = state.products.filter(p => {
+    if (state.filterAccount !== 'all' && p.account !== state.filterAccount) return false;
+    if (state.filterStatus  !== 'all' && p.status  !== state.filterStatus)  return false;
+    if (q && !p.name?.toLowerCase().includes(q)) return false;
+    return true;
+  });
+
+  document.getElementById('count-label').textContent = `${products.length} produto${products.length !== 1 ? 's' : ''}`;
+
+  const grid = document.getElementById('product-grid');
+  const empty = document.getElementById('empty-msg');
+
+  if (!products.length) {
+    grid.innerHTML = '';
+    empty.classList.remove('hidden');
+    return;
+  }
+  empty.classList.add('hidden');
+
+  const statusOrder = { pendente:0, processando:1, gerado:2, publicado:3, erro:4 };
+  products.sort((a,b) => (statusOrder[a.status]??5) - (statusOrder[b.status]??5));
+
+  grid.innerHTML = products.map(p => `
+    <div class="card p-4 flex items-center gap-4 hover:border-indigo-700 cursor-pointer transition-colors"
+         onclick="openForm('${p._id}')">
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="badge-${p.status} text-xs font-semibold px-2 py-0.5 rounded-full">${p.status}</span>
+          ${p.product_num ? `<span class="text-xs text-gray-500">#${p.product_num}</span>` : ''}
+          <span class="text-xs text-gray-600">${p.account || ''}</span>
+        </div>
+        <p class="text-white font-medium truncate">${p.name || '(sem nome)'}</p>
+        <p class="text-xs text-gray-500 mt-0.5 truncate">${p.descricao_audio || p.affiliate_url || ''}</p>
+      </div>
+      ${p.status === 'publicado' && p.published_at ? `<span class="text-xs text-gray-600 whitespace-nowrap">${p.published_at}</span>` : ''}
+      ${p.status === 'erro' ? `<span class="text-xs text-red-500 max-w-xs truncate">${p.error || ''}</span>` : ''}
+    </div>
+  `).join('');
+}
+
+// ── Form ──────────────────────────────────────────────────────────────────────
+const FORM_FIELDS = ['name','account','usuario','status','product_num','descricao_audio',
+  'flash_offer','coupon_text','rating','reviews','sold_count',
+  'image_urls','video_urls','thumbnail','affiliate_url','source_url'];
+
+function onAccountChange() {
+  const acc = document.getElementById('f-account').value;
+  const sel = document.getElementById('f-usuario');
+  const users = ACCOUNT_USERS[acc] || [];
+  sel.innerHTML = users.length
+    ? users.map(u => `<option value="${u}">${u}</option>`).join('')
+    : '<option value="">—</option>';
+}
+
+function openForm(id) {
+  state.editingId = id;
+  const p = id ? state.products.find(x => x._id === id) : null;
+  document.getElementById('form-title').textContent = p ? 'Editar produto' : 'Novo produto';
+  document.getElementById('btn-delete').classList.toggle('hidden', !p);
+
+  // Clear
+  FORM_FIELDS.forEach(f => {
+    const el = document.getElementById('f-' + f);
+    if (el) el.value = '';
+  });
+  document.getElementById('f-status').value = 'pendente';
+
+  if (p) {
+    FORM_FIELDS.forEach(f => {
+      const el = document.getElementById('f-' + f);
+      if (el && p[f] !== undefined) el.value = p[f];
+    });
+    onAccountChange();
+    document.getElementById('f-usuario').value = p.usuario || '';
+
+    // Resultado (read-only)
+    const rs = document.getElementById('result-section');
+    const hasResult = p.video_path || p.published_at || p.post_id || p.error;
+    rs.classList.toggle('hidden', !hasResult);
+    if (hasResult) {
+      document.getElementById('r-video_path').textContent   = p.video_path || '—';
+      document.getElementById('r-published_at').textContent = p.published_at || '—';
+      document.getElementById('r-post_id').textContent      = p.post_id || '—';
+      document.getElementById('r-facebook_post_id').textContent = p.facebook_post_id || '—';
+      document.getElementById('r-error').textContent        = p.error || '';
+    }
+  } else {
+    document.getElementById('result-section').classList.add('hidden');
+    onAccountChange();
+  }
+
+  document.getElementById('modal-overlay').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeForm() {
+  document.getElementById('modal-overlay').classList.add('hidden');
+  document.body.style.overflow = '';
+  state.editingId = null;
+}
+
+async function submitForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('[type=submit]');
+  btn.textContent = 'Salvando...';
+  btn.disabled = true;
+
+  const data = {};
+  FORM_FIELDS.forEach(f => {
+    const el = document.getElementById('f-' + f);
+    if (el) data[f] = el.value.trim();
+  });
+
+  if (state.editingId) {
+    const idx = state.products.findIndex(p => p._id === state.editingId);
+    if (idx >= 0) state.products[idx] = { ...state.products[idx], ...data };
+  } else {
+    data._id = crypto.randomUUID();
+    data.created_at = new Date().toISOString();
+    state.products.push(data);
+  }
+
+  try {
+    await saveProducts();
+    closeForm();
+    renderList();
+  } catch(err) {
+    alert('Erro ao salvar: ' + err.message);
+  }
+  btn.textContent = 'Salvar';
+  btn.disabled = false;
+}
+
+async function deleteProduct() {
+  if (!state.editingId) return;
+  if (!confirm('Excluir este produto?')) return;
+  state.products = state.products.filter(p => p._id !== state.editingId);
+  try {
+    await saveProducts();
+    closeForm();
+    renderList();
+  } catch(err) {
+    alert('Erro ao excluir: ' + err.message);
+  }
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+(async function init() {
+  const token = sessionStorage.getItem('token');
+  if (token) {
+    state.token      = token;
+    state.githubUser = sessionStorage.getItem('guser');
+    state.githubRepo = sessionStorage.getItem('grepo');
+    await loadProducts();
+    showApp();
+  }
+})();
+</script>
+</body>
+</html>

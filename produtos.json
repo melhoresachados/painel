@@ -4,7 +4,7 @@
       "name": "Camiseta Listrada",
       "account": "shopee",
       "usuario": "@happydayofertas",
-      "status": "erro",
+      "status": "processando",
       "product_num": 1,
       "descricao_audio": "Camiseta listrada para praia",
       "flash_offer": "10% off",
@@ -32,7 +32,7 @@
       "force_regenerate": "",
       "preview_image_url": "",
       "preview_thumbnail_url": "",
-      "force_publish_only": "1"
+      "force_publish_only": ""
     }
   ]
 }

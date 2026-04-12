@@ -160,6 +160,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
 .th-platform img { width: 15px; height: 15px; display: inline-block; vertical-align: middle; }
 
 .error-cell { color: #dc2626; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.td-thumb img { width:38px; height:68px; object-fit:cover; border-radius:4px; display:block; }
 
 /* Empty state */
 .empty-state { text-align: center; padding: 80px 20px; color: #94a3b8; }
@@ -218,6 +219,15 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
 .btn-secondary.warm:hover { background: #fffbeb; border-color: #f59e0b; }
 .btn-delete { background: #fff; color: #dc2626; border: 1.5px solid #fca5a5; border-radius: 8px; padding: 10px 18px; font-size: 14px; cursor: pointer; transition: all .15s; font-weight: 500; margin-left: auto; display: none; }
 .btn-delete:hover { background: #fef2f2; border-color: #dc2626; }
+
+/* Toast notifications */
+#toast-container { position:fixed; bottom:24px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:8px; }
+.toast { padding:12px 18px; border-radius:8px; font-size:13px; font-weight:500; color:#fff; box-shadow:0 4px 16px rgba(0,0,0,.18); opacity:0; transform:translateY(8px); transition:all .25s; max-width:340px; }
+.toast.show { opacity:1; transform:translateY(0); }
+.toast-success { background:#16a34a; }
+.toast-error { background:#dc2626; }
+.toast-info { background:#1e40af; }
+.toast-warn { background:#b45309; }
 
 /* Scrollbars */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -347,6 +357,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
       </button>
     </nav>
     <div class="header-right">
+      <span id="header-status-badge" style="display:none;font-size:12px;color:#fff;background:rgba(255,255,255,.15);padding:4px 10px;border-radius:20px;white-space:nowrap;"></span>
       <button class="btn-new" onclick="openForm(null)">
         <span>+</span>
         <span class="desktop-only">Novo produto</span>
@@ -389,11 +400,14 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                    oninput="renderList()">
           </div>
           <span id="count-label" class="result-count"></span>
+          <span id="last-updated" style="font-size:12px;color:#94a3b8;"></span>
+          <button onclick="refreshProducts()" style="padding:6px 12px;border:1.5px solid #e2e8f0;border-radius:7px;background:#fff;cursor:pointer;font-size:12px;color:#475569;display:flex;align-items:center;gap:4px;" title="Recarregar dados">↻ Atualizar</button>
         </div>
         <div class="table-wrap">
           <table>
             <colgroup>
               <col style="width:135px"><!-- Status -->
+              <col style="width:48px"><!-- Thumb -->
               <col><!-- Produto (flex) -->
               <col style="width:130px"><!-- Conta -->
               <col style="width:44px"><!-- Nº -->
@@ -406,12 +420,13 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
             </colgroup>
             <thead>
               <tr>
-                <th>Status</th>
-                <th>Produto</th>
-                <th>Conta</th>
-                <th style="text-align:center">Nº</th>
+                <th id="th-status" onclick="sortBy('status')" style="cursor:pointer;">Status <span id="sort-arrow-status"></span></th>
+                <th style="padding:10px 4px;"></th>
+                <th id="th-name" onclick="sortBy('name')" style="cursor:pointer;">Produto <span id="sort-arrow-name"></span></th>
+                <th id="th-account" onclick="sortBy('account')" style="cursor:pointer;">Conta <span id="sort-arrow-account"></span></th>
+                <th id="th-product_num" onclick="sortBy('product_num')" style="text-align:center;cursor:pointer;">Nº <span id="sort-arrow-product_num"></span></th>
                 <th>Etapa erro</th>
-                <th>Publicado em</th>
+                <th id="th-published_at" onclick="sortBy('published_at')" style="cursor:pointer;">Publicado em <span id="sort-arrow-published_at"></span></th>
                 <th class="th-platform" title="Instagram"><img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram"></th>
                 <th class="th-platform" title="Facebook"><img src="https://cdn.simpleicons.org/facebook/1877F2" alt="Facebook"></th>
                 <th class="th-platform" title="TikTok"><img src="https://cdn.simpleicons.org/tiktok/010101" alt="TikTok"></th>
@@ -657,6 +672,18 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
   </div><!-- /.app-body -->
 </div><!-- /#app-screen -->
 
+<div id="toast-container"></div>
+
+<div id="modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:8000;align-items:center;justify-content:center;">
+  <div style="background:#fff;border-radius:12px;padding:28px 24px;max-width:380px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.25);">
+    <p id="modal-msg" style="font-size:15px;color:#1e293b;margin-bottom:20px;line-height:1.5;"></p>
+    <div style="display:flex;gap:10px;justify-content:flex-end;">
+      <button id="modal-cancel-btn" style="padding:8px 18px;border:1.5px solid #e2e8f0;border-radius:7px;background:#f8fafc;cursor:pointer;font-size:13px;">Cancelar</button>
+      <button id="modal-confirm-btn" style="padding:8px 18px;border:none;border-radius:7px;background:#dc2626;color:#fff;cursor:pointer;font-size:13px;font-weight:600;">Confirmar</button>
+    </div>
+  </div>
+</div>
+
 <script>
 // ── Config ────────────────────────────────────────────────────────────────────
 const CONFIG_URL = 'config.json';
@@ -679,6 +706,7 @@ let state = {
   filterAccount: 'all', filterStatus: 'all', filterErrorStage: 'all',
   editingId: null, currentPage: 'list',
 };
+let sortState = { col: 'status', dir: 'asc' };
 
 function persistViewState() {
   sessionStorage.setItem('painel_current_page', state.currentPage || 'list');
@@ -722,12 +750,12 @@ async function doLogin() {
   try {
     const r = await fetch(CONFIG_URL + '?t=' + Date.now());
     cfg = await r.json();
-  } catch { alert('Erro ao carregar config.json'); return; }
+  } catch { showToast('Erro ao carregar config.json', 'error'); return; }
   const hash = await sha256hex(pwd);
   if (hash !== cfg.password_hash) { errEl.style.display = 'block'; return; }
   let token;
   try { token = await decryptToken(pwd, cfg); }
-  catch { alert('Erro ao decifrar token. Rode o setup novamente.'); return; }
+  catch { showToast('Erro ao decifrar token. Rode o setup novamente.', 'error'); return; }
   state.token = token; state.githubUser = cfg.github_user; state.githubRepo = cfg.github_repo;
   sessionStorage.setItem('token', token);
   sessionStorage.setItem('guser', cfg.github_user);
@@ -792,7 +820,11 @@ function showApp() {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app-screen').style.display = 'flex';
   buildFilters();
+  updateHeaderBadge();
   renderList();
+  const now = new Date();
+  const lu = document.getElementById('last-updated');
+  if (lu) lu.textContent = `Atualizado às ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
   const savedPage = sessionStorage.getItem('painel_current_page');
   const savedEditingId = sessionStorage.getItem('painel_editing_id');
   if (savedPage === 'form' && savedEditingId) openForm(savedEditingId);
@@ -861,6 +893,7 @@ function buildFilters() {
     `<button class="filter-item ${state.filterErrorStage===s?'active':''}" onclick="setFilter('error_stage','${s}')">
       ${ERROR_STAGE_LABELS[s]} <span class="badge-count">${countFor('error_stage',s)}</span>
     </button>`).join('');
+  updateHeaderBadge();
 }
 function setFilter(type, val) {
   if (type === 'account') state.filterAccount = val;
@@ -879,6 +912,20 @@ const PLAT_ICONS = {
 function platIcon(value, platform) {
   const on = !!(value && String(value).trim());
   return `<span class="plat-icon ${on?'on':'off'}"><img src="${PLAT_ICONS[platform]}" alt="${platform}"></span>`;
+}
+
+function formatDate(iso) {
+  if (!iso) return '—';
+  try {
+    const d = new Date(iso);
+    return `${d.getDate().toString().padStart(2,'0')}/${(d.getMonth()+1).toString().padStart(2,'0')} ${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}`;
+  } catch { return iso; }
+}
+
+function sortBy(col) {
+  if (sortState.col === col) sortState.dir = sortState.dir === 'asc' ? 'desc' : 'asc';
+  else { sortState.col = col; sortState.dir = 'asc'; }
+  renderList();
 }
 
 function renderList() {
@@ -904,7 +951,39 @@ function renderList() {
   });
 
   const statusOrder = { pendente:0, processando:1, gerado:2, publicado:3, erro:4 };
-  products.sort((a,b) => (statusOrder[a.status]??5) - (statusOrder[b.status]??5));
+  const col = sortState.col;
+  const dir = sortState.dir;
+  products.sort((a, b) => {
+    let av, bv;
+    if (col === 'status') {
+      av = statusOrder[a.status] ?? 5;
+      bv = statusOrder[b.status] ?? 5;
+      return dir === 'asc' ? av - bv : bv - av;
+    } else if (col === 'name') {
+      av = (a.name || '').toLowerCase();
+      bv = (b.name || '').toLowerCase();
+      return dir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
+    } else if (col === 'account') {
+      av = (a.account || '').toLowerCase();
+      bv = (b.account || '').toLowerCase();
+      return dir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
+    } else if (col === 'product_num') {
+      av = parseInt(a.product_num) || 0;
+      bv = parseInt(b.product_num) || 0;
+      return dir === 'asc' ? av - bv : bv - av;
+    } else if (col === 'published_at') {
+      av = a.published_at || '';
+      bv = b.published_at || '';
+      return dir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
+    }
+    return 0;
+  });
+
+  // Update sort arrow indicators
+  ['status','name','account','product_num','published_at'].forEach(c => {
+    const el = document.getElementById('sort-arrow-' + c);
+    if (el) el.textContent = sortState.col === c ? (sortState.dir === 'asc' ? ' ▲' : ' ▼') : '';
+  });
 
   const total = state.products.length;
   document.getElementById('count-label').textContent =
@@ -924,9 +1003,13 @@ function renderList() {
   tbody.innerHTML = products.map(p => {
     const obs = p.status === 'erro' ? (p.error || '') : (p.descricao_audio || p.affiliate_url || '');
     const errorStage = p.error_stage || '—';
+    const thumbCell = p.preview_thumbnail_url
+      ? `<td class="td-thumb" style="padding:4px 4px;"><img src="${escHtml(p.preview_thumbnail_url)}" alt="" loading="lazy"></td>`
+      : `<td class="td-thumb"></td>`;
     return `
     <tr onclick="openForm('${p._id}')">
       <td><span class="badge badge-${p.status||'pendente'}">${p.status||'pendente'}</span></td>
+      ${thumbCell}
       <td class="td-name">
         <div class="name-text">${escHtml(p.name || '(sem nome)')}</div>
         ${p.affiliate_url ? `<div class="sub">${escHtml(p.affiliate_url)}</div>` : ''}
@@ -935,7 +1018,7 @@ function renderList() {
       <td style="text-align:center;color:#94a3b8;font-size:13px;">${p.product_num||'—'}</td>
       <td style="font-size:12px;color:${p.error_stage?'#b45309':'#94a3b8'};white-space:nowrap;"
           title="${escHtml(errorStage)}">${escHtml(errorStage)}</td>
-      <td style="color:#64748b;font-size:12px;white-space:nowrap;">${p.published_at||'—'}</td>
+      <td style="color:#64748b;font-size:12px;white-space:nowrap;">${formatDate(p.published_at)}</td>
       <td class="plat-cell">${platIcon(p.post_id,          'instagram')}</td>
       <td class="plat-cell">${platIcon(p.facebook_post_id, 'facebook')}</td>
       <td class="plat-cell">${platIcon(p.tiktok_post_id,   'tiktok')}</td>
@@ -1052,8 +1135,8 @@ function openForm(id) {
   const p = id ? state.products.find(x => x._id === id) : null;
   document.getElementById('form-title').textContent = p ? `Editar produto${p.name ? ' — '+p.name : ''}` : 'Novo produto';
   document.getElementById('btn-delete').style.display = p ? 'block' : 'none';
-  document.getElementById('btn-regenerate').style.display = p ? 'inline-flex' : 'none';
-  document.getElementById('btn-republish').style.display = p ? 'inline-flex' : 'none';
+  document.getElementById('btn-regenerate').style.display = (p && p.video_path) ? 'inline-flex' : 'none';
+  document.getElementById('btn-republish').style.display  = (p && (p.post_id || p.facebook_post_id)) ? 'inline-flex' : 'none';
 
   FORM_FIELDS.forEach(f => {
     const el = document.getElementById('f-' + f);
@@ -1131,10 +1214,10 @@ async function requestRegenerate() {
 
   try {
     await saveProducts();
-    alert('Regeração solicitada. Na próxima execução do pipeline, este produto será gerado novamente e republicado.');
+    showToast('Regeração solicitada. Na próxima execução do pipeline, este produto será gerado novamente e republicado.', 'success');
     openForm(state.editingId);
   } catch (err) {
-    alert('Erro ao solicitar regeneração: ' + err.message);
+    showToast('Erro ao solicitar regeneração: ' + err.message, 'error');
   }
 }
 
@@ -1159,10 +1242,10 @@ async function requestRepublish() {
 
   try {
     await saveProducts();
-    alert('Republicação solicitada. Na próxima execução do pipeline, o sistema tentará reaproveitar o vídeo atual e publicar novamente.');
+    showToast('Republicação solicitada. Na próxima execução do pipeline, o sistema tentará reaproveitar o vídeo atual e publicar novamente.', 'success');
     openForm(state.editingId);
   } catch (err) {
-    alert('Erro ao solicitar republicação: ' + err.message);
+    showToast('Erro ao solicitar republicação: ' + err.message, 'error');
   }
 }
 
@@ -1186,7 +1269,7 @@ async function submitForm(e) {
 
   const validationErrors = validateFormData(data);
   if (validationErrors.length) {
-    alert('Antes de salvar, ajuste estes pontos:\n\n- ' + validationErrors.join('\n- '));
+    showToast('Antes de salvar: ' + validationErrors[0], 'warn');
     btn.textContent = 'Salvar produto'; btn.disabled = false;
     return;
   }
@@ -1205,26 +1288,80 @@ async function submitForm(e) {
 
   try {
     await saveProducts();
+    showToast('Produto salvo com sucesso!', 'success');
     showPage('list');
   } catch(err) {
-    alert('Erro ao salvar: ' + err.message);
+    showToast('Erro ao salvar: ' + err.message, 'error');
   }
   btn.textContent = 'Salvar produto'; btn.disabled = false;
 }
 
-async function deleteProduct() {
+function deleteProduct() {
   if (!state.editingId) return;
-  if (!confirm('Excluir este produto? Esta ação não pode ser desfeita.')) return;
-  state.products = state.products.filter(p => p._id !== state.editingId);
+  showConfirm('Excluir este produto? Esta ação não pode ser desfeita.', async () => {
+    state.products = state.products.filter(p => p._id !== state.editingId);
 
-  // Renumber remaining products after deletion
-  renumberProducts();
+    // Renumber remaining products after deletion
+    renumberProducts();
 
+    try {
+      await saveProducts();
+      showToast('Produto excluído.', 'info');
+      showPage('list');
+    } catch(err) {
+      showToast('Erro ao excluir: ' + err.message, 'error');
+    }
+  });
+}
+
+// ── Toast notifications ───────────────────────────────────────────────────────
+function showToast(msg, type = 'info') {
+  const t = document.createElement('div');
+  t.className = `toast toast-${type}`;
+  t.textContent = msg;
+  document.getElementById('toast-container').appendChild(t);
+  requestAnimationFrame(() => t.classList.add('show'));
+  setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 3500);
+}
+
+// ── Confirm modal ─────────────────────────────────────────────────────────────
+function showConfirm(msg, onConfirm) {
+  const overlay = document.getElementById('modal-overlay');
+  document.getElementById('modal-msg').textContent = msg;
+  overlay.style.display = 'flex';
+  document.getElementById('modal-confirm-btn').onclick = () => { overlay.style.display='none'; onConfirm(); };
+  document.getElementById('modal-cancel-btn').onclick = () => { overlay.style.display='none'; };
+}
+
+// ── Header badge ──────────────────────────────────────────────────────────────
+function updateHeaderBadge() {
+  const pending = state.products.filter(p => p.status === 'pendente').length;
+  const errors  = state.products.filter(p => p.status === 'erro').length;
+  const badge   = document.getElementById('header-status-badge');
+  if (!badge) return;
+  const parts = [];
+  if (pending > 0) parts.push(`● ${pending} pendente${pending > 1 ? 's' : ''}`);
+  if (errors  > 0) parts.push(`● ${errors} erro${errors  > 1 ? 's' : ''}`);
+  badge.textContent = parts.join('  ');
+  badge.style.display = parts.length ? 'inline-flex' : 'none';
+}
+
+// ── Refresh ───────────────────────────────────────────────────────────────────
+async function refreshProducts() {
+  const btn = document.querySelector('[onclick="refreshProducts()"]');
+  if (btn) { btn.textContent = '↻ ...'; btn.disabled = true; }
   try {
-    await saveProducts();
-    showPage('list');
-  } catch(err) {
-    alert('Erro ao excluir: ' + err.message);
+    await loadProducts();
+    updateHeaderBadge();
+    buildFilters();
+    renderList();
+    const now = new Date();
+    document.getElementById('last-updated').textContent = `Atualizado às ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+    showToast('Dados atualizados', 'success');
+  } catch(e) {
+    showToast('Erro ao atualizar: ' + e.message, 'error');
+  } finally {
+    if (btn) { btn.textContent = '↻ Atualizar'; btn.disabled = false; }
   }
 }
 

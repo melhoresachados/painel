@@ -678,6 +678,17 @@ let state = {
   editingId: null, currentPage: 'list',
 };
 
+function persistViewState() {
+  sessionStorage.setItem('painel_current_page', state.currentPage || 'list');
+  if (state.editingId) sessionStorage.setItem('painel_editing_id', state.editingId);
+  else sessionStorage.removeItem('painel_editing_id');
+}
+
+function clearViewState() {
+  sessionStorage.removeItem('painel_current_page');
+  sessionStorage.removeItem('painel_editing_id');
+}
+
 // ── Crypto helpers ────────────────────────────────────────────────────────────
 async function sha256hex(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
@@ -719,6 +730,8 @@ async function doLogin() {
   sessionStorage.setItem('token', token);
   sessionStorage.setItem('guser', cfg.github_user);
   sessionStorage.setItem('grepo', cfg.github_repo);
+  sessionStorage.setItem('painel_current_page', 'list');
+  sessionStorage.removeItem('painel_editing_id');
   await loadProducts();
   showApp();
 }
@@ -778,11 +791,16 @@ function showApp() {
   document.getElementById('app-screen').style.display = 'flex';
   buildFilters();
   renderList();
-  showPage('list');
+  const savedPage = sessionStorage.getItem('painel_current_page');
+  const savedEditingId = sessionStorage.getItem('painel_editing_id');
+  if (savedPage === 'form' && savedEditingId) openForm(savedEditingId);
+  else showPage('list');
 }
 
 function showPage(page) {
   state.currentPage = page;
+  if (page === 'list') state.editingId = null;
+  persistViewState();
   document.getElementById('list-page').style.display = page === 'list' ? 'flex' : 'none';
   document.getElementById('form-page').style.display = page === 'form' ? 'block' : 'none';
   document.getElementById('sidebar').style.display   = page === 'list' ? 'flex'  : 'none';
@@ -1015,6 +1033,8 @@ function bindPreviewInputs() {
 
 function openForm(id) {
   state.editingId = id;
+  state.currentPage = 'form';
+  persistViewState();
   const p = id ? state.products.find(x => x._id === id) : null;
   document.getElementById('form-title').textContent = p ? `Editar produto${p.name ? ' — '+p.name : ''}` : 'Novo produto';
   document.getElementById('btn-delete').style.display = p ? 'block' : 'none';

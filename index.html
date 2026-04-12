@@ -1003,8 +1003,8 @@ function renderList() {
   tbody.innerHTML = products.map(p => {
     const obs = p.status === 'erro' ? (p.error || '') : (p.descricao_audio || p.affiliate_url || '');
     const errorStage = p.error_stage || '—';
-    const thumbCell = p.preview_thumbnail_url
-      ? `<td class="td-thumb" style="padding:4px 4px;"><img src="${escHtml(p.preview_thumbnail_url)}" alt="" loading="lazy"></td>`
+    const thumbCell = p.preview_image_url
+      ? `<td class="td-thumb" style="padding:4px 4px;"><img src="${escHtml(p.preview_image_url)}" alt="" loading="lazy"></td>`
       : `<td class="td-thumb"></td>`;
     return `
     <tr onclick="openForm('${p._id}')">

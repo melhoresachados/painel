@@ -880,24 +880,23 @@ function platIcon(value, platform) {
 }
 
 function renderList() {
-  const q = (document.getElementById('search-input').value || '').toLowerCase();
+  const rawQuery = (document.getElementById('search-input').value || '').trim();
+  const q = rawQuery.toLowerCase();
+  const numericQuery = q.replace(/^#\s*/, '');
+  const isNumericSearch = /^[0-9]+$/.test(numericQuery);
   let products = state.products.filter(p => {
     if (state.filterAccount !== 'all' && p.account !== state.filterAccount) return false;
     if (state.filterStatus  !== 'all' && p.status  !== state.filterStatus)  return false;
     if (state.filterErrorStage !== 'all' && (p.error_stage || '') !== state.filterErrorStage) return false;
     if (q) {
-      const searchable = [
-        p.name,
-        p.account,
-        p.product_num,
-        p.product,
-        p.affiliate_url,
-        p.source_url,
-        p.usuario,
-      ]
-        .map(v => String(v || '').toLowerCase())
-        .join(' ');
-      if (!searchable.includes(q)) return false;
+      if (isNumericSearch) {
+        const productNum = String(p.product_num || '').trim();
+        const product = String(p.product || '').trim();
+        if (productNum !== numericQuery && product !== numericQuery) return false;
+      } else {
+        const productName = String(p.name || '').toLowerCase();
+        if (!productName.includes(q)) return false;
+      }
     }
     return true;
   });

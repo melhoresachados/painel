@@ -4,7 +4,7 @@
       "name": "Camiseta Listrada",
       "account": "shopee",
       "usuario": "@happydayofertas",
-      "status": "processando",
+      "status": "publicado",
       "product_num": 1,
       "descricao_audio": "Camiseta listrada para praia",
       "flash_offer": "10% off",
@@ -20,7 +20,16 @@
       "_id": "7b299db1-3651-4e71-93f8-c764bb09309c",
       "created_at": "2026-04-12T03:20:36.477Z",
       "product": 1,
-      "error": "publish: Erro HTTP 400: {'error': {'message': 'Error validating access token: Session has expired on Saturday, 11-Apr-26 16:00:00 PDT. The current time is Saturday, 11-Apr-26 21:06:32 PDT.', 'type': '"
+      "error": "",
+      "facebook_status": "publicado",
+      "video_path": "out_videos\\shopee\\produto_1_shopee.mp4",
+      "published_at": "2026-04-12 02:15",
+      "post_id": "18148650535424269",
+      "facebook_published_at": "2026-04-12 02:15:41",
+      "facebook_post_id": "1471739991086639",
+      "error_stage": "",
+      "facebook_error": "",
+      "force_regenerate": ""
     }
   ]
 }

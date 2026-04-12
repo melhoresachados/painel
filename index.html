@@ -90,6 +90,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size:
 .filter-item.active { background: #e8f0fb; color: var(--brand-navy); font-weight: 600; }
 .filter-item .badge-count { font-size: 11px; background: #e2e8f0; color: #64748b; padding: 1px 7px; border-radius: 20px; }
 .filter-item.active .badge-count { background: #d6e4f8; color: var(--brand-navy); }
+.filter-help { font-size: 11px; color: #94a3b8; padding: 2px 10px 0; line-height: 1.4; }
 
 /* Main panel */
 .main-panel { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
@@ -192,6 +193,8 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
 .btn-cancel:hover { background: #e2e8f0; }
 .btn-secondary { background: #fff; color: var(--brand-navy); border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 10px 18px; font-size: 14px; cursor: pointer; transition: all .15s; font-weight: 600; display: none; }
 .btn-secondary:hover { background: #f8fafc; border-color: var(--brand-navy); }
+.btn-secondary.warm { color: #b45309; border-color: #fcd34d; }
+.btn-secondary.warm:hover { background: #fffbeb; border-color: #f59e0b; }
 .btn-delete { background: #fff; color: #dc2626; border: 1.5px solid #fca5a5; border-radius: 8px; padding: 10px 18px; font-size: 14px; cursor: pointer; transition: all .15s; font-weight: 500; margin-left: auto; display: none; }
 .btn-delete:hover { background: #fef2f2; border-color: #dc2626; }
 
@@ -252,6 +255,11 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
       <div>
         <div class="filter-group-title">Status</div>
         <div id="status-filters"></div>
+      </div>
+      <div>
+        <div class="filter-group-title">Etapa erro</div>
+        <div id="error-stage-filters"></div>
+        <div class="filter-help">Ajuda a separar erro de postagem de erro que exige novo vídeo.</div>
       </div>
     </aside>
 
@@ -446,6 +454,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
               <div class="form-actions">
                 <button type="submit" class="btn-save" id="btn-save">Salvar produto</button>
                 <button type="button" class="btn-cancel" onclick="showPage('list')">Cancelar</button>
+                <button type="button" class="btn-secondary warm" id="btn-republish" onclick="requestRepublish()">Publicar novamente</button>
                 <button type="button" class="btn-secondary" id="btn-regenerate" onclick="requestRegenerate()">Regerar</button>
                 <button type="button" class="btn-delete" id="btn-delete" onclick="deleteProduct()">🗑 Excluir</button>
               </div>
@@ -520,12 +529,13 @@ const ACCOUNT_USERS = {
 
 const ACCOUNT_LABELS = { all:'Todas as contas', shopee:'Shopee', shein:'Shein', mercadolivre:'Mercado Livre' };
 const STATUS_LABELS  = { all:'Todos', pendente:'Pendente', gerado:'Gerado', publicado:'Publicado', processando:'Processando', erro:'Erro' };
+const ERROR_STAGE_LABELS = { all:'Todas', 'Geração video':'Geração video', 'Erro na postagem':'Erro na postagem', 'Pipeline':'Pipeline' };
 
 // ── State ─────────────────────────────────────────────────────────────────────
 let state = {
   token: null, githubUser: null, githubRepo: null,
   products: [], sha: '',
-  filterAccount: 'all', filterStatus: 'all',
+  filterAccount: 'all', filterStatus: 'all', filterErrorStage: 'all',
   editingId: null, currentPage: 'list',
 };
 
@@ -645,12 +655,14 @@ function showPage(page) {
 function countFor(type, val) {
   return state.products.filter(p => {
     if (type === 'account') return val === 'all' || p.account === val;
+    if (type === 'error_stage') return val === 'all' || (p.error_stage || '') === val;
     return val === 'all' || p.status === val;
   }).length;
 }
 function buildFilters() {
   const accounts = ['all','shopee','shein','mercadolivre'];
   const statuses  = ['all','pendente','gerado','publicado','processando','erro'];
+  const errorStages = ['all','Geração video','Erro na postagem','Pipeline'];
   document.getElementById('account-filters').innerHTML = accounts.map(a =>
     `<button class="filter-item ${state.filterAccount===a?'active':''}" onclick="setFilter('account','${a}')">
       ${ACCOUNT_LABELS[a]} <span class="badge-count">${countFor('account',a)}</span>
@@ -659,9 +671,15 @@ function buildFilters() {
     `<button class="filter-item ${state.filterStatus===s?'active':''}" onclick="setFilter('status','${s}')">
       ${STATUS_LABELS[s]} <span class="badge-count">${countFor('status',s)}</span>
     </button>`).join('');
+  document.getElementById('error-stage-filters').innerHTML = errorStages.map(s =>
+    `<button class="filter-item ${state.filterErrorStage===s?'active':''}" onclick="setFilter('error_stage','${s}')">
+      ${ERROR_STAGE_LABELS[s]} <span class="badge-count">${countFor('error_stage',s)}</span>
+    </button>`).join('');
 }
 function setFilter(type, val) {
-  if (type === 'account') state.filterAccount = val; else state.filterStatus = val;
+  if (type === 'account') state.filterAccount = val;
+  else if (type === 'status') state.filterStatus = val;
+  else state.filterErrorStage = val;
   buildFilters(); renderList();
 }
 
@@ -681,6 +699,7 @@ function renderList() {
   let products = state.products.filter(p => {
     if (state.filterAccount !== 'all' && p.account !== state.filterAccount) return false;
     if (state.filterStatus  !== 'all' && p.status  !== state.filterStatus)  return false;
+    if (state.filterErrorStage !== 'all' && (p.error_stage || '') !== state.filterErrorStage) return false;
     if (q && !p.name?.toLowerCase().includes(q)) return false;
     return true;
   });
@@ -737,6 +756,17 @@ const FORM_FIELDS = ['name','account','usuario','status','descricao_audio',
   'flash_offer','coupon_text','rating','reviews','sold_count',
   'image_urls','video_urls','thumbnail','affiliate_url','source_url'];
 
+function validateFormData(data) {
+  const errors = [];
+  if (!data.name) errors.push('Informe o nome do produto.');
+  if (!data.account) errors.push('Selecione a conta.');
+  if (!data.affiliate_url) errors.push('Preencha o link de afiliado.');
+  if (!data.source_url) errors.push('Preencha o link original do produto.');
+  if (!data.image_urls && !data.video_urls) errors.push('Informe ao menos uma mídia em Imagens ou Vídeos.');
+  if (data.video_urls && !data.thumbnail) errors.push('Quando houver vídeo, preencha também a thumbnail para garantir a capa.');
+  return errors;
+}
+
 function onAccountChange() {
   const acc = document.getElementById('f-account').value;
   const sel = document.getElementById('f-usuario');
@@ -752,6 +782,7 @@ function openForm(id) {
   document.getElementById('form-title').textContent = p ? `Editar produto${p.name ? ' — '+p.name : ''}` : 'Novo produto';
   document.getElementById('btn-delete').style.display = p ? 'block' : 'none';
   document.getElementById('btn-regenerate').style.display = p ? 'inline-flex' : 'none';
+  document.getElementById('btn-republish').style.display = p ? 'inline-flex' : 'none';
 
   FORM_FIELDS.forEach(f => {
     const el = document.getElementById('f-' + f);
@@ -813,6 +844,7 @@ async function requestRegenerate() {
     ...current,
     status: 'pendente',
     force_regenerate: '1',
+    force_publish_only: '',
     error: '',
     error_stage: '',
     published_at: '',
@@ -829,6 +861,34 @@ async function requestRegenerate() {
     openForm(state.editingId);
   } catch (err) {
     alert('Erro ao solicitar regeneração: ' + err.message);
+  }
+}
+
+async function requestRepublish() {
+  if (!state.editingId) return;
+  const idx = state.products.findIndex(p => p._id === state.editingId);
+  if (idx < 0) return;
+  const current = state.products[idx];
+  state.products[idx] = {
+    ...current,
+    status: 'erro',
+    force_publish_only: '1',
+    force_regenerate: '',
+    error_stage: 'Erro na postagem',
+    error: 'Republicação solicitada manualmente pelo painel.',
+    post_id: '',
+    facebook_post_id: '',
+    facebook_published_at: '',
+    facebook_status: '',
+    facebook_error: '',
+  };
+
+  try {
+    await saveProducts();
+    alert('Republicação solicitada. Na próxima execução do pipeline, o sistema tentará reaproveitar o vídeo atual e publicar novamente.');
+    openForm(state.editingId);
+  } catch (err) {
+    alert('Erro ao solicitar republicação: ' + err.message);
   }
 }
 
@@ -849,6 +909,13 @@ async function submitForm(e) {
     const el = document.getElementById('f-' + f);
     if (el) data[f] = el.value.trim();
   });
+
+  const validationErrors = validateFormData(data);
+  if (validationErrors.length) {
+    alert('Antes de salvar, ajuste estes pontos:\n\n- ' + validationErrors.join('\n- '));
+    btn.textContent = 'Salvar produto'; btn.disabled = false;
+    return;
+  }
 
   if (state.editingId) {
     const idx = state.products.findIndex(p => p._id === state.editingId);

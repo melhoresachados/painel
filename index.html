@@ -4,236 +4,461 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Painel de Afiliados</title>
-<script src="https://cdn.tailwindcss.com"></script>
 <style>
-  body { background: #0f0f13; color: #e2e2e8; font-family: 'Segoe UI', system-ui, sans-serif; }
-  .badge-pendente    { background:#3b3b00; color:#ffd700; }
-  .badge-processando { background:#003366; color:#66b2ff; }
-  .badge-gerado      { background:#003322; color:#55cc88; }
-  .badge-publicado   { background:#002200; color:#44ee66; }
-  .badge-erro        { background:#330000; color:#ff6655; }
-  input, select, textarea {
-    background:#1e1e26; border:1px solid #333; color:#e2e2e8;
-    border-radius:6px; padding:8px 12px; width:100%; outline:none;
-    transition: border .15s;
-  }
-  input:focus, select:focus, textarea:focus { border-color:#6c6cff; }
-  .btn-primary { background:#5555ff; color:#fff; border-radius:8px; padding:9px 20px; font-weight:600; cursor:pointer; transition:background .15s; }
-  .btn-primary:hover { background:#4444ee; }
-  .btn-secondary { background:#2a2a38; color:#aaa; border-radius:8px; padding:9px 20px; cursor:pointer; transition:background .15s; }
-  .btn-secondary:hover { background:#33334a; }
-  .btn-danger { background:#550000; color:#ff8877; border-radius:8px; padding:9px 20px; cursor:pointer; }
-  .btn-danger:hover { background:#770000; }
-  .card { background:#18181f; border:1px solid #2a2a38; border-radius:12px; }
-  .sidebar { background:#13131a; border-right:1px solid #222; }
-  ::-webkit-scrollbar { width:6px; } ::-webkit-scrollbar-track { background:#111; }
-  ::-webkit-scrollbar-thumb { background:#333; border-radius:3px; }
-  select option { background:#1e1e26; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 14px; background: #f0f2f5; color: #1a1a2e; min-height: 100vh; }
+
+/* ── Login ──────────────────────────────────────────────────────────────── */
+#login-screen {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 100vh; background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+}
+.login-card {
+  background: #fff; border-radius: 12px; padding: 48px 40px;
+  width: 360px; box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+.login-logo { text-align: center; margin-bottom: 28px; }
+.login-logo .icon { font-size: 48px; display: block; margin-bottom: 8px; }
+.login-logo h1 { font-size: 20px; font-weight: 700; color: #1e3a8a; }
+.login-logo p { font-size: 13px; color: #64748b; margin-top: 2px; }
+.login-field { margin-bottom: 16px; }
+.login-field label { display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .04em; }
+.login-field input { width: 100%; padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 14px; outline: none; transition: border .15s; }
+.login-field input:focus { border-color: #1d4ed8; }
+.btn-login { width: 100%; padding: 11px; background: #1d4ed8; color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background .15s; }
+.btn-login:hover { background: #1e40af; }
+.login-error { color: #dc2626; font-size: 13px; text-align: center; margin-top: 10px; display: none; }
+
+/* ── App shell ──────────────────────────────────────────────────────────── */
+#app-screen { display: none; flex-direction: column; min-height: 100vh; }
+
+/* Header */
+.app-header {
+  background: linear-gradient(90deg, #1e3a8a 0%, #1d4ed8 100%);
+  padding: 0 24px; height: 56px; display: flex; align-items: center;
+  gap: 16px; box-shadow: 0 2px 8px rgba(0,0,0,.2); position: sticky; top: 0; z-index: 100;
+}
+.app-header .brand { color: #fff; font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.app-header .brand span { font-size: 20px; }
+.app-header nav { display: flex; gap: 4px; flex: 1; }
+.nav-btn {
+  color: rgba(255,255,255,.75); padding: 6px 14px; border-radius: 6px;
+  border: none; background: transparent; cursor: pointer; font-size: 13px; font-weight: 500;
+  transition: all .15s; display: flex; align-items: center; gap: 6px;
+}
+.nav-btn:hover, .nav-btn.active { background: rgba(255,255,255,.15); color: #fff; }
+.app-header .header-right { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+.btn-new {
+  background: #fff; color: #1d4ed8; border: none; border-radius: 7px;
+  padding: 7px 16px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all .15s;
+  display: flex; align-items: center; gap: 5px;
+}
+.btn-new:hover { background: #e0e7ff; }
+.btn-logout { color: rgba(255,255,255,.7); background: none; border: none; cursor: pointer; font-size: 13px; padding: 6px 10px; border-radius: 6px; transition: all .15s; }
+.btn-logout:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+/* Content area */
+.app-body { flex: 1; display: flex; overflow: hidden; }
+
+/* Sidebar */
+.sidebar {
+  width: 220px; flex-shrink: 0; background: #fff;
+  border-right: 1px solid #e2e8f0; padding: 20px 12px;
+  overflow-y: auto; display: flex; flex-direction: column; gap: 20px;
+}
+.filter-group-title { font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: .06em; padding: 0 8px; margin-bottom: 4px; }
+.filter-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 7px 10px; border-radius: 7px; cursor: pointer;
+  font-size: 13px; color: #475569; transition: all .15s; border: none; background: none; width: 100%; text-align: left;
+}
+.filter-item:hover { background: #f1f5f9; color: #1e3a8a; }
+.filter-item.active { background: #e0e7ff; color: #1d4ed8; font-weight: 600; }
+.filter-item .badge-count { font-size: 11px; background: #e2e8f0; color: #64748b; padding: 1px 7px; border-radius: 20px; }
+.filter-item.active .badge-count { background: #c7d2fe; color: #3730a3; }
+
+/* Main panel */
+.main-panel { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+/* Toolbar */
+.toolbar {
+  background: #fff; border-bottom: 1px solid #e2e8f0;
+  padding: 12px 20px; display: flex; align-items: center; gap: 12px;
+}
+.search-wrap { position: relative; flex: 1; max-width: 380px; }
+.search-wrap input { width: 100%; padding: 8px 12px 8px 36px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 13px; outline: none; transition: border .15s; background: #f8fafc; }
+.search-wrap input:focus { border-color: #6366f1; background: #fff; }
+.search-wrap .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 14px; pointer-events: none; }
+.result-count { color: #64748b; font-size: 13px; margin-left: auto; }
+
+/* Table */
+.table-wrap { flex: 1; overflow-y: auto; padding: 16px 20px; }
+table { width: 100%; border-collapse: collapse; }
+thead th {
+  text-align: left; padding: 10px 14px; font-size: 11px; font-weight: 700;
+  color: #64748b; text-transform: uppercase; letter-spacing: .05em;
+  background: #f8fafc; border-bottom: 1.5px solid #e2e8f0;
+  position: sticky; top: 0; z-index: 1;
+}
+tbody tr { border-bottom: 1px solid #f1f5f9; transition: background .1s; cursor: pointer; }
+tbody tr:hover { background: #f8fafc; }
+tbody td { padding: 11px 14px; font-size: 13px; color: #334155; vertical-align: middle; }
+.td-name { font-weight: 500; color: #1e293b; max-width: 280px; }
+.td-name .name-text { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+.td-name .sub { font-size: 12px; color: #94a3b8; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 280px; }
+
+/* Status badges */
+.badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+.badge::before { content:''; width:6px; height:6px; border-radius:50%; }
+.badge-pendente    { background: #fef9c3; color: #854d0e; } .badge-pendente::before    { background: #ca8a04; }
+.badge-processando { background: #dbeafe; color: #1e40af; } .badge-processando::before { background: #2563eb; }
+.badge-gerado      { background: #dcfce7; color: #14532d; } .badge-gerado::before      { background: #16a34a; }
+.badge-publicado   { background: #d1fae5; color: #064e3b; } .badge-publicado::before   { background: #059669; }
+.badge-erro        { background: #fee2e2; color: #7f1d1d; } .badge-erro::before        { background: #dc2626; }
+
+.account-tag { background: #f1f5f9; color: #475569; border-radius: 5px; padding: 2px 8px; font-size: 12px; font-weight: 500; }
+.error-cell { color: #dc2626; font-size: 12px; max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Empty state */
+.empty-state { text-align: center; padding: 80px 20px; color: #94a3b8; }
+.empty-state .icon { font-size: 48px; display: block; margin-bottom: 12px; }
+.empty-state p { font-size: 15px; }
+
+/* ── Form page ──────────────────────────────────────────────────────────── */
+#form-page { display: none; flex: 1; overflow-y: auto; padding: 24px 28px; }
+.form-page-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+.btn-back { background: none; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 7px 14px; color: #475569; cursor: pointer; font-size: 13px; font-weight: 500; transition: all .15s; display: flex; align-items: center; gap: 5px; }
+.btn-back:hover { border-color: #94a3b8; background: #f8fafc; }
+.form-page-header h2 { font-size: 18px; font-weight: 700; color: #1e293b; }
+.form-page-header .sub { font-size: 13px; color: #64748b; margin-top: 2px; }
+
+.form-grid { display: grid; grid-template-columns: 1fr 320px; gap: 20px; }
+@media (max-width: 900px) { .form-grid { grid-template-columns: 1fr; } }
+
+.form-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 24px; }
+.form-card + .form-card { margin-top: 16px; }
+.form-card h3 { font-size: 13px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; gap: 7px; }
+
+.field-row { display: grid; gap: 14px; margin-bottom: 14px; }
+.field-row.cols-2 { grid-template-columns: 1fr 1fr; }
+.field-row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.field-row.full { grid-template-columns: 1fr; }
+.field-group { display: flex; flex-direction: column; gap: 5px; }
+.field-group label { font-size: 12px; font-weight: 600; color: #475569; }
+.field-group label .req { color: #ef4444; margin-left: 2px; }
+.field-group input, .field-group select, .field-group textarea {
+  padding: 8px 12px; border: 1.5px solid #e2e8f0; border-radius: 7px;
+  font-size: 13px; color: #1e293b; outline: none; background: #fff;
+  transition: border .15s; width: 100%; font-family: inherit;
+}
+.field-group input:focus, .field-group select:focus, .field-group textarea:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,.08); }
+.field-group input:read-only, .field-group textarea:read-only { background: #f8fafc; color: #64748b; cursor: default; }
+.field-group select option { color: #1e293b; }
+
+.result-value { font-size: 13px; color: #334155; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 7px; padding: 8px 12px; word-break: break-all; min-height: 36px; }
+.result-value.empty { color: #94a3b8; font-style: italic; }
+.result-error { color: #dc2626; background: #fef2f2; border-color: #fecaca; }
+
+.form-actions { display: flex; gap: 10px; align-items: center; padding-top: 6px; margin-top: 4px; }
+.btn-save { background: #1d4ed8; color: #fff; border: none; border-radius: 8px; padding: 10px 24px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background .15s; }
+.btn-save:hover { background: #1e40af; }
+.btn-save:disabled { opacity: .6; cursor: default; }
+.btn-cancel { background: #f1f5f9; color: #475569; border: none; border-radius: 8px; padding: 10px 18px; font-size: 14px; cursor: pointer; transition: background .15s; font-weight: 500; }
+.btn-cancel:hover { background: #e2e8f0; }
+.btn-delete { background: #fff; color: #dc2626; border: 1.5px solid #fca5a5; border-radius: 8px; padding: 10px 18px; font-size: 14px; cursor: pointer; transition: all .15s; font-weight: 500; margin-left: auto; display: none; }
+.btn-delete:hover { background: #fef2f2; border-color: #dc2626; }
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 </style>
 </head>
-<body class="min-h-screen">
+<body>
 
 <!-- ── LOGIN ─────────────────────────────────────────────────────────────── -->
-<div id="login-screen" class="flex items-center justify-center min-h-screen">
-  <div class="card p-10 w-full max-w-sm text-center">
-    <div class="text-4xl mb-2">🛍️</div>
-    <h1 class="text-xl font-bold mb-1 text-white">Painel de Afiliados</h1>
-    <p class="text-sm text-gray-500 mb-8">melhoresachados</p>
-    <input id="pwd-input" type="password" placeholder="Senha" class="mb-4 text-center"
-           onkeydown="if(event.key==='Enter') doLogin()">
-    <button class="btn-primary w-full" onclick="doLogin()">Entrar</button>
-    <p id="login-error" class="text-red-400 text-sm mt-3 hidden">Senha incorreta.</p>
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <span class="icon">🛍️</span>
+      <h1>Painel de Afiliados</h1>
+      <p>melhoresachados</p>
+    </div>
+    <div class="login-field">
+      <label>Senha</label>
+      <input id="pwd-input" type="password" placeholder="Digite sua senha"
+             onkeydown="if(event.key==='Enter') doLogin()">
+    </div>
+    <button class="btn-login" onclick="doLogin()">Entrar</button>
+    <p id="login-error" class="login-error">Senha incorreta. Tente novamente.</p>
   </div>
 </div>
 
 <!-- ── APP ───────────────────────────────────────────────────────────────── -->
-<div id="app-screen" class="hidden flex h-screen overflow-hidden">
+<div id="app-screen" style="flex-direction:column;">
 
-  <!-- Sidebar -->
-  <div class="sidebar w-56 flex-shrink-0 flex flex-col p-4 overflow-y-auto">
-    <div class="text-white font-bold text-lg mb-6 flex items-center gap-2">
-      <span>🛍️</span> Afiliados
+  <!-- Header -->
+  <header class="app-header">
+    <div class="brand"><span>🛍️</span> Afiliados</div>
+    <nav>
+      <button class="nav-btn active" id="nav-list" onclick="showPage('list')">
+        ☰ Produtos
+      </button>
+    </nav>
+    <div class="header-right">
+      <button class="btn-new" onclick="openForm(null)">
+        <span>+</span> Novo produto
+      </button>
+      <button class="btn-logout" onclick="logout()">Sair →</button>
     </div>
+  </header>
 
-    <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Conta</p>
-    <div id="account-filters" class="flex flex-col gap-1 mb-6"></div>
+  <!-- Body -->
+  <div class="app-body">
 
-    <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Status</p>
-    <div id="status-filters" class="flex flex-col gap-1 mb-6"></div>
-
-    <div class="mt-auto">
-      <button class="btn-secondary w-full text-sm" onclick="logout()">Sair</button>
-    </div>
-  </div>
-
-  <!-- Main -->
-  <div class="flex-1 flex flex-col overflow-hidden">
-    <!-- Topbar -->
-    <div class="flex items-center justify-between px-6 py-4 border-b border-gray-800">
-      <div class="flex items-center gap-3">
-        <input id="search-input" type="text" placeholder="Buscar produto..."
-               class="w-64 text-sm" oninput="renderList()">
-        <span id="count-label" class="text-sm text-gray-500"></span>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div>
+        <div class="filter-group-title">Conta</div>
+        <div id="account-filters"></div>
       </div>
-      <button class="btn-primary text-sm" onclick="openForm(null)">+ Novo produto</button>
-    </div>
+      <div>
+        <div class="filter-group-title">Status</div>
+        <div id="status-filters"></div>
+      </div>
+    </aside>
 
-    <!-- List view -->
-    <div id="list-view" class="flex-1 overflow-y-auto p-6">
-      <div id="product-grid" class="grid grid-cols-1 gap-3"></div>
-      <p id="empty-msg" class="text-gray-600 text-center mt-20 hidden">Nenhum produto encontrado.</p>
-    </div>
-  </div>
-</div>
+    <!-- Main panel -->
+    <div class="main-panel">
 
-<!-- ── MODAL FORM ─────────────────────────────────────────────────────────── -->
-<div id="modal-overlay" class="hidden fixed inset-0 bg-black/70 flex items-start justify-center pt-10 pb-10 z-50 overflow-y-auto">
-  <div class="card w-full max-w-2xl mx-4 p-8 relative">
-    <button onclick="closeForm()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-xl">✕</button>
-    <h2 id="form-title" class="text-white font-bold text-lg mb-6">Novo produto</h2>
-
-    <form id="product-form" onsubmit="submitForm(event)" class="space-y-5">
-
-      <!-- Seção: Identificação -->
-      <fieldset>
-        <legend class="text-xs text-gray-500 uppercase tracking-widest mb-3">Identificação</legend>
-        <div class="grid grid-cols-2 gap-4">
-          <div class="col-span-2">
-            <label class="text-xs text-gray-400 mb-1 block">Nome do produto *</label>
-            <input id="f-name" type="text" required placeholder="Ex: Calça Skinny Com Cinto">
+      <!-- LIST PAGE -->
+      <div id="list-page" style="display:flex;flex-direction:column;flex:1;overflow:hidden;">
+        <div class="toolbar">
+          <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input id="search-input" type="text" placeholder="Buscar produto..."
+                   oninput="renderList()">
           </div>
-          <div>
-            <label class="text-xs text-gray-400 mb-1 block">Conta *</label>
-            <select id="f-account" required onchange="onAccountChange()">
-              <option value="">Selecione...</option>
-              <option value="shopee">Shopee</option>
-              <option value="shein">Shein</option>
-              <option value="mercadolivre">Mercado Livre</option>
-            </select>
-          </div>
-          <div>
-            <label class="text-xs text-gray-400 mb-1 block">Usuário (watermark)</label>
-            <select id="f-usuario">
-              <option value="">— selecione a conta primeiro —</option>
-            </select>
-          </div>
-          <div>
-            <label class="text-xs text-gray-400 mb-1 block">Status</label>
-            <select id="f-status">
-              <option value="pendente">pendente</option>
-              <option value="gerado">gerado</option>
-              <option value="publicado">publicado</option>
-              <option value="erro">erro</option>
-            </select>
-          </div>
-          <div>
-            <label class="text-xs text-gray-400 mb-1 block">Nº do produto</label>
-            <input id="f-product_num" type="number" min="1" placeholder="Auto">
+          <span id="count-label" class="result-count"></span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:100px">Status</th>
+                <th>Produto</th>
+                <th style="width:120px">Conta</th>
+                <th style="width:60px">#</th>
+                <th style="width:130px">Publicado em</th>
+                <th>Obs / Erro</th>
+              </tr>
+            </thead>
+            <tbody id="product-tbody"></tbody>
+          </table>
+          <div id="empty-msg" class="empty-state" style="display:none;">
+            <span class="icon">📦</span>
+            <p>Nenhum produto encontrado.</p>
           </div>
         </div>
-      </fieldset>
+      </div>
 
-      <!-- Seção: Conteúdo -->
-      <fieldset>
-        <legend class="text-xs text-gray-500 uppercase tracking-widest mb-3">Conteúdo</legend>
-        <div class="space-y-3">
+      <!-- FORM PAGE -->
+      <div id="form-page">
+        <div class="form-page-header">
+          <button class="btn-back" onclick="showPage('list')">← Voltar</button>
           <div>
-            <label class="text-xs text-gray-400 mb-1 block">Descrição para narração</label>
-            <textarea id="f-descricao_audio" rows="2" placeholder="Frase curta sobre o produto para o áudio"></textarea>
+            <h2 id="form-title">Novo produto</h2>
           </div>
-          <div class="grid grid-cols-2 gap-4">
+        </div>
+
+        <form id="product-form" onsubmit="submitForm(event)">
+          <div class="form-grid">
+
+            <!-- Left column -->
             <div>
-              <label class="text-xs text-gray-400 mb-1 block">Oferta relâmpago</label>
-              <input id="f-flash_offer" type="text" placeholder="Ex: Só hoje 50% off">
+              <!-- Identificação -->
+              <div class="form-card">
+                <h3>📋 Identificação</h3>
+                <div class="field-row full">
+                  <div class="field-group">
+                    <label>Nome do produto <span class="req">*</span></label>
+                    <input id="f-name" type="text" required placeholder="Ex: Calça Skinny Com Cinto">
+                  </div>
+                </div>
+                <div class="field-row cols-2">
+                  <div class="field-group">
+                    <label>Conta <span class="req">*</span></label>
+                    <select id="f-account" required onchange="onAccountChange()">
+                      <option value="">Selecione...</option>
+                      <option value="shopee">Shopee</option>
+                      <option value="shein">Shein</option>
+                      <option value="mercadolivre">Mercado Livre</option>
+                    </select>
+                  </div>
+                  <div class="field-group">
+                    <label>Usuário (watermark)</label>
+                    <select id="f-usuario">
+                      <option value="">— selecione a conta primeiro —</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field-row cols-2">
+                  <div class="field-group">
+                    <label>Status</label>
+                    <select id="f-status">
+                      <option value="pendente">Pendente</option>
+                      <option value="gerado">Gerado</option>
+                      <option value="publicado">Publicado</option>
+                      <option value="erro">Erro</option>
+                    </select>
+                  </div>
+                  <div class="field-group">
+                    <label>Nº do produto</label>
+                    <input id="f-product_num" type="number" min="1" placeholder="Auto">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Conteúdo -->
+              <div class="form-card">
+                <h3>✏️ Conteúdo</h3>
+                <div class="field-row full">
+                  <div class="field-group">
+                    <label>Descrição para narração</label>
+                    <textarea id="f-descricao_audio" rows="3" placeholder="Frase curta sobre o produto para o áudio"></textarea>
+                  </div>
+                </div>
+                <div class="field-row cols-2">
+                  <div class="field-group">
+                    <label>Oferta relâmpago</label>
+                    <input id="f-flash_offer" type="text" placeholder="Ex: Só hoje 50% off">
+                  </div>
+                  <div class="field-group">
+                    <label>Cupom</label>
+                    <input id="f-coupon_text" type="text" placeholder="Ex: PROMO10">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Estatísticas -->
+              <div class="form-card">
+                <h3>📊 Estatísticas</h3>
+                <div class="field-row cols-3">
+                  <div class="field-group">
+                    <label>Nota</label>
+                    <input id="f-rating" type="text" placeholder="Ex: 4.8">
+                  </div>
+                  <div class="field-group">
+                    <label>Avaliações</label>
+                    <input id="f-reviews" type="text" placeholder="Ex: 1500">
+                  </div>
+                  <div class="field-group">
+                    <label>Vendidos</label>
+                    <input id="f-sold_count" type="text" placeholder="Ex: 30000">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Mídia -->
+              <div class="form-card">
+                <h3>🖼️ Mídia</h3>
+                <div class="field-row full">
+                  <div class="field-group">
+                    <label>Imagens (URLs ou caminhos separados por ;)</label>
+                    <textarea id="f-image_urls" rows="2" placeholder="https://img1.jpg; C:\midias\img2.jpg"></textarea>
+                  </div>
+                </div>
+                <div class="field-row full">
+                  <div class="field-group">
+                    <label>Vídeos (URLs ou caminhos separados por ;)</label>
+                    <textarea id="f-video_urls" rows="2" placeholder="https://video.mp4; C:\midias\video2.mp4"></textarea>
+                  </div>
+                </div>
+                <div class="field-row full">
+                  <div class="field-group">
+                    <label>Thumbnail (URL ou caminho)</label>
+                    <input id="f-thumbnail" type="text" placeholder="https://thumb.jpg">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Links -->
+              <div class="form-card">
+                <h3>🔗 Links</h3>
+                <div class="field-row full">
+                  <div class="field-group">
+                    <label>Link de afiliado</label>
+                    <input id="f-affiliate_url" type="text" placeholder="https://...">
+                  </div>
+                </div>
+                <div class="field-row full">
+                  <div class="field-group">
+                    <label>Link original do produto</label>
+                    <input id="f-source_url" type="text" placeholder="https://...">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ações -->
+              <div class="form-actions">
+                <button type="submit" class="btn-save" id="btn-save">Salvar produto</button>
+                <button type="button" class="btn-cancel" onclick="showPage('list')">Cancelar</button>
+                <button type="button" class="btn-delete" id="btn-delete" onclick="deleteProduct()">🗑 Excluir</button>
+              </div>
             </div>
+
+            <!-- Right column -->
             <div>
-              <label class="text-xs text-gray-400 mb-1 block">Cupom</label>
-              <input id="f-coupon_text" type="text" placeholder="Ex: PROMO10">
+              <!-- Resultado do pipeline -->
+              <div class="form-card" id="result-section" style="display:none;">
+                <h3>⚙️ Resultado do pipeline</h3>
+                <div style="display:flex;flex-direction:column;gap:12px;">
+                  <div class="field-group">
+                    <label>Vídeo gerado</label>
+                    <div id="r-video_path" class="result-value empty">—</div>
+                  </div>
+                  <div class="field-group">
+                    <label>Publicado em</label>
+                    <div id="r-published_at" class="result-value empty">—</div>
+                  </div>
+                  <div class="field-group">
+                    <label>Post ID (Instagram)</label>
+                    <div id="r-post_id" class="result-value empty">—</div>
+                  </div>
+                  <div class="field-group">
+                    <label>Post ID (Facebook)</label>
+                    <div id="r-facebook_post_id" class="result-value empty">—</div>
+                  </div>
+                  <div id="r-error-wrap" style="display:none;" class="field-group">
+                    <label>Erro</label>
+                    <div id="r-error" class="result-value result-error"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dicas -->
+              <div class="form-card" style="margin-top:16px;">
+                <h3>💡 Dicas de preenchimento</h3>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13px;color:#64748b;line-height:1.5;">
+                  <li><b>Descrição:</b> Uma frase curta e objetiva sobre o produto para guiar o áudio narrado.</li>
+                  <li><b>Imagens/Vídeos:</b> Separe múltiplos arquivos com <code style="background:#f1f5f9;padding:1px 5px;border-radius:4px;">;</code></li>
+                  <li><b>Status pendente:</b> O pipeline irá processar este produto automaticamente.</li>
+                  <li><b>Nº do produto:</b> Deixe em branco para atribuição automática.</li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      </fieldset>
+        </form>
+      </div><!-- /#form-page -->
 
-      <!-- Seção: Estatísticas -->
-      <fieldset>
-        <legend class="text-xs text-gray-500 uppercase tracking-widest mb-3">Estatísticas</legend>
-        <div class="grid grid-cols-3 gap-4">
-          <div>
-            <label class="text-xs text-gray-400 mb-1 block">Nota</label>
-            <input id="f-rating" type="text" placeholder="Ex: 4.8">
-          </div>
-          <div>
-            <label class="text-xs text-gray-400 mb-1 block">Avaliações</label>
-            <input id="f-reviews" type="text" placeholder="Ex: 1500">
-          </div>
-          <div>
-            <label class="text-xs text-gray-400 mb-1 block">Vendidos</label>
-            <input id="f-sold_count" type="text" placeholder="Ex: 30000">
-          </div>
-        </div>
-      </fieldset>
-
-      <!-- Seção: Mídia -->
-      <fieldset>
-        <legend class="text-xs text-gray-500 uppercase tracking-widest mb-3">Mídia</legend>
-        <div class="space-y-3">
-          <div>
-            <label class="text-xs text-gray-400 mb-1 block">Imagens (URLs ou caminhos separados por ;)</label>
-            <textarea id="f-image_urls" rows="2" placeholder="https://img1.jpg; C:\midias\img2.jpg"></textarea>
-          </div>
-          <div>
-            <label class="text-xs text-gray-400 mb-1 block">Vídeos (URLs ou caminhos separados por ;)</label>
-            <textarea id="f-video_urls" rows="2" placeholder="https://video.mp4; C:\midias\video2.mp4"></textarea>
-          </div>
-          <div>
-            <label class="text-xs text-gray-400 mb-1 block">Thumbnail (URL ou caminho)</label>
-            <input id="f-thumbnail" type="text" placeholder="https://thumb.jpg ou C:\midias\thumb.jpg">
-          </div>
-        </div>
-      </fieldset>
-
-      <!-- Seção: Links -->
-      <fieldset>
-        <legend class="text-xs text-gray-500 uppercase tracking-widest mb-3">Links</legend>
-        <div class="space-y-3">
-          <div>
-            <label class="text-xs text-gray-400 mb-1 block">Link de afiliado</label>
-            <input id="f-affiliate_url" type="text" placeholder="https://...">
-          </div>
-          <div>
-            <label class="text-xs text-gray-400 mb-1 block">Link original do produto</label>
-            <input id="f-source_url" type="text" placeholder="https://...">
-          </div>
-        </div>
-      </fieldset>
-
-      <!-- Seção: Resultado (somente leitura) -->
-      <div id="result-section" class="hidden">
-        <fieldset>
-          <legend class="text-xs text-gray-500 uppercase tracking-widest mb-3">Resultado do pipeline</legend>
-          <div class="grid grid-cols-2 gap-3 text-sm">
-            <div><span class="text-gray-500">Vídeo:</span> <span id="r-video_path" class="text-gray-300 break-all"></span></div>
-            <div><span class="text-gray-500">Publicado em:</span> <span id="r-published_at" class="text-gray-300"></span></div>
-            <div><span class="text-gray-500">Post ID:</span> <span id="r-post_id" class="text-gray-300"></span></div>
-            <div><span class="text-gray-500">FB Post ID:</span> <span id="r-facebook_post_id" class="text-gray-300"></span></div>
-            <div class="col-span-2"><span class="text-gray-500">Erro:</span> <span id="r-error" class="text-red-400"></span></div>
-          </div>
-        </fieldset>
-      </div>
-
-      <div class="flex gap-3 pt-2">
-        <button type="submit" class="btn-primary flex-1">Salvar</button>
-        <button type="button" class="btn-secondary" onclick="closeForm()">Cancelar</button>
-        <button type="button" id="btn-delete" class="btn-danger hidden" onclick="deleteProduct()">Excluir</button>
-      </div>
-    </form>
-  </div>
-</div>
+    </div><!-- /.main-panel -->
+  </div><!-- /.app-body -->
+</div><!-- /#app-screen -->
 
 <script>
 // ── Config ────────────────────────────────────────────────────────────────────
 const CONFIG_URL = 'config.json';
-const DATA_URL   = 'produtos.json';
 const GITHUB_API = 'https://api.github.com';
 
 const ACCOUNT_USERS = {
@@ -242,16 +467,15 @@ const ACCOUNT_USERS = {
   mercadolivre: ['@achados.ml'],
 };
 
+const ACCOUNT_LABELS = { all:'Todas as contas', shopee:'Shopee', shein:'Shein', mercadolivre:'Mercado Livre' };
+const STATUS_LABELS  = { all:'Todos', pendente:'Pendente', gerado:'Gerado', publicado:'Publicado', processando:'Processando', erro:'Erro' };
+
 // ── State ─────────────────────────────────────────────────────────────────────
 let state = {
-  token: null,
-  githubUser: null,
-  githubRepo: null,
-  products: [],
-  sha: '',
-  filterAccount: 'all',
-  filterStatus: 'all',
-  editingId: null,
+  token: null, githubUser: null, githubRepo: null,
+  products: [], sha: '',
+  filterAccount: 'all', filterStatus: 'all',
+  editingId: null, currentPage: 'list',
 };
 
 // ── Crypto helpers ────────────────────────────────────────────────────────────
@@ -259,19 +483,14 @@ async function sha256hex(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
 }
-
 async function deriveKey(password, saltB64) {
   const salt = Uint8Array.from(atob(saltB64), c => c.charCodeAt(0));
-  const baseKey = await crypto.subtle.importKey('raw', new TextEncoder().encode(password),
-    'PBKDF2', false, ['deriveKey']);
+  const baseKey = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey']);
   return crypto.subtle.deriveKey(
     { name:'PBKDF2', salt, iterations:100000, hash:'SHA-256' },
-    baseKey,
-    { name:'AES-GCM', length:256 },
-    false, ['decrypt']
+    baseKey, { name:'AES-GCM', length:256 }, false, ['decrypt']
   );
 }
-
 async function decryptToken(password, cfg) {
   const key = await deriveKey(password, cfg.token_salt);
   const iv  = Uint8Array.from(atob(cfg.token_iv),        c => c.charCodeAt(0));
@@ -284,56 +503,36 @@ async function decryptToken(password, cfg) {
 async function doLogin() {
   const pwd = document.getElementById('pwd-input').value;
   if (!pwd) return;
-
+  const errEl = document.getElementById('login-error');
+  errEl.style.display = 'none';
   let cfg;
   try {
     const r = await fetch(CONFIG_URL + '?t=' + Date.now());
     cfg = await r.json();
-  } catch {
-    alert('Erro ao carregar config.json'); return;
-  }
-
+  } catch { alert('Erro ao carregar config.json'); return; }
   const hash = await sha256hex(pwd);
-  if (hash !== cfg.password_hash) {
-    document.getElementById('login-error').classList.remove('hidden');
-    return;
-  }
-
+  if (hash !== cfg.password_hash) { errEl.style.display = 'block'; return; }
   let token;
-  try {
-    token = await decryptToken(pwd, cfg);
-  } catch {
-    alert('Erro ao decifrar token. Rode o setup novamente.'); return;
-  }
-
-  state.token      = token;
-  state.githubUser = cfg.github_user;
-  state.githubRepo = cfg.github_repo;
-
-  sessionStorage.setItem('token',  token);
-  sessionStorage.setItem('guser',  cfg.github_user);
-  sessionStorage.setItem('grepo',  cfg.github_repo);
-
+  try { token = await decryptToken(pwd, cfg); }
+  catch { alert('Erro ao decifrar token. Rode o setup novamente.'); return; }
+  state.token = token; state.githubUser = cfg.github_user; state.githubRepo = cfg.github_repo;
+  sessionStorage.setItem('token', token);
+  sessionStorage.setItem('guser', cfg.github_user);
+  sessionStorage.setItem('grepo', cfg.github_repo);
   await loadProducts();
   showApp();
 }
-
 function logout() {
-  sessionStorage.clear();
-  state.token = null;
-  document.getElementById('app-screen').classList.add('hidden');
-  document.getElementById('login-screen').classList.remove('hidden');
+  sessionStorage.clear(); state.token = null;
+  document.getElementById('app-screen').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
   document.getElementById('pwd-input').value = '';
 }
 
 // ── GitHub data ───────────────────────────────────────────────────────────────
 function ghHeaders() {
-  return {
-    'Authorization': 'token ' + state.token,
-    'Accept': 'application/vnd.github.v3+json',
-  };
+  return { 'Authorization':'token '+state.token, 'Accept':'application/vnd.github.v3+json' };
 }
-
 async function loadProducts() {
   const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/produtos.json`;
   const r = await fetch(url, { headers: ghHeaders() });
@@ -343,59 +542,62 @@ async function loadProducts() {
   const content = JSON.parse(atob(data.content.replace(/\n/g,'')));
   state.products = content.products || [];
 }
-
 async function saveProducts() {
   const body = JSON.stringify({ products: state.products }, null, 2);
   const encoded = btoa(unescape(encodeURIComponent(body)));
   const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/produtos.json`;
-  const payload = {
-    message: 'painel: atualiza produtos.json',
-    content: encoded,
-    branch: 'main',
-  };
+  const payload = { message:'painel: atualiza produtos.json', content: encoded, branch:'main' };
   if (state.sha) payload.sha = state.sha;
   const r = await fetch(url, { method:'PUT', headers:{...ghHeaders(),'Content-Type':'application/json'}, body: JSON.stringify(payload) });
   if (!r.ok) throw new Error(await r.text());
-  const data = await r.json();
-  state.sha = data.content.sha;
+  state.sha = (await r.json()).content.sha;
 }
 
 // ── App shell ─────────────────────────────────────────────────────────────────
 function showApp() {
-  document.getElementById('login-screen').classList.add('hidden');
-  document.getElementById('app-screen').classList.remove('hidden');
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app-screen').style.display = 'flex';
   buildFilters();
   renderList();
+  showPage('list');
+}
+
+function showPage(page) {
+  state.currentPage = page;
+  document.getElementById('list-page').style.display   = page === 'list' ? 'flex' : 'none';
+  document.getElementById('form-page').style.display   = page === 'form' ? 'block' : 'none';
+  document.getElementById('sidebar').style.display     = page === 'list' ? 'flex'  : 'none';
+  document.getElementById('nav-list').classList.toggle('active', page === 'list');
+  if (page === 'list') { buildFilters(); renderList(); }
+}
+
+// ── Filters ───────────────────────────────────────────────────────────────────
+function countFor(type, val) {
+  return state.products.filter(p => {
+    if (type === 'account') return val === 'all' || p.account === val;
+    return val === 'all' || p.status === val;
+  }).length;
 }
 
 function buildFilters() {
   const accounts = ['all','shopee','shein','mercadolivre'];
   const statuses  = ['all','pendente','gerado','publicado','processando','erro'];
-  const aLabels   = { all:'Todas as contas', shopee:'Shopee', shein:'Shein', mercadolivre:'Mercado Livre' };
-  const sLabels   = { all:'Todos', pendente:'Pendente', gerado:'Gerado', publicado:'Publicado', processando:'Processando', erro:'Erro' };
-
-  const af = document.getElementById('account-filters');
-  af.innerHTML = accounts.map(a => `
-    <button onclick="setFilter('account','${a}')"
-      class="filter-btn text-left text-sm px-3 py-1.5 rounded-lg transition-colors
-             ${state.filterAccount===a ? 'bg-indigo-700 text-white' : 'text-gray-400 hover:bg-gray-800'}"
-      data-type="account" data-val="${a}">${aLabels[a]}</button>`).join('');
-
-  const sf = document.getElementById('status-filters');
-  sf.innerHTML = statuses.map(s => `
-    <button onclick="setFilter('status','${s}')"
-      class="filter-btn text-left text-sm px-3 py-1.5 rounded-lg transition-colors
-             ${state.filterStatus===s ? 'bg-indigo-700 text-white' : 'text-gray-400 hover:bg-gray-800'}"
-      data-type="status" data-val="${s}">${sLabels[s]}</button>`).join('');
+  document.getElementById('account-filters').innerHTML = accounts.map(a =>
+    `<button class="filter-item ${state.filterAccount===a?'active':''}" onclick="setFilter('account','${a}')">
+      ${ACCOUNT_LABELS[a]} <span class="badge-count">${countFor('account',a)}</span>
+    </button>`).join('');
+  document.getElementById('status-filters').innerHTML = statuses.map(s =>
+    `<button class="filter-item ${state.filterStatus===s?'active':''}" onclick="setFilter('status','${s}')">
+      ${STATUS_LABELS[s]} <span class="badge-count">${countFor('status',s)}</span>
+    </button>`).join('');
 }
 
 function setFilter(type, val) {
-  if (type === 'account') state.filterAccount = val;
-  else state.filterStatus = val;
-  buildFilters();
-  renderList();
+  if (type === 'account') state.filterAccount = val; else state.filterStatus = val;
+  buildFilters(); renderList();
 }
 
+// ── List render ───────────────────────────────────────────────────────────────
 function renderList() {
   const q = (document.getElementById('search-input').value || '').toLowerCase();
   let products = state.products.filter(p => {
@@ -405,37 +607,44 @@ function renderList() {
     return true;
   });
 
-  document.getElementById('count-label').textContent = `${products.length} produto${products.length !== 1 ? 's' : ''}`;
-
-  const grid = document.getElementById('product-grid');
-  const empty = document.getElementById('empty-msg');
-
-  if (!products.length) {
-    grid.innerHTML = '';
-    empty.classList.remove('hidden');
-    return;
-  }
-  empty.classList.add('hidden');
-
   const statusOrder = { pendente:0, processando:1, gerado:2, publicado:3, erro:4 };
   products.sort((a,b) => (statusOrder[a.status]??5) - (statusOrder[b.status]??5));
 
-  grid.innerHTML = products.map(p => `
-    <div class="card p-4 flex items-center gap-4 hover:border-indigo-700 cursor-pointer transition-colors"
-         onclick="openForm('${p._id}')">
-      <div class="flex-1 min-w-0">
-        <div class="flex items-center gap-2 mb-1">
-          <span class="badge-${p.status} text-xs font-semibold px-2 py-0.5 rounded-full">${p.status}</span>
-          ${p.product_num ? `<span class="text-xs text-gray-500">#${p.product_num}</span>` : ''}
-          <span class="text-xs text-gray-600">${p.account || ''}</span>
-        </div>
-        <p class="text-white font-medium truncate">${p.name || '(sem nome)'}</p>
-        <p class="text-xs text-gray-500 mt-0.5 truncate">${p.descricao_audio || p.affiliate_url || ''}</p>
-      </div>
-      ${p.status === 'publicado' && p.published_at ? `<span class="text-xs text-gray-600 whitespace-nowrap">${p.published_at}</span>` : ''}
-      ${p.status === 'erro' ? `<span class="text-xs text-red-500 max-w-xs truncate">${p.error || ''}</span>` : ''}
-    </div>
-  `).join('');
+  const total = state.products.length;
+  document.getElementById('count-label').textContent =
+    `${products.length} de ${total} produto${total !== 1 ? 's' : ''}`;
+
+  const tbody = document.getElementById('product-tbody');
+  const empty = document.getElementById('empty-msg');
+
+  if (!products.length) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  const accountLabel = { shopee:'Shopee', shein:'Shein', mercadolivre:'Mercado Livre' };
+  tbody.innerHTML = products.map(p => {
+    const obs = p.status === 'erro' ? (p.error || '') : (p.descricao_audio || p.affiliate_url || '');
+    return `
+    <tr onclick="openForm('${p._id}')">
+      <td><span class="badge badge-${p.status||'pendente'}">${p.status||'pendente'}</span></td>
+      <td class="td-name">
+        <div class="name-text">${escHtml(p.name || '(sem nome)')}</div>
+        ${p.affiliate_url ? `<div class="sub">${escHtml(p.affiliate_url)}</div>` : ''}
+      </td>
+      <td><span class="account-tag">${escHtml(accountLabel[p.account]||p.account||'—')}</span></td>
+      <td style="color:#94a3b8;">${p.product_num||'—'}</td>
+      <td style="color:#64748b;font-size:12px;">${p.published_at||'—'}</td>
+      <td class="${p.status==='erro'?'error-cell':''}" style="font-size:12px;color:${p.status==='erro'?'#dc2626':'#94a3b8'};"
+          title="${escHtml(obs)}">${escHtml(obs.slice(0,80))}${obs.length>80?'…':''}</td>
+    </tr>`;
+  }).join('');
+}
+
+function escHtml(str) {
+  return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
 // ── Form ──────────────────────────────────────────────────────────────────────
@@ -455,10 +664,9 @@ function onAccountChange() {
 function openForm(id) {
   state.editingId = id;
   const p = id ? state.products.find(x => x._id === id) : null;
-  document.getElementById('form-title').textContent = p ? 'Editar produto' : 'Novo produto';
-  document.getElementById('btn-delete').classList.toggle('hidden', !p);
+  document.getElementById('form-title').textContent = p ? `Editar produto${p.name ? ' — '+p.name : ''}` : 'Novo produto';
+  document.getElementById('btn-delete').style.display = p ? 'block' : 'none';
 
-  // Clear
   FORM_FIELDS.forEach(f => {
     const el = document.getElementById('f-' + f);
     if (el) el.value = '';
@@ -473,37 +681,41 @@ function openForm(id) {
     onAccountChange();
     document.getElementById('f-usuario').value = p.usuario || '';
 
-    // Resultado (read-only)
     const rs = document.getElementById('result-section');
     const hasResult = p.video_path || p.published_at || p.post_id || p.error;
-    rs.classList.toggle('hidden', !hasResult);
+    rs.style.display = hasResult ? 'block' : 'none';
     if (hasResult) {
-      document.getElementById('r-video_path').textContent   = p.video_path || '—';
-      document.getElementById('r-published_at').textContent = p.published_at || '—';
-      document.getElementById('r-post_id').textContent      = p.post_id || '—';
-      document.getElementById('r-facebook_post_id').textContent = p.facebook_post_id || '—';
-      document.getElementById('r-error').textContent        = p.error || '';
+      setResult('r-video_path',      p.video_path);
+      setResult('r-published_at',    p.published_at);
+      setResult('r-post_id',         p.post_id);
+      setResult('r-facebook_post_id',p.facebook_post_id);
+      const errWrap = document.getElementById('r-error-wrap');
+      if (p.error) {
+        document.getElementById('r-error').textContent = p.error;
+        errWrap.style.display = 'block';
+      } else {
+        errWrap.style.display = 'none';
+      }
     }
   } else {
-    document.getElementById('result-section').classList.add('hidden');
+    document.getElementById('result-section').style.display = 'none';
     onAccountChange();
   }
 
-  document.getElementById('modal-overlay').classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
+  showPage('form');
 }
 
-function closeForm() {
-  document.getElementById('modal-overlay').classList.add('hidden');
-  document.body.style.overflow = '';
-  state.editingId = null;
+function setResult(id, val) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = val || '—';
+  el.classList.toggle('empty', !val);
 }
 
 async function submitForm(e) {
   e.preventDefault();
-  const btn = e.target.querySelector('[type=submit]');
-  btn.textContent = 'Salvando...';
-  btn.disabled = true;
+  const btn = document.getElementById('btn-save');
+  btn.textContent = 'Salvando...'; btn.disabled = true;
 
   const data = {};
   FORM_FIELDS.forEach(f => {
@@ -522,23 +734,20 @@ async function submitForm(e) {
 
   try {
     await saveProducts();
-    closeForm();
-    renderList();
+    showPage('list');
   } catch(err) {
     alert('Erro ao salvar: ' + err.message);
   }
-  btn.textContent = 'Salvar';
-  btn.disabled = false;
+  btn.textContent = 'Salvar produto'; btn.disabled = false;
 }
 
 async function deleteProduct() {
   if (!state.editingId) return;
-  if (!confirm('Excluir este produto?')) return;
+  if (!confirm('Excluir este produto? Esta ação não pode ser desfeita.')) return;
   state.products = state.products.filter(p => p._id !== state.editingId);
   try {
     await saveProducts();
-    closeForm();
-    renderList();
+    showPage('list');
   } catch(err) {
     alert('Erro ao excluir: ' + err.message);
   }
@@ -548,7 +757,7 @@ async function deleteProduct() {
 (async function init() {
   const token = sessionStorage.getItem('token');
   if (token) {
-    state.token      = token;
+    state.token = token;
     state.githubUser = sessionStorage.getItem('guser');
     state.githubRepo = sessionStorage.getItem('grepo');
     await loadProducts();

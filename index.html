@@ -439,6 +439,16 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                     <input id="f-thumbnail" type="text" placeholder="https://thumb.jpg">
                   </div>
                 </div>
+                <div class="field-row cols-2">
+                  <div class="field-group">
+                    <label>URL pública preview thumbnail</label>
+                    <input id="f-preview_thumbnail_url" type="text" placeholder="https://...">
+                  </div>
+                  <div class="field-group">
+                    <label>URL pública preview imagem</label>
+                    <input id="f-preview_image_url" type="text" placeholder="https://...">
+                  </div>
+                </div>
               </div>
 
               <!-- Links -->
@@ -486,7 +496,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                     <div class="preview-label">Vídeo gerado</div>
                   </div>
                   <div class="preview-note">
-                    Use esta área para validar rapidamente a capa, a mídia principal e o vídeo final sem sair do formulário.
+                    Use URLs públicas só para preview de thumbnail e imagem. A mídia principal do pipeline pode continuar local no seu computador.
                   </div>
                 </div>
               </div>
@@ -783,7 +793,7 @@ function escHtml(str) {
 // product_num is excluded — it's read-only and managed by renumberProducts()
 const FORM_FIELDS = ['name','account','usuario','status','descricao_audio',
   'flash_offer','coupon_text','rating','reviews','sold_count',
-  'image_urls','video_urls','thumbnail','affiliate_url','source_url'];
+  'image_urls','video_urls','thumbnail','preview_image_url','preview_thumbnail_url','affiliate_url','source_url'];
 
 function isProbablyRenderableMedia(value) {
   const s = String(value || '').trim();
@@ -840,20 +850,22 @@ function renderVideoPreview(targetId, src, emptyText) {
 function refreshPreviews(product = null) {
   const thumbnailValue = product ? (product.thumbnail || '') : (document.getElementById('f-thumbnail')?.value || '');
   const imageValue = product ? (product.image_urls || '') : (document.getElementById('f-image_urls')?.value || '');
+  const previewThumbnailValue = product ? (product.preview_thumbnail_url || '') : (document.getElementById('f-preview_thumbnail_url')?.value || '');
+  const previewImageValue = product ? (product.preview_image_url || '') : (document.getElementById('f-preview_image_url')?.value || '');
   const videoGeneratedValue = product ? (product.video_path || '') : '';
 
-  const thumbnailSrc = firstRenderableMedia(thumbnailValue);
-  const imageSrc = firstRenderableMedia(imageValue);
+  const thumbnailSrc = firstRenderableMedia(previewThumbnailValue) || firstRenderableMedia(thumbnailValue);
+  const imageSrc = firstRenderableMedia(previewImageValue) || firstRenderableMedia(imageValue);
   const videoSrc = String(videoGeneratedValue || '').trim();
 
   if (thumbnailSrc && !isBrowserPreviewable(thumbnailSrc)) {
-    renderPreviewBox('preview-thumbnail-media', 'Thumbnail local salva. O preview visual funciona com URL acessível no navegador.');
+    renderPreviewBox('preview-thumbnail-media', 'Thumbnail local salva. Para preview no painel, preencha a URL pública de preview da thumbnail.');
   } else {
     renderImagePreview('preview-thumbnail-media', thumbnailSrc, 'Thumbnail não informada');
   }
 
   if (imageSrc && !isBrowserPreviewable(imageSrc)) {
-    renderPreviewBox('preview-image-media', 'Imagem local salva. O preview visual funciona com URL acessível no navegador.');
+    renderPreviewBox('preview-image-media', 'Imagem local salva. Para preview no painel, preencha a URL pública de preview da imagem.');
   } else {
     renderImagePreview('preview-image-media', imageSrc, 'Imagem principal não encontrada');
   }
@@ -886,7 +898,7 @@ function onAccountChange() {
 }
 
 function bindPreviewInputs() {
-  ['f-thumbnail', 'f-image_urls'].forEach(id => {
+  ['f-thumbnail', 'f-image_urls', 'f-preview_thumbnail_url', 'f-preview_image_url'].forEach(id => {
     const el = document.getElementById(id);
     if (!el || el.dataset.previewBound === '1') return;
     el.addEventListener('input', () => refreshPreviews());

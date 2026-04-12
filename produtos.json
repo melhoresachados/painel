@@ -2,10 +2,10 @@
   "products": [
     {
       "name": "Camiseta Listrada",
-      "account": "mercadolivre",
-      "usuario": "@achados.ml",
+      "account": "shopee",
+      "usuario": "@happydayofertas",
       "status": "pendente",
-      "product_num": "",
+      "product_num": 1,
       "descricao_audio": "Camiseta listrada para praia",
       "flash_offer": "10% off",
       "coupon_text": "Cupom disponível",
@@ -18,7 +18,8 @@
       "affiliate_url": "https://s.shopee.com.br/1LbjjrCKiu",
       "source_url": "https://shopee.com.br/Cal%C3%A7a-Skinny-Com-Cinto-Malha-Crepe-Cintura-Alta-do-P-ao-G3-i.336962090.23491605753?extraParams=%7B%22display_model_id%22%3A139824622799%2C%22model_selection_logic%22%3A3%7D",
       "_id": "7b299db1-3651-4e71-93f8-c764bb09309c",
-      "created_at": "2026-04-12T03:20:36.477Z"
+      "created_at": "2026-04-12T03:20:36.477Z",
+      "product": 1
     }
   ]
 }

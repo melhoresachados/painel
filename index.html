@@ -6,7 +6,9 @@
 <title>Painel de Afiliados</title>
 <link rel="icon" type="image/png" href="Logo.png">
 <link rel="shortcut icon" type="image/png" href="Logo.png">
+<script>if (sessionStorage.getItem('token')) document.documentElement.classList.add('is-authed');</script>
 <style>
+html.is-authed #login-screen { display: none !important; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root{
     --brand-navy:#0a2e63;

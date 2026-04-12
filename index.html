@@ -121,11 +121,13 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
 .plat-cell { text-align: center; }
 .plat-icon {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 22px; height: 22px; border-radius: 50%; font-size: 12px;
-  transition: all .1s;
+  width: 28px; height: 28px; border-radius: 50%;
+  transition: all .15s;
 }
-.plat-icon.on  { background: #dcfce7; color: #16a34a; }
-.plat-icon.off { background: #f1f5f9; color: #d1d5db; }
+.plat-icon img { width: 14px; height: 14px; display: block; }
+.plat-icon.on  { background: #f0fdf4; }
+.plat-icon.off { background: #f1f5f9; opacity: 0.35; filter: grayscale(1); }
+.th-platform img { width: 15px; height: 15px; display: inline-block; vertical-align: middle; }
 
 .error-cell { color: #dc2626; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
@@ -271,9 +273,9 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                 <th>Conta</th>
                 <th style="text-align:center">#</th>
                 <th>Publicado em</th>
-                <th class="th-platform" title="Instagram">📷</th>
-                <th class="th-platform" title="Facebook">📘</th>
-                <th class="th-platform" title="TikTok">🎵</th>
+                <th class="th-platform" title="Instagram"><img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram"></th>
+                <th class="th-platform" title="Facebook"><img src="https://cdn.simpleicons.org/facebook/1877F2" alt="Facebook"></th>
+                <th class="th-platform" title="TikTok"><img src="https://cdn.simpleicons.org/tiktok/010101" alt="TikTok"></th>
                 <th>Obs / Erro</th>
               </tr>
             </thead>
@@ -642,9 +644,14 @@ function setFilter(type, val) {
 }
 
 // ── List render ───────────────────────────────────────────────────────────────
-function platIcon(value) {
+const PLAT_ICONS = {
+  instagram: 'https://cdn.simpleicons.org/instagram/E4405F',
+  facebook:  'https://cdn.simpleicons.org/facebook/1877F2',
+  tiktok:    'https://cdn.simpleicons.org/tiktok/010101',
+};
+function platIcon(value, platform) {
   const on = !!(value && String(value).trim());
-  return `<span class="plat-icon ${on?'on':'off'}">${on?'✓':'–'}</span>`;
+  return `<span class="plat-icon ${on?'on':'off'}"><img src="${PLAT_ICONS[platform]}" alt="${platform}"></span>`;
 }
 
 function renderList() {
@@ -686,9 +693,9 @@ function renderList() {
       <td><span class="account-tag">${escHtml(accountLabel[p.account]||p.account||'—')}</span></td>
       <td style="text-align:center;color:#94a3b8;font-size:13px;">${p.product_num||'—'}</td>
       <td style="color:#64748b;font-size:12px;white-space:nowrap;">${p.published_at||'—'}</td>
-      <td class="plat-cell">${platIcon(p.post_id)}</td>
-      <td class="plat-cell">${platIcon(p.facebook_post_id)}</td>
-      <td class="plat-cell">${platIcon(p.tiktok_post_id)}</td>
+      <td class="plat-cell">${platIcon(p.post_id,          'instagram')}</td>
+      <td class="plat-cell">${platIcon(p.facebook_post_id, 'facebook')}</td>
+      <td class="plat-cell">${platIcon(p.tiktok_post_id,   'tiktok')}</td>
       <td class="${p.status==='erro'?'error-cell':''}" style="font-size:12px;color:${p.status==='erro'?'#dc2626':'#94a3b8'};"
           title="${escHtml(obs)}">${escHtml(obs.slice(0,60))}${obs.length>60?'…':''}</td>
     </tr>`;

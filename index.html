@@ -6,27 +6,35 @@
 <title>Painel de Afiliados</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root{
+    --brand-navy:#0a2e63;
+    --brand-navy-2:#113d7d;
+    --brand-navy-3:#08244d;
+    --brand-gold:#f1c40f;
+    --brand-gold-soft:#f6d84e;
+    --brand-bg:#f0f2f5;
+  }
 body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 14px; background: #f0f2f5; color: #1a1a2e; min-height: 100vh; }
 
 /* ── Login ──────────────────────────────────────────────────────────────── */
 #login-screen {
   display: flex; align-items: center; justify-content: center;
-  min-height: 100vh; background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+  min-height: 100vh; background: linear-gradient(135deg, var(--brand-navy-3) 0%, var(--brand-navy) 55%, var(--brand-navy-2) 100%);
 }
 .login-card {
   background: #fff; border-radius: 12px; padding: 48px 40px;
   width: 360px; box-shadow: 0 20px 60px rgba(0,0,0,.25);
 }
 .login-logo { text-align: center; margin-bottom: 28px; }
-.login-logo .icon { font-size: 48px; display: block; margin-bottom: 8px; }
-.login-logo h1 { font-size: 20px; font-weight: 700; color: #1e3a8a; }
+.login-logo img { width: 92px; height: 92px; object-fit: contain; display: block; margin: 0 auto 12px; border-radius: 50%; box-shadow: 0 10px 24px rgba(10,46,99,.22); background:#fff; }
+.login-logo h1 { font-size: 20px; font-weight: 700; color: var(--brand-navy); }
 .login-logo p  { font-size: 13px; color: #64748b; margin-top: 2px; }
 .login-field { margin-bottom: 16px; }
 .login-field label { display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .04em; }
 .login-field input { width: 100%; padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 14px; outline: none; transition: border .15s; }
-.login-field input:focus { border-color: #1d4ed8; }
-.btn-login { width: 100%; padding: 11px; background: #1d4ed8; color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background .15s; }
-.btn-login:hover { background: #1e40af; }
+.login-field input:focus { border-color: var(--brand-navy); }
+.btn-login { width: 100%; padding: 11px; background: var(--brand-navy); color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background .15s; }
+.btn-login:hover { background: var(--brand-navy-2); }
 .login-error { color: #dc2626; font-size: 13px; text-align: center; margin-top: 10px; display: none; }
 
 /* ── App shell ──────────────────────────────────────────────────────────── */
@@ -34,13 +42,19 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size:
 
 /* Header */
 .app-header {
-  background: linear-gradient(90deg, #1e3a8a 0%, #1d4ed8 100%);
-  padding: 0 24px; height: 56px; display: flex; align-items: center;
-  gap: 16px; box-shadow: 0 2px 8px rgba(0,0,0,.2); position: sticky; top: 0; z-index: 100;
+  background: linear-gradient(90deg, var(--brand-navy-3) 0%, var(--brand-navy) 60%, var(--brand-navy-2) 100%);
+  padding: 0 24px; height: 60px; display: flex; align-items: center;
+  gap: 0; box-shadow: 0 2px 8px rgba(0,0,0,.2); position: sticky; top: 0; z-index: 100;
 }
-.app-header .brand { color: #fff; font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 8px; }
-.app-header .brand span { font-size: 20px; }
-.app-header nav { display: flex; gap: 4px; flex: 1; }
+.app-header .brand {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  color: #fff; font-weight: 700; font-size: 17px;
+  display: flex; align-items: center; gap: 10px; pointer-events: none;
+  white-space: nowrap;
+}
+.app-header .brand img { width: 38px; height: 38px; border-radius: 50%; object-fit: contain; background:#fff; box-shadow: 0 4px 12px rgba(0,0,0,.18); flex-shrink: 0; }
+.app-header .brand span { display: inline-block; line-height: 1; }
+.app-header nav { display: flex; gap: 4px; }
 .nav-btn {
   color: rgba(255,255,255,.75); padding: 6px 14px; border-radius: 6px;
   border: none; background: transparent; cursor: pointer; font-size: 13px; font-weight: 500;
@@ -49,11 +63,11 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size:
 .nav-btn:hover, .nav-btn.active { background: rgba(255,255,255,.15); color: #fff; }
 .app-header .header-right { display: flex; align-items: center; gap: 10px; margin-left: auto; }
 .btn-new {
-  background: #fff; color: #1d4ed8; border: none; border-radius: 7px;
+  background: #fff; color: var(--brand-navy); border: none; border-radius: 7px;
   padding: 7px 16px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all .15s;
   display: flex; align-items: center; gap: 5px;
 }
-.btn-new:hover { background: #e0e7ff; }
+.btn-new:hover { background: #eef4ff; }
 .btn-logout { color: rgba(255,255,255,.7); background: none; border: none; cursor: pointer; font-size: 13px; padding: 6px 10px; border-radius: 6px; transition: all .15s; }
 .btn-logout:hover { background: rgba(255,255,255,.1); color: #fff; }
 
@@ -72,10 +86,10 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size:
   padding: 7px 10px; border-radius: 7px; cursor: pointer;
   font-size: 13px; color: #475569; transition: all .15s; border: none; background: none; width: 100%; text-align: left;
 }
-.filter-item:hover { background: #f1f5f9; color: #1e3a8a; }
-.filter-item.active { background: #e0e7ff; color: #1d4ed8; font-weight: 600; }
+.filter-item:hover { background: #f1f5f9; color: var(--brand-navy); }
+.filter-item.active { background: #e8f0fb; color: var(--brand-navy); font-weight: 600; }
 .filter-item .badge-count { font-size: 11px; background: #e2e8f0; color: #64748b; padding: 1px 7px; border-radius: 20px; }
-.filter-item.active .badge-count { background: #c7d2fe; color: #3730a3; }
+.filter-item.active .badge-count { background: #d6e4f8; color: var(--brand-navy); }
 
 /* Main panel */
 .main-panel { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
@@ -87,7 +101,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size:
 }
 .search-wrap { position: relative; flex: 1; max-width: 380px; }
 .search-wrap input { width: 100%; padding: 8px 12px 8px 36px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 13px; outline: none; transition: border .15s; background: #f8fafc; }
-.search-wrap input:focus { border-color: #6366f1; background: #fff; }
+.search-wrap input:focus { border-color: var(--brand-navy); background: #fff; }
 .search-wrap .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 14px; pointer-events: none; }
 .result-count { color: #64748b; font-size: 13px; margin-left: auto; }
 
@@ -162,7 +176,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
   font-size: 13px; color: #1e293b; outline: none; background: #fff;
   transition: border .15s; width: 100%; font-family: inherit;
 }
-.field-group input:focus, .field-group select:focus, .field-group textarea:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,.08); }
+.field-group input:focus, .field-group select:focus, .field-group textarea:focus { border-color: var(--brand-navy); box-shadow: 0 0 0 3px rgba(10,46,99,.08); }
 .field-group input[readonly], .field-group textarea[readonly] { background: #f8fafc; color: #64748b; cursor: default; }
 .field-group select option { color: #1e293b; }
 
@@ -171,8 +185,8 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
 .result-error { color: #dc2626; background: #fef2f2; border-color: #fecaca; }
 
 .form-actions { display: flex; gap: 10px; align-items: center; padding-top: 6px; margin-top: 4px; }
-.btn-save { background: #1d4ed8; color: #fff; border: none; border-radius: 8px; padding: 10px 24px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background .15s; }
-.btn-save:hover { background: #1e40af; }
+.btn-save { background: var(--brand-navy); color: #fff; border: none; border-radius: 8px; padding: 10px 24px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background .15s; }
+.btn-save:hover { background: var(--brand-navy-2); }
 .btn-save:disabled { opacity: .6; cursor: default; }
 .btn-cancel { background: #f1f5f9; color: #475569; border: none; border-radius: 8px; padding: 10px 18px; font-size: 14px; cursor: pointer; transition: background .15s; font-weight: 500; }
 .btn-cancel:hover { background: #e2e8f0; }
@@ -192,7 +206,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
 <div id="login-screen">
   <div class="login-card">
     <div class="login-logo">
-      <span class="icon">🛍️</span>
+      <img src="logo.png" alt="EM Affiliates" onerror="this.style.display='none'">
       <h1>Painel de Afiliados</h1>
       <p>melhoresachados</p>
     </div>
@@ -211,7 +225,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
 
   <!-- Header -->
   <header class="app-header">
-    <div class="brand"><span>🛍️</span> Afiliados</div>
+    <div class="brand"><img src="logo.png" alt="EM Affiliates" onerror="this.style.display='none'"><span>EM Affiliates</span></div>
     <nav>
       <button class="nav-btn active" id="nav-list" onclick="showPage('list')">
         ☰ Produtos

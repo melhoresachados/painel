@@ -491,10 +491,6 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                     <div class="preview-media" id="preview-image-media">Imagem principal não encontrada</div>
                     <div class="preview-label">Primeira imagem do produto</div>
                   </div>
-                  <div class="preview-card">
-                    <div class="preview-media" id="preview-video-media">Vídeo gerado ainda não disponível</div>
-                    <div class="preview-label">Vídeo gerado</div>
-                  </div>
                   <div class="preview-note">
                     Use URLs públicas só para preview de thumbnail e imagem. A mídia principal do pipeline pode continuar local no seu computador.
                   </div>
@@ -836,44 +832,23 @@ function renderImagePreview(targetId, src, emptyText) {
   );
 }
 
-function renderVideoPreview(targetId, src, emptyText) {
-  if (!src) {
-    renderPreviewBox(targetId, escHtml(emptyText));
-    return;
-  }
-  renderPreviewBox(
-    targetId,
-    `<video src="${escHtml(src)}" controls muted playsinline preload="metadata" onerror="this.parentElement.textContent='${escHtml(emptyText)}'"></video>`
-  );
-}
-
 function refreshPreviews(product = null) {
-  const thumbnailValue = product ? (product.thumbnail || '') : (document.getElementById('f-thumbnail')?.value || '');
-  const imageValue = product ? (product.image_urls || '') : (document.getElementById('f-image_urls')?.value || '');
   const previewThumbnailValue = product ? (product.preview_thumbnail_url || '') : (document.getElementById('f-preview_thumbnail_url')?.value || '');
   const previewImageValue = product ? (product.preview_image_url || '') : (document.getElementById('f-preview_image_url')?.value || '');
-  const videoGeneratedValue = product ? (product.video_path || '') : '';
 
-  const thumbnailSrc = firstRenderableMedia(previewThumbnailValue) || firstRenderableMedia(thumbnailValue);
-  const imageSrc = firstRenderableMedia(previewImageValue) || firstRenderableMedia(imageValue);
-  const videoSrc = String(videoGeneratedValue || '').trim();
+  const thumbnailSrc = firstRenderableMedia(previewThumbnailValue);
+  const imageSrc = firstRenderableMedia(previewImageValue);
 
   if (thumbnailSrc && !isBrowserPreviewable(thumbnailSrc)) {
-    renderPreviewBox('preview-thumbnail-media', 'Thumbnail local salva. Para preview no painel, preencha a URL pública de preview da thumbnail.');
+    renderPreviewBox('preview-thumbnail-media', 'A URL pública da thumbnail não pôde ser renderizada no navegador.');
   } else {
     renderImagePreview('preview-thumbnail-media', thumbnailSrc, 'Thumbnail não informada');
   }
 
   if (imageSrc && !isBrowserPreviewable(imageSrc)) {
-    renderPreviewBox('preview-image-media', 'Imagem local salva. Para preview no painel, preencha a URL pública de preview da imagem.');
+    renderPreviewBox('preview-image-media', 'A URL pública da imagem não pôde ser renderizada no navegador.');
   } else {
     renderImagePreview('preview-image-media', imageSrc, 'Imagem principal não encontrada');
-  }
-
-  if (videoSrc && !isBrowserPreviewable(videoSrc)) {
-    renderPreviewBox('preview-video-media', 'Vídeo local registrado. O preview visual funciona com URL acessível no navegador.');
-  } else {
-    renderVideoPreview('preview-video-media', videoSrc, 'Vídeo gerado ainda não disponível');
   }
 }
 

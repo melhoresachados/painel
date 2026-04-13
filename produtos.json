@@ -72,7 +72,7 @@
       "name": "Camisa linho Manga Longa",
       "account": "shein",
       "usuario": "@seulookperfeitoaqui",
-      "status": "processando",
+      "status": "publicado",
       "descricao_audio": "Este tecido é semipermeável, um tecido de fibra natural. Suas propriedades são boa permeabilidade ao ar, absorção de umidade, forte respirabilidade e dissipação de calor",
       "flash_offer": "5% off",
       "coupon_text": "Cupom disponível",
@@ -94,12 +94,12 @@
       "error": "",
       "error_stage": "",
       "video_path": "out_videos\\shein\\produto_1_shein.mp4",
-      "published_at": "",
-      "post_id": "",
-      "facebook_status": "",
+      "published_at": "2026-04-13 13:46",
+      "post_id": "18004829699724053",
+      "facebook_status": "erro",
       "facebook_published_at": "",
       "facebook_post_id": "",
-      "facebook_error": "",
+      "facebook_error": "Erro HTTP 400: {'error': {'message': 'Error validating access token: Session has expired on Monday, 13-Apr-26 07:00:00 PDT. The current time is Monday, 13-Apr-26 09:46:15 PDT.', 'type': 'OAuthExceptio",
       "force_regenerate": ""
     }
   ]

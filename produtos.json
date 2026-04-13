@@ -38,7 +38,7 @@
       "name": "Copo Térmico De Café",
       "account": "mercadolivre",
       "usuario": "@pricebestnet",
-      "status": "pendente",
+      "status": "processando",
       "descricao_audio": "Copo Térmico de Café Inteligente da Dokpav, um acessório essencial para os amantes de bebidas quentes e frias. Com capacidade de 450 mL",
       "flash_offer": "10% off",
       "coupon_text": "Cupom disponível",
@@ -55,7 +55,8 @@
       "_id": "7823fa3d-0d96-4cbc-ae26-f06bcb478548",
       "created_at": "2026-04-13T15:28:05.427Z",
       "product_num": 1,
-      "product": 1
+      "product": 1,
+      "force_publish_only": ""
     },
     {
       "name": "Camisa linho Manga Longa",

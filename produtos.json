@@ -56,6 +56,29 @@
       "created_at": "2026-04-13T15:28:05.427Z",
       "product_num": 1,
       "product": 1
+    },
+    {
+      "name": "Camisa linho Manga Longa",
+      "account": "shein",
+      "usuario": "@seulookperfeitoaqui",
+      "status": "pendente",
+      "descricao_audio": "Este tecido é semipermeável, um tecido de fibra natural. Suas propriedades são boa permeabilidade ao ar, absorção de umidade, forte respirabilidade e dissipação de calor",
+      "flash_offer": "5% off",
+      "coupon_text": "Cupom disponível",
+      "rating": "4.7",
+      "reviews": "1000",
+      "sold_count": "3000",
+      "image_urls": "https://img.ltwebstatic.com/v4/j/spmp/2025/10/15/79/1760473367cb81dd87762e6339f9338d4afa3fe840.jpg;https://img.ltwebstatic.com/v4/j/spmp/2025/12/08/20/1765147580bc1b7a27b8309e55f0ea79dd1c9f8208.jpg;https://img.ltwebstatic.com/v4/j/spmp/2025/12/08/47/1765147869b8b64e0972cf47b1ff01c7aa472251af.jpg;https://img.ltwebstatic.com/v4/j/spmp/2025/12/08/62/1765147710890b20c3885aba963af3a01dc88bfd8f.jpg",
+      "video_urls": "",
+      "thumbnail": "https://img.ltwebstatic.com/v4/j/spmp/2025/10/15/79/1760473367cb81dd87762e6339f9338d4afa3fe840.jpg",
+      "preview_image_url": "",
+      "preview_thumbnail_url": "",
+      "affiliate_url": "https://onelink.shein.com/2/5mdq056vtzky",
+      "source_url": "https://br.shein.com/Women-s-Long-Sleeve-Linen-Shirt-p-179224262.html?src_module=all&src_identifier=on=PRODUCT_ITEMS_COMPONENT`cn=infoflow`hz=0`ps=4_1_0`jc=itemPicking_00301507&src_tab_page_id=page_home1776094140055&mallCode=2&imgRatio=3-4&detailBusinessFrom=0-2",
+      "_id": "b8b11262-68b5-4999-886f-67ada8c47fb1",
+      "created_at": "2026-04-13T15:36:10.978Z",
+      "product_num": 1,
+      "product": 1
     }
   ]
 }

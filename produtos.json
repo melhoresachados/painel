@@ -72,7 +72,7 @@
       "name": "Camisa linho Manga Longa",
       "account": "shein",
       "usuario": "@seulookperfeitoaqui",
-      "status": "processando",
+      "status": "gerado",
       "descricao_audio": "Este tecido é semipermeável, um tecido de fibra natural. Suas propriedades são boa permeabilidade ao ar, absorção de umidade, forte respirabilidade e dissipação de calor",
       "flash_offer": "5% off",
       "coupon_text": "Cupom disponível",
@@ -100,7 +100,7 @@
       "facebook_published_at": "",
       "facebook_post_id": "",
       "facebook_error": "",
-      "force_regenerate": "1"
+      "force_regenerate": ""
     }
   ]
 }

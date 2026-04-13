@@ -4,7 +4,7 @@
       "name": "Calça Skinny Com Cinto",
       "account": "shopee",
       "usuario": "@happydayofertas",
-      "status": "processando",
+      "status": "gerado",
       "product_num": 1,
       "descricao_audio": "Nossa calça skinny preta de cintura alta no tecido crepe valoriza a silhueta, modela o corpo e garante um caimento impecável. Confeccionada em tecido encorpado com leve elasticidade, ela proporciona conforto sem perder a elegância.",
       "flash_offer": "10% off",
@@ -29,7 +29,7 @@
       "facebook_post_id": "",
       "error_stage": "",
       "facebook_error": "",
-      "force_regenerate": "1",
+      "force_regenerate": "",
       "preview_image_url": "https://pub-971b79479fa9403d85ad248676016997.r2.dev/shopee/images/produto_1_camiseta-listrada.webp",
       "preview_thumbnail_url": "https://pub-971b79479fa9403d85ad248676016997.r2.dev/shopee/thumbnails/produto_1_camiseta-listrada.png",
       "force_publish_only": ""

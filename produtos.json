@@ -164,8 +164,8 @@
       "product": 3,
       "force_publish_only": "",
       "force_facebook_only": "",
-      "error": "video falhou",
-      "error_stage": "Geração video",
+      "error": "",
+      "error_stage": "",
       "force_regenerate": "",
       "video_path": "",
       "facebook_error": ""

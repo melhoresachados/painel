@@ -144,7 +144,7 @@
       "name": "Bolsa Ombro Artesanal",
       "account": "shein",
       "usuario": "@seulookperfeitoaqui",
-      "status": "processando",
+      "status": "gerado",
       "descricao_audio": "Bolsa Ombro Artesanal Crochê Moda Casual bolsa nova malha oca de praia férias à beira-mar",
       "flash_offer": "30% off",
       "coupon_text": "",
@@ -167,8 +167,13 @@
       "error": "",
       "error_stage": "",
       "force_regenerate": "",
-      "video_path": "",
-      "facebook_error": ""
+      "video_path": "out_videos\\shein\\produto_3_shein.mp4",
+      "facebook_error": "",
+      "published_at": "",
+      "post_id": "",
+      "facebook_status": "",
+      "facebook_published_at": "",
+      "facebook_post_id": ""
     }
   ]
 }

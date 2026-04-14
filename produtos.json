@@ -109,7 +109,7 @@
       "name": "Blusa Supex",
       "account": "shein",
       "usuario": "@seulookperfeitoaqui",
-      "status": "processando",
+      "status": "gerado",
       "descricao_audio": "Realce sua elegância com essa blusa em tecido suplex de alta qualidade, desenvolvida para valorizar cada curva com muito conforto. Com modelagem ajustada ao corpo, essa peça destaca-se pelo seu design moderno de um ombro só, que traz um toque de sensualidade na medida certa, sem abrir mão da sofisticação.",
       "flash_offer": "37% off",
       "coupon_text": "",
@@ -130,7 +130,15 @@
       "force_publish_only": "",
       "force_facebook_only": "",
       "error": "",
-      "error_stage": ""
+      "error_stage": "",
+      "video_path": "out_videos\\shein\\produto_2_shein.mp4",
+      "published_at": "",
+      "post_id": "",
+      "facebook_status": "",
+      "facebook_published_at": "",
+      "facebook_post_id": "",
+      "facebook_error": "",
+      "force_regenerate": ""
     }
   ]
 }

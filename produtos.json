@@ -21,18 +21,19 @@
       "created_at": "2026-04-12T03:20:36.477Z",
       "product": 1,
       "error": "",
-      "facebook_status": "erro",
+      "facebook_status": "",
       "video_path": "out_videos\\shopee\\produto_1_shopee.mp4",
       "published_at": "2026-04-14 02:54",
       "post_id": "18065736932678910",
       "facebook_published_at": "",
       "facebook_post_id": "",
       "error_stage": "",
-      "facebook_error": "Erro HTTP 400: {'error': {'message': 'Error validating access token: Session has expired on Monday, 13-Apr-26 11:00:00 PDT. The current time is Monday, 13-Apr-26 22:54:04 PDT.', 'type': 'OAuthExceptio",
+      "facebook_error": "",
       "force_regenerate": "",
       "preview_image_url": "https://pub-971b79479fa9403d85ad248676016997.r2.dev/shopee/images/produto_1_cal-a-skinny-com-cinto.webp",
       "preview_thumbnail_url": "https://pub-971b79479fa9403d85ad248676016997.r2.dev/shopee/thumbnails/produto_1_cal-a-skinny-com-cinto.png",
-      "force_publish_only": ""
+      "force_publish_only": "",
+      "force_facebook_only": "1"
     },
     {
       "name": "Copo Térmico De Café",

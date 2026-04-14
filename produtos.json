@@ -4,7 +4,7 @@
       "name": "Calça Skinny Com Cinto",
       "account": "shopee",
       "usuario": "@happydayofertas",
-      "status": "publicado",
+      "status": "processando",
       "product_num": 1,
       "descricao_audio": "Nossa calça skinny preta de cintura alta no tecido crepe valoriza a silhueta, modela o corpo e garante um caimento impecável. Confeccionada em tecido encorpado com leve elasticidade, ela proporciona conforto sem perder a elegância.",
       "flash_offer": "10% off",
@@ -33,7 +33,7 @@
       "preview_image_url": "https://pub-971b79479fa9403d85ad248676016997.r2.dev/shopee/images/produto_1_cal-a-skinny-com-cinto.webp",
       "preview_thumbnail_url": "https://pub-971b79479fa9403d85ad248676016997.r2.dev/shopee/thumbnails/produto_1_cal-a-skinny-com-cinto.png",
       "force_publish_only": "",
-      "force_facebook_only": "1"
+      "force_facebook_only": ""
     },
     {
       "name": "Copo Térmico De Café",

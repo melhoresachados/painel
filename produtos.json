@@ -169,6 +169,29 @@
       "force_regenerate": "",
       "video_path": "",
       "facebook_error": ""
+    },
+    {
+      "name": "teatewasdf",
+      "account": "shopee",
+      "usuario": "@happydayofertas",
+      "status": "pendente",
+      "descricao_audio": "sdfsdafsdfs",
+      "flash_offer": "10",
+      "coupon_text": "",
+      "rating": "5",
+      "reviews": "10",
+      "sold_count": "10",
+      "image_urls": "https://site.com/imagem.jpg",
+      "video_urls": "https://site.com/imagem.jpg",
+      "thumbnail": "https://site.com/imagem.jpg",
+      "preview_image_url": "",
+      "preview_thumbnail_url": "",
+      "affiliate_url": "https://site.com/imagem.jpg",
+      "source_url": "https://site.com/imagem.jpg",
+      "_id": "3c5a817a-d186-4785-a43d-a29cedcc2f89",
+      "created_at": "2026-04-14T22:42:25.422Z",
+      "product_num": 2,
+      "product": 2
     }
   ]
 }

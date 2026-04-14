@@ -603,6 +603,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                 <button type="submit" class="btn-save" id="btn-save">Salvar produto</button>
                 <button type="button" class="btn-cancel" onclick="showPage('list')">Cancelar</button>
                 <button type="button" class="btn-secondary warm" id="btn-republish" onclick="requestRepublish()">Publicar novamente</button>
+                <button type="button" class="btn-secondary warm" id="btn-facebook-republish" onclick="requestFacebookRepublish()">Facebook novamente</button>
                 <button type="button" class="btn-secondary" id="btn-regenerate" onclick="requestRegenerate()">Regerar</button>
                 <button type="button" class="btn-delete" id="btn-delete" onclick="deleteProduct()">🗑 Excluir</button>
               </div>
@@ -1146,6 +1147,7 @@ function openForm(id) {
   document.getElementById('btn-delete').style.display = p ? 'block' : 'none';
   document.getElementById('btn-regenerate').style.display = (p && p.video_path) ? 'inline-flex' : 'none';
   document.getElementById('btn-republish').style.display  = (p && (p.post_id || p.facebook_post_id)) ? 'inline-flex' : 'none';
+  document.getElementById('btn-facebook-republish').style.display = (p && (p.video_path || p.post_id) && (p.status === 'publicado' || p.post_id)) ? 'inline-flex' : 'none';
 
   FORM_FIELDS.forEach(f => {
     const el = document.getElementById('f-' + f);
@@ -1255,6 +1257,32 @@ async function requestRepublish() {
     openForm(state.editingId);
   } catch (err) {
     showToast('Erro ao solicitar republicação: ' + err.message, 'error');
+  }
+}
+
+async function requestFacebookRepublish() {
+  if (!state.editingId) return;
+  const idx = state.products.findIndex(p => p._id === state.editingId);
+  if (idx < 0) return;
+  const current = state.products[idx];
+  state.products[idx] = {
+    ...current,
+    status: 'publicado',
+    force_facebook_only: '1',
+    force_publish_only: '',
+    force_regenerate: '',
+    facebook_post_id: '',
+    facebook_published_at: '',
+    facebook_status: '',
+    facebook_error: '',
+  };
+
+  try {
+    await saveProducts();
+    showToast('Republicação apenas no Facebook solicitada. Na próxima execução do pipeline, o sistema tentará reaproveitar o vídeo atual e publicar só na página do Facebook.', 'success');
+    openForm(state.editingId);
+  } catch (err) {
+    showToast('Erro ao solicitar republicação no Facebook: ' + err.message, 'error');
   }
 }
 

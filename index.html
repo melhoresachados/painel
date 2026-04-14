@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -389,6 +389,11 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
         <div id="status-filters"></div>
       </div>
       <div>
+        <div class="filter-group-title">Publica??o</div>
+        <div id="publish-filters"></div>
+        <div class="filter-help">Permite ver rapidamente o que ainda est? pendente s? no Facebook.</div>
+      </div>
+      <div>
         <div class="filter-group-title">Etapa erro</div>
         <div id="error-stage-filters"></div>
         <div class="filter-help">Ajuda a separar erro de postagem de erro que exige novo vídeo.</div>
@@ -603,7 +608,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                 <button type="submit" class="btn-save" id="btn-save">Salvar produto</button>
                 <button type="button" class="btn-cancel" onclick="showPage('list')">Cancelar</button>
                 <button type="button" class="btn-secondary warm" id="btn-republish" onclick="requestRepublish()">Publicar novamente</button>
-                <button type="button" class="btn-secondary warm" id="btn-facebook-republish" onclick="requestFacebookRepublish()">Facebook novamente</button>
+                <button type="button" class="btn-secondary warm" id="btn-facebook-republish" onclick="requestFacebookRepublish()">Publicar Face novamente</button>
                 <button type="button" class="btn-secondary" id="btn-regenerate" onclick="requestRegenerate()">Regerar</button>
                 <button type="button" class="btn-delete" id="btn-delete" onclick="deleteProduct()">🗑 Excluir</button>
               </div>
@@ -707,13 +712,15 @@ const ACCOUNT_USERS = {
 
 const ACCOUNT_LABELS = { all:'Todas as contas', shopee:'Shopee', shein:'Shein', mercadolivre:'Mercado Livre' };
 const STATUS_LABELS  = { all:'Todos', pendente:'Pendente', gerado:'Gerado', publicado:'Publicado', processando:'Processando', erro:'Erro' };
+const PUBLISH_LABELS = { all:'Todos', facebook_pending:'Facebook pendente', facebook_published:'Facebook publicado' };
 const ERROR_STAGE_LABELS = { all:'Todas', 'Geração video':'Geração video', 'Erro na postagem':'Erro na postagem', 'Pipeline':'Pipeline' };
+const publishStates = ['all','facebook_pending','facebook_published'];
 
 // ── State ─────────────────────────────────────────────────────────────────────
 let state = {
   token: null, githubUser: null, githubRepo: null,
   products: [], sha: '',
-  filterAccount: 'all', filterStatus: 'all', filterErrorStage: 'all',
+  filterAccount: 'all', filterStatus: 'all', filterPublish: 'all', filterErrorStage: 'all',
   editingId: null, currentPage: 'list',
 };
 let sortState = { col: 'status', dir: 'asc' };
@@ -883,6 +890,14 @@ function toggleSidebarFilters() {
 function countFor(type, val) {
   return state.products.filter(p => {
     if (type === 'account') return val === 'all' || p.account === val;
+    if (type === 'publish') {
+      const hasInstagram = !!(p.post_id && String(p.post_id).trim());
+      const hasFacebook = !!(p.facebook_post_id && String(p.facebook_post_id).trim());
+      if (val === 'all') return true;
+      if (val === 'facebook_pending') return hasInstagram && !hasFacebook;
+      if (val === 'facebook_published') return hasFacebook;
+      return true;
+    }
     if (type === 'error_stage') return val === 'all' || (p.error_stage || '') === val;
     return val === 'all' || p.status === val;
   }).length;
@@ -899,6 +914,10 @@ function buildFilters() {
     `<button class="filter-item ${state.filterStatus===s?'active':''}" onclick="setFilter('status','${s}')">
       ${STATUS_LABELS[s]} <span class="badge-count">${countFor('status',s)}</span>
     </button>`).join('');
+  document.getElementById('publish-filters').innerHTML = publishStates.map(s =>
+    `<button class="filter-item ${state.filterPublish===s?'active':''}" onclick="setFilter('publish','${s}')">
+      ${PUBLISH_LABELS[s]} <span class="badge-count">${countFor('publish',s)}</span>
+    </button>`).join('');
   document.getElementById('error-stage-filters').innerHTML = errorStages.map(s =>
     `<button class="filter-item ${state.filterErrorStage===s?'active':''}" onclick="setFilter('error_stage','${s}')">
       ${ERROR_STAGE_LABELS[s]} <span class="badge-count">${countFor('error_stage',s)}</span>
@@ -908,6 +927,7 @@ function buildFilters() {
 function setFilter(type, val) {
   if (type === 'account') state.filterAccount = val;
   else if (type === 'status') state.filterStatus = val;
+  else if (type === 'publish') state.filterPublish = val;
   else state.filterErrorStage = val;
   if (isMobileView()) closeSidebarFilters();
   buildFilters(); renderList();
@@ -946,6 +966,12 @@ function renderList() {
   let products = state.products.filter(p => {
     if (state.filterAccount !== 'all' && p.account !== state.filterAccount) return false;
     if (state.filterStatus  !== 'all' && p.status  !== state.filterStatus)  return false;
+    if (state.filterPublish !== 'all') {
+      const hasInstagram = !!(p.post_id && String(p.post_id).trim());
+      const hasFacebook = !!(p.facebook_post_id && String(p.facebook_post_id).trim());
+      if (state.filterPublish === 'facebook_pending' && !(hasInstagram && !hasFacebook)) return false;
+      if (state.filterPublish === 'facebook_published' && !hasFacebook) return false;
+    }
     if (state.filterErrorStage !== 'all' && (p.error_stage || '') !== state.filterErrorStage) return false;
     if (q) {
       if (isNumericSearch) {
@@ -1424,3 +1450,5 @@ window.addEventListener('keydown', (event) => {
 </script>
 </body>
 </html>
+
+

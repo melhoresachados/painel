@@ -169,6 +169,29 @@
       "force_regenerate": "",
       "video_path": "",
       "facebook_error": ""
+    },
+    {
+      "name": "teste",
+      "account": "shopee",
+      "usuario": "@happydayofertas",
+      "status": "pendente",
+      "descricao_audio": "adfdsafdsafsd",
+      "flash_offer": "10",
+      "coupon_text": "",
+      "rating": "5",
+      "reviews": "100",
+      "sold_count": "120",
+      "image_urls": "https://img.ltwebstatic.com/v4/j/spmp/2025/08/22/a8/1755864434b213916d882baf4976d68d1d3b9d8328.jpg",
+      "video_urls": "https://img.ltwebstatic.com/v4/j/spmp/2025/08/22/a8/1755864434b213916d882baf4976d68d1d3b9d8328.jpg",
+      "thumbnail": "https://img.ltwebstatic.com/v4/j/spmp/2025/08/22/a8/1755864434b213916d882baf4976d68d1d3b9d8328.jpg",
+      "preview_image_url": "",
+      "preview_thumbnail_url": "",
+      "affiliate_url": "https://br.shein.com/MilyModa-Handmade-Crochet-Shoulder-Bag-Fashion-Casual-New-Hollow-Knitted-Beach-Bag-Seaside-Holiday-Women-s-Handbag-p-160958892.html?src_identifier=on%3DONE_THIRD_COMPONENT%60cn%3DONE_THIRD_COMPONENT_5%60hz%3D-%60jc%3DitemPicking_10050060174%60ps%3D1_2&src_module=all&src_tab_page_id=page_home1776193156235&mallCode=2&pageListType=4&imgRatio=3-4&detailBusinessFrom=0-1_160958892%7C0-2&pageListType=4",
+      "source_url": "https://br.shein.com/MilyModa-Handmade-Crochet-Shoulder-Bag-Fashion-Casual-New-Hollow-Knitted-Beach-Bag-Seaside-Holiday-Women-s-Handbag-p-160958892.html?src_identifier=on%3DONE_THIRD_COMPONENT%60cn%3DONE_THIRD_COMPONENT_5%60hz%3D-%60jc%3DitemPicking_10050060174%60ps%3D1_2&src_module=all&src_tab_page_id=page_home1776193156235&mallCode=2&pageListType=4&imgRatio=3-4&detailBusinessFrom=0-1_160958892%7C0-2&pageListType=4",
+      "_id": "782afd93-ed67-415c-b1b5-ec1c7f15d52a",
+      "created_at": "2026-04-14T22:39:35.724Z",
+      "product_num": 2,
+      "product": 2
     }
   ]
 }

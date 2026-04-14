@@ -104,6 +104,29 @@
       "facebook_error": "",
       "force_regenerate": "",
       "force_facebook_only": ""
+    },
+    {
+      "name": "Blusa Supex",
+      "account": "shein",
+      "usuario": "@seulookperfeitoaqui",
+      "status": "pendente",
+      "descricao_audio": "Realce sua elegância com essa blusa em tecido suplex de alta qualidade, desenvolvida para valorizar cada curva com muito conforto. Com modelagem ajustada ao corpo, essa peça destaca-se pelo seu design moderno de um ombro só, que traz um toque de sensualidade na medida certa, sem abrir mão da sofisticação.",
+      "flash_offer": "37% off",
+      "coupon_text": "",
+      "rating": "4.8",
+      "reviews": "100",
+      "sold_count": "300",
+      "image_urls": "https://img.ltwebstatic.com/v4/j/spmp/2025/06/15/13/1749996389745b69c40978702e9cfbedf648cf5061.jpg;https://img.ltwebstatic.com/v4/j/spmp/2025/06/15/f3/17499963418f4e88e64492c48959b13b39a0762403.jpg;https://img.ltwebstatic.com/v4/j/spmp/2025/06/15/5f/1749996433ff1aa5fa254d86f2b935ba883e44d2ac.jpg;https://img.ltwebstatic.com/v4/j/spmp/2025/06/15/bb/1749996355bd7d1bcd5cd16b549643a53a8aa11f41.jpg;https://img.ltwebstatic.com/v4/j/spmp/2025/06/15/23/17499963675838b2004967319a915444960ae6ddb8.jpg",
+      "video_urls": "",
+      "thumbnail": "",
+      "preview_image_url": "",
+      "preview_thumbnail_url": "",
+      "affiliate_url": "https://onelink.shein.com/2/5mhwc13oz0bx",
+      "source_url": "https://br.shein.com/Supex-Mesh-T-Shirt-Blouse-With-Asymmetrical-Short-Sleeves-For-Summer-Ideal-For-Casual-Wear-Comfortable-And-Elegant-p-99670285.html?mallCode=2&imgRatio=3-4&detailBusinessFrom=0-2",
+      "_id": "25d374df-b3fc-4e13-9a61-95061c9b041d",
+      "created_at": "2026-04-14T19:06:53.498Z",
+      "product_num": 2,
+      "product": 2
     }
   ]
 }

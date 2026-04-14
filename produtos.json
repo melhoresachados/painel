@@ -166,7 +166,9 @@
       "force_facebook_only": "",
       "error": "video falhou",
       "error_stage": "Geração video",
-      "force_regenerate": ""
+      "force_regenerate": "",
+      "video_path": "",
+      "facebook_error": ""
     }
   ]
 }

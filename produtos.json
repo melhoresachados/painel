@@ -179,7 +179,7 @@
       "name": "Celular Xiaomi Poco X8",
       "account": "shopee",
       "usuario": "@happydayofertas",
-      "status": "pendente",
+      "status": "processando",
       "descricao_audio": "O novo POCO X8 Pro 5G chega trazendo tecnologia de última geração, desempenho extremo e bateria gigante para quem exige velocidade, qualidade e autonomia. Equipado com o poderoso MediaTek Dimensity 8500 Ultra, tela AMOLED ultra brilhante e carregamento super rápido de 100W, ele é perfeito para jogos, trabalho e entretenimento.\n\n\n\n⚡ Desempenho poderoso\n\nCom o processador Dimensity 8500 Ultra (4nm) e GPU Mali-G720 MC8, o POCO X8 Pro oferece alto desempenho para rodar jogos pesados, multitarefa e aplicativos exigentes com extrema fluidez.\n\n\n\n-ARMAZENAMENTO INTERNO:\n\n256GB - 8RAM \n\n512GB - 8RAM \n\n512GB - 12RAM",
       "flash_offer": "5% off",
       "coupon_text": "Cupom disponível",
@@ -196,7 +196,9 @@
       "_id": "2645e31c-faac-407f-b450-ed63ea018975",
       "created_at": "2026-04-15T14:05:22.910Z",
       "product_num": 2,
-      "product": 2
+      "product": 2,
+      "force_publish_only": "",
+      "force_facebook_only": ""
     }
   ]
 }

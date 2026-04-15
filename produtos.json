@@ -198,7 +198,10 @@
       "product_num": 2,
       "product": 2,
       "force_publish_only": "",
-      "force_facebook_only": ""
+      "force_facebook_only": "",
+      "error": "",
+      "error_stage": "",
+      "force_regenerate": ""
     }
   ]
 }

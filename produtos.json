@@ -209,6 +209,29 @@
       "facebook_published_at": "2026-04-15 13:03:53",
       "facebook_post_id": "1685883972413940",
       "facebook_error": ""
+    },
+    {
+      "name": "Smartphone Oppo A6t",
+      "account": "mercadolivre",
+      "usuario": "@pricebestnet",
+      "status": "pendente",
+      "descricao_audio": "Smartphone Oppo A6t 5g 256gb, 24gb Ram (8gb + 16gb Virtual Ram), Bateria gigante de 6500 mAh, AI Câmera 50MP, Tela 120Hz, NFC, IP64 - Azul Cristal; O Smartphone OPPO A6T 5G é a escolha perfeita para quem busca desempenho e estilo. Com uma impressionante capacidade de armazenamento de 256 GB e 8 GB de RAM, você terá espaço de sobra para suas fotos, vídeos e aplicativos. Seu design elegante na cor azul cristal combina com qualquer ocasião, enquanto a tela de 6,75 polegadas proporciona uma experiência visual imersiva.",
+      "flash_offer": "11% off",
+      "coupon_text": "Cupom disponível",
+      "rating": "4.8",
+      "reviews": "60",
+      "sold_count": "100",
+      "image_urls": "https://http2.mlstatic.com/D_NQ_NP_2X_690885-MLA108423458099_032026-F.webp",
+      "video_urls": "https://http2.mlstatic.com/storage/shorts-api/videos-middleware/playlists/b1558314-ca94-4fa9-acc9-2de289c7f5b3/d4mSlH.m3u8",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_690885-MLA108423458099_032026-F.webp",
+      "preview_image_url": "",
+      "preview_thumbnail_url": "",
+      "affiliate_url": "https://meli.la/27EkdLy",
+      "source_url": "https://www.mercadolivre.com.br/smartphone-oppo-a6t-5g-256gb-24gb-ram-8gb-16gb-virtual-ram-bateria-gigante-de-6500-mah-ai-cmera-50mp-tela-120hz-nfc-ip64-azul-cristal/p/MLB66170329",
+      "_id": "07bffbc1-dde4-4bce-8686-a34ba630f953",
+      "created_at": "2026-04-15T18:43:56.252Z",
+      "product_num": 2,
+      "product": 2
     }
   ]
 }

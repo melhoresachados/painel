@@ -144,7 +144,7 @@
       "name": "Bolsa de Tote",
       "account": "shein",
       "usuario": "@seulookperfeitoaqui",
-      "status": "processando",
+      "status": "publicado",
       "descricao_audio": "Bolsa de Tote de Capacidade Grande com Cordão de Malha Trançado de Cor Sólida e Moda, Adequada para Uso Diário ou Férias de Senhoras moda 2025 verão caralval praia Carnaval",
       "flash_offer": "40% off",
       "coupon_text": "Mais Vendidos",
@@ -169,11 +169,11 @@
       "force_regenerate": "",
       "video_path": "out_videos\\shein\\produto_3_shein.mp4",
       "facebook_error": "",
-      "published_at": "",
-      "post_id": "",
-      "facebook_status": "",
-      "facebook_published_at": "",
-      "facebook_post_id": ""
+      "published_at": "2026-04-14 21:31",
+      "post_id": "17905369059400263",
+      "facebook_status": "publicado",
+      "facebook_published_at": "2026-04-14 21:31:36",
+      "facebook_post_id": "4367815270127697"
     }
   ]
 }

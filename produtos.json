@@ -174,6 +174,29 @@
       "facebook_status": "publicado",
       "facebook_published_at": "2026-04-14 22:18:07",
       "facebook_post_id": "951763280576183"
+    },
+    {
+      "name": "Celular Xiaomi Poco X8",
+      "account": "shopee",
+      "usuario": "@happydayofertas",
+      "status": "pendente",
+      "descricao_audio": "O novo POCO X8 Pro 5G chega trazendo tecnologia de última geração, desempenho extremo e bateria gigante para quem exige velocidade, qualidade e autonomia. Equipado com o poderoso MediaTek Dimensity 8500 Ultra, tela AMOLED ultra brilhante e carregamento super rápido de 100W, ele é perfeito para jogos, trabalho e entretenimento.\n\n\n\n⚡ Desempenho poderoso\n\nCom o processador Dimensity 8500 Ultra (4nm) e GPU Mali-G720 MC8, o POCO X8 Pro oferece alto desempenho para rodar jogos pesados, multitarefa e aplicativos exigentes com extrema fluidez.\n\n\n\n-ARMAZENAMENTO INTERNO:\n\n256GB - 8RAM \n\n512GB - 8RAM \n\n512GB - 12RAM",
+      "flash_offer": "5% off",
+      "coupon_text": "Cupom disponível",
+      "rating": "4.9",
+      "reviews": "130",
+      "sold_count": "250",
+      "image_urls": "https://down-br.img.susercontent.com/file/sg-11134201-8260v-mlnuyg2oo1z46e@resize_w450_nl.webp",
+      "video_urls": "https://down-ws-br.vod.susercontent.com/api/v4/11110106/mms/sg-11110106-6va14-mm8tgr2yymf7ca.16000081774435393.mp4",
+      "thumbnail": "https://down-br.img.susercontent.com/file/sg-11134201-8260v-mlnuyg2oo1z46e@resize_w450_nl.webp",
+      "preview_image_url": "",
+      "preview_thumbnail_url": "",
+      "affiliate_url": "https://s.shopee.com.br/6pwnO8olQW",
+      "source_url": "https://shopee.com.br/LANCAMENTO-CELULAR-XIAOMI-POCO-X8-PRO-5G-NFC-256GB-OU-512GB-VERS%C3%83O-GLOBAL-FONTE-RAPIDA-COM-CAPINHA-i.1351433975.58206670114",
+      "_id": "2645e31c-faac-407f-b450-ed63ea018975",
+      "created_at": "2026-04-15T14:05:22.910Z",
+      "product_num": 2,
+      "product": 2
     }
   ]
 }

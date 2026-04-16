@@ -107,7 +107,7 @@
         "WITH_WIRELESS_CHARGING": "Não"
       },
       "domain_id": "MLB-CELLPHONES",
-      "status": "active",
+      "status": "discarded",
       "quality_type": "COMPLETE",
       "date_created": "2025-09-08T19:23:35Z",
       "last_updated": "2025-09-29T19:16:03Z",
@@ -4226,7 +4226,8 @@
       "scraped_image_count": 8,
       "_id": "MLB55027908",
       "origin": "mercadolivre",
-      "discovered_at": "2026-04-16T12:20:52.070282"
+      "discovered_at": "2026-04-16T12:20:52.070282",
+      "discarded_at": "2026-04-16T16:12:15.463Z"
     },
     {
       "source": "mercadolivre_api",
@@ -4322,7 +4323,7 @@
         "WITH_PROXIMITY_SENSOR": "Sim"
       },
       "domain_id": "MLB-CELLPHONES",
-      "status": "active",
+      "status": "discovered",
       "quality_type": "COMPLETE",
       "date_created": "2025-09-11T12:46:20Z",
       "last_updated": "2026-03-30T14:22:37Z",
@@ -7387,7 +7388,7 @@
         "WITH_REMOVABLE_BATTERY": "Não"
       },
       "domain_id": "MLB-CELLPHONES",
-      "status": "active",
+      "status": "discovered",
       "quality_type": "COMPLETE",
       "date_created": "2025-09-08T15:33:48Z",
       "last_updated": "2026-03-26T18:26:48Z",
@@ -10261,7 +10262,7 @@
         "IS_DUST_RESISTANT": "Sim"
       },
       "domain_id": "MLB-CELLPHONES",
-      "status": "active",
+      "status": "discovered",
       "quality_type": "COMPLETE",
       "date_created": "2024-12-10T18:31:26Z",
       "last_updated": "2026-01-03T23:38:01Z",
@@ -13845,7 +13846,7 @@
         "WITH_REMOVABLE_BATTERY": "Não"
       },
       "domain_id": "MLB-CELLPHONES",
-      "status": "active",
+      "status": "discovered",
       "quality_type": "COMPLETE",
       "date_created": "2025-03-13T19:36:03Z",
       "last_updated": "2026-03-11T20:37:27Z",
@@ -16531,7 +16532,7 @@
         "WITH_FAST_CHARGING": "Sim"
       },
       "domain_id": "MLB-CELLPHONES",
-      "status": "active",
+      "status": "discovered",
       "quality_type": "COMPLETE",
       "date_created": "2024-10-04T20:52:49Z",
       "last_updated": "2025-09-29T19:29:07Z",
@@ -19606,7 +19607,7 @@
         "WITH_WIRELESS_CHARGING": "Não"
       },
       "domain_id": "MLB-CELLPHONES",
-      "status": "active",
+      "status": "discovered",
       "quality_type": "COMPLETE",
       "date_created": "2025-03-26T19:19:33Z",
       "last_updated": "2025-09-12T15:47:39Z",
@@ -23690,7 +23691,7 @@
         "WITH_REMOVABLE_BATTERY": "Não"
       },
       "domain_id": "MLB-CELLPHONES",
-      "status": "active",
+      "status": "discovered",
       "quality_type": "COMPLETE",
       "date_created": "2025-03-13T21:20:35Z",
       "last_updated": "2026-04-10T11:58:29Z",
@@ -25991,7 +25992,7 @@
         "IS_WATER_RESISTANT": "Sim"
       },
       "domain_id": "MLB-HEADPHONES",
-      "status": "active",
+      "status": "discovered",
       "quality_type": "COMPLETE",
       "date_created": "2025-09-29T10:50:14Z",
       "last_updated": "2025-11-26T19:41:49Z",
@@ -30839,7 +30840,7 @@
         "WITH_WIRELESS_CHARGING": "Não"
       },
       "domain_id": "MLB-CELLPHONES",
-      "status": "active",
+      "status": "discovered",
       "quality_type": "COMPLETE",
       "date_created": "2025-09-08T19:21:36Z",
       "last_updated": "2026-04-10T19:25:50Z",

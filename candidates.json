@@ -7389,7 +7389,7 @@
         "WITH_REMOVABLE_BATTERY": "Não"
       },
       "domain_id": "MLB-CELLPHONES",
-      "status": "discovered",
+      "status": "imported",
       "quality_type": "COMPLETE",
       "date_created": "2025-09-08T15:33:48Z",
       "last_updated": "2026-03-26T18:26:48Z",
@@ -10173,7 +10173,9 @@
       "scraped_image_count": 5,
       "_id": "MLB54984333",
       "origin": "mercadolivre",
-      "discovered_at": "2026-04-16T12:20:52.070282"
+      "discovered_at": "2026-04-16T12:20:52.070282",
+      "imported_at": "2026-04-16T16:14:17.189Z",
+      "imported_product_id": "3a2cedf5-50ea-4c00-95d5-3d4f3a5a9318"
     },
     {
       "source": "mercadolivre_api",

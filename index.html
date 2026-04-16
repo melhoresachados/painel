@@ -973,7 +973,8 @@ function normalizeCandidate(candidate) {
   const normalized = { ...(candidate || {}) };
   normalized._id = normalized._id || normalized.candidate_id || crypto.randomUUID();
   normalized.origin = inferCandidateOrigin(normalized);
-  normalized.status = String(normalized.status || 'discovered').trim().toLowerCase();
+  const rawStatus = String(normalized.status || 'discovered').trim().toLowerCase();
+  normalized.status = ['active', 'complete', 'completed'].includes(rawStatus) ? 'discovered' : rawStatus;
   normalized.name = String(normalized.name || normalized.title || '').trim();
   normalized.image_urls = Array.isArray(normalized.image_urls) ? normalized.image_urls : [];
   normalized.videos = Array.isArray(normalized.videos) ? normalized.videos : [];

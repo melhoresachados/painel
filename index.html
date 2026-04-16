@@ -594,6 +594,13 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                     <input id="f-name" type="text" required placeholder="Ex: Calça Skinny Com Cinto">
                   </div>
                 </div>
+                <div class="field-row full">
+                  <div class="field-group">
+                    <label>Nome curto para thumbnail</label>
+                    <input id="f-display_name" type="text" placeholder="Ex: Samsung Galaxy A17">
+                    <small style="font-size:11px;color:#94a3b8;">Gerado automaticamente para capa/vídeo. Você pode ajustar manualmente se quiser.</small>
+                  </div>
+                </div>
                 <div class="field-row cols-2">
                   <div class="field-group">
                     <label>Conta <span class="req">*</span></label>
@@ -1576,6 +1583,7 @@ async function importCandidate(candidateId) {
     catalog_product_id: candidate.catalog_product_id || '',
     discovery_origin: account,
     name: candidate.name || '',
+    display_name: generateDisplayName(candidate.name || ''),
     account,
     usuario: users[0] || '',
     status: 'pendente',
@@ -1631,7 +1639,82 @@ function escHtml(str) {
 // product_num is excluded — it's read-only and managed by renumberProducts()
 const FORM_FIELDS = ['name','account','usuario','status','descricao_audio',
   'flash_offer','coupon_text','rating','reviews','sold_count',
-  'image_urls','video_urls','thumbnail','preview_image_url','preview_thumbnail_url','affiliate_url','source_url'];
+  'image_urls','video_urls','thumbnail','preview_image_url','preview_thumbnail_url','affiliate_url','source_url','display_name'];
+
+const DISPLAY_NAME_BRANDS = new Set([
+  'samsung','motorola','xiaomi','poco','redmi','oppo','realme','apple','iphone','jbl','lenovo','asus','acer','dell','hp',
+  'philips','mondial','oster','electrolux','philco','britania','stanley','lg','sony','epson','canon','nike','adidas',
+  'mizuno','vans','converse','avell','positivo','multilaser','tramontina','wap'
+]);
+const DISPLAY_NAME_LEADING_GENERIC = new Set(['celular','smartphone','fone','fones','headset','tablet','notebook','laptop','camera','câmera','smartwatch','relogio','relógio','kit']);
+const DISPLAY_NAME_STOPWORDS = new Set(['de','do','da','dos','das','com','para','por','e','em','a','o','na','no']);
+const DISPLAY_NAME_COLORS = new Set(['preto','branco','cinza','grafite','azul','verde','rosa','vermelho','violeta','lilas','lilás','roxo','prata','dourado','bege','marrom','offwhite','off-white']);
+const DISPLAY_NAME_NOISE = new Set(['ram','gb','tb','mp','mah','hz','nfc','wifi','bluetooth','android','ios','amoled','oled','lcd','fullhd','fhd','ip54','ip55','ip64','ip67','ip68','polegadas','polegada','tela','camera','câmera','bateria','virtual']);
+
+function normalizeAscii(value) {
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+}
+
+function displayNameTokenPairs(name) {
+  const cleaned = String(name || '')
+    .replace(/[\(\[\{].*?[\)\]\}]/g, ' ')
+    .replace(/[\/|,;]+/g, ' ');
+  const tokens = cleaned.match(/[A-Za-zÀ-ÿ0-9]+/g) || [];
+  return tokens.map(token => ({ raw: token, norm: normalizeAscii(token) })).filter(token => token.raw.trim());
+}
+
+function isDisplayNoise(tokenNorm) {
+  return /^\d+$/.test(tokenNorm)
+    || DISPLAY_NAME_NOISE.has(tokenNorm)
+    || DISPLAY_NAME_COLORS.has(tokenNorm)
+    || /^(?:\d+(?:gb|tb|mp|mah|hz|w|v|ml|l|cm|mm|m)|[45]g|ip\d{2}|wifi|nfc)$/i.test(tokenNorm);
+}
+
+function generateDisplayName(name) {
+  const pairs = displayNameTokenPairs(name);
+  if (!pairs.length) return String(name || '').trim();
+
+  const brandIdx = pairs.findIndex(token => DISPLAY_NAME_BRANDS.has(token.norm));
+  const result = [];
+
+  if (brandIdx >= 0) {
+    const prefix = [];
+    for (const token of pairs.slice(0, brandIdx)) {
+      if (!DISPLAY_NAME_STOPWORDS.has(token.norm) && !DISPLAY_NAME_LEADING_GENERIC.has(token.norm) && !isDisplayNoise(token.norm)) {
+        prefix.push(token.raw);
+      }
+      if (prefix.length >= 2) break;
+    }
+    result.push(...prefix);
+
+    for (let idx = brandIdx; idx < pairs.length; idx += 1) {
+      const token = pairs[idx];
+      if (idx > brandIdx && (DISPLAY_NAME_STOPWORDS.has(token.norm) || isDisplayNoise(token.norm))) {
+        if (result.length >= 2) break;
+        continue;
+      }
+      result.push(token.raw);
+      if (result.length >= 4) break;
+    }
+  } else {
+    let started = false;
+    for (const token of pairs) {
+      if (!started && DISPLAY_NAME_LEADING_GENERIC.has(token.norm)) continue;
+      started = true;
+      if (DISPLAY_NAME_STOPWORDS.has(token.norm)) continue;
+      if (isDisplayNoise(token.norm) && result.length >= 2) break;
+      if (isDisplayNoise(token.norm)) continue;
+      result.push(token.raw);
+      if (result.length >= 3) break;
+    }
+  }
+
+  const displayName = (result.length ? result : pairs.slice(0, 4).map(token => token.raw)).join(' ').replace(/\s+/g, ' ').trim();
+  return displayName || String(name || '').trim();
+}
 
 function isProbablyRenderableMedia(value) {
   const s = String(value || '').trim();
@@ -1750,6 +1833,27 @@ function bindPreviewInputs() {
   });
 }
 
+function bindDisplayNameInputs() {
+  const nameInput = document.getElementById('f-name');
+  const displayInput = document.getElementById('f-display_name');
+  if (!nameInput || !displayInput || nameInput.dataset.displayNameBound === '1') return;
+
+  nameInput.addEventListener('input', () => {
+    const autoDisplay = generateDisplayName(nameInput.value);
+    if (!displayInput.value.trim() || displayInput.dataset.autoDisplay === '1') {
+      displayInput.value = autoDisplay;
+      displayInput.dataset.autoDisplay = '1';
+    }
+  });
+
+  displayInput.addEventListener('input', () => {
+    const autoDisplay = generateDisplayName(nameInput.value);
+    displayInput.dataset.autoDisplay = (!displayInput.value.trim() || displayInput.value.trim() === autoDisplay) ? '1' : '0';
+  });
+
+  nameInput.dataset.displayNameBound = '1';
+}
+
 function openForm(id) {
   state.editingId = id;
   state.currentPage = 'form';
@@ -1773,6 +1877,16 @@ function openForm(id) {
       const el = document.getElementById('f-' + f);
       if (el && p[f] !== undefined) el.value = p[f];
     });
+    const displayInput = document.getElementById('f-display_name');
+    if (displayInput) {
+      const autoDisplay = generateDisplayName(p.name || '');
+      if (!displayInput.value.trim()) {
+        displayInput.value = autoDisplay;
+        displayInput.dataset.autoDisplay = '1';
+      } else {
+        displayInput.dataset.autoDisplay = displayInput.value.trim() === autoDisplay ? '1' : '0';
+      }
+    }
     onAccountChange();
     document.getElementById('f-usuario').value = p.usuario || '';
     document.getElementById('f-product_num').value = p.product_num
@@ -1808,10 +1922,13 @@ function openForm(id) {
     document.getElementById('result-section').style.display = 'none';
     document.getElementById('f-product_num').value = 'Será gerado ao salvar';
     onAccountChange();
+    const displayInput = document.getElementById('f-display_name');
+    if (displayInput) displayInput.dataset.autoDisplay = '1';
     refreshPreviews();
   }
 
   bindPreviewInputs();
+  bindDisplayNameInputs();
   showPage('form');
 }
 
@@ -1915,6 +2032,12 @@ async function submitForm(e) {
     const el = document.getElementById('f-' + f);
     if (el) data[f] = el.value.trim();
   });
+  data.display_name = data.display_name || generateDisplayName(data.name);
+  const displayInput = document.getElementById('f-display_name');
+  if (displayInput && !displayInput.value.trim()) {
+    displayInput.value = data.display_name;
+    displayInput.dataset.autoDisplay = '1';
+  }
 
   const validationErrors = validateFormData(data);
   if (validationErrors.length) {

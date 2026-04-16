@@ -1105,12 +1105,11 @@ async function saveCandidates() {
     });
   };
 
-  if (!state.candidatesSha) {
-    const latest = await fetchCandidatesDocument({ preferApi: true });
-    state.candidatesSha = latest.sha || '';
-  }
+  const latestBeforeSave = await fetchCandidatesDocument({ preferApi: true });
+  const currentSha = latestBeforeSave.sha || state.candidatesSha || '';
+  if (!currentSha) throw new Error('Não foi possível obter o SHA atual de candidates.json para salvar.');
 
-  let r = await putDocument(state.candidates, state.candidatesSha);
+  let r = await putDocument(state.candidates, currentSha);
   if (r.status === 409) {
     const latest = await fetchCandidatesDocument({ preferApi: true });
     state.candidates = normalizeCandidates(state.candidates);

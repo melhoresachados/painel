@@ -4323,7 +4323,7 @@
         "WITH_PROXIMITY_SENSOR": "Sim"
       },
       "domain_id": "MLB-CELLPHONES",
-      "status": "discovered",
+      "status": "discarded",
       "quality_type": "COMPLETE",
       "date_created": "2025-09-11T12:46:20Z",
       "last_updated": "2026-03-30T14:22:37Z",
@@ -7265,7 +7265,8 @@
       "scraped_image_count": 8,
       "_id": "MLB55762050",
       "origin": "mercadolivre",
-      "discovered_at": "2026-04-16T12:20:52.070282"
+      "discovered_at": "2026-04-16T12:20:52.070282",
+      "discarded_at": "2026-04-16T16:14:11.137Z"
     },
     {
       "source": "mercadolivre_api",

@@ -1012,13 +1012,15 @@ function normalizeCandidates(candidates) {
   return Array.isArray(candidates) ? candidates.map(normalizeCandidate) : [];
 }
 
-async function fetchCandidatesDocument() {
-  const publicResponse = await fetch(`${CANDIDATES_FILE_PATH}?t=${Date.now()}`, { cache: 'no-store' });
-  if (publicResponse.ok) {
-    const content = await publicResponse.json();
-    return { candidates: normalizeCandidates(content.candidates || []), sha: '' };
+async function fetchCandidatesDocument(options = {}) {
+  const { preferApi = false } = options;
+  if (!preferApi) {
+    const publicResponse = await fetch(`${CANDIDATES_FILE_PATH}?t=${Date.now()}`, { cache: 'no-store' });
+    if (publicResponse.ok) {
+      const content = await publicResponse.json();
+      return { candidates: normalizeCandidates(content.candidates || []), sha: '' };
+    }
   }
-
   const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/${CANDIDATES_FILE_PATH}`;
   const r = await fetch(url, { headers: ghHeaders() });
   if (r.status === 404) return { candidates: [], sha: '' };
@@ -1103,9 +1105,14 @@ async function saveCandidates() {
     });
   };
 
+  if (!state.candidatesSha) {
+    const latest = await fetchCandidatesDocument({ preferApi: true });
+    state.candidatesSha = latest.sha || '';
+  }
+
   let r = await putDocument(state.candidates, state.candidatesSha);
   if (r.status === 409) {
-    const latest = await fetchCandidatesDocument();
+    const latest = await fetchCandidatesDocument({ preferApi: true });
     state.candidates = normalizeCandidates(state.candidates);
     r = await putDocument(state.candidates, latest.sha);
   }

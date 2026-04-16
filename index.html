@@ -1026,6 +1026,9 @@ async function fetchCandidatesDocument(options = {}) {
   if (r.status === 404) return { candidates: [], sha: '' };
   if (!r.ok) throw new Error(await r.text());
   const data = await r.json();
+  if (preferApi && (!data.content || typeof data.content !== 'string')) {
+    return { candidates: [], sha: data.sha || '' };
+  }
   const encodedContent = typeof data.content === 'string' ? data.content.replace(/\n/g,'') : '';
   if (!encodedContent) throw new Error('candidates.json sem content utilizável na API do GitHub');
   const bytes = Uint8Array.from(atob(encodedContent), c => c.charCodeAt(0));

@@ -647,7 +647,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                 <div class="field-row cols-2">
                   <div class="field-group">
                     <label>Oferta relâmpago</label>
-                    <input id="f-flash_offer" type="text" placeholder="Ex: Só hoje 50% off">
+                    <input id="f-flash_offer" type="text" placeholder="Ex: 37%">
                   </div>
                   <div class="field-group">
                     <label>Cupom</label>
@@ -670,7 +670,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                   </div>
                   <div class="field-group">
                     <label>Vendidos</label>
-                    <input id="f-sold_count" type="text" placeholder="Ex: 30000">
+                    <input id="f-sold_count" type="text" placeholder="Ex: +10mil">
                   </div>
                 </div>
               </div>
@@ -750,7 +750,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                     <div class="preview-label">Primeira imagem do produto</div>
                   </div>
                   <div class="preview-note">
-                    Use URLs públicas só para preview de thumbnail e imagem. A mídia principal do pipeline pode continuar local no seu computador.
+                    Use apenas URLs públicas. O fluxo novo não aceita mais caminhos locais como entrada de mídia.
                   </div>
                 </div>
               </div>
@@ -1011,12 +1011,34 @@ function normalizeCandidate(candidate) {
   normalized.videos = Array.isArray(normalized.videos) ? normalized.videos : [];
   normalized.coupon_texts = Array.isArray(normalized.coupon_texts) ? normalized.coupon_texts : [];
   normalized.main_features = Array.isArray(normalized.main_features) ? normalized.main_features : [];
+  normalized.discount_text = normalizeDiscountText(normalized.discount_text || '');
+  normalized.sold_quantity_text = normalizeSoldCountText(normalized.sold_quantity_text || '');
   normalized.discovered_at = normalized.discovered_at || normalized.created_at || new Date().toISOString();
   return normalized;
 }
 
 function normalizeCandidates(candidates) {
   return Array.isArray(candidates) ? candidates.map(normalizeCandidate) : [];
+}
+
+function normalizeDiscountText(value) {
+  const text = String(value || '').trim();
+  if (!text) return '';
+  const match = text.match(/(\d+(?:[.,]\d+)?)\s*%/i);
+  if (!match) return text;
+  let number = match[1].replace(',', '.');
+  if (number.endsWith('.0')) number = number.slice(0, -2);
+  return `${number}%`;
+}
+
+function normalizeSoldCountText(value) {
+  const text = String(value || '').trim();
+  if (!text) return '';
+  const match = text.match(/([+]?\s*\d+(?:[.,]\d+)?\s*(?:mil|mi|milhao|milhoes|milhão|milhões)?)/i);
+  if (!match) return text;
+  return match[1]
+    .replace(/\s+/g, '')
+    .replace(/milhao|milhoes|milhão|milhões/ig, 'mil');
 }
 
 async function fetchCandidatesDocument(options = {}) {
@@ -1598,11 +1620,11 @@ async function importCandidate(candidateId) {
     usuario: users[0] || '',
     status: 'pendente',
     descricao_audio: candidate.short_description || '',
-    flash_offer: candidate.discount_text || '',
+    flash_offer: normalizeDiscountText(candidate.discount_text || ''),
     coupon_text: (candidate.coupon_texts || []).join(' | '),
     rating: candidate.rating != null ? String(candidate.rating) : '',
     reviews: candidate.reviews_count != null ? String(candidate.reviews_count) : '',
-    sold_count: candidate.sold_quantity_text || '',
+    sold_count: normalizeSoldCountText(candidate.sold_quantity_text || ''),
     image_urls: imageUrls.join('; '),
     video_urls: videoUrls.join('; '),
     thumbnail,
@@ -1730,13 +1752,13 @@ function generateDisplayName(name) {
 function isProbablyRenderableMedia(value) {
   const s = String(value || '').trim();
   if (!s) return false;
-  return /^(https?:)?\/\//i.test(s) || /^[A-Za-z]:[\\/]/.test(s) || s.startsWith('./') || s.startsWith('../');
+  return /^https?:\/\//i.test(s);
 }
 
 function isBrowserPreviewable(value) {
   const s = String(value || '').trim();
   if (!s) return false;
-  return /^(https?:)?\/\//i.test(s) || s.startsWith('./') || s.startsWith('../') || s.startsWith('/');
+  return /^https?:\/\//i.test(s);
 }
 
 function splitMediaCandidates(raw) {
@@ -1807,7 +1829,11 @@ function mediaPathWithoutQuery(value) {
 
 function isAllowedVideoEntry(value) {
   const normalized = mediaPathWithoutQuery(value);
-  return VIDEO_URL_EXTENSIONS.some(ext => normalized.endsWith(ext));
+  return /^https?:\/\//i.test(String(value || '').trim()) && VIDEO_URL_EXTENSIONS.some(ext => normalized.endsWith(ext));
+}
+
+function isHttpUrl(value) {
+  return /^https?:\/\//i.test(String(value || '').trim());
 }
 
 function validateFormData(data) {
@@ -1816,13 +1842,23 @@ function validateFormData(data) {
   if (!data.account) errors.push('Selecione a conta.');
   if (!data.affiliate_url) errors.push('Preencha o link de afiliado.');
   if (!data.source_url) errors.push('Preencha o link original do produto.');
+  if (data.affiliate_url && !isHttpUrl(data.affiliate_url)) errors.push('O link de afiliado deve ser uma URL pública (http/https).');
+  if (data.source_url && !isHttpUrl(data.source_url)) errors.push('O link original do produto deve ser uma URL pública (http/https).');
   if (!data.image_urls && !data.video_urls) errors.push('Informe ao menos uma mídia em Imagens ou Vídeos.');
   if (data.video_urls && !data.thumbnail) errors.push('Quando houver vídeo, preencha também a thumbnail para garantir a capa.');
+  const invalidImageEntries = splitMediaEntries(data.image_urls).filter(item => !isHttpUrl(item));
+  if (invalidImageEntries.length) {
+    const listed = invalidImageEntries.map(item => `"${item}"`).join(', ');
+    errors.push(`O campo Imagens aceita apenas URLs públicas (http/https). Itens inválidos: ${listed}`);
+  }
   const invalidVideoEntries = splitMediaEntries(data.video_urls).filter(item => !isAllowedVideoEntry(item));
   if (invalidVideoEntries.length) {
     const listed = invalidVideoEntries.map(item => `"${item}"`).join(', ');
-    errors.push(`O campo Vídeos aceita apenas URLs ou caminhos com extensão de vídeo válida (.mp4, .mov, .m4v, .webm, .m3u8). Itens inválidos: ${listed}`);
+    errors.push(`O campo Vídeos aceita apenas URLs públicas com extensão válida (.mp4, .mov, .m4v, .webm, .m3u8). Itens inválidos: ${listed}`);
   }
+  if (data.thumbnail && !isHttpUrl(data.thumbnail)) errors.push('A thumbnail deve ser uma URL pública (http/https).');
+  if (data.preview_thumbnail_url && !isHttpUrl(data.preview_thumbnail_url)) errors.push('A preview thumbnail deve ser uma URL pública (http/https).');
+  if (data.preview_image_url && !isHttpUrl(data.preview_image_url)) errors.push('A preview imagem deve ser uma URL pública (http/https).');
   return errors;
 }
 
@@ -2044,6 +2080,10 @@ async function submitForm(e) {
     if (el) data[f] = el.value.trim();
   });
   data.display_name = data.display_name || generateDisplayName(data.name);
+  if (data.account === 'mercadolivre') {
+    data.flash_offer = normalizeDiscountText(data.flash_offer);
+    data.sold_count = normalizeSoldCountText(data.sold_count);
+  }
   const displayInput = document.getElementById('f-display_name');
   if (displayInput && !displayInput.value.trim()) {
     displayInput.value = data.display_name;

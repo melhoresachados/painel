@@ -1316,6 +1316,16 @@ function resolveCandidateStatus(candidate) {
   return explicitStatus || 'discovered';
 }
 
+function canImportCandidateStatus(status) {
+  return ['discovered', 'discarded', 'imported'].includes(status);
+}
+
+function candidateImportActionLabel(status) {
+  if (status === 'discarded') return 'Importar novamente';
+  if (status === 'imported') return 'Reimportar';
+  return 'Importar produto';
+}
+
 function candidatePrimaryImage(candidate) {
   const scraped = Array.isArray(candidate.scraped_image_urls) ? candidate.scraped_image_urls : [];
   const base = Array.isArray(candidate.image_urls) ? candidate.image_urls : [];
@@ -1529,8 +1539,8 @@ function renderCandidates() {
             ${candidate.affiliate_url ? `<a class="candidate-link" href="${escHtml(candidate.affiliate_url)}" target="_blank" rel="noopener noreferrer">Afiliado: ${escHtml(candidate.affiliate_url)}</a>` : ''}
           </div>
           <div class="candidate-actions">
-            <button class="btn-candidate btn-candidate-primary" onclick="importCandidate('${candidate._id}')" ${resolvedStatus !== 'discovered' ? 'disabled' : ''}>Importar produto</button>
-            <button class="btn-candidate btn-candidate-ghost" onclick="discardCandidate('${candidate._id}')" ${resolvedStatus !== 'discovered' ? 'disabled' : ''}>Descartar</button>
+            <button class="btn-candidate btn-candidate-primary" onclick="importCandidate('${candidate._id}')" ${!canImportCandidateStatus(resolvedStatus) ? 'disabled' : ''}>${candidateImportActionLabel(resolvedStatus)}</button>
+            <button class="btn-candidate btn-candidate-ghost" onclick="discardCandidate('${candidate._id}')" ${resolvedStatus === 'duplicate' ? 'disabled' : ''}>Descartar</button>
           </div>
           <div class="candidate-state-note">
             Descoberto em ${escHtml(formatDate(candidate.discovered_at))}${candidate.imported_at ? ` • Importado em ${escHtml(formatDate(candidate.imported_at))}` : ''}${candidate.discarded_at ? ` • Descartado em ${escHtml(formatDate(candidate.discarded_at))}` : ''}
@@ -1564,7 +1574,7 @@ async function importCandidate(candidateId) {
   if (idx < 0) return;
   const candidate = state.candidates[idx];
   const resolvedStatus = resolveCandidateStatus(candidate);
-  if (resolvedStatus !== 'discovered') {
+  if (!canImportCandidateStatus(resolvedStatus)) {
     showToast('Esse candidato já foi tratado anteriormente.', 'warn');
     return;
   }
@@ -1614,6 +1624,7 @@ async function importCandidate(candidateId) {
     ...candidate,
     status: 'imported',
     imported_at: new Date().toISOString(),
+    discarded_at: '',
     imported_product_id: product._id,
   };
 

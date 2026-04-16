@@ -107,7 +107,7 @@
         "WITH_WIRELESS_CHARGING": "Não"
       },
       "domain_id": "MLB-CELLPHONES",
-      "status": "imported",
+      "status": "discarded",
       "quality_type": "COMPLETE",
       "date_created": "2025-09-08T19:23:35Z",
       "last_updated": "2025-09-29T19:16:03Z",
@@ -4227,7 +4227,7 @@
       "_id": "MLB55027908",
       "origin": "mercadolivre",
       "discovered_at": "2026-04-16T12:20:52.070282",
-      "discarded_at": "",
+      "discarded_at": "2026-04-16T17:01:29.107Z",
       "imported_at": "2026-04-16T17:00:34.417Z",
       "imported_product_id": "eb0d4f00-ecc2-4d1a-b1f4-6e345e8ce56b"
     },

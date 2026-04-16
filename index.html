@@ -988,12 +988,20 @@ function normalizeCandidates(candidates) {
 }
 
 async function fetchCandidatesDocument() {
+  const publicResponse = await fetch(`${CANDIDATES_FILE_PATH}?t=${Date.now()}`, { cache: 'no-store' });
+  if (publicResponse.ok) {
+    const content = await publicResponse.json();
+    return { candidates: normalizeCandidates(content.candidates || []), sha: '' };
+  }
+
   const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/${CANDIDATES_FILE_PATH}`;
   const r = await fetch(url, { headers: ghHeaders() });
   if (r.status === 404) return { candidates: [], sha: '' };
   if (!r.ok) throw new Error(await r.text());
   const data = await r.json();
-  const bytes = Uint8Array.from(atob(data.content.replace(/\n/g,'')), c => c.charCodeAt(0));
+  const encodedContent = typeof data.content === 'string' ? data.content.replace(/\n/g,'') : '';
+  if (!encodedContent) throw new Error('candidates.json sem content utilizável na API do GitHub');
+  const bytes = Uint8Array.from(atob(encodedContent), c => c.charCodeAt(0));
   const content = JSON.parse(new TextDecoder('utf-8').decode(bytes));
   return { candidates: normalizeCandidates(content.candidates || []), sha: data.sha || '' };
 }
@@ -1014,12 +1022,14 @@ async function loadCandidatesSafe(options = {}) {
   const { silent = false } = options;
   try {
     await loadCandidates();
+    return true;
   } catch (error) {
     console.warn('Falha ao carregar candidates.json:', error);
     state.candidates = [];
     state.baseCandidates = [];
     state.candidatesSha = '';
     if (!silent) showToast('Não foi possível carregar os candidatos agora.', 'warn');
+    return false;
   }
 }
 async function saveProducts() {
@@ -1971,10 +1981,10 @@ async function refreshCandidates() {
   const btn = document.querySelector('[onclick="refreshCandidates()"]');
   if (btn) { btn.textContent = '↻ ...'; btn.disabled = true; }
   try {
-    await loadCandidatesSafe();
+    const loaded = await loadCandidatesSafe();
     buildCandidateFilters();
     renderCandidates();
-    showToast('Candidatos atualizados', 'success');
+    if (loaded) showToast('Candidatos atualizados', 'success');
   } catch (error) {
     showToast('Erro ao atualizar candidatos: ' + error.message, 'error');
   } finally {

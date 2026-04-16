@@ -10176,8 +10176,9 @@
       "_id": "MLB54984333",
       "origin": "mercadolivre",
       "discovered_at": "2026-04-16T12:20:52.070282",
-      "imported_at": "2026-04-16T16:14:17.189Z",
-      "imported_product_id": "3a2cedf5-50ea-4c00-95d5-3d4f3a5a9318"
+      "imported_at": "2026-04-16T17:01:40.438Z",
+      "imported_product_id": "565e57fc-c195-4cf3-be33-678d5d9cbb06",
+      "discarded_at": ""
     },
     {
       "source": "mercadolivre_api",

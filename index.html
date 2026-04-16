@@ -874,7 +874,7 @@ async function doLogin() {
   sessionStorage.setItem('painel_current_page', 'list');
   sessionStorage.removeItem('painel_editing_id');
   await loadProducts();
-  await loadCandidates();
+  await loadCandidatesSafe({ silent: true });
   showApp();
 }
 function logout() {
@@ -1009,6 +1009,18 @@ async function loadCandidates() {
   state.candidates = doc.candidates;
   state.baseCandidates = cloneProducts(doc.candidates);
   state.candidatesSha = doc.sha;
+}
+async function loadCandidatesSafe(options = {}) {
+  const { silent = false } = options;
+  try {
+    await loadCandidates();
+  } catch (error) {
+    console.warn('Falha ao carregar candidates.json:', error);
+    state.candidates = [];
+    state.baseCandidates = [];
+    state.candidatesSha = '';
+    if (!silent) showToast('Não foi possível carregar os candidatos agora.', 'warn');
+  }
 }
 async function saveProducts() {
   const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/produtos.json`;
@@ -1939,7 +1951,7 @@ async function refreshProducts() {
   if (btn) { btn.textContent = '↻ ...'; btn.disabled = true; }
   try {
     await loadProducts();
-    await loadCandidates();
+    await loadCandidatesSafe({ silent: true });
     updateHeaderBadge();
     buildFilters();
     buildCandidateFilters();
@@ -1959,7 +1971,7 @@ async function refreshCandidates() {
   const btn = document.querySelector('[onclick="refreshCandidates()"]');
   if (btn) { btn.textContent = '↻ ...'; btn.disabled = true; }
   try {
-    await loadCandidates();
+    await loadCandidatesSafe();
     buildCandidateFilters();
     renderCandidates();
     showToast('Candidatos atualizados', 'success');
@@ -1982,12 +1994,22 @@ window.addEventListener('keydown', (event) => {
 (async function init() {
   const token = sessionStorage.getItem('token');
   if (token) {
-    state.token = token;
-    state.githubUser = sessionStorage.getItem('guser');
-    state.githubRepo = sessionStorage.getItem('grepo');
-    await loadProducts();
-    await loadCandidates();
-    showApp();
+    try {
+      state.token = token;
+      state.githubUser = sessionStorage.getItem('guser');
+      state.githubRepo = sessionStorage.getItem('grepo');
+      await loadProducts();
+      await loadCandidatesSafe({ silent: true });
+      showApp();
+    } catch (error) {
+      console.error('Falha ao inicializar painel:', error);
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('guser');
+      sessionStorage.removeItem('grepo');
+      document.documentElement.classList.remove('is-authed');
+      document.getElementById('login-screen').style.display = 'flex';
+      document.getElementById('app-screen').style.display = 'none';
+    }
   }
 })();
 </script>

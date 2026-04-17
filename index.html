@@ -908,11 +908,42 @@ function clearViewState() {
   sessionStorage.removeItem('painel_editing_id');
 }
 
+function getCookieValue(name) {
+  const prefix = `${name}=`;
+  return document.cookie
+    .split(';')
+    .map(part => part.trim())
+    .find(part => part.startsWith(prefix))
+    ?.slice(prefix.length) || '';
+}
+
+function setPanelAccessTokenCookie(token) {
+  const normalized = encodeURIComponent(String(token || '').trim());
+  const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+  document.cookie = `painel_access_token=${normalized}; path=/; max-age=${60 * 60 * 8}; SameSite=Lax${secure}`;
+}
+
+function clearPanelAccessTokenCookie() {
+  const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+  document.cookie = `painel_access_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax${secure}`;
+}
+
+function getStoredPanelAccessToken() {
+  const localToken = String(localStorage.getItem('painel_access_token') || '').trim();
+  if (localToken) return localToken;
+  return decodeURIComponent(getCookieValue('painel_access_token') || '').trim();
+}
+
 function persistPanelAccessToken(token) {
   const normalized = String(token || '').trim();
   state.accessToken = normalized;
-  if (normalized) localStorage.setItem('painel_access_token', normalized);
-  else localStorage.removeItem('painel_access_token');
+  if (normalized) {
+    localStorage.setItem('painel_access_token', normalized);
+    setPanelAccessTokenCookie(normalized);
+  } else {
+    localStorage.removeItem('painel_access_token');
+    clearPanelAccessTokenCookie();
+  }
 }
 
 function normalizeApiBaseUrl(value) {
@@ -2311,7 +2342,7 @@ window.addEventListener('keydown', (event) => {
 (async function init() {
   try {
     await loadPanelConfig();
-    persistPanelAccessToken(localStorage.getItem('painel_access_token') || '');
+    persistPanelAccessToken(getStoredPanelAccessToken());
     const auth = await panelApiRequest('/api/auth/me');
     if (!auth.authenticated) {
       persistPanelAccessToken('');

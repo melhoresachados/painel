@@ -74,6 +74,30 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size:
 .btn-logout { color: rgba(255,255,255,.7); background: none; border: none; cursor: pointer; font-size: 13px; padding: 6px 10px; border-radius: 6px; transition: all .15s; }
 .btn-logout:hover { background: rgba(255,255,255,.1); color: #fff; }
 .mobile-only { display: none; }
+.mobile-page-nav {
+  display: none;
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 10px 12px;
+  gap: 8px;
+}
+.mobile-page-btn {
+  flex: 1;
+  border: 1.5px solid #dbe4f0;
+  background: #f8fafc;
+  color: #475569;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .15s;
+}
+.mobile-page-btn.active {
+  background: #e8f0fb;
+  color: var(--brand-navy);
+  border-color: #bfd2ef;
+}
 
 /* Content area */
 .app-body { flex: 1; display: flex; overflow: hidden; }
@@ -330,6 +354,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
   }
   .desktop-only { display: none !important; }
   .mobile-only { display: inline; }
+  .mobile-page-nav { display: flex; }
 
   .app-body { position: relative; overflow: hidden; }
   .sidebar {
@@ -439,6 +464,10 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
       <button class="btn-logout" onclick="logout()">Sair →</button>
     </div>
   </header>
+  <div class="mobile-page-nav">
+    <button class="mobile-page-btn active" id="nav-list-mobile" onclick="showPage('list')">Produtos</button>
+    <button class="mobile-page-btn" id="nav-candidates-mobile" onclick="showPage('candidates')">Candidatos</button>
+  </div>
 
   <!-- Body -->
   <div class="app-body">
@@ -1229,6 +1258,10 @@ function showPage(page) {
   document.getElementById('sidebar').style.display   = page === 'list' ? 'flex'  : 'none';
   document.getElementById('nav-list').classList.toggle('active', page === 'list');
   document.getElementById('nav-candidates').classList.toggle('active', page === 'candidates');
+  const navListMobile = document.getElementById('nav-list-mobile');
+  const navCandidatesMobile = document.getElementById('nav-candidates-mobile');
+  if (navListMobile) navListMobile.classList.toggle('active', page === 'list');
+  if (navCandidatesMobile) navCandidatesMobile.classList.toggle('active', page === 'candidates');
   if (page !== 'list') closeSidebarFilters();
   if (page === 'list') { buildFilters(); renderList(); }
   if (page === 'candidates') { buildCandidateFilters(); renderCandidates(); }

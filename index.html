@@ -865,21 +865,27 @@ async function doLogin() {
   try {
     const r = await fetch(CONFIG_URL + '?t=' + Date.now());
     cfg = await r.json();
-  } catch { showToast('Erro ao carregar config.json', 'error'); return; }
+  } catch (err) { showToast('Erro ao carregar config.json', 'error'); return; }
   const hash = await sha256hex(pwd);
   if (hash !== cfg.password_hash) { errEl.style.display = 'block'; return; }
   let token;
   try { token = await decryptToken(pwd, cfg); }
-  catch { showToast('Erro ao decifrar token. Rode o setup novamente.', 'error'); return; }
+  catch (err) { showToast('Erro ao decifrar token. Rode o setup novamente.', 'error'); return; }
   state.token = token; state.githubUser = cfg.github_user; state.githubRepo = cfg.github_repo;
   sessionStorage.setItem('token', token);
   sessionStorage.setItem('guser', cfg.github_user);
   sessionStorage.setItem('grepo', cfg.github_repo);
   sessionStorage.setItem('painel_current_page', 'list');
   sessionStorage.removeItem('painel_editing_id');
-  await loadProducts();
-  await loadCandidates();
-  showApp();
+  try {
+    await loadProducts();
+    await loadCandidates();
+    showApp();
+  } catch (err) {
+    console.error('Falha ao concluir login do painel:', err);
+    showToast('Erro ao carregar dados do painel apos o login.', 'error');
+    showLoginScreenWithError('Nao foi possivel carregar os dados do painel. Tente novamente.');
+  }
 }
 function logout() {
   sessionStorage.clear(); state.token = null;
@@ -1008,21 +1014,25 @@ function defaultMacrotemaForAccount(account) {
 }
 
 function inferCandidateMacrotema(candidate) {
-  const explicit = String(candidate?.macrotema || '').trim();
+  const safeCandidate = candidate || {};
+  const explicit = String(safeCandidate.macrotema || '').trim();
   if (explicit) return explicit;
 
-  const account = inferCandidateOrigin(candidate);
-  const text = normalizeCompareText([
+  const account = inferCandidateOrigin(safeCandidate);
+  const parts = [
     account,
-    candidate?.name,
-    candidate?.title,
-    candidate?.family_name,
-    candidate?.short_description,
-    candidate?.category_id,
-    candidate?.domain_id,
-    ...(Array.isArray(candidate?.main_features) ? candidate.main_features : []),
-    ...Object.values(candidate?.attributes || {}),
-  ].join(' '));
+    safeCandidate.name,
+    safeCandidate.title,
+    safeCandidate.family_name,
+    safeCandidate.short_description,
+    safeCandidate.category_id,
+    safeCandidate.domain_id,
+  ];
+  const mainFeatures = Array.isArray(safeCandidate.main_features) ? safeCandidate.main_features : [];
+  const attributes = safeCandidate.attributes && typeof safeCandidate.attributes === 'object'
+    ? Object.keys(safeCandidate.attributes).map(key => safeCandidate.attributes[key])
+    : [];
+  const text = normalizeCompareText(parts.concat(mainFeatures, attributes).join(' '));
 
   const beautyKeywords = ['maquiagem', 'make', 'skincare', 'serum', 'perfume', 'batom', 'cabelo', 'hair', 'pele', 'cosmet', 'beauty', 'unha'];
   const gadgetKeywords = ['fone', 'bluetooth', 'smartwatch', 'smart watch', 'relogio inteligente', 'celular', 'iphone', 'android', 'teclado', 'mouse', 'usb', 'carregador', 'camera', 'webcam', 'caixa de som', 'gadget', 'eletron', 'led'];
@@ -1359,7 +1369,7 @@ function formatDate(iso) {
   try {
     const d = new Date(iso);
     return `${d.getDate().toString().padStart(2,'0')}/${(d.getMonth()+1).toString().padStart(2,'0')} ${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}`;
-  } catch { return iso; }
+  } catch (err) { return iso; }
 }
 
 function sortBy(col) {
@@ -1402,8 +1412,8 @@ function renderList() {
   products.sort((a, b) => {
     let av, bv;
     if (col === 'status') {
-      av = statusOrder[a.status] ?? 5;
-      bv = statusOrder[b.status] ?? 5;
+      av = statusOrder[a.status] !== undefined ? statusOrder[a.status] : 5;
+      bv = statusOrder[b.status] !== undefined ? statusOrder[b.status] : 5;
       return dir === 'asc' ? av - bv : bv - av;
     } else if (col === 'name') {
       av = (a.name || '').toLowerCase();
@@ -1475,7 +1485,8 @@ function renderList() {
 }
 
 function renderCandidates() {
-  const rawQuery = (document.getElementById('candidates-search-input')?.value || '').trim().toLowerCase();
+  const candidatesSearchInput = document.getElementById('candidates-search-input');
+  const rawQuery = String((candidatesSearchInput && candidatesSearchInput.value) || '').trim().toLowerCase();
   const grid = document.getElementById('candidate-grid');
   const empty = document.getElementById('candidates-empty-msg');
   const countLabel = document.getElementById('candidates-count-label');
@@ -1701,8 +1712,10 @@ function renderImagePreview(targetId, src, emptyText) {
 }
 
 function refreshPreviews(product = null) {
-  const previewThumbnailValue = product ? (product.preview_thumbnail_url || '') : (document.getElementById('f-preview_thumbnail_url')?.value || '');
-  const previewImageValue = product ? (product.preview_image_url || '') : (document.getElementById('f-preview_image_url')?.value || '');
+  const previewThumbnailInput = document.getElementById('f-preview_thumbnail_url');
+  const previewImageInput = document.getElementById('f-preview_image_url');
+  const previewThumbnailValue = product ? (product.preview_thumbnail_url || '') : ((previewThumbnailInput && previewThumbnailInput.value) || '');
+  const previewImageValue = product ? (product.preview_image_url || '') : ((previewImageInput && previewImageInput.value) || '');
 
   const thumbnailSrc = firstRenderableMedia(previewThumbnailValue);
   const imageSrc = firstRenderableMedia(previewImageValue);

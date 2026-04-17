@@ -550,6 +550,101 @@
       "sold_quantity_text": "+5mil",
       "current_price": 229,
       "macrotema": "Gadgets e eletronicos"
+    },
+    {
+      "_id": "MLB61424002",
+      "origin": "mercadolivre",
+      "status": "active",
+      "discovered_at": "2026-04-17T16:18:22.022831",
+      "catalog_product_id": "MLB61424002",
+      "item_id": "MLB6175649906",
+      "configured_category_id": "MLB1055",
+      "category_id": "MLB1055",
+      "domain_id": "MLB-CELLPHONES",
+      "name": "Smartphone Motorola Moto G06 - 128gb 12gb (4gb Ram + 8gb Ram Boost) E Camera 50mp Com Ai Bateria De 5200 Mah Tela 6.9",
+      "family_name": "Motorola Liberado Moto G06",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_945623-MLA96724963315_102025-F.jpg",
+      "source_url": "https://www.mercadolivre.com.br/smartphone-motorola-moto-g06-128gb-12gb-4gb-ram-8gb-ram-boost-e-camera-50mp-com-ai-bateria-de-5200-mah-tela-6-9/p/MLB61424002",
+      "affiliate_url": "https://meli.la/1nBYdF8",
+      "short_description": "Smartphone Motorola Moto G06 - 128gb 12gb (4gb Ram + 8gb Ram Boost) E Camera 50mp Com Ai Bateria De 5200 Mah Tela 6.9",
+      "main_features": [
+        "Dispositivo desbloqueado para que você escolha a companhia telefônica de sua preferência.",
+        "Tela IPS de 6.9\".",
+        "Câmera frontal de 8Mpx.",
+        "Processador Helio G81 Extreme Octa-Core de 2GHz com 4GB de RAM.",
+        "Bateria de 5.2mAh.",
+        "Memória interna de 128GB."
+      ],
+      "image_urls": [
+        "https://http2.mlstatic.com/D_NQ_NP_945623-MLA96724963315_102025-F.jpg",
+        "https://http2.mlstatic.com/D_NQ_NP_948966-MLA96725023231_102025-F.jpg",
+        "https://http2.mlstatic.com/D_NQ_NP_637721-MLA96724983083_102025-F.jpg"
+      ],
+      "image_count": 19,
+      "scraped_image_urls": [
+        "https://http2.mlstatic.com/D_NQ_NP_945623-MLA96724963315_102025-F.webp",
+        "https://http2.mlstatic.com/D_NQ_NP_948966-MLA96725023231_102025-F.webp",
+        "https://http2.mlstatic.com/D_NQ_NP_637721-MLA96724983083_102025-F.webp"
+      ],
+      "scraped_image_count": 9,
+      "videos": [
+        "https://http2.mlstatic.com/storage/shorts-api/videos-middleware/playlists/59067ca0-8a5e-4cc8-9ed4-c8852841f024/IQgQtG.m3u8"
+      ],
+      "videos_count": 1,
+      "coupon_texts": [
+        "R$ 30 OFF. Compra mínima {price_1}."
+      ],
+      "rating": 4.9,
+      "reviews_count": 26746,
+      "sold_quantity_text": "+10mil",
+      "current_price": 799,
+      "macrotema": "Gadgets e eletronicos"
+    },
+    {
+      "_id": "MLB42520227",
+      "origin": "mercadolivre",
+      "status": "active",
+      "discovered_at": "2026-04-17T16:18:22.022831",
+      "catalog_product_id": "MLB42520227",
+      "item_id": "MLB6499968268",
+      "configured_category_id": "MLB417704",
+      "category_id": "MLB417704",
+      "domain_id": "MLB-SMARTWATCHES",
+      "name": "Smartwatch Xiaomi Redmi Watch 5 Lite 1.96 Preto Desenho da pulseira Milanese",
+      "family_name": "Xiaomi Watch 5 Lite 57765 1.96 \"",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_625071-MLA99989591849_112025-F.jpg",
+      "source_url": "https://www.mercadolivre.com.br/smartwatch-xiaomi-redmi-watch-5-lite-1-96-preto-desenho-da-pulseira-milanese/p/MLB42520227",
+      "affiliate_url": "https://meli.la/2RDysfS",
+      "short_description": "Detalhes técnicos \n -Tela AMOLED quadrada de 1,96\" \n -Resolução: 410 x 502|332 PPP \n -48,2 mm x 39,2 mm x 10,6 mm \n -29,2 g (sem alça incluída) \n -GPS | Galileo | Glonass | BeiDou | QZSS \n -Tempo normal de uso: 18 dias \n -Capacidade: 470 mAh \n -Sensor de frequência cardíaca (com oxigênio no sangue) sensor) | Acelerômetro | Giroscópio \n -GNSS embutido: compatível \n -Alto-falante: compatível \n -Cham",
+      "main_features": [
+        "18 dias de duração da bateria.",
+        "Resistente à água.",
+        "Com GPS integrado.",
+        "Com tela AMOLED de 410x502."
+      ],
+      "image_urls": [
+        "https://http2.mlstatic.com/D_NQ_NP_625071-MLA99989591849_112025-F.jpg",
+        "https://http2.mlstatic.com/D_NQ_NP_727195-MLA82429593709_022025-F.jpg",
+        "https://http2.mlstatic.com/D_NQ_NP_827372-MLA82429593723_022025-F.jpg"
+      ],
+      "image_count": 6,
+      "scraped_image_urls": [
+        "https://http2.mlstatic.com/D_NQ_NP_625071-MLA99989591849_112025-F.webp",
+        "https://http2.mlstatic.com/D_NQ_NP_727195-MLA82429593709_022025-F.webp",
+        "https://http2.mlstatic.com/D_NQ_NP_827372-MLA82429593723_022025-F.webp"
+      ],
+      "scraped_image_count": 6,
+      "videos_count": 0,
+      "coupon_texts": [
+        "R$ 30 OFF. Compra mínima {price_1}."
+      ],
+      "discount_text": "24%",
+      "rating": 4.9,
+      "reviews_count": 18891,
+      "sold_quantity_text": "+50mil",
+      "current_price": 339,
+      "original_price": 449.9,
+      "macrotema": "Gadgets e eletronicos"
     }
   ]
 }

@@ -1,9 +1,9 @@
 {
-  "password_hash": "43379572112893187c6421f7b94d45762a2551f89b826cf50a657e5b61b7c275",
+  "password_hash": "7cf7817890a9d88e77632ebce8f8247c7848671091387aa3466816f066b0b17b",
   "github_user": "melhoresachados",
   "github_repo": "painel",
-  "token_masked_b64": "JF/lLXJjpVsfLUuVjisKGX1MIZ//8h6ZQA5HEgj8qx07T6c9VlrFXw==",
-  "token_encrypted": "cHP6awcMHhTXdUgjMqhsHXzYdH1kyM55GC//R9CHwWgZNG9JSPtn9Q==",
-  "token_salt": "HZuEFKcZX5CEFMo0rtsYGw==",
+  "token_masked_b64": "G5/xJ/Pi7s0UKkTe355rEy8hF3f1SAjPDAMvuQ/72BMEj7M319uOyQ==",
+  "token_encrypted": "mJWj7R3qe1XoQ0nfk/SnMkoBRUcx3ZT95YtiC6nY7lfHdc9xfhK5uw==",
+  "token_salt": "Qak7zkKNMaSYk/5jbM5oew==",
   "token_iv": ""
 }

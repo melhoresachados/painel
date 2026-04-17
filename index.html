@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -1384,6 +1384,7 @@ function renderList() {
   const q = rawQuery.toLowerCase();
   const numericQuery = q.replace(/^#\s*/, '');
   const isNumericSearch = /^[0-9]+$/.test(numericQuery);
+  const listDisplayName = product => String(product.display_name || product.name || '').trim();
   let products = state.products.filter(p => {
     if (state.filterAccount !== 'all' && p.account !== state.filterAccount) return false;
     if (state.filterStatus  !== 'all' && p.status  !== state.filterStatus)  return false;
@@ -1401,7 +1402,8 @@ function renderList() {
         if (productNum !== numericQuery && product !== numericQuery) return false;
       } else {
         const productName = String(p.name || '').toLowerCase();
-        if (!productName.includes(q)) return false;
+        const productDisplayName = listDisplayName(p).toLowerCase();
+        if (!productName.includes(q) && !productDisplayName.includes(q)) return false;
       }
     }
     return true;
@@ -1417,8 +1419,8 @@ function renderList() {
       bv = statusOrder[b.status] ?? 5;
       return dir === 'asc' ? av - bv : bv - av;
     } else if (col === 'name') {
-      av = (a.name || '').toLowerCase();
-      bv = (b.name || '').toLowerCase();
+      av = listDisplayName(a).toLowerCase();
+      bv = listDisplayName(b).toLowerCase();
       return dir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
     } else if (col === 'account') {
       av = (a.account || '').toLowerCase();
@@ -1460,6 +1462,7 @@ function renderList() {
   tbody.innerHTML = products.map(p => {
     const obs = p.status === 'erro' ? (p.error || '') : (p.descricao_audio || p.affiliate_url || '');
     const errorStage = p.error_stage || '—';
+    const productLabel = listDisplayName(p) || '(sem nome)';
     const thumbCell = p.preview_image_url
       ? `<td class="td-thumb" style="padding:4px 4px;"><img src="${escHtml(p.preview_image_url)}" alt="" loading="lazy"></td>`
       : `<td class="td-thumb"></td>`;
@@ -1468,7 +1471,7 @@ function renderList() {
       <td><span class="badge badge-${p.status||'pendente'}">${p.status||'pendente'}</span></td>
       ${thumbCell}
       <td class="td-name">
-        <div class="name-text">${escHtml(p.name || '(sem nome)')}</div>
+        <div class="name-text">${escHtml(productLabel)}</div>
         ${p.affiliate_url ? `<div class="sub">${escHtml(p.affiliate_url)}</div>` : ''}
       </td>
       <td><span class="account-tag">${escHtml(accountLabel[p.account]||p.account||'—')}</span></td>
@@ -2239,6 +2242,7 @@ window.addEventListener('keydown', (event) => {
 </script>
 </body>
 </html>
+
 
 
 

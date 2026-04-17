@@ -907,8 +907,29 @@ function showLoginScreenWithError(message = '') {
 }
 
 // ── GitHub data ───────────────────────────────────────────────────────────────
-function ghHeaders() {
-  return { 'Authorization':'token '+state.token, 'Accept':'application/vnd.github.v3+json' };
+function ghHeaders(includeAuth = true) {
+  const headers = { 'Accept':'application/vnd.github.v3+json' };
+  if (includeAuth && state.token) headers['Authorization'] = 'token ' + state.token;
+  return headers;
+}
+
+async function fetchRepoContentDocument(path) {
+  const apiUrl = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/${path}`;
+  const publicResponse = await fetch(apiUrl, { headers: ghHeaders(false) });
+  if (publicResponse.status === 404) return { data: null, sha: '' };
+  if (publicResponse.ok) {
+    const payload = await publicResponse.json();
+    const bytes = Uint8Array.from(atob(payload.content.replace(/\n/g,'')), c => c.charCodeAt(0));
+    const content = JSON.parse(new TextDecoder('utf-8').decode(bytes));
+    return { data: content, sha: payload.sha || '' };
+  }
+
+  const rawUrl = `https://raw.githubusercontent.com/${state.githubUser}/${state.githubRepo}/main/${path}`;
+  const rawResponse = await fetch(rawUrl, { cache: 'no-store' });
+  if (rawResponse.status === 404) return { data: null, sha: '' };
+  if (!rawResponse.ok) throw new Error(await rawResponse.text());
+  const content = await rawResponse.json();
+  return { data: content, sha: '' };
 }
 function cloneProducts(products) {
   return JSON.parse(JSON.stringify(products || []));
@@ -971,14 +992,8 @@ function mergeProductsForRetry(baseProducts, localProducts, remoteProducts) {
   return ordered;
 }
 async function fetchProductsDocument() {
-  const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/produtos.json`;
-  const r = await fetch(url, { headers: ghHeaders() });
-  if (r.status === 404) return { products: [], sha: '' };
-  if (!r.ok) throw new Error(await r.text());
-  const data = await r.json();
-  const bytes = Uint8Array.from(atob(data.content.replace(/\n/g,'')), c => c.charCodeAt(0));
-  const content = JSON.parse(new TextDecoder('utf-8').decode(bytes));
-  return { products: content.products || [], sha: data.sha || '' };
+  const doc = await fetchRepoContentDocument('produtos.json');
+  return { products: (doc.data && doc.data.products) || [], sha: doc.sha || '' };
 }
 
 function inferCandidateOrigin(candidate) {
@@ -1082,14 +1097,8 @@ function normalizeCandidates(candidates) {
 }
 
 async function fetchCandidatesDocument() {
-  const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/${CANDIDATES_FILE_PATH}`;
-  const r = await fetch(url, { headers: ghHeaders() });
-  if (r.status === 404) return { candidates: [], sha: '' };
-  if (!r.ok) throw new Error(await r.text());
-  const data = await r.json();
-  const bytes = Uint8Array.from(atob(data.content.replace(/\n/g,'')), c => c.charCodeAt(0));
-  const content = JSON.parse(new TextDecoder('utf-8').decode(bytes));
-  return { candidates: normalizeCandidates(content.candidates || []), sha: data.sha || '' };
+  const doc = await fetchRepoContentDocument(CANDIDATES_FILE_PATH);
+  return { candidates: normalizeCandidates((doc.data && doc.data.candidates) || []), sha: doc.sha || '' };
 }
 
 async function loadProducts() {

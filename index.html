@@ -2386,6 +2386,7 @@ window.addEventListener('keydown', (event) => {
 });
 
 (async function init() {
+  let authPassed = false;
   try {
     await loadPanelConfig();
     persistPanelAccessToken(getStoredPanelAccessToken());
@@ -2394,15 +2395,31 @@ window.addEventListener('keydown', (event) => {
       persistPanelAccessToken('');
       return;
     }
+    authPassed = true;
     state.csrfToken = auth.csrf_token || '';
     state.panelUser = auth.user || '';
-    await loadProducts();
+    try {
+      await loadProducts();
+    } catch (productsErr) {
+      console.warn('Falha ao carregar produtos na inicialização:', productsErr);
+      state.products = [];
+      state.baseProducts = [];
+      state.sha = '';
+    }
     await loadCandidatesSafe({ silent: true });
     showApp();
+    if (!state.products.length && authPassed) {
+      showToast('Não foi possível carregar os produtos. Tente recarregar a página.', 'warn');
+    }
   } catch (error) {
     console.error('Falha ao inicializar painel:', error);
-    document.getElementById('login-screen').style.display = 'flex';
-    document.getElementById('app-screen').style.display = 'none';
+    if (authPassed) {
+      showApp();
+      showToast(error.message || 'Erro ao carregar dados do painel.', 'error');
+    } else {
+      document.getElementById('login-screen').style.display = 'flex';
+      document.getElementById('app-screen').style.display = 'none';
+    }
   }
 })();
 </script>

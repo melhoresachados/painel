@@ -8,7 +8,7 @@
         "name": "Acessorios para Celulares",
         "parent_id": "MLB1051",
         "parent_name": "Celulares e Telefones",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Gadgets e eletronicos"
       },
       {

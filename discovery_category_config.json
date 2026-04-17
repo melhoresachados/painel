@@ -1,7 +1,7 @@
 {
   "mercadolivre": {
     "enabled": true,
-    "per_category_limit": 3,
+    "per_category_limit": 1,
     "categories": [
       {
         "id": "MLB3813",

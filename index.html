@@ -6,7 +6,9 @@
 <title>Painel de Afiliados</title>
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="shortcut icon" type="image/png" href="logo.png">
+<script>if (sessionStorage.getItem('token')) document.documentElement.classList.add('is-authed');</script>
 <style>
+html.is-authed #login-screen { display: none !important; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root{
     --brand-navy:#0a2e63;
@@ -873,6 +875,8 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
 <script>
 // ── Config ────────────────────────────────────────────────────────────────────
 const CONFIG_URL = 'config.json';
+const GITHUB_API = 'https://api.github.com';
+const CANDIDATES_FILE_PATH = 'candidates.json';
 
 const ACCOUNT_USERS = {
   shopee:       ['@happydayofertas'],
@@ -888,7 +892,7 @@ const publishStates = ['all','facebook_pending','facebook_published'];
 
 // ── State ─────────────────────────────────────────────────────────────────────
 let state = {
-  apiBaseUrl: '', panelConfig: null, csrfToken: '', panelUser: '', accessToken: '',
+  token: null, githubUser: null, githubRepo: null, panelConfig: null,
   products: [], baseProducts: [], sha: '',
   candidates: [], baseCandidates: [], candidatesSha: '',
   filterAccount: 'all', filterStatus: 'all', filterPublish: 'all', filterErrorStage: 'all',
@@ -896,17 +900,6 @@ let state = {
   editingId: null, currentPage: 'list',
 };
 let sortState = { col: 'status', dir: 'asc' };
-
-function getStoredAccessToken() {
-  return sessionStorage.getItem('painel_access_token') || '';
-}
-
-function storeAccessToken(token) {
-  const normalized = String(token || '').trim();
-  state.accessToken = normalized;
-  if (normalized) sessionStorage.setItem('painel_access_token', normalized);
-  else sessionStorage.removeItem('painel_access_token');
-}
 
 function persistViewState() {
   sessionStorage.setItem('painel_current_page', state.currentPage || 'list');
@@ -920,6 +913,28 @@ function clearViewState() {
 }
 
 
+// ── Crypto helpers ────────────────────────────────────────────────────────────
+async function sha256hex(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+async function deriveBytes(password, saltB64, length) {
+  const salt = Uint8Array.from(atob(saltB64), c => c.charCodeAt(0));
+  const baseKey = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey']);
+  const bits = await crypto.subtle.deriveBits(
+    { name:'PBKDF2', salt, iterations:100000, hash:'SHA-256' },
+    baseKey, length * 8
+  );
+  return new Uint8Array(bits);
+}
+async function decryptToken(password, cfg) {
+  const ct  = Uint8Array.from(atob(cfg.token_encrypted), c => c.charCodeAt(0));
+  const keyBytes = await deriveBytes(password, cfg.token_salt, ct.length);
+  const plain = new Uint8Array(ct.length);
+  for (let i = 0; i < ct.length; i += 1) plain[i] = ct[i] ^ keyBytes[i];
+  return new TextDecoder().decode(plain);
+}
+
 async function loadPanelConfig(force = false) {
   if (state.panelConfig && !force) return state.panelConfig;
   try {
@@ -928,46 +943,7 @@ async function loadPanelConfig(force = false) {
   } catch {
     state.panelConfig = {};
   }
-  const raw = String(state.panelConfig.api_base_url || '').trim().replace(/\/+$/, '');
-  state.apiBaseUrl = raw || window.location.origin.replace(/\/+$/, '');
   return state.panelConfig;
-}
-
-async function panelApiRequest(path, options = {}) {
-  if (!state.apiBaseUrl) await loadPanelConfig();
-  const method = String(options.method || 'GET').toUpperCase();
-  const headers = { 'ngrok-skip-browser-warning': 'true', ...(options.headers || {}) };
-  const isFormData = typeof FormData !== 'undefined' && options.body instanceof FormData;
-
-  if (options.body && !isFormData && !headers['Content-Type']) {
-    headers['Content-Type'] = 'application/json';
-  }
-  if (!['GET', 'HEAD', 'OPTIONS'].includes(method) && state.csrfToken && !headers['X-CSRF-Token']) {
-    headers['X-CSRF-Token'] = state.csrfToken;
-  }
-  if (state.accessToken && !headers.Authorization) {
-    headers.Authorization = `Bearer ${state.accessToken}`;
-  }
-
-  const response = await fetch(`${state.apiBaseUrl}${path}`, {
-    ...options,
-    method,
-    headers,
-    credentials: 'include',
-  });
-
-  const contentType = response.headers.get('content-type') || '';
-  const payload = contentType.includes('application/json') ? await response.json() : await response.text();
-  if (!response.ok) {
-    const message = payload && typeof payload === 'object'
-      ? (payload.message || payload.error || `HTTP ${response.status}`)
-      : (payload || `HTTP ${response.status}`);
-    const error = new Error(message);
-    error.status = response.status;
-    error.payload = payload;
-    throw error;
-  }
-  return payload;
 }
 
 // ── Login ─────────────────────────────────────────────────────────────────────
@@ -976,57 +952,68 @@ async function doLogin() {
   if (!pwd) return;
   const errEl = document.getElementById('login-error');
   errEl.style.display = 'none';
+  let cfg;
   try {
-    await loadPanelConfig(true);
-    const auth = await panelApiRequest('/api/auth/login', {
-      method: 'POST',
-      body: JSON.stringify({ password: pwd }),
-    });
-    storeAccessToken(auth.access_token || '');
-    state.csrfToken = auth.csrf_token || '';
-    state.panelUser = auth.user || '';
+    cfg = await loadPanelConfig(true);
+  } catch {
+    showToast('Erro ao carregar config.json', 'error');
+    return;
+  }
+  const hash = await sha256hex(pwd);
+  if (hash !== cfg.password_hash) {
+    errEl.style.display = 'block';
+    return;
+  }
+  let token;
+  try {
+    token = await decryptToken(pwd, cfg);
+  } catch {
+    showToast('Erro ao decifrar token. Rode o setup novamente.', 'error');
+    return;
+  }
+  try {
+    state.token = token;
+    state.githubUser = cfg.github_user;
+    state.githubRepo = cfg.github_repo;
+    sessionStorage.setItem('token', token);
+    sessionStorage.setItem('guser', cfg.github_user);
+    sessionStorage.setItem('grepo', cfg.github_repo);
     sessionStorage.setItem('painel_current_page', 'list');
     sessionStorage.removeItem('painel_editing_id');
-    try {
-      await loadProducts();
-      await loadCandidatesSafe({ silent: true });
-    } catch (dataError) {
-      console.warn('Falha ao carregar dados do painel após login:', dataError);
-      showApp();
-      showToast(dataError.message || 'Login concluído, mas houve falha ao carregar os dados do painel.', 'warn');
-      return;
-    }
+    document.documentElement.classList.add('is-authed');
+    await loadProducts();
+    await loadCandidatesSafe({ silent: true });
     showApp();
   } catch (error) {
     console.error('Falha no login do painel:', error);
-    if (error.status === 401 && error.payload && error.payload.error === 'invalid_credentials') {
-      errEl.style.display = 'block';
-    }
-    else showToast(error.message || 'Erro ao autenticar no painel.', 'error');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('guser');
+    sessionStorage.removeItem('grepo');
+    document.documentElement.classList.remove('is-authed');
+    showToast(error.message || 'Erro ao autenticar no painel.', 'error');
   }
 }
-async function logout() {
-  clearViewState();
-  storeAccessToken('');
-  state.csrfToken = '';
-  state.panelUser = '';
+function logout() {
+  sessionStorage.clear();
+  state.token = null;
+  state.githubUser = null;
+  state.githubRepo = null;
   state.products = [];
   state.baseProducts = [];
   state.sha = '';
   state.candidates = [];
   state.baseCandidates = [];
   state.candidatesSha = '';
-  try {
-    await panelApiRequest('/api/auth/logout', { method: 'POST' });
-  } catch (error) {
-    console.warn('Falha ao encerrar sessao do painel:', error);
-  }
+  document.documentElement.classList.remove('is-authed');
   document.getElementById('app-screen').style.display = 'none';
   document.getElementById('login-screen').style.display = 'flex';
   document.getElementById('pwd-input').value = '';
 }
 
 // ── GitHub data ───────────────────────────────────────────────────────────────
+function ghHeaders() {
+  return { 'Authorization':'token ' + state.token, 'Accept':'application/vnd.github.v3+json' };
+}
 function cloneProducts(products) {
   return JSON.parse(JSON.stringify(products || []));
 }
@@ -1088,8 +1075,14 @@ function mergeProductsForRetry(baseProducts, localProducts, remoteProducts) {
   return ordered;
 }
 async function fetchProductsDocument() {
-  const data = await panelApiRequest('/api/painel/products');
-  return { products: Array.isArray(data.products) ? data.products : [], sha: data.sha || '' };
+  const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/produtos.json`;
+  const r = await fetch(url, { headers: ghHeaders() });
+  if (r.status === 404) return { products: [], sha: '' };
+  if (!r.ok) throw new Error(await r.text());
+  const data = await r.json();
+  const bytes = Uint8Array.from(atob(data.content.replace(/\n/g,'')), c => c.charCodeAt(0));
+  const content = JSON.parse(new TextDecoder('utf-8').decode(bytes));
+  return { products: content.products || [], sha: data.sha || '' };
 }
 
 function inferCandidateOrigin(candidate) {
@@ -1144,8 +1137,27 @@ function normalizeSoldCountText(value) {
 }
 
 async function fetchCandidatesDocument(options = {}) {
-  const data = await panelApiRequest('/api/painel/candidates');
-  return { candidates: normalizeCandidates(data.candidates || []), sha: data.sha || '' };
+  const { preferApi = false } = options;
+  if (!preferApi) {
+    const publicResponse = await fetch(`${CANDIDATES_FILE_PATH}?t=${Date.now()}`, { cache: 'no-store' });
+    if (publicResponse.ok) {
+      const content = await publicResponse.json();
+      return { candidates: normalizeCandidates(content.candidates || []), sha: '' };
+    }
+  }
+  const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/${CANDIDATES_FILE_PATH}`;
+  const r = await fetch(url, { headers: ghHeaders() });
+  if (r.status === 404) return { candidates: [], sha: '' };
+  if (!r.ok) throw new Error(await r.text());
+  const data = await r.json();
+  if (preferApi && (!data.content || typeof data.content !== 'string')) {
+    return { candidates: [], sha: data.sha || '' };
+  }
+  const encodedContent = typeof data.content === 'string' ? data.content.replace(/\n/g,'') : '';
+  if (!encodedContent) throw new Error('candidates.json sem content utilizável na API do GitHub');
+  const bytes = Uint8Array.from(atob(encodedContent), c => c.charCodeAt(0));
+  const content = JSON.parse(new TextDecoder('utf-8').decode(bytes));
+  return { candidates: normalizeCandidates(content.candidates || []), sha: data.sha || '' };
 }
 
 async function loadProducts() {
@@ -1175,48 +1187,65 @@ async function loadCandidatesSafe(options = {}) {
   }
 }
 async function saveProducts() {
-  try {
-    const saved = await panelApiRequest('/api/painel/products', {
-      method: 'PUT',
-      body: JSON.stringify({ products: state.products, sha: state.sha }),
+  const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/produtos.json`;
+  const putDocument = async (products, sha) => {
+    const body = JSON.stringify({ products }, null, 2);
+    const encoded = btoa(unescape(encodeURIComponent(body)));
+    const payload = { message:'painel: atualiza produtos.json', content: encoded, branch:'main' };
+    if (sha) payload.sha = sha;
+    return fetch(url, {
+      method:'PUT',
+      headers:{ ...ghHeaders(), 'Content-Type':'application/json' },
+      body: JSON.stringify(payload)
     });
-    state.sha = saved.sha || '';
-    state.baseProducts = cloneProducts(state.products);
-    return;
-  } catch (error) {
-    if (error.status !== 409 || !error.payload) throw error;
-    const latestProducts = Array.isArray(error.payload.products) ? error.payload.products : [];
-    const latestSha = error.payload.sha || '';
-    const mergedProducts = mergeProductsForRetry(state.baseProducts, state.products, latestProducts);
+  };
+
+  let r = await putDocument(state.products, state.sha);
+  if (r.status === 409) {
+    const latest = await fetchProductsDocument();
+    const mergedProducts = mergeProductsForRetry(state.baseProducts, state.products, latest.products || []);
     state.products = mergedProducts;
     renumberProducts();
-    const saved = await panelApiRequest('/api/painel/products', {
-      method: 'PUT',
-      body: JSON.stringify({ products: state.products, sha: latestSha }),
-    });
-    state.sha = saved.sha || '';
+    r = await putDocument(state.products, latest.sha);
   }
+
+  if (!r.ok) throw new Error(await r.text());
+  const saved = await r.json();
+  state.sha = saved.content.sha;
   state.baseProducts = cloneProducts(state.products);
 }
 async function saveCandidates() {
   state.candidates = normalizeCandidates(state.candidates);
-  try {
-    const saved = await panelApiRequest('/api/painel/candidates', {
+  const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/${CANDIDATES_FILE_PATH}`;
+  const putDocument = async (candidates, sha) => {
+    const body = JSON.stringify({ candidates }, null, 2);
+    const encoded = btoa(unescape(encodeURIComponent(body)));
+    const payload = {
+      message: 'painel: atualiza candidates.json',
+      content: encoded,
+      branch: 'main',
+    };
+    if (sha) payload.sha = sha;
+    return fetch(url, {
       method: 'PUT',
-      body: JSON.stringify({ candidates: state.candidates, sha: state.candidatesSha }),
+      headers: { ...ghHeaders(), 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
     });
-    state.candidatesSha = saved.sha || '';
-    state.baseCandidates = cloneProducts(state.candidates);
-    return;
-  } catch (error) {
-    if (error.status !== 409 || !error.payload) throw error;
-    state.candidates = normalizeCandidates(Array.isArray(error.payload.candidates) ? error.payload.candidates : state.candidates);
-    const saved = await panelApiRequest('/api/painel/candidates', {
-      method: 'PUT',
-      body: JSON.stringify({ candidates: state.candidates, sha: error.payload.sha || '' }),
-    });
-    state.candidatesSha = saved.sha || '';
+  };
+
+  const latestBeforeSave = await fetchCandidatesDocument({ preferApi: true });
+  const currentSha = latestBeforeSave.sha || state.candidatesSha || '';
+  if (!currentSha) throw new Error('Não foi possível obter o SHA atual de candidates.json para salvar.');
+
+  let r = await putDocument(state.candidates, currentSha);
+  if (r.status === 409) {
+    const latest = await fetchCandidatesDocument({ preferApi: true });
+    state.candidates = normalizeCandidates(state.candidates);
+    r = await putDocument(state.candidates, latest.sha);
   }
+  if (!r.ok) throw new Error(await r.text());
+  const saved = await r.json();
+  state.candidatesSha = saved.content.sha;
   state.baseCandidates = cloneProducts(state.candidates);
 }
 
@@ -2309,33 +2338,23 @@ window.addEventListener('keydown', (event) => {
 });
 
 (async function init() {
-  let authPassed = false;
-  try {
-    state.accessToken = getStoredAccessToken();
-    await loadPanelConfig();
-    const auth = await panelApiRequest('/api/auth/me');
-    if (!auth.authenticated) return;
-    authPassed = true;
-    state.csrfToken = auth.csrf_token || '';
-    state.panelUser = auth.user || '';
+  const token = sessionStorage.getItem('token');
+  if (token) {
     try {
+      state.token = token;
+      state.githubUser = sessionStorage.getItem('guser');
+      state.githubRepo = sessionStorage.getItem('grepo');
       await loadProducts();
-    } catch (productsErr) {
-      console.warn('Falha ao carregar produtos na inicialização:', productsErr);
-      state.products = [];
-      state.baseProducts = [];
-      state.sha = '';
-    }
-    await loadCandidatesSafe({ silent: true });
-    showApp();
-    if (!state.products.length) {
-      showToast('Não foi possível carregar os produtos. Tente recarregar a página.', 'warn');
-    }
-  } catch (error) {
-    console.error('Falha ao inicializar painel:', error);
-    if (authPassed) {
+      await loadCandidatesSafe({ silent: true });
       showApp();
-      showToast(error.message || 'Erro ao carregar dados do painel.', 'error');
+    } catch (error) {
+      console.error('Falha ao inicializar painel:', error);
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('guser');
+      sessionStorage.removeItem('grepo');
+      document.documentElement.classList.remove('is-authed');
+      document.getElementById('login-screen').style.display = 'flex';
+      document.getElementById('app-screen').style.display = 'none';
     }
   }
 })();

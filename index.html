@@ -66,32 +66,41 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size:
 }
 .nav-btn:hover, .nav-btn.active { background: rgba(255,255,255,.15); color: #fff; }
 .mobile-filter-btn { display: none; }
-.mobile-page-nav {
+.mobile-page-switch {
   display: none;
-  gap: 8px;
-  padding: 10px 12px;
-  background: #fff;
-  border-bottom: 1px solid #e2e8f0;
-  position: sticky;
-  top: 60px;
-  z-index: 95;
+  position: relative;
+  flex-shrink: 0;
 }
-.mobile-page-btn {
-  flex: 1;
-  border: none;
+.mobile-page-select {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1.5px solid rgba(255,255,255,.24);
   border-radius: 999px;
-  background: #e2e8f0;
-  color: #475569;
-  padding: 10px 14px;
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  padding: 8px 34px 8px 14px;
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
   transition: all .15s;
+  min-width: 132px;
 }
-.mobile-page-btn.active {
-  background: var(--brand-navy);
-  color: #fff;
-  box-shadow: 0 8px 18px rgba(10, 46, 99, .18);
+.mobile-page-select:focus {
+  outline: none;
+  border-color: rgba(255,255,255,.55);
+  background: rgba(255,255,255,.18);
+}
+.mobile-page-switch::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid rgba(255,255,255,.86);
+  border-bottom: 2px solid rgba(255,255,255,.86);
+  transform: translateY(-60%) rotate(45deg);
+  pointer-events: none;
 }
 .app-header .header-right { display: flex; align-items: center; gap: 10px; margin-left: auto; }
 .btn-new {
@@ -360,14 +369,23 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
     height: 58px;
     padding: 0 12px;
     gap: 8px;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
   .app-header .brand,
   .app-header nav { display: none; }
-  .mobile-page-nav { top: 58px; padding: 10px 12px 8px; }
+  .mobile-page-switch { display: block; }
+  .mobile-page-select {
+    min-width: 124px;
+    max-width: 138px;
+  }
+  .mobile-filter-btn {
+    display: inline-flex;
+    padding: 7px 12px;
+    white-space: nowrap;
+  }
   .app-header .header-right {
     gap: 8px;
-    margin-left: 0;
+    margin-left: auto;
     min-width: 0;
   }
   .btn-new {
@@ -472,6 +490,12 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
 
   <!-- Header -->
   <header class="app-header">
+    <div class="mobile-page-switch">
+      <select class="mobile-page-select" id="mobile-page-select" onchange="showPage(this.value)">
+        <option value="list">Produtos</option>
+        <option value="candidates">Candidatos</option>
+      </select>
+    </div>
     <button class="nav-btn mobile-filter-btn" type="button" onclick="toggleSidebarFilters()">☰ Filtros</button>
     <div class="brand"><img src="Logo.png" alt="EM Affiliates" onerror="this.style.display='none'"><span>EM Affiliates</span></div>
     <nav>
@@ -492,11 +516,6 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
       <button class="btn-logout" onclick="logout()">Sair →</button>
     </div>
   </header>
-
-  <div class="mobile-page-nav" id="mobile-page-nav">
-    <button class="mobile-page-btn active" id="mobile-nav-list" type="button" onclick="showPage('list')">Produtos</button>
-    <button class="mobile-page-btn" id="mobile-nav-candidates" type="button" onclick="showPage('candidates')">Candidatos</button>
-  </div>
 
   <!-- Body -->
   <div class="app-body">
@@ -1223,15 +1242,23 @@ function showApp() {
 }
 
 function syncResponsiveNavigation() {
-  const mobilePageNav = document.getElementById('mobile-page-nav');
+  const mobilePageSwitch = document.querySelector('.mobile-page-switch');
+  const mobilePageSelect = document.getElementById('mobile-page-select');
   const mobileFilterBtn = document.querySelector('.mobile-filter-btn');
+  const newButton = document.querySelector('.btn-new');
   const mobile = isMobileView();
 
-  if (mobilePageNav) {
-    mobilePageNav.style.display = mobile && state.currentPage !== 'form' ? 'flex' : 'none';
+  if (mobilePageSwitch) {
+    mobilePageSwitch.style.display = mobile && state.currentPage !== 'form' ? 'block' : 'none';
+  }
+  if (mobilePageSelect) {
+    mobilePageSelect.value = state.currentPage === 'candidates' ? 'candidates' : 'list';
   }
   if (mobileFilterBtn) {
     mobileFilterBtn.style.display = mobile && state.currentPage === 'list' ? 'inline-flex' : 'none';
+  }
+  if (newButton) {
+    newButton.style.display = mobile ? (state.currentPage === 'list' ? 'inline-flex' : 'none') : 'inline-flex';
   }
 }
 
@@ -1245,8 +1272,6 @@ function showPage(page) {
   document.getElementById('sidebar').style.display   = page === 'list' ? 'flex'  : 'none';
   document.getElementById('nav-list').classList.toggle('active', page === 'list');
   document.getElementById('nav-candidates').classList.toggle('active', page === 'candidates');
-  document.getElementById('mobile-nav-list')?.classList.toggle('active', page === 'list');
-  document.getElementById('mobile-nav-candidates')?.classList.toggle('active', page === 'candidates');
   syncResponsiveNavigation();
   if (page !== 'list') closeSidebarFilters();
   if (page === 'list') { buildFilters(); renderList(); }

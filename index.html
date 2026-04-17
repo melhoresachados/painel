@@ -888,7 +888,7 @@ const publishStates = ['all','facebook_pending','facebook_published'];
 
 // ── State ─────────────────────────────────────────────────────────────────────
 let state = {
-  apiBaseUrl: '', csrfToken: '', panelConfig: null, panelUser: '',
+  apiBaseUrl: '', csrfToken: '', accessToken: '', panelConfig: null, panelUser: '',
   products: [], baseProducts: [], sha: '',
   candidates: [], baseCandidates: [], candidatesSha: '',
   filterAccount: 'all', filterStatus: 'all', filterPublish: 'all', filterErrorStage: 'all',
@@ -906,6 +906,13 @@ function persistViewState() {
 function clearViewState() {
   sessionStorage.removeItem('painel_current_page');
   sessionStorage.removeItem('painel_editing_id');
+}
+
+function persistPanelAccessToken(token) {
+  const normalized = String(token || '').trim();
+  state.accessToken = normalized;
+  if (normalized) localStorage.setItem('painel_access_token', normalized);
+  else localStorage.removeItem('painel_access_token');
 }
 
 function normalizeApiBaseUrl(value) {
@@ -939,6 +946,9 @@ async function panelApiRequest(path, options = {}) {
 
   if (options.body && !isFormData && !headers['Content-Type']) {
     headers['Content-Type'] = 'application/json';
+  }
+  if (state.accessToken && !headers['Authorization']) {
+    headers['Authorization'] = `Bearer ${state.accessToken}`;
   }
   if (!['GET', 'HEAD', 'OPTIONS'].includes(method) && state.csrfToken && !headers['X-CSRF-Token']) {
     headers['X-CSRF-Token'] = state.csrfToken;
@@ -979,6 +989,7 @@ async function doLogin() {
     });
     state.csrfToken = auth.csrf_token || '';
     state.panelUser = auth.user || '';
+    persistPanelAccessToken(auth.access_token || '');
     sessionStorage.setItem('painel_current_page', 'list');
     sessionStorage.removeItem('painel_editing_id');
     await loadProducts();
@@ -991,9 +1002,11 @@ async function doLogin() {
   }
 }
 async function logout() {
+  const currentToken = state.accessToken;
   clearViewState();
   state.csrfToken = '';
   state.panelUser = '';
+  persistPanelAccessToken('');
   state.products = [];
   state.baseProducts = [];
   state.sha = '';
@@ -1001,7 +1014,10 @@ async function logout() {
   state.baseCandidates = [];
   state.candidatesSha = '';
   try {
-    await panelApiRequest('/api/auth/logout', { method: 'POST' });
+    await panelApiRequest('/api/auth/logout', {
+      method: 'POST',
+      headers: currentToken ? { Authorization: `Bearer ${currentToken}` } : {},
+    });
   } catch (error) {
     console.warn('Falha ao encerrar sessao do painel:', error);
   }
@@ -2295,8 +2311,12 @@ window.addEventListener('keydown', (event) => {
 (async function init() {
   try {
     await loadPanelConfig();
+    persistPanelAccessToken(localStorage.getItem('painel_access_token') || '');
     const auth = await panelApiRequest('/api/auth/me');
-    if (!auth.authenticated) return;
+    if (!auth.authenticated) {
+      persistPanelAccessToken('');
+      return;
+    }
     state.csrfToken = auth.csrf_token || '';
     state.panelUser = auth.user || '';
     await loadProducts();

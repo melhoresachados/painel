@@ -934,7 +934,7 @@ function panelApiUrl(path) {
 async function panelApiRequest(path, options = {}) {
   if (!state.apiBaseUrl) await loadPanelConfig();
   const method = String(options.method || 'GET').toUpperCase();
-  const headers = { ...(options.headers || {}) };
+  const headers = { 'ngrok-skip-browser-warning': 'true', ...(options.headers || {}) };
   const isFormData = typeof FormData !== 'undefined' && options.body instanceof FormData;
 
   if (options.body && !isFormData && !headers['Content-Type']) {

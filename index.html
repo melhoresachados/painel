@@ -2042,14 +2042,7 @@ function bindDisplayNameInputs() {
 function buildFormTitle(product) {
   if (!product) return 'Novo produto';
   const shortName = String(product.display_name || '').trim() || generateDisplayName(product.name || '');
-  const accountLabel = ACCOUNT_LABELS[product.account] || String(product.account || '').trim();
-  const productNum = String(product.product_num || '').trim();
-  const meta = [];
-  if (accountLabel) meta.push(accountLabel);
-  if (productNum) meta.push(`#${productNum}`);
-  return meta.length
-    ? `Editar produto — ${shortName} (${meta.join(' • ')})`
-    : `Editar produto — ${shortName}`;
+  return `Editar produto — ${shortName}`;
 }
 
 function openForm(id) {

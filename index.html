@@ -908,6 +908,24 @@ function clearViewState() {
   sessionStorage.removeItem('painel_editing_id');
 }
 
+function readSafeLocalStorage(key) {
+  try {
+    return localStorage.getItem(key) || '';
+  } catch (error) {
+    console.warn('Falha ao ler localStorage:', error);
+    return '';
+  }
+}
+
+function writeSafeLocalStorage(key, value) {
+  try {
+    if (value) localStorage.setItem(key, value);
+    else localStorage.removeItem(key);
+  } catch (error) {
+    console.warn('Falha ao escrever localStorage:', error);
+  }
+}
+
 function getCookieValue(name) {
   const prefix = `${name}=`;
   return document.cookie
@@ -928,21 +946,49 @@ function clearPanelAccessTokenCookie() {
   document.cookie = `painel_access_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax${secure}`;
 }
 
+function readWindowState() {
+  try {
+    const raw = String(window.name || '').trim();
+    if (!raw || !raw.startsWith('EMAFF:')) return {};
+    return JSON.parse(raw.slice(6)) || {};
+  } catch (error) {
+    console.warn('Falha ao ler window.name do painel:', error);
+    return {};
+  }
+}
+
+function writeWindowState(nextState) {
+  try {
+    const payload = JSON.stringify(nextState || {});
+    window.name = `EMAFF:${payload}`;
+  } catch (error) {
+    console.warn('Falha ao escrever window.name do painel:', error);
+  }
+}
+
 function getStoredPanelAccessToken() {
-  const localToken = String(localStorage.getItem('painel_access_token') || '').trim();
+  const localToken = String(readSafeLocalStorage('painel_access_token') || '').trim();
   if (localToken) return localToken;
-  return decodeURIComponent(getCookieValue('painel_access_token') || '').trim();
+  const cookieToken = decodeURIComponent(getCookieValue('painel_access_token') || '').trim();
+  if (cookieToken) return cookieToken;
+  return String(readWindowState().accessToken || '').trim();
 }
 
 function persistPanelAccessToken(token) {
   const normalized = String(token || '').trim();
   state.accessToken = normalized;
   if (normalized) {
-    localStorage.setItem('painel_access_token', normalized);
+    writeSafeLocalStorage('painel_access_token', normalized);
     setPanelAccessTokenCookie(normalized);
+    const nextWindowState = readWindowState();
+    nextWindowState.accessToken = normalized;
+    writeWindowState(nextWindowState);
   } else {
-    localStorage.removeItem('painel_access_token');
+    writeSafeLocalStorage('painel_access_token', '');
     clearPanelAccessTokenCookie();
+    const nextWindowState = readWindowState();
+    delete nextWindowState.accessToken;
+    writeWindowState(nextWindowState);
   }
 }
 

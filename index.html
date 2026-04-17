@@ -1369,15 +1369,7 @@ async function fetchCandidatesDocument(options = {}) {
   return { candidates: normalizeCandidates(content.candidates || []), sha: data.sha || '' };
 }
 
-async function fetchDiscoveryCategoryConfigDocument(options = {}) {
-  const { preferApi = false } = options;
-  if (!preferApi) {
-    const publicResponse = await fetch(`${DISCOVERY_CATEGORY_CONFIG_FILE_PATH}?t=${Date.now()}`, { cache: 'no-store' });
-    if (publicResponse.ok) {
-      const content = await publicResponse.json();
-      return { config: normalizeDiscoveryCategoryConfig(content), sha: '' };
-    }
-  }
+async function fetchDiscoveryCategoryConfigDocument() {
   const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/${DISCOVERY_CATEGORY_CONFIG_FILE_PATH}`;
   const response = await fetch(url, { headers: ghHeaders() });
   if (response.status === 404) return { config: createEmptyDiscoveryCategoryConfig(), sha: '' };
@@ -1517,11 +1509,11 @@ async function saveDiscoveryCategoryConfig() {
     });
   };
 
-  const latestBeforeSave = await fetchDiscoveryCategoryConfigDocument({ preferApi: true });
+  const latestBeforeSave = await fetchDiscoveryCategoryConfigDocument();
   const currentSha = latestBeforeSave.sha || state.discoveryCategorySha || '';
   let response = await putDocument(state.discoveryCategoryConfig, currentSha);
   if (response.status === 409) {
-    const latest = await fetchDiscoveryCategoryConfigDocument({ preferApi: true });
+    const latest = await fetchDiscoveryCategoryConfigDocument();
     response = await putDocument(state.discoveryCategoryConfig, latest.sha);
   }
   if (!response.ok) throw new Error(await response.text());

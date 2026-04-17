@@ -888,7 +888,7 @@ const publishStates = ['all','facebook_pending','facebook_published'];
 
 // ── State ─────────────────────────────────────────────────────────────────────
 let state = {
-  apiBaseUrl: '', csrfToken: '', accessToken: '', panelConfig: null, panelUser: '',
+  apiBaseUrl: '', panelConfig: null, csrfToken: '', panelUser: '',
   products: [], baseProducts: [], sha: '',
   candidates: [], baseCandidates: [], candidatesSha: '',
   filterAccount: 'all', filterStatus: 'all', filterPublish: 'all', filterErrorStage: 'all',
@@ -908,111 +908,18 @@ function clearViewState() {
   sessionStorage.removeItem('painel_editing_id');
 }
 
-function readSafeLocalStorage(key) {
-  try {
-    return localStorage.getItem(key) || '';
-  } catch (error) {
-    console.warn('Falha ao ler localStorage:', error);
-    return '';
-  }
-}
-
-function writeSafeLocalStorage(key, value) {
-  try {
-    if (value) localStorage.setItem(key, value);
-    else localStorage.removeItem(key);
-  } catch (error) {
-    console.warn('Falha ao escrever localStorage:', error);
-  }
-}
-
-function getCookieValue(name) {
-  const prefix = `${name}=`;
-  return document.cookie
-    .split(';')
-    .map(part => part.trim())
-    .find(part => part.startsWith(prefix))
-    ?.slice(prefix.length) || '';
-}
-
-function setPanelAccessTokenCookie(token) {
-  const normalized = encodeURIComponent(String(token || '').trim());
-  const secure = window.location.protocol === 'https:' ? '; Secure' : '';
-  document.cookie = `painel_access_token=${normalized}; path=/; max-age=${60 * 60 * 8}; SameSite=Lax${secure}`;
-}
-
-function clearPanelAccessTokenCookie() {
-  const secure = window.location.protocol === 'https:' ? '; Secure' : '';
-  document.cookie = `painel_access_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax${secure}`;
-}
-
-function readWindowState() {
-  try {
-    const raw = String(window.name || '').trim();
-    if (!raw || !raw.startsWith('EMAFF:')) return {};
-    return JSON.parse(raw.slice(6)) || {};
-  } catch (error) {
-    console.warn('Falha ao ler window.name do painel:', error);
-    return {};
-  }
-}
-
-function writeWindowState(nextState) {
-  try {
-    const payload = JSON.stringify(nextState || {});
-    window.name = `EMAFF:${payload}`;
-  } catch (error) {
-    console.warn('Falha ao escrever window.name do painel:', error);
-  }
-}
-
-function getStoredPanelAccessToken() {
-  const localToken = String(readSafeLocalStorage('painel_access_token') || '').trim();
-  if (localToken) return localToken;
-  const cookieToken = decodeURIComponent(getCookieValue('painel_access_token') || '').trim();
-  if (cookieToken) return cookieToken;
-  return String(readWindowState().accessToken || '').trim();
-}
-
-function persistPanelAccessToken(token) {
-  const normalized = String(token || '').trim();
-  state.accessToken = normalized;
-  if (normalized) {
-    writeSafeLocalStorage('painel_access_token', normalized);
-    setPanelAccessTokenCookie(normalized);
-    const nextWindowState = readWindowState();
-    nextWindowState.accessToken = normalized;
-    writeWindowState(nextWindowState);
-  } else {
-    writeSafeLocalStorage('painel_access_token', '');
-    clearPanelAccessTokenCookie();
-    const nextWindowState = readWindowState();
-    delete nextWindowState.accessToken;
-    writeWindowState(nextWindowState);
-  }
-}
-
-function normalizeApiBaseUrl(value) {
-  const raw = String(value || '').trim();
-  if (!raw) return window.location.origin.replace(/\/+$/, '');
-  return raw.replace(/\/+$/, '');
-}
 
 async function loadPanelConfig(force = false) {
   if (state.panelConfig && !force) return state.panelConfig;
   try {
     const response = await fetch(CONFIG_URL + '?t=' + Date.now(), { cache: 'no-store' });
     state.panelConfig = response.ok ? await response.json() : {};
-  } catch (error) {
-    console.warn('Falha ao carregar config.json do painel:', error);
+  } catch {
     state.panelConfig = {};
   }
-  state.apiBaseUrl = normalizeApiBaseUrl(state.panelConfig.api_base_url || '');
+  const raw = String(state.panelConfig.api_base_url || '').trim().replace(/\/+$/, '');
+  state.apiBaseUrl = raw || window.location.origin.replace(/\/+$/, '');
   return state.panelConfig;
-}
-
-function panelApiUrl(path) {
-  return `${state.apiBaseUrl}${path}`;
 }
 
 async function panelApiRequest(path, options = {}) {
@@ -1024,14 +931,11 @@ async function panelApiRequest(path, options = {}) {
   if (options.body && !isFormData && !headers['Content-Type']) {
     headers['Content-Type'] = 'application/json';
   }
-  if (state.accessToken && !headers['Authorization']) {
-    headers['Authorization'] = `Bearer ${state.accessToken}`;
-  }
   if (!['GET', 'HEAD', 'OPTIONS'].includes(method) && state.csrfToken && !headers['X-CSRF-Token']) {
     headers['X-CSRF-Token'] = state.csrfToken;
   }
 
-  const response = await fetch(panelApiUrl(path), {
+  const response = await fetch(`${state.apiBaseUrl}${path}`, {
     ...options,
     method,
     headers,
@@ -1066,7 +970,6 @@ async function doLogin() {
     });
     state.csrfToken = auth.csrf_token || '';
     state.panelUser = auth.user || '';
-    persistPanelAccessToken(auth.access_token || '');
     sessionStorage.setItem('painel_current_page', 'list');
     sessionStorage.removeItem('painel_editing_id');
     await loadProducts();
@@ -1079,11 +982,9 @@ async function doLogin() {
   }
 }
 async function logout() {
-  const currentToken = state.accessToken;
   clearViewState();
   state.csrfToken = '';
   state.panelUser = '';
-  persistPanelAccessToken('');
   state.products = [];
   state.baseProducts = [];
   state.sha = '';
@@ -1091,10 +992,7 @@ async function logout() {
   state.baseCandidates = [];
   state.candidatesSha = '';
   try {
-    await panelApiRequest('/api/auth/logout', {
-      method: 'POST',
-      headers: currentToken ? { Authorization: `Bearer ${currentToken}` } : {},
-    });
+    await panelApiRequest('/api/auth/logout', { method: 'POST' });
   } catch (error) {
     console.warn('Falha ao encerrar sessao do painel:', error);
   }
@@ -2389,12 +2287,8 @@ window.addEventListener('keydown', (event) => {
   let authPassed = false;
   try {
     await loadPanelConfig();
-    persistPanelAccessToken(getStoredPanelAccessToken());
     const auth = await panelApiRequest('/api/auth/me');
-    if (!auth.authenticated) {
-      persistPanelAccessToken('');
-      return;
-    }
+    if (!auth.authenticated) return;
     authPassed = true;
     state.csrfToken = auth.csrf_token || '';
     state.panelUser = auth.user || '';
@@ -2408,7 +2302,7 @@ window.addEventListener('keydown', (event) => {
     }
     await loadCandidatesSafe({ silent: true });
     showApp();
-    if (!state.products.length && authPassed) {
+    if (!state.products.length) {
       showToast('Não foi possível carregar os produtos. Tente recarregar a página.', 'warn');
     }
   } catch (error) {
@@ -2416,9 +2310,6 @@ window.addEventListener('keydown', (event) => {
     if (authPassed) {
       showApp();
       showToast(error.message || 'Erro ao carregar dados do painel.', 'error');
-    } else {
-      document.getElementById('login-screen').style.display = 'flex';
-      document.getElementById('app-screen').style.display = 'none';
     }
   }
 })();

@@ -6,9 +6,7 @@
 <title>Painel de Afiliados</title>
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="shortcut icon" type="image/png" href="logo.png">
-<script>if (sessionStorage.getItem('token')) document.documentElement.classList.add('is-authed');</script>
 <style>
-html.is-authed #login-screen { display: none !important; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root{
     --brand-navy:#0a2e63;
@@ -872,9 +870,6 @@ async function doLogin() {
   try { token = await decryptToken(pwd, cfg); }
   catch (err) { showToast('Erro ao decifrar token. Rode o setup novamente.', 'error'); return; }
   state.token = token; state.githubUser = cfg.github_user; state.githubRepo = cfg.github_repo;
-  sessionStorage.setItem('token', token);
-  sessionStorage.setItem('guser', cfg.github_user);
-  sessionStorage.setItem('grepo', cfg.github_repo);
   sessionStorage.setItem('painel_current_page', 'list');
   sessionStorage.removeItem('painel_editing_id');
   try {
@@ -888,15 +883,21 @@ async function doLogin() {
   }
 }
 function logout() {
-  sessionStorage.clear(); state.token = null;
-  document.documentElement.classList.remove('is-authed');
+  clearViewState();
+  state.token = null;
+  state.githubUser = null;
+  state.githubRepo = null;
   document.getElementById('app-screen').style.display = 'none';
   document.getElementById('login-screen').style.display = 'flex';
   document.getElementById('pwd-input').value = '';
+  const errorEl = document.getElementById('login-error');
+  if (errorEl) {
+    errorEl.textContent = 'Senha incorreta. Tente novamente.';
+    errorEl.style.display = 'none';
+  }
 }
 
 function showLoginScreenWithError(message = '') {
-  document.documentElement.classList.remove('is-authed');
   document.getElementById('app-screen').style.display = 'none';
   document.getElementById('login-screen').style.display = 'flex';
   const errorEl = document.getElementById('login-error');
@@ -2104,28 +2105,9 @@ window.addEventListener('keydown', (event) => {
 });
 
 (async function init() {
-  const token = sessionStorage.getItem('token');
-  if (token) {
-    try {
-      state.token = token;
-      state.githubUser = sessionStorage.getItem('guser');
-      state.githubRepo = sessionStorage.getItem('grepo');
-      await loadProducts();
-      await loadCandidates();
-      showApp();
-      return;
-    } catch (error) {
-      console.error('Falha ao restaurar sessao do painel:', error);
-      sessionStorage.removeItem('token');
-      sessionStorage.removeItem('guser');
-      sessionStorage.removeItem('grepo');
-      sessionStorage.removeItem('painel_current_page');
-      sessionStorage.removeItem('painel_editing_id');
-      state.token = null;
-      showLoginScreenWithError('Sua sessao anterior falhou ao carregar. Entre novamente.');
-      return;
-    }
-  }
+  state.token = null;
+  state.githubUser = null;
+  state.githubRepo = null;
   showLoginScreenWithError('');
 })();
 </script>

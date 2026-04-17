@@ -2039,12 +2039,25 @@ function bindDisplayNameInputs() {
   nameInput.dataset.displayNameBound = '1';
 }
 
+function buildFormTitle(product) {
+  if (!product) return 'Novo produto';
+  const shortName = String(product.display_name || '').trim() || generateDisplayName(product.name || '');
+  const accountLabel = ACCOUNT_LABELS[product.account] || String(product.account || '').trim();
+  const productNum = String(product.product_num || '').trim();
+  const meta = [];
+  if (accountLabel) meta.push(accountLabel);
+  if (productNum) meta.push(`#${productNum}`);
+  return meta.length
+    ? `Editar produto — ${shortName} (${meta.join(' • ')})`
+    : `Editar produto — ${shortName}`;
+}
+
 function openForm(id) {
   state.editingId = id;
   state.currentPage = 'form';
   persistViewState();
   const p = id ? state.products.find(x => x._id === id) : null;
-  document.getElementById('form-title').textContent = p ? `Editar produto${p.name ? ' — '+p.name : ''}` : 'Novo produto';
+  document.getElementById('form-title').textContent = buildFormTitle(p);
   document.getElementById('btn-delete').style.display = p ? 'block' : 'none';
   document.getElementById('btn-regenerate').style.display = (p && p.video_path) ? 'inline-flex' : 'none';
   document.getElementById('btn-republish').style.display  = (p && (p.post_id || p.facebook_post_id)) ? 'inline-flex' : 'none';

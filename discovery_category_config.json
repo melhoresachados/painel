@@ -16,7 +16,7 @@
         "name": "Celulares e Smartphones",
         "parent_id": "MLB1051",
         "parent_name": "Celulares e Telefones",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Gadgets e eletronicos"
       },
       {

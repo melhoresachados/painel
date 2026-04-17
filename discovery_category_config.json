@@ -1,0 +1,663 @@
+{
+  "mercadolivre": {
+    "enabled": true,
+    "per_category_limit": 2,
+    "categories": [
+      {
+        "id": "MLB3813",
+        "name": "Acessorios para Celulares",
+        "parent_id": "MLB1051",
+        "parent_name": "Celulares e Telefones",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB1055",
+        "name": "Celulares e Smartphones",
+        "parent_id": "MLB1051",
+        "parent_name": "Celulares e Telefones",
+        "enabled": true,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB1915",
+        "name": "Outros",
+        "parent_id": "MLB1051",
+        "parent_name": "Celulares e Telefones",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB7462",
+        "name": "Pecas para Celular",
+        "parent_id": "MLB1051",
+        "parent_name": "Celulares e Telefones",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB2908",
+        "name": "Radio Comunicadores",
+        "parent_id": "MLB1051",
+        "parent_name": "Celulares e Telefones",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB417704",
+        "name": "Smartwatches e Acessorios",
+        "parent_id": "MLB1051",
+        "parent_name": "Celulares e Telefones",
+        "enabled": true,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB438616",
+        "name": "Tarifadores e Cabines",
+        "parent_id": "MLB1051",
+        "parent_name": "Celulares e Telefones",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB438581",
+        "name": "Telefonia Fixa e Sem Fio",
+        "parent_id": "MLB1051",
+        "parent_name": "Celulares e Telefones",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB7502",
+        "name": "VoIP",
+        "parent_id": "MLB1051",
+        "parent_name": "Celulares e Telefones",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB459590",
+        "name": "Oculos",
+        "parent_id": "MLB1051",
+        "parent_name": "Celulares e Telefones",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB1007",
+        "name": "Acessorios para TV",
+        "parent_id": "MLB1000",
+        "parent_name": "Eletronicos, Audio e Video",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB4887",
+        "name": "Acessorios para Audio e Video",
+        "parent_id": "MLB1000",
+        "parent_name": "Eletronicos, Audio e Video",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB1001",
+        "name": "Aparelhos DVD e Bluray",
+        "parent_id": "MLB1000",
+        "parent_name": "Eletronicos, Audio e Video",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB271208",
+        "name": "Bolsas e Estojos",
+        "parent_id": "MLB1000",
+        "parent_name": "Eletronicos, Audio e Video",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB10737",
+        "name": "Cabos",
+        "parent_id": "MLB1000",
+        "parent_name": "Eletronicos, Audio e Video",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB6999",
+        "name": "Componentes Eletronicos",
+        "parent_id": "MLB1000",
+        "parent_name": "Eletronicos, Audio e Video",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB4914",
+        "name": "Controles Remotos",
+        "parent_id": "MLB1000",
+        "parent_name": "Eletronicos, Audio e Video",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB264065",
+        "name": "Drones e Acessorios",
+        "parent_id": "MLB1000",
+        "parent_name": "Eletronicos, Audio e Video",
+        "enabled": true,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "MLB133950",
+        "name": "Media Streaming",
+        "parent_id": "MLB1000",
+        "parent_name": "Eletronicos, Audio e Video",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB4901",
+        "name": "Outros Eletronicos",
+        "parent_id": "MLB1000",
+        "parent_name": "Eletronicos, Audio e Video",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB322074",
+        "name": "Pecas para TV",
+        "parent_id": "MLB1000",
+        "parent_name": "Eletronicos, Audio e Video",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB4900",
+        "name": "Pilhas e Carregadores",
+        "parent_id": "MLB1000",
+        "parent_name": "Eletronicos, Audio e Video",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB2830",
+        "name": "Projetores e Telas",
+        "parent_id": "MLB1000",
+        "parent_name": "Eletronicos, Audio e Video",
+        "enabled": true,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "MLB1002",
+        "name": "Televisores",
+        "parent_id": "MLB1000",
+        "parent_name": "Eletronicos, Audio e Video",
+        "enabled": true,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "MLB3835",
+        "name": "Audio",
+        "parent_id": "MLB1000",
+        "parent_name": "Eletronicos, Audio e Video",
+        "enabled": true,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB271913",
+        "name": "Acessorios de Antiestatica",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB447778",
+        "name": "Acessorios para PC Gaming",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": true,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB430598",
+        "name": "Armazenamento",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB430918",
+        "name": "Cabos e Hubs USB",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB1712",
+        "name": "Componentes para PC",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": true,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB1700",
+        "name": "Conectividade e Redes",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": true,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB278225",
+        "name": "Criptomoedas",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB1718",
+        "name": "Estabilizadores e No Breaks",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": true,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB421328",
+        "name": "Gift Cards",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB5875",
+        "name": "Impressao",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB271908",
+        "name": "Leitores e Scanners",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB99944",
+        "name": "Limpeza de PCs",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB14370",
+        "name": "Monitores e Acessorios",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": true,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "MLB1912",
+        "name": "Outros",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB430637",
+        "name": "PC de Mesa",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": false,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "MLB1651",
+        "name": "Palms e Handhelds",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB454379",
+        "name": "Perifericos para PC",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": true,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB430687",
+        "name": "Portateis e Acessorios",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": true,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "MLB1657",
+        "name": "Projetores e Telas",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": false,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "MLB1723",
+        "name": "Softwares",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB91757",
+        "name": "Tablets e Acessorios",
+        "parent_id": "MLB1648",
+        "parent_name": "Informatica",
+        "enabled": true,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "MLB1613",
+        "name": "Banheiros",
+        "parent_id": "MLB1574",
+        "parent_name": "Casa, Moveis e Decoracao",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB438928",
+        "name": "Camas, Colchoes e Acessorios",
+        "parent_id": "MLB1574",
+        "parent_name": "Casa, Moveis e Decoracao",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB1618",
+        "name": "Cozinha",
+        "parent_id": "MLB1574",
+        "parent_name": "Casa, Moveis e Decoracao",
+        "enabled": true,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB264051",
+        "name": "Cuidado da Casa e Lavanderia",
+        "parent_id": "MLB1574",
+        "parent_name": "Casa, Moveis e Decoracao",
+        "enabled": true,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB1631",
+        "name": "Enfeites e Decoracao da Casa",
+        "parent_id": "MLB1574",
+        "parent_name": "Casa, Moveis e Decoracao",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB1582",
+        "name": "Iluminacao Residencial",
+        "parent_id": "MLB1574",
+        "parent_name": "Casa, Moveis e Decoracao",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB459667",
+        "name": "Instalacoes de Moveis",
+        "parent_id": "MLB1574",
+        "parent_name": "Casa, Moveis e Decoracao",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB1621",
+        "name": "Jardim e Ar Livre",
+        "parent_id": "MLB1574",
+        "parent_name": "Casa, Moveis e Decoracao",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB436380",
+        "name": "Moveis para Casa",
+        "parent_id": "MLB1574",
+        "parent_name": "Casa, Moveis e Decoracao",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB436414",
+        "name": "Organizacao para Casa",
+        "parent_id": "MLB1574",
+        "parent_name": "Casa, Moveis e Decoracao",
+        "enabled": true,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB1902",
+        "name": "Outros",
+        "parent_id": "MLB1574",
+        "parent_name": "Casa, Moveis e Decoracao",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB7069",
+        "name": "Seguranca para Casa",
+        "parent_id": "MLB1574",
+        "parent_name": "Casa, Moveis e Decoracao",
+        "enabled": true,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB436246",
+        "name": "Texteis de Casa e Decoracao",
+        "parent_id": "MLB1574",
+        "parent_name": "Casa, Moveis e Decoracao",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB252358",
+        "name": "Ar e Ventilacao",
+        "parent_id": "MLB5726",
+        "parent_name": "Eletrodomesticos",
+        "enabled": true,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB21171",
+        "name": "Bebedouros e Purificadores",
+        "parent_id": "MLB5726",
+        "parent_name": "Eletrodomesticos",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB439347",
+        "name": "Cuidado Pessoal",
+        "parent_id": "MLB5726",
+        "parent_name": "Eletrodomesticos",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB1580",
+        "name": "Fornos e Fogoes",
+        "parent_id": "MLB5726",
+        "parent_name": "Eletrodomesticos",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB438282",
+        "name": "Lavadores",
+        "parent_id": "MLB5726",
+        "parent_name": "Eletrodomesticos",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB1899",
+        "name": "Outros",
+        "parent_id": "MLB5726",
+        "parent_name": "Eletrodomesticos",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB438284",
+        "name": "Pequenos Eletrodomesticos",
+        "parent_id": "MLB5726",
+        "parent_name": "Eletrodomesticos",
+        "enabled": true,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "MLB1576",
+        "name": "Refrigeracao",
+        "parent_id": "MLB5726",
+        "parent_name": "Eletrodomesticos",
+        "enabled": false,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "MLB438906",
+        "name": "Arquitetura e Desenho",
+        "parent_id": "MLB1499",
+        "parent_name": "Industria e Comercio",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB270864",
+        "name": "Embalagem e Logistica",
+        "parent_id": "MLB1499",
+        "parent_name": "Industria e Comercio",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB454798",
+        "name": "Equipamento Medico",
+        "parent_id": "MLB1499",
+        "parent_name": "Industria e Comercio",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB5452",
+        "name": "Equipamento para Comercios",
+        "parent_id": "MLB1499",
+        "parent_name": "Industria e Comercio",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB2102",
+        "name": "Equipamento para Escritorios",
+        "parent_id": "MLB1499",
+        "parent_name": "Industria e Comercio",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB454785",
+        "name": "Ferramentas Industriais",
+        "parent_id": "MLB1499",
+        "parent_name": "Industria e Comercio",
+        "enabled": true,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB268412",
+        "name": "Gastronomia e Hotelaria",
+        "parent_id": "MLB1499",
+        "parent_name": "Industria e Comercio",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB5446",
+        "name": "Grafica e Impressao",
+        "parent_id": "MLB1499",
+        "parent_name": "Industria e Comercio",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB1893",
+        "name": "Outros",
+        "parent_id": "MLB1499",
+        "parent_name": "Industria e Comercio",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB439267",
+        "name": "Publicidade e Promocao",
+        "parent_id": "MLB1499",
+        "parent_name": "Industria e Comercio",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB270252",
+        "name": "Seguranca Laboral",
+        "parent_id": "MLB1499",
+        "parent_name": "Industria e Comercio",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB5454",
+        "name": "Textil e Calcado",
+        "parent_id": "MLB1499",
+        "parent_name": "Industria e Comercio",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "MLB439268",
+        "name": "Uniformes e Roupa de Trabalho",
+        "parent_id": "MLB1499",
+        "parent_name": "Industria e Comercio",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      }
+    ]
+  },
+  "shopee": {
+    "enabled": true,
+    "per_category_limit": 2,
+    "categories": []
+  },
+  "shein": {
+    "enabled": true,
+    "per_category_limit": 2,
+    "categories": []
+  },
+  "amazon": {
+    "enabled": true,
+    "per_category_limit": 2,
+    "categories": []
+  }
+}

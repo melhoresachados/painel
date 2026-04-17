@@ -4,9 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Painel de Afiliados</title>
-<link rel="icon" type="image/png" href="logo.png">
-<link rel="shortcut icon" type="image/png" href="logo.png">
+<link rel="icon" type="image/png" href="Logo.png">
+<link rel="shortcut icon" type="image/png" href="Logo.png">
+<script>if (sessionStorage.getItem('token')) document.documentElement.classList.add('is-authed');</script>
 <style>
+html.is-authed #login-screen { display: none !important; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root{
     --brand-navy:#0a2e63;
@@ -64,6 +66,42 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size:
 }
 .nav-btn:hover, .nav-btn.active { background: rgba(255,255,255,.15); color: #fff; }
 .mobile-filter-btn { display: none; }
+.mobile-page-switch {
+  display: none;
+  position: relative;
+  flex-shrink: 0;
+}
+.mobile-page-select {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1.5px solid rgba(255,255,255,.24);
+  border-radius: 999px;
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  padding: 8px 34px 8px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .15s;
+  min-width: 132px;
+}
+.mobile-page-select:focus {
+  outline: none;
+  border-color: rgba(255,255,255,.55);
+  background: rgba(255,255,255,.18);
+}
+.mobile-page-switch::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid rgba(255,255,255,.86);
+  border-bottom: 2px solid rgba(255,255,255,.86);
+  transform: translateY(-60%) rotate(45deg);
+  pointer-events: none;
+}
 .app-header .header-right { display: flex; align-items: center; gap: 10px; margin-left: auto; }
 .btn-new {
   background: #fff; color: var(--brand-navy); border: none; border-radius: 7px;
@@ -74,30 +112,6 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size:
 .btn-logout { color: rgba(255,255,255,.7); background: none; border: none; cursor: pointer; font-size: 13px; padding: 6px 10px; border-radius: 6px; transition: all .15s; }
 .btn-logout:hover { background: rgba(255,255,255,.1); color: #fff; }
 .mobile-only { display: none; }
-.mobile-page-nav {
-  display: none;
-  background: #fff;
-  border-bottom: 1px solid #e2e8f0;
-  padding: 10px 12px;
-  gap: 8px;
-}
-.mobile-page-btn {
-  flex: 1;
-  border: 1.5px solid #dbe4f0;
-  background: #f8fafc;
-  color: #475569;
-  border-radius: 10px;
-  padding: 9px 12px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all .15s;
-}
-.mobile-page-btn.active {
-  background: #e8f0fb;
-  color: var(--brand-navy);
-  border-color: #bfd2ef;
-}
 
 /* Content area */
 .app-body { flex: 1; display: flex; overflow: hidden; }
@@ -207,47 +221,67 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
 }
 .chip-btn:hover { border-color: #94a3b8; background: #f8fafc; }
 .chip-btn.active { background: #e8f0fb; border-color: #bfd3f2; color: var(--brand-navy); }
-.candidate-grid-wrap { flex: 1; overflow-y: auto; padding: 18px 20px; }
+.candidate-grid-wrap { flex: 1; overflow-y: auto; padding: 16px 18px; }
 .candidate-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 14px;
 }
 .candidate-card {
-  background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; overflow: hidden;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, .05); display: flex; flex-direction: column;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+  border: 1px solid #d9e4f2; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, .05); display: flex; flex-direction: column;
+}
+.candidate-top {
+  display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 12px;
+  padding: 12px 12px 6px;
 }
 .candidate-hero {
-  aspect-ratio: 1 / 1; background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
-  display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
+  aspect-ratio: 0.82 / 1; background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  border-radius: 12px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
+  border: 1px solid #e2e8f0;
 }
 .candidate-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.candidate-hero-empty { color: #94a3b8; font-size: 12px; padding: 12px; text-align: center; }
+.candidate-hero-empty { color: #94a3b8; font-size: 11px; padding: 10px; text-align: center; line-height: 1.35; }
 .candidate-badges {
-  position: absolute; top: 10px; left: 10px; right: 10px; display: flex; gap: 8px; flex-wrap: wrap;
+  display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px;
 }
 .candidate-badge {
-  background: rgba(15, 23, 42, .82); color: #fff; border-radius: 999px; padding: 4px 9px;
-  font-size: 11px; font-weight: 700; letter-spacing: .02em;
+  background: #0f254c; color: #fff; border-radius: 999px; padding: 4px 8px;
+  font-size: 10px; font-weight: 800; letter-spacing: .01em; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
 }
-.candidate-body { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
-.candidate-title { font-size: 15px; line-height: 1.35; font-weight: 700; color: #0f172a; }
-.candidate-meta { display: flex; flex-wrap: wrap; gap: 8px; }
-.meta-pill {
-  background: #f8fafc; color: #475569; border: 1px solid #e2e8f0;
-  border-radius: 999px; padding: 4px 8px; font-size: 11px; font-weight: 600;
+.candidate-body {
+  display: flex; flex-direction: column; gap: 8px; min-width: 0; justify-content: flex-start;
 }
-.candidate-text {
-  font-size: 12px; color: #64748b; line-height: 1.5;
+.candidate-title {
+  font-size: 14px; line-height: 1.28; font-weight: 800; color: #0f172a;
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
-.candidate-links { display: flex; flex-direction: column; gap: 6px; }
+.candidate-summary {
+  display: flex; flex-direction: column; gap: 8px; padding: 0 12px 0;
+}
+.candidate-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+.meta-pill {
+  background: #f8fafc; color: #475569; border: 1px solid #e2e8f0;
+  border-radius: 999px; padding: 4px 7px; font-size: 10px; font-weight: 700;
+}
+.candidate-text {
+  font-size: 11px; color: #64748b; line-height: 1.45;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.candidate-lower {
+  display: flex; flex-direction: column; gap: 9px; padding: 10px 12px 12px;
+}
+.candidate-links {
+  display: flex; flex-direction: column; gap: 6px; padding: 9px 10px;
+  background: #f8fbff; border: 1px solid #e6edf7; border-radius: 12px;
+}
 .candidate-link {
-  color: var(--brand-navy); font-size: 12px; text-decoration: none; overflow: hidden;
+  color: var(--brand-navy); font-size: 11px; text-decoration: none; overflow: hidden;
   text-overflow: ellipsis; white-space: nowrap;
 }
 .candidate-link:hover { text-decoration: underline; }
-.candidate-actions { display: flex; gap: 8px; margin-top: 2px; }
+.candidate-actions { display: flex; gap: 8px; margin-top: 1px; }
 .candidate-actions .btn-candidate {
-  flex: 1; border: none; border-radius: 10px; padding: 9px 12px; font-size: 12px; font-weight: 700;
+  flex: 1; border: none; border-radius: 10px; padding: 8px 10px; font-size: 11px; font-weight: 800;
   cursor: pointer; transition: all .15s;
 }
 .btn-candidate-primary { background: var(--brand-navy); color: #fff; }
@@ -255,7 +289,11 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
 .btn-candidate-ghost { background: #fff7ed; color: #b45309; border: 1px solid #fed7aa; }
 .btn-candidate-ghost:hover { background: #ffedd5; }
 .btn-candidate:disabled { opacity: .55; cursor: default; }
-.candidate-state-note { font-size: 11px; color: #94a3b8; }
+.candidate-state-note { font-size: 10px; color: #94a3b8; }
+@media (max-width: 700px) {
+  .candidate-grid { grid-template-columns: 1fr; }
+  .candidate-top { grid-template-columns: 88px minmax(0, 1fr); }
+}
 
 /* ── Form page ──────────────────────────────────────────────────────────── */
 #form-page { display: none; flex: 1; overflow-y: auto; padding: 24px 28px; }
@@ -331,14 +369,23 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
     height: 58px;
     padding: 0 12px;
     gap: 8px;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
   .app-header .brand,
   .app-header nav { display: none; }
-  .mobile-filter-btn { display: inline-flex; }
+  .mobile-page-switch { display: block; }
+  .mobile-page-select {
+    min-width: 124px;
+    max-width: 138px;
+  }
+  .mobile-filter-btn {
+    display: inline-flex;
+    padding: 7px 12px;
+    white-space: nowrap;
+  }
   .app-header .header-right {
     gap: 8px;
-    margin-left: 0;
+    margin-left: auto;
     min-width: 0;
   }
   .btn-new {
@@ -354,7 +401,6 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
   }
   .desktop-only { display: none !important; }
   .mobile-only { display: inline; }
-  .mobile-page-nav { display: flex; }
 
   .app-body { position: relative; overflow: hidden; }
   .sidebar {
@@ -426,7 +472,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
 <div id="login-screen">
   <div class="login-card">
     <div class="login-logo">
-      <img src="logo.png" alt="EM Affiliates" onerror="this.style.display='none'">
+      <img src="Logo.png" alt="EM Affiliates" onerror="this.style.display='none'">
       <h1>Painel EM Affiliates</h1>
     </div>
     <div class="login-field">
@@ -444,8 +490,14 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
 
   <!-- Header -->
   <header class="app-header">
+    <div class="mobile-page-switch">
+      <select class="mobile-page-select" id="mobile-page-select" onchange="showPage(this.value)">
+        <option value="list">Produtos</option>
+        <option value="candidates">Candidatos</option>
+      </select>
+    </div>
     <button class="nav-btn mobile-filter-btn" type="button" onclick="toggleSidebarFilters()">☰ Filtros</button>
-    <div class="brand"><img src="logo.png" alt="EM Affiliates" onerror="this.style.display='none'"><span>EM Affiliates</span></div>
+    <div class="brand"><img src="Logo.png" alt="EM Affiliates" onerror="this.style.display='none'"><span>EM Affiliates</span></div>
     <nav>
       <button class="nav-btn active" id="nav-list" onclick="showPage('list')">
         ☰ Produtos
@@ -464,10 +516,6 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
       <button class="btn-logout" onclick="logout()">Sair →</button>
     </div>
   </header>
-  <div class="mobile-page-nav">
-    <button class="mobile-page-btn active" id="nav-list-mobile" onclick="showPage('list')">Produtos</button>
-    <button class="mobile-page-btn" id="nav-candidates-mobile" onclick="showPage('candidates')">Candidatos</button>
-  </div>
 
   <!-- Body -->
   <div class="app-body">
@@ -597,6 +645,13 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                     <input id="f-name" type="text" required placeholder="Ex: Calça Skinny Com Cinto">
                   </div>
                 </div>
+                <div class="field-row full">
+                  <div class="field-group">
+                    <label>Nome curto para thumbnail</label>
+                    <input id="f-display_name" type="text" placeholder="Ex: Samsung Galaxy A17">
+                    <small style="font-size:11px;color:#94a3b8;">Gerado automaticamente para capa/vídeo. Você pode ajustar manualmente se quiser.</small>
+                  </div>
+                </div>
                 <div class="field-row cols-2">
                   <div class="field-group">
                     <label>Conta <span class="req">*</span></label>
@@ -614,11 +669,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                     </select>
                   </div>
                 </div>
-                <div class="field-row cols-3">
-                  <div class="field-group">
-                    <label>Macrotema</label>
-                    <input id="f-macrotema" type="text" placeholder="Ex: Moda e Beleza">
-                  </div>
+                <div class="field-row cols-2">
                   <div class="field-group">
                     <label>Status</label>
                     <select id="f-status">
@@ -647,7 +698,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                 <div class="field-row cols-2">
                   <div class="field-group">
                     <label>Oferta relâmpago</label>
-                    <input id="f-flash_offer" type="text" placeholder="Ex: Só hoje 50% off">
+                    <input id="f-flash_offer" type="text" placeholder="Ex: 37%">
                   </div>
                   <div class="field-group">
                     <label>Cupom</label>
@@ -670,7 +721,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                   </div>
                   <div class="field-group">
                     <label>Vendidos</label>
-                    <input id="f-sold_count" type="text" placeholder="Ex: 30000">
+                    <input id="f-sold_count" type="text" placeholder="Ex: +10mil">
                   </div>
                 </div>
               </div>
@@ -750,7 +801,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                     <div class="preview-label">Primeira imagem do produto</div>
                   </div>
                   <div class="preview-note">
-                    Use URLs públicas só para preview de thumbnail e imagem. A mídia principal do pipeline pode continuar local no seu computador.
+                    Use apenas URLs públicas. O fluxo novo não aceita mais caminhos locais como entrada de mídia.
                   </div>
                 </div>
               </div>
@@ -892,84 +943,32 @@ async function doLogin() {
   try {
     const r = await fetch(CONFIG_URL + '?t=' + Date.now());
     cfg = await r.json();
-  } catch (err) { showToast('Erro ao carregar config.json', 'error'); return; }
+  } catch { showToast('Erro ao carregar config.json', 'error'); return; }
   const hash = await sha256hex(pwd);
   if (hash !== cfg.password_hash) { errEl.style.display = 'block'; return; }
   let token;
   try { token = await decryptToken(pwd, cfg); }
-  catch (err) { showToast('Erro ao decifrar token. Rode o setup novamente.', 'error'); return; }
+  catch { showToast('Erro ao decifrar token. Rode o setup novamente.', 'error'); return; }
   state.token = token; state.githubUser = cfg.github_user; state.githubRepo = cfg.github_repo;
+  sessionStorage.setItem('token', token);
+  sessionStorage.setItem('guser', cfg.github_user);
+  sessionStorage.setItem('grepo', cfg.github_repo);
   sessionStorage.setItem('painel_current_page', 'list');
   sessionStorage.removeItem('painel_editing_id');
-  try {
-    await loadProducts();
-    await loadCandidates();
-    showApp();
-  } catch (err) {
-    console.error('Falha ao concluir login do painel:', err);
-    showToast('Erro ao carregar dados do painel apos o login.', 'error');
-    showLoginScreenWithError('Nao foi possivel carregar os dados do painel. Tente novamente.');
-  }
+  await loadProducts();
+  await loadCandidatesSafe({ silent: true });
+  showApp();
 }
 function logout() {
-  clearViewState();
-  state.token = null;
-  state.githubUser = null;
-  state.githubRepo = null;
+  sessionStorage.clear(); state.token = null;
   document.getElementById('app-screen').style.display = 'none';
   document.getElementById('login-screen').style.display = 'flex';
   document.getElementById('pwd-input').value = '';
-  const errorEl = document.getElementById('login-error');
-  if (errorEl) {
-    errorEl.textContent = 'Senha incorreta. Tente novamente.';
-    errorEl.style.display = 'none';
-  }
-}
-
-function showLoginScreenWithError(message = '') {
-  document.getElementById('app-screen').style.display = 'none';
-  document.getElementById('login-screen').style.display = 'flex';
-  const errorEl = document.getElementById('login-error');
-  if (errorEl) {
-    errorEl.textContent = message || 'Erro ao carregar o painel. Faça login novamente.';
-    errorEl.style.display = message ? 'block' : 'none';
-  }
 }
 
 // ── GitHub data ───────────────────────────────────────────────────────────────
-function ghHeaders(includeAuth = true) {
-  const headers = { 'Accept':'application/vnd.github.v3+json' };
-  if (includeAuth && state.token) headers['Authorization'] = 'token ' + state.token;
-  return headers;
-}
-
-async function fetchRepoContentDocument(path) {
-  const apiUrl = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/${path}`;
-  const publicResponse = await fetch(apiUrl, { headers: ghHeaders(false) });
-  if (publicResponse.status === 404) return { data: null, sha: '' };
-  if (publicResponse.ok) {
-    const payload = await publicResponse.json();
-    if (payload && payload.content && payload.encoding === 'base64') {
-      const bytes = Uint8Array.from(atob(payload.content.replace(/\n/g,'')), c => c.charCodeAt(0));
-      const content = JSON.parse(new TextDecoder('utf-8').decode(bytes));
-      return { data: content, sha: payload.sha || '' };
-    }
-    const fallbackUrl = payload && payload.download_url
-      ? payload.download_url
-      : `https://raw.githubusercontent.com/${state.githubUser}/${state.githubRepo}/main/${path}`;
-    const fallbackResponse = await fetch(fallbackUrl, { cache: 'no-store' });
-    if (fallbackResponse.status === 404) return { data: null, sha: payload.sha || '' };
-    if (!fallbackResponse.ok) throw new Error(await fallbackResponse.text());
-    const content = await fallbackResponse.json();
-    return { data: content, sha: payload.sha || '' };
-  }
-
-  const rawUrl = `https://raw.githubusercontent.com/${state.githubUser}/${state.githubRepo}/main/${path}`;
-  const rawResponse = await fetch(rawUrl, { cache: 'no-store' });
-  if (rawResponse.status === 404) return { data: null, sha: '' };
-  if (!rawResponse.ok) throw new Error(await rawResponse.text());
-  const content = await rawResponse.json();
-  return { data: content, sha: '' };
+function ghHeaders() {
+  return { 'Authorization':'token '+state.token, 'Accept':'application/vnd.github.v3+json' };
 }
 function cloneProducts(products) {
   return JSON.parse(JSON.stringify(products || []));
@@ -1032,8 +1031,14 @@ function mergeProductsForRetry(baseProducts, localProducts, remoteProducts) {
   return ordered;
 }
 async function fetchProductsDocument() {
-  const doc = await fetchRepoContentDocument('produtos.json');
-  return { products: (doc.data && doc.data.products) || [], sha: doc.sha || '' };
+  const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/produtos.json`;
+  const r = await fetch(url, { headers: ghHeaders() });
+  if (r.status === 404) return { products: [], sha: '' };
+  if (!r.ok) throw new Error(await r.text());
+  const data = await r.json();
+  const bytes = Uint8Array.from(atob(data.content.replace(/\n/g,'')), c => c.charCodeAt(0));
+  const content = JSON.parse(new TextDecoder('utf-8').decode(bytes));
+  return { products: content.products || [], sha: data.sha || '' };
 }
 
 function inferCandidateOrigin(candidate) {
@@ -1046,88 +1051,19 @@ function inferCandidateOrigin(candidate) {
   return 'desconhecido';
 }
 
-function normalizeCompareText(value) {
-  return String(value || '')
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-function containsAny(text, keywords) {
-  return keywords.some(keyword => text.includes(keyword));
-}
-
-function defaultMacrotemaForAccount(account) {
-  const key = String(account || '').trim().toLowerCase();
-  if (key === 'shein') return 'Moda e Beleza';
-  if (key === 'shopee') return 'Achadinhos virais';
-  if (key === 'mercadolivre') return 'Ofertas de alto valor percebido';
-  if (key === 'amazon') return 'Produtos evergreen orientados a review';
-  return '';
-}
-
-function inferCandidateMacrotema(candidate) {
-  const safeCandidate = candidate || {};
-  const explicit = String(safeCandidate.macrotema || '').trim();
-  if (explicit) return explicit;
-
-  const account = inferCandidateOrigin(safeCandidate);
-  const parts = [
-    account,
-    safeCandidate.name,
-    safeCandidate.title,
-    safeCandidate.family_name,
-    safeCandidate.short_description,
-    safeCandidate.category_id,
-    safeCandidate.domain_id,
-  ];
-  const mainFeatures = Array.isArray(safeCandidate.main_features) ? safeCandidate.main_features : [];
-  const attributes = safeCandidate.attributes && typeof safeCandidate.attributes === 'object'
-    ? Object.keys(safeCandidate.attributes).map(key => safeCandidate.attributes[key])
-    : [];
-  const text = normalizeCompareText(parts.concat(mainFeatures, attributes).join(' '));
-
-  const beautyKeywords = ['maquiagem', 'make', 'skincare', 'serum', 'perfume', 'batom', 'cabelo', 'hair', 'pele', 'cosmet', 'beauty', 'unha'];
-  const gadgetKeywords = ['fone', 'bluetooth', 'smartwatch', 'smart watch', 'relogio inteligente', 'celular', 'iphone', 'android', 'teclado', 'mouse', 'usb', 'carregador', 'camera', 'webcam', 'caixa de som', 'gadget', 'eletron', 'led'];
-  const toolsKeywords = ['furadeira', 'parafusadeira', 'serra', 'jogo de ferramenta', 'kit de ferramenta', 'ferramenta', 'martelo', 'chave de fenda', 'chave philips', 'alicate', 'compressor'];
-  const homeKeywords = ['organizador', 'cozinha', 'banheiro', 'lavanderia', 'aspirador', 'mop', 'liquidificador', 'cafeteira', 'air fryer', 'airfryer', 'panela', 'travesseiro', 'colcha', 'mesa', 'cadeira', 'casa', 'home'];
-  const lifestyleKeywords = ['fitness', 'treino', 'garrafa', 'marmita', 'viagem', 'escritorio', 'office', 'pet', 'lifestyle'];
-
-  if (account === 'shein') return 'Moda e Beleza';
-  if (account === 'shopee') {
-    if (containsAny(text, beautyKeywords)) return 'Beleza acessivel';
-    if (containsAny(text, gadgetKeywords)) return 'Gadgets leves e acessorios de impulso';
-    if (containsAny(text, homeKeywords)) return 'Casa e utilidades';
-    return 'Achadinhos virais';
-  }
-  if (account === 'mercadolivre') {
-    if (containsAny(text, toolsKeywords)) return 'Ferramentas e itens de resolucao de problema';
-    if (containsAny(text, gadgetKeywords) || text.includes('cellphones') || text.includes('electronics')) return 'Gadgets e eletronicos';
-    if (containsAny(text, homeKeywords)) return 'Casa e utilidades';
-    return 'Ofertas de alto valor percebido';
-  }
-  if (account === 'amazon') {
-    if (containsAny(text, gadgetKeywords)) return 'Gadgets confiaveis';
-    if (containsAny(text, lifestyleKeywords)) return 'Lifestyle utilitario';
-    if (containsAny(text, homeKeywords)) return 'Casa e organizacao';
-    return 'Produtos evergreen orientados a review';
-  }
-  return defaultMacrotemaForAccount(account);
-}
-
 function normalizeCandidate(candidate) {
   const normalized = { ...(candidate || {}) };
   normalized._id = normalized._id || normalized.candidate_id || crypto.randomUUID();
   normalized.origin = inferCandidateOrigin(normalized);
-  normalized.macrotema = inferCandidateMacrotema(normalized);
-  normalized.status = String(normalized.status || 'discovered').trim().toLowerCase();
+  const rawStatus = String(normalized.status || 'discovered').trim().toLowerCase();
+  normalized.status = ['active', 'complete', 'completed'].includes(rawStatus) ? 'discovered' : rawStatus;
   normalized.name = String(normalized.name || normalized.title || '').trim();
   normalized.image_urls = Array.isArray(normalized.image_urls) ? normalized.image_urls : [];
   normalized.videos = Array.isArray(normalized.videos) ? normalized.videos : [];
   normalized.coupon_texts = Array.isArray(normalized.coupon_texts) ? normalized.coupon_texts : [];
   normalized.main_features = Array.isArray(normalized.main_features) ? normalized.main_features : [];
+  normalized.discount_text = normalizeDiscountText(normalized.discount_text || '');
+  normalized.sold_quantity_text = normalizeSoldCountText(normalized.sold_quantity_text || '');
   normalized.discovered_at = normalized.discovered_at || normalized.created_at || new Date().toISOString();
   return normalized;
 }
@@ -1136,9 +1072,48 @@ function normalizeCandidates(candidates) {
   return Array.isArray(candidates) ? candidates.map(normalizeCandidate) : [];
 }
 
-async function fetchCandidatesDocument() {
-  const doc = await fetchRepoContentDocument(CANDIDATES_FILE_PATH);
-  return { candidates: normalizeCandidates((doc.data && doc.data.candidates) || []), sha: doc.sha || '' };
+function normalizeDiscountText(value) {
+  const text = String(value || '').trim();
+  if (!text) return '';
+  const match = text.match(/(\d+(?:[.,]\d+)?)\s*%/i);
+  if (!match) return text;
+  let number = match[1].replace(',', '.');
+  if (number.endsWith('.0')) number = number.slice(0, -2);
+  return `${number}%`;
+}
+
+function normalizeSoldCountText(value) {
+  const text = String(value || '').trim();
+  if (!text) return '';
+  const match = text.match(/([+]?\s*\d+(?:[.,]\d+)?\s*(?:mil|mi|milhao|milhoes|milhão|milhões)?)/i);
+  if (!match) return text;
+  return match[1]
+    .replace(/\s+/g, '')
+    .replace(/milhao|milhoes|milhão|milhões/ig, 'mil');
+}
+
+async function fetchCandidatesDocument(options = {}) {
+  const { preferApi = false } = options;
+  if (!preferApi) {
+    const publicResponse = await fetch(`${CANDIDATES_FILE_PATH}?t=${Date.now()}`, { cache: 'no-store' });
+    if (publicResponse.ok) {
+      const content = await publicResponse.json();
+      return { candidates: normalizeCandidates(content.candidates || []), sha: '' };
+    }
+  }
+  const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/${CANDIDATES_FILE_PATH}`;
+  const r = await fetch(url, { headers: ghHeaders() });
+  if (r.status === 404) return { candidates: [], sha: '' };
+  if (!r.ok) throw new Error(await r.text());
+  const data = await r.json();
+  if (preferApi && (!data.content || typeof data.content !== 'string')) {
+    return { candidates: [], sha: data.sha || '' };
+  }
+  const encodedContent = typeof data.content === 'string' ? data.content.replace(/\n/g,'') : '';
+  if (!encodedContent) throw new Error('candidates.json sem content utilizável na API do GitHub');
+  const bytes = Uint8Array.from(atob(encodedContent), c => c.charCodeAt(0));
+  const content = JSON.parse(new TextDecoder('utf-8').decode(bytes));
+  return { candidates: normalizeCandidates(content.candidates || []), sha: data.sha || '' };
 }
 
 async function loadProducts() {
@@ -1152,6 +1127,20 @@ async function loadCandidates() {
   state.candidates = doc.candidates;
   state.baseCandidates = cloneProducts(doc.candidates);
   state.candidatesSha = doc.sha;
+}
+async function loadCandidatesSafe(options = {}) {
+  const { silent = false } = options;
+  try {
+    await loadCandidates();
+    return true;
+  } catch (error) {
+    console.warn('Falha ao carregar candidates.json:', error);
+    state.candidates = [];
+    state.baseCandidates = [];
+    state.candidatesSha = '';
+    if (!silent) showToast('Não foi possível carregar os candidatos agora.', 'warn');
+    return false;
+  }
 }
 async function saveProducts() {
   const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/produtos.json`;
@@ -1199,9 +1188,13 @@ async function saveCandidates() {
     });
   };
 
-  let r = await putDocument(state.candidates, state.candidatesSha);
+  const latestBeforeSave = await fetchCandidatesDocument({ preferApi: true });
+  const currentSha = latestBeforeSave.sha || state.candidatesSha || '';
+  if (!currentSha) throw new Error('Não foi possível obter o SHA atual de candidates.json para salvar.');
+
+  let r = await putDocument(state.candidates, currentSha);
   if (r.status === 409) {
-    const latest = await fetchCandidatesDocument();
+    const latest = await fetchCandidatesDocument({ preferApi: true });
     state.candidates = normalizeCandidates(state.candidates);
     r = await putDocument(state.candidates, latest.sha);
   }
@@ -1248,6 +1241,27 @@ function showApp() {
   else showPage('list');
 }
 
+function syncResponsiveNavigation() {
+  const mobilePageSwitch = document.querySelector('.mobile-page-switch');
+  const mobilePageSelect = document.getElementById('mobile-page-select');
+  const mobileFilterBtn = document.querySelector('.mobile-filter-btn');
+  const newButton = document.querySelector('.btn-new');
+  const mobile = isMobileView();
+
+  if (mobilePageSwitch) {
+    mobilePageSwitch.style.display = mobile && state.currentPage !== 'form' ? 'block' : 'none';
+  }
+  if (mobilePageSelect) {
+    mobilePageSelect.value = state.currentPage === 'candidates' ? 'candidates' : 'list';
+  }
+  if (mobileFilterBtn) {
+    mobileFilterBtn.style.display = mobile && state.currentPage === 'list' ? 'inline-flex' : 'none';
+  }
+  if (newButton) {
+    newButton.style.display = mobile ? (state.currentPage === 'list' ? 'inline-flex' : 'none') : 'inline-flex';
+  }
+}
+
 function showPage(page) {
   state.currentPage = page;
   if (page === 'list') state.editingId = null;
@@ -1258,10 +1272,7 @@ function showPage(page) {
   document.getElementById('sidebar').style.display   = page === 'list' ? 'flex'  : 'none';
   document.getElementById('nav-list').classList.toggle('active', page === 'list');
   document.getElementById('nav-candidates').classList.toggle('active', page === 'candidates');
-  const navListMobile = document.getElementById('nav-list-mobile');
-  const navCandidatesMobile = document.getElementById('nav-candidates-mobile');
-  if (navListMobile) navListMobile.classList.toggle('active', page === 'list');
-  if (navCandidatesMobile) navCandidatesMobile.classList.toggle('active', page === 'candidates');
+  syncResponsiveNavigation();
   if (page !== 'list') closeSidebarFilters();
   if (page === 'list') { buildFilters(); renderList(); }
   if (page === 'candidates') { buildCandidateFilters(); renderCandidates(); }
@@ -1400,6 +1411,16 @@ function resolveCandidateStatus(candidate) {
   return explicitStatus || 'discovered';
 }
 
+function canImportCandidateStatus(status) {
+  return ['discovered', 'discarded', 'imported'].includes(status);
+}
+
+function candidateImportActionLabel(status) {
+  if (status === 'discarded') return 'Importar novamente';
+  if (status === 'imported') return 'Reimportar';
+  return 'Importar produto';
+}
+
 function candidatePrimaryImage(candidate) {
   const scraped = Array.isArray(candidate.scraped_image_urls) ? candidate.scraped_image_urls : [];
   const base = Array.isArray(candidate.image_urls) ? candidate.image_urls : [];
@@ -1422,7 +1443,7 @@ function formatDate(iso) {
   try {
     const d = new Date(iso);
     return `${d.getDate().toString().padStart(2,'0')}/${(d.getMonth()+1).toString().padStart(2,'0')} ${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}`;
-  } catch (err) { return iso; }
+  } catch { return iso; }
 }
 
 function sortBy(col) {
@@ -1436,6 +1457,7 @@ function renderList() {
   const q = rawQuery.toLowerCase();
   const numericQuery = q.replace(/^#\s*/, '');
   const isNumericSearch = /^[0-9]+$/.test(numericQuery);
+  const listDisplayName = product => String(product.display_name || product.name || '').trim();
   let products = state.products.filter(p => {
     if (state.filterAccount !== 'all' && p.account !== state.filterAccount) return false;
     if (state.filterStatus  !== 'all' && p.status  !== state.filterStatus)  return false;
@@ -1453,7 +1475,8 @@ function renderList() {
         if (productNum !== numericQuery && product !== numericQuery) return false;
       } else {
         const productName = String(p.name || '').toLowerCase();
-        if (!productName.includes(q)) return false;
+        const productDisplayName = listDisplayName(p).toLowerCase();
+        if (!productName.includes(q) && !productDisplayName.includes(q)) return false;
       }
     }
     return true;
@@ -1465,12 +1488,12 @@ function renderList() {
   products.sort((a, b) => {
     let av, bv;
     if (col === 'status') {
-      av = statusOrder[a.status] !== undefined ? statusOrder[a.status] : 5;
-      bv = statusOrder[b.status] !== undefined ? statusOrder[b.status] : 5;
+      av = statusOrder[a.status] ?? 5;
+      bv = statusOrder[b.status] ?? 5;
       return dir === 'asc' ? av - bv : bv - av;
     } else if (col === 'name') {
-      av = (a.name || '').toLowerCase();
-      bv = (b.name || '').toLowerCase();
+      av = listDisplayName(a).toLowerCase();
+      bv = listDisplayName(b).toLowerCase();
       return dir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
     } else if (col === 'account') {
       av = (a.account || '').toLowerCase();
@@ -1512,6 +1535,7 @@ function renderList() {
   tbody.innerHTML = products.map(p => {
     const obs = p.status === 'erro' ? (p.error || '') : (p.descricao_audio || p.affiliate_url || '');
     const errorStage = p.error_stage || '—';
+    const productLabel = listDisplayName(p) || '(sem nome)';
     const thumbCell = p.preview_image_url
       ? `<td class="td-thumb" style="padding:4px 4px;"><img src="${escHtml(p.preview_image_url)}" alt="" loading="lazy"></td>`
       : `<td class="td-thumb"></td>`;
@@ -1520,7 +1544,7 @@ function renderList() {
       <td><span class="badge badge-${p.status||'pendente'}">${p.status||'pendente'}</span></td>
       ${thumbCell}
       <td class="td-name">
-        <div class="name-text">${escHtml(p.name || '(sem nome)')}</div>
+        <div class="name-text">${escHtml(productLabel)}</div>
         ${p.affiliate_url ? `<div class="sub">${escHtml(p.affiliate_url)}</div>` : ''}
       </td>
       <td><span class="account-tag">${escHtml(accountLabel[p.account]||p.account||'—')}</span></td>
@@ -1538,8 +1562,7 @@ function renderList() {
 }
 
 function renderCandidates() {
-  const candidatesSearchInput = document.getElementById('candidates-search-input');
-  const rawQuery = String((candidatesSearchInput && candidatesSearchInput.value) || '').trim().toLowerCase();
+  const rawQuery = (document.getElementById('candidates-search-input')?.value || '').trim().toLowerCase();
   const grid = document.getElementById('candidate-grid');
   const empty = document.getElementById('candidates-empty-msg');
   const countLabel = document.getElementById('candidates-count-label');
@@ -1554,7 +1577,6 @@ function renderCandidates() {
       const haystack = [
         candidate.name,
         candidate.family_name,
-        candidate.macrotema,
         candidate.origin,
         candidate.source_url,
         candidate.affiliate_url,
@@ -1584,20 +1606,22 @@ function renderCandidates() {
     const reviews = candidate.reviews_count ? `💬 ${candidate.reviews_count}` : '';
     const sold = candidate.sold_quantity_text ? `🔥 ${candidate.sold_quantity_text}` : '';
     const originLabel = (candidate.origin || 'desconhecido').replace(/^./, c => c.toUpperCase());
-    const macrotema = candidate.macrotema || '';
     return `
       <article class="candidate-card">
-        <div class="candidate-hero">
-          ${image ? `<img src="${escHtml(image)}" alt="${escHtml(title)}" loading="lazy">` : `<div class="candidate-hero-empty">Sem imagem de preview</div>`}
-          <div class="candidate-badges">
-            <span class="candidate-badge">${escHtml(originLabel)}</span>
-            ${macrotema ? `<span class="candidate-badge">${escHtml(macrotema)}</span>` : ''}
-            <span class="candidate-badge">${escHtml(CANDIDATE_STATUS_LABELS[resolvedStatus] || resolvedStatus)}</span>
-            ${hasVideo ? '<span class="candidate-badge">Vídeo</span>' : ''}
-            ${imageCount ? `<span class="candidate-badge">${imageCount} imagens</span>` : ''}
+        <div class="candidate-top">
+          <div class="candidate-hero">
+            ${image ? `<img src="${escHtml(image)}" alt="${escHtml(title)}" loading="lazy">` : `<div class="candidate-hero-empty">Sem imagem de preview</div>`}
+          </div>
+          <div class="candidate-body">
+            <div class="candidate-badges">
+              <span class="candidate-badge">${escHtml(originLabel)}</span>
+              <span class="candidate-badge">${escHtml(CANDIDATE_STATUS_LABELS[resolvedStatus] || resolvedStatus)}</span>
+              ${hasVideo ? '<span class="candidate-badge">Vídeo</span>' : ''}
+              ${imageCount ? `<span class="candidate-badge">${imageCount} imagens</span>` : ''}
+            </div>
           </div>
         </div>
-        <div class="candidate-body">
+        <div class="candidate-summary">
           <div class="candidate-title">${escHtml(title)}</div>
           <div class="candidate-meta">
             ${rating ? `<span class="meta-pill">${escHtml(rating)}</span>` : ''}
@@ -1606,13 +1630,15 @@ function renderCandidates() {
             ${candidate.discount_text ? `<span class="meta-pill">${escHtml(candidate.discount_text)}</span>` : ''}
           </div>
           <div class="candidate-text">${escHtml(description || 'Sem descrição resumida')}</div>
+        </div>
+        <div class="candidate-lower">
           <div class="candidate-links">
             ${candidate.source_url ? `<a class="candidate-link" href="${escHtml(candidate.source_url)}" target="_blank" rel="noopener noreferrer">Origem: ${escHtml(candidate.source_url)}</a>` : ''}
             ${candidate.affiliate_url ? `<a class="candidate-link" href="${escHtml(candidate.affiliate_url)}" target="_blank" rel="noopener noreferrer">Afiliado: ${escHtml(candidate.affiliate_url)}</a>` : ''}
           </div>
           <div class="candidate-actions">
-            <button class="btn-candidate btn-candidate-primary" onclick="importCandidate('${candidate._id}')" ${resolvedStatus !== 'discovered' ? 'disabled' : ''}>Importar produto</button>
-            <button class="btn-candidate btn-candidate-ghost" onclick="discardCandidate('${candidate._id}')" ${resolvedStatus !== 'discovered' ? 'disabled' : ''}>Descartar</button>
+            <button class="btn-candidate btn-candidate-primary" onclick="importCandidate('${candidate._id}')" ${!canImportCandidateStatus(resolvedStatus) ? 'disabled' : ''}>${candidateImportActionLabel(resolvedStatus)}</button>
+            <button class="btn-candidate btn-candidate-ghost" onclick="discardCandidate('${candidate._id}')" ${resolvedStatus === 'duplicate' ? 'disabled' : ''}>Descartar</button>
           </div>
           <div class="candidate-state-note">
             Descoberto em ${escHtml(formatDate(candidate.discovered_at))}${candidate.imported_at ? ` • Importado em ${escHtml(formatDate(candidate.imported_at))}` : ''}${candidate.discarded_at ? ` • Descartado em ${escHtml(formatDate(candidate.discarded_at))}` : ''}
@@ -1646,7 +1672,7 @@ async function importCandidate(candidateId) {
   if (idx < 0) return;
   const candidate = state.candidates[idx];
   const resolvedStatus = resolveCandidateStatus(candidate);
-  if (resolvedStatus !== 'discovered') {
+  if (!canImportCandidateStatus(resolvedStatus)) {
     showToast('Esse candidato já foi tratado anteriormente.', 'warn');
     return;
   }
@@ -1665,16 +1691,16 @@ async function importCandidate(candidateId) {
     catalog_product_id: candidate.catalog_product_id || '',
     discovery_origin: account,
     name: candidate.name || '',
+    display_name: generateDisplayName(candidate.name || ''),
     account,
     usuario: users[0] || '',
     status: 'pendente',
-    macrotema: candidate.macrotema || inferCandidateMacrotema(candidate),
     descricao_audio: candidate.short_description || '',
-    flash_offer: candidate.discount_text || '',
+    flash_offer: normalizeDiscountText(candidate.discount_text || ''),
     coupon_text: (candidate.coupon_texts || []).join(' | '),
     rating: candidate.rating != null ? String(candidate.rating) : '',
     reviews: candidate.reviews_count != null ? String(candidate.reviews_count) : '',
-    sold_count: candidate.sold_quantity_text || '',
+    sold_count: normalizeSoldCountText(candidate.sold_quantity_text || ''),
     image_urls: imageUrls.join('; '),
     video_urls: videoUrls.join('; '),
     thumbnail,
@@ -1696,6 +1722,7 @@ async function importCandidate(candidateId) {
     ...candidate,
     status: 'imported',
     imported_at: new Date().toISOString(),
+    discarded_at: '',
     imported_product_id: product._id,
   };
 
@@ -1720,19 +1747,94 @@ function escHtml(str) {
 // ── Form ──────────────────────────────────────────────────────────────────────
 // product_num is excluded — it's read-only and managed by renumberProducts()
 const FORM_FIELDS = ['name','account','usuario','status','descricao_audio',
-  'macrotema','flash_offer','coupon_text','rating','reviews','sold_count',
-  'image_urls','video_urls','thumbnail','preview_image_url','preview_thumbnail_url','affiliate_url','source_url'];
+  'flash_offer','coupon_text','rating','reviews','sold_count',
+  'image_urls','video_urls','thumbnail','preview_image_url','preview_thumbnail_url','affiliate_url','source_url','display_name'];
+
+const DISPLAY_NAME_BRANDS = new Set([
+  'samsung','motorola','xiaomi','poco','redmi','oppo','realme','apple','iphone','jbl','lenovo','asus','acer','dell','hp',
+  'philips','mondial','oster','electrolux','philco','britania','stanley','lg','sony','epson','canon','nike','adidas',
+  'mizuno','vans','converse','avell','positivo','multilaser','tramontina','wap'
+]);
+const DISPLAY_NAME_LEADING_GENERIC = new Set(['celular','smartphone','fone','fones','headset','tablet','notebook','laptop','camera','câmera','smartwatch','relogio','relógio','kit']);
+const DISPLAY_NAME_STOPWORDS = new Set(['de','do','da','dos','das','com','para','por','e','em','a','o','na','no']);
+const DISPLAY_NAME_COLORS = new Set(['preto','branco','cinza','grafite','azul','verde','rosa','vermelho','violeta','lilas','lilás','roxo','prata','dourado','bege','marrom','offwhite','off-white']);
+const DISPLAY_NAME_NOISE = new Set(['ram','gb','tb','mp','mah','hz','nfc','wifi','bluetooth','android','ios','amoled','oled','lcd','fullhd','fhd','ip54','ip55','ip64','ip67','ip68','polegadas','polegada','tela','camera','câmera','bateria','virtual']);
+
+function normalizeAscii(value) {
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+}
+
+function displayNameTokenPairs(name) {
+  const cleaned = String(name || '')
+    .replace(/[\(\[\{].*?[\)\]\}]/g, ' ')
+    .replace(/[\/|,;]+/g, ' ');
+  const tokens = cleaned.match(/[A-Za-zÀ-ÿ0-9]+/g) || [];
+  return tokens.map(token => ({ raw: token, norm: normalizeAscii(token) })).filter(token => token.raw.trim());
+}
+
+function isDisplayNoise(tokenNorm) {
+  return /^\d+$/.test(tokenNorm)
+    || DISPLAY_NAME_NOISE.has(tokenNorm)
+    || DISPLAY_NAME_COLORS.has(tokenNorm)
+    || /^(?:\d+(?:gb|tb|mp|mah|hz|w|v|ml|l|cm|mm|m)|[45]g|ip\d{2}|wifi|nfc)$/i.test(tokenNorm);
+}
+
+function generateDisplayName(name) {
+  const pairs = displayNameTokenPairs(name);
+  if (!pairs.length) return String(name || '').trim();
+
+  const brandIdx = pairs.findIndex(token => DISPLAY_NAME_BRANDS.has(token.norm));
+  const result = [];
+
+  if (brandIdx >= 0) {
+    const prefix = [];
+    for (const token of pairs.slice(0, brandIdx)) {
+      if (!DISPLAY_NAME_STOPWORDS.has(token.norm) && !DISPLAY_NAME_LEADING_GENERIC.has(token.norm) && !isDisplayNoise(token.norm)) {
+        prefix.push(token.raw);
+      }
+      if (prefix.length >= 2) break;
+    }
+    result.push(...prefix);
+
+    for (let idx = brandIdx; idx < pairs.length; idx += 1) {
+      const token = pairs[idx];
+      if (idx > brandIdx && (DISPLAY_NAME_STOPWORDS.has(token.norm) || isDisplayNoise(token.norm))) {
+        if (result.length >= 2) break;
+        continue;
+      }
+      result.push(token.raw);
+      if (result.length >= 4) break;
+    }
+  } else {
+    let started = false;
+    for (const token of pairs) {
+      if (!started && DISPLAY_NAME_LEADING_GENERIC.has(token.norm)) continue;
+      started = true;
+      if (DISPLAY_NAME_STOPWORDS.has(token.norm)) continue;
+      if (isDisplayNoise(token.norm) && result.length >= 2) break;
+      if (isDisplayNoise(token.norm)) continue;
+      result.push(token.raw);
+      if (result.length >= 3) break;
+    }
+  }
+
+  const displayName = (result.length ? result : pairs.slice(0, 4).map(token => token.raw)).join(' ').replace(/\s+/g, ' ').trim();
+  return displayName || String(name || '').trim();
+}
 
 function isProbablyRenderableMedia(value) {
   const s = String(value || '').trim();
   if (!s) return false;
-  return /^(https?:)?\/\//i.test(s) || /^[A-Za-z]:[\\/]/.test(s) || s.startsWith('./') || s.startsWith('../');
+  return /^https?:\/\//i.test(s);
 }
 
 function isBrowserPreviewable(value) {
   const s = String(value || '').trim();
   if (!s) return false;
-  return /^(https?:)?\/\//i.test(s) || s.startsWith('./') || s.startsWith('../') || s.startsWith('/');
+  return /^https?:\/\//i.test(s);
 }
 
 function splitMediaCandidates(raw) {
@@ -1765,10 +1867,8 @@ function renderImagePreview(targetId, src, emptyText) {
 }
 
 function refreshPreviews(product = null) {
-  const previewThumbnailInput = document.getElementById('f-preview_thumbnail_url');
-  const previewImageInput = document.getElementById('f-preview_image_url');
-  const previewThumbnailValue = product ? (product.preview_thumbnail_url || '') : ((previewThumbnailInput && previewThumbnailInput.value) || '');
-  const previewImageValue = product ? (product.preview_image_url || '') : ((previewImageInput && previewImageInput.value) || '');
+  const previewThumbnailValue = product ? (product.preview_thumbnail_url || '') : (document.getElementById('f-preview_thumbnail_url')?.value || '');
+  const previewImageValue = product ? (product.preview_image_url || '') : (document.getElementById('f-preview_image_url')?.value || '');
 
   const thumbnailSrc = firstRenderableMedia(previewThumbnailValue);
   const imageSrc = firstRenderableMedia(previewImageValue);
@@ -1805,7 +1905,11 @@ function mediaPathWithoutQuery(value) {
 
 function isAllowedVideoEntry(value) {
   const normalized = mediaPathWithoutQuery(value);
-  return VIDEO_URL_EXTENSIONS.some(ext => normalized.endsWith(ext));
+  return /^https?:\/\//i.test(String(value || '').trim()) && VIDEO_URL_EXTENSIONS.some(ext => normalized.endsWith(ext));
+}
+
+function isHttpUrl(value) {
+  return /^https?:\/\//i.test(String(value || '').trim());
 }
 
 function validateFormData(data) {
@@ -1814,13 +1918,23 @@ function validateFormData(data) {
   if (!data.account) errors.push('Selecione a conta.');
   if (!data.affiliate_url) errors.push('Preencha o link de afiliado.');
   if (!data.source_url) errors.push('Preencha o link original do produto.');
+  if (data.affiliate_url && !isHttpUrl(data.affiliate_url)) errors.push('O link de afiliado deve ser uma URL pública (http/https).');
+  if (data.source_url && !isHttpUrl(data.source_url)) errors.push('O link original do produto deve ser uma URL pública (http/https).');
   if (!data.image_urls && !data.video_urls) errors.push('Informe ao menos uma mídia em Imagens ou Vídeos.');
   if (data.video_urls && !data.thumbnail) errors.push('Quando houver vídeo, preencha também a thumbnail para garantir a capa.');
+  const invalidImageEntries = splitMediaEntries(data.image_urls).filter(item => !isHttpUrl(item));
+  if (invalidImageEntries.length) {
+    const listed = invalidImageEntries.map(item => `"${item}"`).join(', ');
+    errors.push(`O campo Imagens aceita apenas URLs públicas (http/https). Itens inválidos: ${listed}`);
+  }
   const invalidVideoEntries = splitMediaEntries(data.video_urls).filter(item => !isAllowedVideoEntry(item));
   if (invalidVideoEntries.length) {
     const listed = invalidVideoEntries.map(item => `"${item}"`).join(', ');
-    errors.push(`O campo Vídeos aceita apenas URLs ou caminhos com extensão de vídeo válida (.mp4, .mov, .m4v, .webm, .m3u8). Itens inválidos: ${listed}`);
+    errors.push(`O campo Vídeos aceita apenas URLs públicas com extensão válida (.mp4, .mov, .m4v, .webm, .m3u8). Itens inválidos: ${listed}`);
   }
+  if (data.thumbnail && !isHttpUrl(data.thumbnail)) errors.push('A thumbnail deve ser uma URL pública (http/https).');
+  if (data.preview_thumbnail_url && !isHttpUrl(data.preview_thumbnail_url)) errors.push('A preview thumbnail deve ser uma URL pública (http/https).');
+  if (data.preview_image_url && !isHttpUrl(data.preview_image_url)) errors.push('A preview imagem deve ser uma URL pública (http/https).');
   return errors;
 }
 
@@ -1831,10 +1945,6 @@ function onAccountChange() {
   sel.innerHTML = users.length
     ? users.map(u => `<option value="${u}">${u}</option>`).join('')
     : '<option value="">—</option>';
-  const macrotemaInput = document.getElementById('f-macrotema');
-  if (macrotemaInput && !macrotemaInput.value.trim()) {
-    macrotemaInput.value = defaultMacrotemaForAccount(acc);
-  }
 }
 
 function bindPreviewInputs() {
@@ -1844,6 +1954,27 @@ function bindPreviewInputs() {
     el.addEventListener('input', () => refreshPreviews());
     el.dataset.previewBound = '1';
   });
+}
+
+function bindDisplayNameInputs() {
+  const nameInput = document.getElementById('f-name');
+  const displayInput = document.getElementById('f-display_name');
+  if (!nameInput || !displayInput || nameInput.dataset.displayNameBound === '1') return;
+
+  nameInput.addEventListener('input', () => {
+    const autoDisplay = generateDisplayName(nameInput.value);
+    if (!displayInput.value.trim() || displayInput.dataset.autoDisplay === '1') {
+      displayInput.value = autoDisplay;
+      displayInput.dataset.autoDisplay = '1';
+    }
+  });
+
+  displayInput.addEventListener('input', () => {
+    const autoDisplay = generateDisplayName(nameInput.value);
+    displayInput.dataset.autoDisplay = (!displayInput.value.trim() || displayInput.value.trim() === autoDisplay) ? '1' : '0';
+  });
+
+  nameInput.dataset.displayNameBound = '1';
 }
 
 function openForm(id) {
@@ -1869,6 +2000,16 @@ function openForm(id) {
       const el = document.getElementById('f-' + f);
       if (el && p[f] !== undefined) el.value = p[f];
     });
+    const displayInput = document.getElementById('f-display_name');
+    if (displayInput) {
+      const autoDisplay = generateDisplayName(p.name || '');
+      if (!displayInput.value.trim()) {
+        displayInput.value = autoDisplay;
+        displayInput.dataset.autoDisplay = '1';
+      } else {
+        displayInput.dataset.autoDisplay = displayInput.value.trim() === autoDisplay ? '1' : '0';
+      }
+    }
     onAccountChange();
     document.getElementById('f-usuario').value = p.usuario || '';
     document.getElementById('f-product_num').value = p.product_num
@@ -1904,10 +2045,13 @@ function openForm(id) {
     document.getElementById('result-section').style.display = 'none';
     document.getElementById('f-product_num').value = 'Será gerado ao salvar';
     onAccountChange();
+    const displayInput = document.getElementById('f-display_name');
+    if (displayInput) displayInput.dataset.autoDisplay = '1';
     refreshPreviews();
   }
 
   bindPreviewInputs();
+  bindDisplayNameInputs();
   showPage('form');
 }
 
@@ -2011,6 +2155,16 @@ async function submitForm(e) {
     const el = document.getElementById('f-' + f);
     if (el) data[f] = el.value.trim();
   });
+  data.display_name = data.display_name || generateDisplayName(data.name);
+  if (data.account === 'mercadolivre') {
+    data.flash_offer = normalizeDiscountText(data.flash_offer);
+    data.sold_count = normalizeSoldCountText(data.sold_count);
+  }
+  const displayInput = document.getElementById('f-display_name');
+  if (displayInput && !displayInput.value.trim()) {
+    displayInput.value = data.display_name;
+    displayInput.dataset.autoDisplay = '1';
+  }
 
   const validationErrors = validateFormData(data);
   if (validationErrors.length) {
@@ -2097,7 +2251,7 @@ async function refreshProducts() {
   if (btn) { btn.textContent = '↻ ...'; btn.disabled = true; }
   try {
     await loadProducts();
-    await loadCandidates();
+    await loadCandidatesSafe({ silent: true });
     updateHeaderBadge();
     buildFilters();
     buildCandidateFilters();
@@ -2117,10 +2271,10 @@ async function refreshCandidates() {
   const btn = document.querySelector('[onclick="refreshCandidates()"]');
   if (btn) { btn.textContent = '↻ ...'; btn.disabled = true; }
   try {
-    await loadCandidates();
+    const loaded = await loadCandidatesSafe();
     buildCandidateFilters();
     renderCandidates();
-    showToast('Candidatos atualizados', 'success');
+    if (loaded) showToast('Candidatos atualizados', 'success');
   } catch (error) {
     showToast('Erro ao atualizar candidatos: ' + error.message, 'error');
   } finally {
@@ -2130,6 +2284,7 @@ async function refreshCandidates() {
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 window.addEventListener('resize', () => {
+  syncResponsiveNavigation();
   if (!isMobileView()) closeSidebarFilters();
 });
 
@@ -2138,14 +2293,30 @@ window.addEventListener('keydown', (event) => {
 });
 
 (async function init() {
-  state.token = null;
-  state.githubUser = null;
-  state.githubRepo = null;
-  showLoginScreenWithError('');
+  const token = sessionStorage.getItem('token');
+  if (token) {
+    try {
+      state.token = token;
+      state.githubUser = sessionStorage.getItem('guser');
+      state.githubRepo = sessionStorage.getItem('grepo');
+      await loadProducts();
+      await loadCandidatesSafe({ silent: true });
+      showApp();
+    } catch (error) {
+      console.error('Falha ao inicializar painel:', error);
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('guser');
+      sessionStorage.removeItem('grepo');
+      document.documentElement.classList.remove('is-authed');
+      document.getElementById('login-screen').style.display = 'flex';
+      document.getElementById('app-screen').style.display = 'none';
+    }
+  }
 })();
 </script>
 </body>
 </html>
+
 
 
 

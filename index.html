@@ -883,9 +883,21 @@ async function doLogin() {
 }
 function logout() {
   sessionStorage.clear(); state.token = null;
+  document.documentElement.classList.remove('is-authed');
   document.getElementById('app-screen').style.display = 'none';
   document.getElementById('login-screen').style.display = 'flex';
   document.getElementById('pwd-input').value = '';
+}
+
+function showLoginScreenWithError(message = '') {
+  document.documentElement.classList.remove('is-authed');
+  document.getElementById('app-screen').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  const errorEl = document.getElementById('login-error');
+  if (errorEl) {
+    errorEl.textContent = message || 'Erro ao carregar o painel. Faça login novamente.';
+    errorEl.style.display = message ? 'block' : 'none';
+  }
 }
 
 // ── GitHub data ───────────────────────────────────────────────────────────────
@@ -2062,13 +2074,27 @@ window.addEventListener('keydown', (event) => {
 (async function init() {
   const token = sessionStorage.getItem('token');
   if (token) {
-    state.token = token;
-    state.githubUser = sessionStorage.getItem('guser');
-    state.githubRepo = sessionStorage.getItem('grepo');
-    await loadProducts();
-    await loadCandidates();
-    showApp();
+    try {
+      state.token = token;
+      state.githubUser = sessionStorage.getItem('guser');
+      state.githubRepo = sessionStorage.getItem('grepo');
+      await loadProducts();
+      await loadCandidates();
+      showApp();
+      return;
+    } catch (error) {
+      console.error('Falha ao restaurar sessao do painel:', error);
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('guser');
+      sessionStorage.removeItem('grepo');
+      sessionStorage.removeItem('painel_current_page');
+      sessionStorage.removeItem('painel_editing_id');
+      state.token = null;
+      showLoginScreenWithError('Sua sessao anterior falhou ao carregar. Entre novamente.');
+      return;
+    }
   }
+  showLoginScreenWithError('');
 })();
 </script>
 </body>

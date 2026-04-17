@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Painel de Afiliados</title>
-<link rel="icon" type="image/png" href="Logo.png">
-<link rel="shortcut icon" type="image/png" href="Logo.png">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="shortcut icon" type="image/png" href="logo.png">
 <script>if (sessionStorage.getItem('token')) document.documentElement.classList.add('is-authed');</script>
 <style>
 html.is-authed #login-screen { display: none !important; }
@@ -403,7 +403,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
 <div id="login-screen">
   <div class="login-card">
     <div class="login-logo">
-      <img src="Logo.png" alt="EM Affiliates" onerror="this.style.display='none'">
+      <img src="logo.png" alt="EM Affiliates" onerror="this.style.display='none'">
       <h1>Painel EM Affiliates</h1>
     </div>
     <div class="login-field">
@@ -422,7 +422,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
   <!-- Header -->
   <header class="app-header">
     <button class="nav-btn mobile-filter-btn" type="button" onclick="toggleSidebarFilters()">☰ Filtros</button>
-    <div class="brand"><img src="Logo.png" alt="EM Affiliates" onerror="this.style.display='none'"><span>EM Affiliates</span></div>
+    <div class="brand"><img src="logo.png" alt="EM Affiliates" onerror="this.style.display='none'"><span>EM Affiliates</span></div>
     <nav>
       <button class="nav-btn active" id="nav-list" onclick="showPage('list')">
         ☰ Produtos
@@ -919,8 +919,18 @@ async function fetchRepoContentDocument(path) {
   if (publicResponse.status === 404) return { data: null, sha: '' };
   if (publicResponse.ok) {
     const payload = await publicResponse.json();
-    const bytes = Uint8Array.from(atob(payload.content.replace(/\n/g,'')), c => c.charCodeAt(0));
-    const content = JSON.parse(new TextDecoder('utf-8').decode(bytes));
+    if (payload && payload.content && payload.encoding === 'base64') {
+      const bytes = Uint8Array.from(atob(payload.content.replace(/\n/g,'')), c => c.charCodeAt(0));
+      const content = JSON.parse(new TextDecoder('utf-8').decode(bytes));
+      return { data: content, sha: payload.sha || '' };
+    }
+    const fallbackUrl = payload && payload.download_url
+      ? payload.download_url
+      : `https://raw.githubusercontent.com/${state.githubUser}/${state.githubRepo}/main/${path}`;
+    const fallbackResponse = await fetch(fallbackUrl, { cache: 'no-store' });
+    if (fallbackResponse.status === 404) return { data: null, sha: payload.sha || '' };
+    if (!fallbackResponse.ok) throw new Error(await fallbackResponse.text());
+    const content = await fallbackResponse.json();
     return { data: content, sha: payload.sha || '' };
   }
 

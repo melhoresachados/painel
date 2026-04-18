@@ -1,7 +1,7 @@
 {
   "mercadolivre": {
     "enabled": true,
-    "per_category_limit": 1,
+    "per_category_limit": 2,
     "categories": [
       {
         "id": "MLB3813",
@@ -144,7 +144,7 @@
         "name": "Drones e Acessorios",
         "parent_id": "MLB1000",
         "parent_name": "Eletronicos, Audio e Video",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ofertas de alto valor percebido"
       },
       {
@@ -184,7 +184,7 @@
         "name": "Projetores e Telas",
         "parent_id": "MLB1000",
         "parent_name": "Eletronicos, Audio e Video",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ofertas de alto valor percebido"
       },
       {
@@ -192,7 +192,7 @@
         "name": "Televisores",
         "parent_id": "MLB1000",
         "parent_name": "Eletronicos, Audio e Video",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ofertas de alto valor percebido"
       },
       {
@@ -200,7 +200,7 @@
         "name": "Audio",
         "parent_id": "MLB1000",
         "parent_name": "Eletronicos, Audio e Video",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -216,7 +216,7 @@
         "name": "Acessorios para PC Gaming",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -240,7 +240,7 @@
         "name": "Componentes para PC",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -248,7 +248,7 @@
         "name": "Conectividade e Redes",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ferramentas e itens de resolucao de problema"
       },
       {
@@ -264,7 +264,7 @@
         "name": "Estabilizadores e No Breaks",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ferramentas e itens de resolucao de problema"
       },
       {
@@ -304,7 +304,7 @@
         "name": "Monitores e Acessorios",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ofertas de alto valor percebido"
       },
       {
@@ -336,7 +336,7 @@
         "name": "Perifericos para PC",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -344,7 +344,7 @@
         "name": "Portateis e Acessorios",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ofertas de alto valor percebido"
       },
       {
@@ -368,7 +368,7 @@
         "name": "Tablets e Acessorios",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -392,7 +392,7 @@
         "name": "Cozinha",
         "parent_id": "MLB1574",
         "parent_name": "Casa, Moveis e Decoracao",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Casa e utilidades"
       },
       {
@@ -400,7 +400,7 @@
         "name": "Cuidado da Casa e Lavanderia",
         "parent_id": "MLB1574",
         "parent_name": "Casa, Moveis e Decoracao",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Casa e utilidades"
       },
       {
@@ -448,7 +448,7 @@
         "name": "Organizacao para Casa",
         "parent_id": "MLB1574",
         "parent_name": "Casa, Moveis e Decoracao",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Casa e utilidades"
       },
       {
@@ -464,7 +464,7 @@
         "name": "Seguranca para Casa",
         "parent_id": "MLB1574",
         "parent_name": "Casa, Moveis e Decoracao",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ferramentas e itens de resolucao de problema"
       },
       {
@@ -480,7 +480,7 @@
         "name": "Ar e Ventilacao",
         "parent_id": "MLB5726",
         "parent_name": "Eletrodomesticos",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Casa e utilidades"
       },
       {
@@ -528,7 +528,7 @@
         "name": "Pequenos Eletrodomesticos",
         "parent_id": "MLB5726",
         "parent_name": "Eletrodomesticos",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Casa e utilidades"
       },
       {
@@ -584,7 +584,7 @@
         "name": "Ferramentas Industriais",
         "parent_id": "MLB1499",
         "parent_name": "Industria e Comercio",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ferramentas e itens de resolucao de problema"
       },
       {
@@ -647,7 +647,7 @@
   },
   "shopee": {
     "enabled": true,
-    "per_category_limit": 1,
+    "per_category_limit": 2,
     "categories": [
       {
         "id": "11059998",
@@ -662,7 +662,7 @@
         "name": "Casa e Construção",
         "parent_id": "",
         "parent_name": "",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Casa e utilidades"
       },
       {
@@ -734,7 +734,7 @@
         "name": "Celulares e Dispositivos",
         "parent_id": "",
         "parent_name": "",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -742,7 +742,7 @@
         "name": "Esportes e Lazer",
         "parent_id": "",
         "parent_name": "",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ferramentas e itens de resolucao de problema"
       },
       {
@@ -782,7 +782,7 @@
         "name": "Saúde",
         "parent_id": "",
         "parent_name": "",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ferramentas e itens de resolucao de problema"
       },
       {
@@ -798,7 +798,7 @@
         "name": "Áudio",
         "parent_id": "",
         "parent_name": "",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -846,7 +846,7 @@
         "name": "Computadores e Acessórios",
         "parent_id": "",
         "parent_name": "",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -870,7 +870,7 @@
         "name": "Câmeras e Drones",
         "parent_id": "",
         "parent_name": "",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -894,7 +894,128 @@
   "shein": {
     "enabled": true,
     "per_category_limit": 2,
-    "categories": []
+    "categories": [
+      {
+        "id": "017172961",
+        "name": "Roupas femininas",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Moda e Beleza",
+        "slug": "RecommendSelection/Women-Clothing",
+        "url": "https://br.shein.com/RecommendSelection/Women-Clothing-sc-017172961.html?page=1"
+      },
+      {
+        "id": "017706887",
+        "name": "Moda praia",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Moda e Beleza",
+        "slug": "RecommendSelection/Beachwear",
+        "url": "https://br.shein.com/RecommendSelection/Beachwear-sc-017706887.html?page=1"
+      },
+      {
+        "id": "017172966",
+        "name": "Sapatos",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Moda e Beleza",
+        "slug": "RecommendSelection/Shoes",
+        "url": "https://br.shein.com/RecommendSelection/Shoes-sc-017172966.html?page=1"
+      },
+      {
+        "id": "017172964",
+        "name": "Tamanhos Grandes",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Moda e Beleza",
+        "slug": "RecommendSelection/Curve",
+        "url": "https://br.shein.com/RecommendSelection/Curve-sc-017172964.html?page=1"
+      },
+      {
+        "id": "017291431",
+        "name": "Joias e acessorios",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Moda e Beleza",
+        "slug": "RecommendSelection/Jewelry-Accessories",
+        "url": "https://br.shein.com/RecommendSelection/Jewelry-Accessories-sc-017291431.html?page=1"
+      },
+      {
+        "id": "017172965",
+        "name": "Pijamas e roupas intimas",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Moda e Beleza",
+        "slug": "RecommendSelection/Underwear-Sleepwear",
+        "url": "https://br.shein.com/RecommendSelection/Underwear-Sleepwear-sc-017172965.html?page=1"
+      },
+      {
+        "id": "017172970",
+        "name": "Beleza e saude",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Moda e Beleza",
+        "slug": "RecommendSelection/Beauty-Health",
+        "url": "https://br.shein.com/RecommendSelection/Beauty-Health-sc-017172970.html?page=1"
+      },
+      {
+        "id": "017174546",
+        "name": "Bolsas e malas",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Moda e Beleza",
+        "slug": "RecommendSelection/Bags-Luggage",
+        "url": "https://br.shein.com/RecommendSelection/Bags-Luggage-sc-017174546.html?page=1"
+      },
+      {
+        "id": "100194962",
+        "name": "Local",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Moda e Beleza",
+        "slug": "recommend/BR-Marketplace",
+        "url": "https://br.shein.com/recommend/BR-Marketplace-sc-100194962.html?page=1"
+      },
+      {
+        "id": "10050060174",
+        "name": "Envio Nacional",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Moda e Beleza",
+        "slug": "recommend/Envio-Nacional",
+        "url": "https://br.shein.com/recommend/Envio-Nacional-sc-10050060174.html?page=1"
+      },
+      {
+        "id": "0021884529",
+        "name": "Novo em",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Moda e Beleza",
+        "slug": "new/New-In-All",
+        "url": "https://br.shein.com/new/New-In-All-sc-0021884529.html?page=1"
+      },
+      {
+        "id": "0051884505",
+        "name": "Promocao",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Moda e Beleza",
+        "slug": "sale/All-Sale",
+        "url": "https://br.shein.com/sale/All-Sale-sc-0051884505.html?page=1"
+      }
+    ]
   },
   "amazon": {
     "enabled": true,

@@ -273,6 +273,33 @@
       "product": 3,
       "force_publish_only": "",
       "force_facebook_only": ""
+    },
+    {
+      "_id": "4dfd1be3-e8b7-4fd4-8c70-16dce2febc5a",
+      "created_at": "2026-04-18T15:23:05.560Z",
+      "candidate_id": "22699173941",
+      "catalog_product_id": "",
+      "discovery_origin": "shopee",
+      "name": "Penico Transição Menino Menina Assento Pinico Desfralde Troninho Até 30kg",
+      "display_name": "Penico Transição Menino",
+      "account": "shopee",
+      "usuario": "@happydayofertas",
+      "status": "pendente",
+      "descricao_audio": "PENICO INFANTIL Transforma a transição da fralda para o vaso sanitário em uma experiência positiva e recompensadora. Divertido e fundamental para o aprendizado da criança. Prático e portátil, atende com segurança e conforto crianças de até 30Kg. Indicado para crianças a partir de 18 meses. ESPECIFICAÇÕES TÉCNICAS • Idade recomendada: A partir de 18 meses • Material: Polipropileno • Altura: 19,5cm",
+      "flash_offer": "",
+      "coupon_text": "",
+      "rating": "4.9",
+      "reviews": "841",
+      "sold_count": "270",
+      "image_urls": "https://down-br.img.susercontent.com/file/br-11134207-81z1k-mgr5vltjiux19a; https://down-br.img.susercontent.com/file/br-11134207-81z1k-mgr5vltjrabp83; https://down-br.img.susercontent.com/file/br-11134207-81z1k-mgr5vltjhgcl76",
+      "video_urls": "https://down-bs-br.vod.susercontent.com/api/v4/11110105/mms/br-11110105-6v65e-ml5mrkc55vk624.16000081772063280.mp4; https://mms.vod.susercontent.com/api/v4/11110105/mms/br-11110105-6v65e-ml5mrkc55vk624.default.mp4",
+      "thumbnail": "https://down-br.img.susercontent.com/file/br-11134207-81z1k-mgr5vltjiux19a",
+      "preview_image_url": "https://down-br.img.susercontent.com/file/br-11134207-81z1k-mgr5vltjiux19a",
+      "preview_thumbnail_url": "",
+      "affiliate_url": "https://s.shopee.com.br/4qBnsFEd0f",
+      "source_url": "https://shopee.com.br/product/1547394184/22699173941",
+      "product_num": 3,
+      "product": 3
     }
   ]
 }

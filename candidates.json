@@ -830,6 +830,81 @@
       "current_price": 24.89,
       "original_price": 39.9,
       "macrotema": "Gadgets e eletronicos"
+    },
+    {
+      "_id": "22394042395",
+      "origin": "shopee",
+      "status": "discovered",
+      "discovered_at": "2026-04-18T11:50:20.810255",
+      "item_id": "22394042395",
+      "configured_category_id": "11059974",
+      "name": "Máscara Forever Hidra 1kg + Óleo Vegetal Ojon Oil 100ml – Força e Brilho",
+      "thumbnail": "https://cf.shopee.com.br/file/br-11134207-7r98o-ma07cufcmgxl87",
+      "source_url": "https://shopee.com.br/product/1077868451/22394042395",
+      "affiliate_url": "https://s.shopee.com.br/2g7JGiQfEN",
+      "short_description": "Loja: Maria empreendedora",
+      "image_urls": [
+        "https://cf.shopee.com.br/file/br-11134207-7r98o-ma07cufcmgxl87"
+      ],
+      "image_count": 1,
+      "scraped_image_count": 0,
+      "videos_count": 0,
+      "rating": 0.0,
+      "sold_quantity_text": "0",
+      "current_price": 149.99,
+      "original_price": 149.99,
+      "page_scrape_error": "Não foi possível extrair IDs da URL: https://shopee.com.br/product/1077868451/22394042395",
+      "macrotema": "Ofertas de alto valor percebido"
+    },
+    {
+      "_id": "8815923778",
+      "origin": "shopee",
+      "status": "discovered",
+      "discovered_at": "2026-04-18T11:50:20.811256",
+      "item_id": "8815923778",
+      "configured_category_id": "11059978",
+      "name": "gravata cruzadinha para festas e eventos gravata slim gravata para carnaval gravata comediante gravata estilosa gravata criativa palavras cruzadad",
+      "thumbnail": "https://cf.shopee.com.br/file/9d28023bc9470edd71168f3c19b5d0f3",
+      "source_url": "https://shopee.com.br/product/352719102/8815923778",
+      "affiliate_url": "https://s.shopee.com.br/2LUSs6WKfs",
+      "short_description": "Loja: Halo Sirius",
+      "image_urls": [
+        "https://cf.shopee.com.br/file/9d28023bc9470edd71168f3c19b5d0f3"
+      ],
+      "image_count": 1,
+      "scraped_image_count": 0,
+      "videos_count": 0,
+      "rating": 0.0,
+      "sold_quantity_text": "0",
+      "current_price": 39.9,
+      "original_price": 39.9,
+      "page_scrape_error": "Não foi possível extrair IDs da URL: https://shopee.com.br/product/352719102/8815923778",
+      "macrotema": "Ofertas de alto valor percebido"
+    },
+    {
+      "_id": "22399034069",
+      "origin": "shopee",
+      "status": "discovered",
+      "discovered_at": "2026-04-18T11:50:20.811256",
+      "item_id": "22399034069",
+      "configured_category_id": "11059989",
+      "name": "Óleo Dermaex 200ml + Bepantriz Pomada 30g – Cuidados Dermatológicos, Hidratação e Cicatrização",
+      "thumbnail": "https://cf.shopee.com.br/file/br-11134207-81z1k-mftp89c318g009",
+      "source_url": "https://shopee.com.br/product/1541984981/22399034069",
+      "affiliate_url": "https://s.shopee.com.br/1gEm4shbaM",
+      "short_description": "Loja: Shop Fácil Store",
+      "image_urls": [
+        "https://cf.shopee.com.br/file/br-11134207-81z1k-mftp89c318g009"
+      ],
+      "image_count": 1,
+      "scraped_image_count": 0,
+      "videos_count": 0,
+      "rating": 0.0,
+      "sold_quantity_text": "0",
+      "current_price": 31.9,
+      "original_price": 31.9,
+      "page_scrape_error": "Não foi possível extrair IDs da URL: https://shopee.com.br/product/1541984981/22399034069",
+      "macrotema": "Casa e utilidades"
     }
   ]
 }

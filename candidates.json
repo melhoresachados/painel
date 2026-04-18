@@ -905,6 +905,132 @@
       "original_price": 31.9,
       "page_scrape_error": "Não foi possível extrair IDs da URL: https://shopee.com.br/product/1541984981/22399034069",
       "macrotema": "Casa e utilidades"
+    },
+    {
+      "_id": "19899713433",
+      "origin": "shopee",
+      "status": "discovered",
+      "discovered_at": "2026-04-18T12:13:03.344722",
+      "item_id": "19899713433",
+      "configured_category_id": "11059974",
+      "name": "Mola de Silicone para Alicate de Cutícula Universal - Kits 10/20/30",
+      "thumbnail": "https://down-br.img.susercontent.com/file/br-11134207-820lz-mlwl5n9ash6s0c",
+      "source_url": "https://shopee.com.br/product/1338536444/19899713433",
+      "affiliate_url": "https://s.shopee.com.br/6L0bezvrC2",
+      "short_description": "Mola de Silicone Profissional para Alicate de Cutícula Transforme sua rotina de manicure com mais leveza, precisão e conforto. Nossa mola de silicone profissional reduz o esforço das mãos e aumenta a durabilidade do seu alicate — ideal para quem trabalha o dia todo atendendo clientes. ✨ Benefícios da Mola de Silicone Material 100% silicone profissional: resistente, macio e durável. Mais conforto n",
+      "main_features": [
+        "Mola de Silicone Profissional para Alicate de Cutícula",
+        "Transforme sua rotina de manicure com mais leveza, precisão e conforto",
+        "Nossa mola de silicone profissional reduz o esforço das mãos e aumenta a durabilidade do seu alicate — ideal para quem trabalha o dia todo atendendo clientes",
+        "✨ Benefícios da Mola de Silicone",
+        "Material 100% silicone profissional: resistente, macio e durável",
+        "Mais conforto no uso diário: reduz o esforço dos dedos e previne incômodos"
+      ],
+      "image_urls": [
+        "https://cf.shopee.com.br/file/br-11134207-820lz-mlwl5n9ash6s0c"
+      ],
+      "image_count": 1,
+      "scraped_image_urls": [
+        "https://down-br.img.susercontent.com/file/br-11134207-820lz-mlwl5n9ash6s0c",
+        "https://down-br.img.susercontent.com/file/br-11134207-81ztc-mj79om67zo5e7c",
+        "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m91irgnjx4oy43"
+      ],
+      "scraped_image_count": 6,
+      "videos": [
+        "https://down-bs-br.vod.susercontent.com/api/v4/11110107/mms/br-11110107-6kfko-m91oiewcykahba.16000081745673312.mp4",
+        "https://mms.vod.susercontent.com/api/v4/11110107/mms/br-11110107-6kfko-m91oiewcykahba.default.mp4"
+      ],
+      "videos_count": 2,
+      "rating": 4.8,
+      "reviews_count": 1977,
+      "sold_quantity_text": "289",
+      "current_price": 19.0,
+      "original_price": 49.0,
+      "macrotema": "Ofertas de alto valor percebido"
+    },
+    {
+      "_id": "22298388070",
+      "origin": "shopee",
+      "status": "discovered",
+      "discovered_at": "2026-04-18T12:13:03.344722",
+      "item_id": "22298388070",
+      "configured_category_id": "11059978",
+      "name": "Brinco Infantil Argola Click Argolinha Criança Antialérgico Abelha Abelhinha Banhado Ouro 18k Top",
+      "thumbnail": "https://down-br.img.susercontent.com/file/br-11134207-7r98o-mac23n9fgcc96e",
+      "source_url": "https://shopee.com.br/product/1087906676/22298388070",
+      "affiliate_url": "https://s.shopee.com.br/20rcV2LDkj",
+      "short_description": "Nossa missão é ter produtos com altíssima QUALIDADE e DURABILIDADE! ********* INFORMAÇÕES IMPORTANTES ************** #. 1 PAR de brincos argola click de Abelha folheados a Ouro 18k, ANTIALÉRGICOS e com GARANTIA. ###. HIPOALÉRGICO O brinco é ANTIALÉRGICO, desenvolvido especialmente para crianças, bem delicado. ###. GARANTIA Até 100 DIAS para defeitos de fabricação!! Obs: Mau uso, peças expostas ao",
+      "main_features": [
+        "Nossa missão é ter produtos com altíssima QUALIDADE e DURABILIDADE!",
+        "********* INFORMAÇÕES IMPORTANTES **************",
+        "1 PAR de brincos argola click de Abelha folheados a Ouro 18k, ANTIALÉRGICOS e com GARANTIA",
+        "HIPOALÉRGICO",
+        "O brinco é ANTIALÉRGICO, desenvolvido especialmente para crianças, bem delicado",
+        "GARANTIA"
+      ],
+      "image_urls": [
+        "https://cf.shopee.com.br/file/br-11134207-7r98o-mac23n9fgcc96e"
+      ],
+      "image_count": 1,
+      "scraped_image_urls": [
+        "https://down-br.img.susercontent.com/file/br-11134207-7r98o-mac23n9fgcc96e",
+        "https://down-br.img.susercontent.com/file/br-11134207-7r98o-mac23n9f53sp34",
+        "https://down-br.img.susercontent.com/file/br-11134207-7r98o-mac23n9epnjte8"
+      ],
+      "scraped_image_count": 5,
+      "videos": [
+        "https://down-bs-br.vod.susercontent.com/api/v4/11110105/mms/br-11110105-6kfkq-mac2dbvym9bq47.16000081748481083.mp4",
+        "https://mms.vod.susercontent.com/api/v4/11110105/mms/br-11110105-6kfkq-mac2dbvym9bq47.default.mp4"
+      ],
+      "videos_count": 2,
+      "rating": 4.9,
+      "reviews_count": 584,
+      "sold_quantity_text": "101",
+      "current_price": 24.89,
+      "original_price": 24.89,
+      "macrotema": "Ofertas de alto valor percebido"
+    },
+    {
+      "_id": "22699173941",
+      "origin": "shopee",
+      "status": "discovered",
+      "discovered_at": "2026-04-18T12:13:03.344722",
+      "item_id": "22699173941",
+      "configured_category_id": "11059989",
+      "name": "Penico Transição Menino Menina Assento Pinico Desfralde Troninho Até 30kg",
+      "thumbnail": "https://down-br.img.susercontent.com/file/br-11134207-81z1k-mgr5vltjiux19a",
+      "source_url": "https://shopee.com.br/product/1547394184/22699173941",
+      "affiliate_url": "https://s.shopee.com.br/4qBnsFEd0f",
+      "short_description": "PENICO INFANTIL Transforma a transição da fralda para o vaso sanitário em uma experiência positiva e recompensadora. Divertido e fundamental para o aprendizado da criança. Prático e portátil, atende com segurança e conforto crianças de até 30Kg. Indicado para crianças a partir de 18 meses. ESPECIFICAÇÕES TÉCNICAS • Idade recomendada: A partir de 18 meses • Material: Polipropileno • Altura: 19,5cm",
+      "main_features": [
+        "PENICO INFANTIL",
+        "Transforma a transição da fralda para o vaso sanitário em uma experiência positiva e recompensadora",
+        "Divertido e fundamental para o aprendizado da criança",
+        "Prático e portátil, atende com segurança e conforto crianças de até 30Kg",
+        "Indicado para crianças a partir de 18 meses",
+        "ESPECIFICAÇÕES TÉCNICAS"
+      ],
+      "image_urls": [
+        "https://cf.shopee.com.br/file/br-11134207-81z1k-mgr5vltjiux19a"
+      ],
+      "image_count": 1,
+      "scraped_image_urls": [
+        "https://down-br.img.susercontent.com/file/br-11134207-81z1k-mgr5vltjiux19a",
+        "https://down-br.img.susercontent.com/file/br-11134207-81z1k-mgr5vltjrabp83",
+        "https://down-br.img.susercontent.com/file/br-11134207-81z1k-mgr5vltjhgcl76"
+      ],
+      "scraped_image_count": 6,
+      "videos": [
+        "https://down-bs-br.vod.susercontent.com/api/v4/11110105/mms/br-11110105-6v65e-ml5mrkc55vk624.16000081772063280.mp4",
+        "https://mms.vod.susercontent.com/api/v4/11110105/mms/br-11110105-6v65e-ml5mrkc55vk624.default.mp4"
+      ],
+      "videos_count": 2,
+      "rating": 4.9,
+      "reviews_count": 841,
+      "sold_quantity_text": "270",
+      "current_price": 22.4,
+      "original_price": 65.87,
+      "macrotema": "Casa e utilidades"
     }
   ]
 }

@@ -740,6 +740,96 @@
       "current_price": 229,
       "original_price": 499,
       "macrotema": "Gadgets e eletronicos"
+    },
+    {
+      "_id": "MLB55044657",
+      "origin": "mercadolivre",
+      "status": "active",
+      "discovered_at": "2026-04-18T00:12:26.700854",
+      "catalog_product_id": "MLB55044657",
+      "item_id": "MLB6612203252",
+      "configured_category_id": "MLB1055",
+      "category_id": "MLB1055",
+      "domain_id": "MLB-CELLPHONES",
+      "name": "Celular Samsung Galaxy A17 Com Ia, 128gb, 4gb Ram, Câm De 50mp, Tela De 6.7 , Nfc, Ip54 - Cinza",
+      "family_name": "Samsung Galaxy A17 A17",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_807545-MLA91949036595_092025-F.jpg",
+      "source_url": "https://www.mercadolivre.com.br/celular-samsung-galaxy-a17-com-ia-128gb-4gb-ram-cam-de-50mp-tela-de-6-7-nfc-ip54-cinza/p/MLB55044657",
+      "affiliate_url": "https://meli.la/31aa2yw",
+      "short_description": "Celular Samsung Galaxy A17, com IA integrada, 128GB, 4GB RAM, 4GB RAM Plus, Câmera Tripla Traseira de até 50MP, Câmera Frontal de 13 MP,Tela resistente Super AMOLED de 6.7\", Processador Helio G99 Octa-Core de 6nm, Android 15 com 6 atualizações, IP54 resistencia à água e poeira, NFC, Samsung Wallet, Bateria de 5.000mAh, Dual Chip.\n\n\n O Galaxy A17 chegou para transformar a maneira como você se conec",
+      "main_features": [
+        "Dispositivo desbloqueado para que você escolha a companhia telefônica de sua preferência.",
+        "Tela Super AMOLED de 6.7\".",
+        "Tem 3 câmeras traseiras de 50Mpx/5Mpx/2Mpx.",
+        "Câmeras frontais de 13Mpx.",
+        "Bateria de 5000 Ah.",
+        "Memória interna de 128GB."
+      ],
+      "image_urls": [
+        "https://http2.mlstatic.com/D_NQ_NP_807545-MLA91949036595_092025-F.jpg",
+        "https://http2.mlstatic.com/D_NQ_NP_691458-MLA92803865607_092025-F.jpg",
+        "https://http2.mlstatic.com/D_NQ_NP_633702-MLA91948898067_092025-F.jpg"
+      ],
+      "image_count": 21,
+      "scraped_image_urls": [
+        "https://http2.mlstatic.com/D_NQ_NP_807545-MLA91949036595_092025-F.webp",
+        "https://http2.mlstatic.com/D_NQ_NP_691458-MLA92803865607_092025-F.webp",
+        "https://http2.mlstatic.com/D_NQ_NP_633702-MLA91948898067_092025-F.webp"
+      ],
+      "scraped_image_count": 11,
+      "videos": [
+        "https://http2.mlstatic.com/storage/shorts-api/videos-middleware/playlists/487e9ee4-daf7-4850-85b2-2fa331dae84a/3vuIFm.m3u8"
+      ],
+      "videos_count": 1,
+      "discount_text": "12%",
+      "rating": 4.9,
+      "reviews_count": 18913,
+      "sold_quantity_text": "+5mil",
+      "current_price": 949.9,
+      "original_price": 1089.9,
+      "macrotema": "Gadgets e eletronicos"
+    },
+    {
+      "_id": "MLB50940215",
+      "origin": "mercadolivre",
+      "status": "active",
+      "discovered_at": "2026-04-18T00:12:26.700854",
+      "catalog_product_id": "MLB50940215",
+      "item_id": "MLB5418623374",
+      "configured_category_id": "MLB417704",
+      "category_id": "MLB417704",
+      "domain_id": "MLB-SMARTWATCH_AND_WATCH_BANDS",
+      "name": "Pulseira Fecho Silicone Respirável Para Galaxy Watch 4 5 6 7 Cor Azul-claro",
+      "family_name": "D2G Galaxy Watch 4 5 6 7",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_923720-MLA99451885452_112025-F.jpg",
+      "source_url": "https://www.mercadolivre.com.br/pulseira-fecho-silicone-respiravel-para-galaxy-watch-4-5-6-7-cor-azul-claro/p/MLB50940215",
+      "affiliate_url": "https://meli.la/2DNCpyQ",
+      "short_description": "PULSEIRA SILICONE RESPIRÁVEL PARA GALAXY WATCH 4 5 6 7!\n\nA pulseira de silicone para o Samsung Watch 4 5 6 7, no estilo Oceano, é a escolha ideal para quem busca conforto no dia a dia. Graças ao seu design leve e flexível, ela se adapta facilmente ao pulso, proporcionando uma experiência quase imperceptível durante o uso prolongado, seja no trabalho, em casa, ou durante atividades ao ar livre.\n\nFe",
+      "main_features": [
+        "O material da pulseira é de silicone.",
+        "A fivela é de metal.",
+        "Tipo de fecho: fivela."
+      ],
+      "image_urls": [
+        "https://http2.mlstatic.com/D_NQ_NP_923720-MLA99451885452_112025-F.jpg",
+        "https://http2.mlstatic.com/D_NQ_NP_901650-MLA85363004782_062025-F.jpg",
+        "https://http2.mlstatic.com/D_NQ_NP_736931-MLA85362968162_062025-F.jpg"
+      ],
+      "image_count": 5,
+      "scraped_image_urls": [
+        "https://http2.mlstatic.com/D_NQ_NP_923720-MLA99451885452_112025-F.webp",
+        "https://http2.mlstatic.com/D_NQ_NP_901650-MLA85363004782_062025-F.webp",
+        "https://http2.mlstatic.com/D_NQ_NP_736931-MLA85362968162_062025-F.webp"
+      ],
+      "scraped_image_count": 5,
+      "videos_count": 0,
+      "discount_text": "37%",
+      "rating": 4.7,
+      "reviews_count": 1133,
+      "sold_quantity_text": "+100",
+      "current_price": 24.89,
+      "original_price": 39.9,
+      "macrotema": "Gadgets e eletronicos"
     }
   ]
 }

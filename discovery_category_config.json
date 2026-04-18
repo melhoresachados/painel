@@ -893,7 +893,7 @@
   },
   "shein": {
     "enabled": true,
-    "per_category_limit": 2,
+    "per_category_limit": 1,
     "categories": [
       {
         "id": "017172961",
@@ -901,9 +901,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": true,
-        "macrotheme": "Moda e Beleza",
-        "slug": "RecommendSelection/Women-Clothing",
-        "url": "https://br.shein.com/RecommendSelection/Women-Clothing-sc-017172961.html?page=1"
+        "macrotheme": "Moda e Beleza"
       },
       {
         "id": "017706887",
@@ -911,9 +909,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": true,
-        "macrotheme": "Moda e Beleza",
-        "slug": "RecommendSelection/Beachwear",
-        "url": "https://br.shein.com/RecommendSelection/Beachwear-sc-017706887.html?page=1"
+        "macrotheme": "Moda e Beleza"
       },
       {
         "id": "017172966",
@@ -921,19 +917,15 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": true,
-        "macrotheme": "Moda e Beleza",
-        "slug": "RecommendSelection/Shoes",
-        "url": "https://br.shein.com/RecommendSelection/Shoes-sc-017172966.html?page=1"
+        "macrotheme": "Moda e Beleza"
       },
       {
         "id": "017172964",
         "name": "Tamanhos Grandes",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Moda e Beleza",
-        "slug": "RecommendSelection/Curve",
-        "url": "https://br.shein.com/RecommendSelection/Curve-sc-017172964.html?page=1"
+        "enabled": false,
+        "macrotheme": "Moda e Beleza"
       },
       {
         "id": "017291431",
@@ -941,9 +933,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": true,
-        "macrotheme": "Moda e Beleza",
-        "slug": "RecommendSelection/Jewelry-Accessories",
-        "url": "https://br.shein.com/RecommendSelection/Jewelry-Accessories-sc-017291431.html?page=1"
+        "macrotheme": "Moda e Beleza"
       },
       {
         "id": "017172965",
@@ -951,9 +941,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": true,
-        "macrotheme": "Moda e Beleza",
-        "slug": "RecommendSelection/Underwear-Sleepwear",
-        "url": "https://br.shein.com/RecommendSelection/Underwear-Sleepwear-sc-017172965.html?page=1"
+        "macrotheme": "Moda e Beleza"
       },
       {
         "id": "017172970",
@@ -961,9 +949,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": true,
-        "macrotheme": "Moda e Beleza",
-        "slug": "RecommendSelection/Beauty-Health",
-        "url": "https://br.shein.com/RecommendSelection/Beauty-Health-sc-017172970.html?page=1"
+        "macrotheme": "Moda e Beleza"
       },
       {
         "id": "017174546",
@@ -971,19 +957,15 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": true,
-        "macrotheme": "Moda e Beleza",
-        "slug": "RecommendSelection/Bags-Luggage",
-        "url": "https://br.shein.com/RecommendSelection/Bags-Luggage-sc-017174546.html?page=1"
+        "macrotheme": "Moda e Beleza"
       },
       {
         "id": "100194962",
         "name": "Local",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Moda e Beleza",
-        "slug": "recommend/BR-Marketplace",
-        "url": "https://br.shein.com/recommend/BR-Marketplace-sc-100194962.html?page=1"
+        "enabled": false,
+        "macrotheme": "Moda e Beleza"
       },
       {
         "id": "10050060174",
@@ -991,9 +973,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": false,
-        "macrotheme": "Moda e Beleza",
-        "slug": "recommend/Envio-Nacional",
-        "url": "https://br.shein.com/recommend/Envio-Nacional-sc-10050060174.html?page=1"
+        "macrotheme": "Moda e Beleza"
       },
       {
         "id": "0021884529",
@@ -1001,9 +981,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": false,
-        "macrotheme": "Moda e Beleza",
-        "slug": "new/New-In-All",
-        "url": "https://br.shein.com/new/New-In-All-sc-0021884529.html?page=1"
+        "macrotheme": "Moda e Beleza"
       },
       {
         "id": "0051884505",
@@ -1011,9 +989,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": false,
-        "macrotheme": "Moda e Beleza",
-        "slug": "sale/All-Sale",
-        "url": "https://br.shein.com/sale/All-Sale-sc-0051884505.html?page=1"
+        "macrotheme": "Moda e Beleza"
       }
     ]
   },

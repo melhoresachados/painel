@@ -48,7 +48,8 @@
       "imported_at": "2026-04-16T17:00:34.417Z",
       "discarded_at": "2026-04-16T17:01:29.107Z",
       "imported_product_id": "eb0d4f00-ecc2-4d1a-b1f4-6e345e8ce56b",
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB55762050",
@@ -96,7 +97,8 @@
       "current_price": 725.9,
       "original_price": 1349,
       "discarded_at": "2026-04-16T16:14:11.137Z",
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB54984333",
@@ -145,7 +147,8 @@
       "original_price": 1999,
       "imported_at": "2026-04-16T17:17:23.577Z",
       "imported_product_id": "a1f86375-6dc6-490c-9393-533843af3c84",
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB44665542",
@@ -190,7 +193,8 @@
       "sold_quantity_text": "+10mil",
       "current_price": 989.1,
       "original_price": 1499,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB47112282",
@@ -235,7 +239,9 @@
       "reviews_count": 57784,
       "sold_quantity_text": "+10mil",
       "current_price": 2399,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "MLB41540844",
@@ -282,7 +288,8 @@
       "sold_quantity_text": "+50mil",
       "current_price": 934.15,
       "original_price": 1324.29,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB47424244",
@@ -326,7 +333,9 @@
       "sold_quantity_text": "+50mil",
       "current_price": 1405.93,
       "original_price": 2167.14,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "videos": [],
+      "coupon_texts": []
     },
     {
       "_id": "MLB47115842",
@@ -373,7 +382,8 @@
       "sold_quantity_text": "+10mil",
       "current_price": 1430.1,
       "original_price": 2815.19,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB58315694",
@@ -415,7 +425,9 @@
       "sold_quantity_text": "+50mil",
       "current_price": 259.25,
       "original_price": 284.07,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "videos": [],
+      "coupon_texts": []
     },
     {
       "_id": "MLB55027309",
@@ -462,12 +474,13 @@
       "sold_quantity_text": "+1000",
       "current_price": 1209,
       "original_price": 1899,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB57767498",
       "origin": "mercadolivre",
-      "status": "active",
+      "status": "discovered",
       "discovered_at": "2026-04-17T15:39:47.231196",
       "catalog_product_id": "MLB57767498",
       "item_id": "MLB5859182268",
@@ -508,12 +521,14 @@
       "reviews_count": 54204,
       "sold_quantity_text": "+10mil",
       "current_price": 799,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "MLB47354382",
       "origin": "mercadolivre",
-      "status": "active",
+      "status": "discovered",
       "discovered_at": "2026-04-17T15:39:47.231196",
       "catalog_product_id": "MLB47354382",
       "item_id": "MLB4585739501",
@@ -549,12 +564,15 @@
       "reviews_count": 31194,
       "sold_quantity_text": "+5mil",
       "current_price": 229,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "videos": [],
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "MLB61424002",
       "origin": "mercadolivre",
-      "status": "active",
+      "status": "discovered",
       "discovered_at": "2026-04-17T16:18:22.022831",
       "catalog_product_id": "MLB61424002",
       "item_id": "MLB6175649906",
@@ -598,12 +616,13 @@
       "reviews_count": 26746,
       "sold_quantity_text": "+10mil",
       "current_price": 799,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "discount_text": ""
     },
     {
       "_id": "MLB42520227",
       "origin": "mercadolivre",
-      "status": "active",
+      "status": "discovered",
       "discovered_at": "2026-04-17T16:18:22.022831",
       "catalog_product_id": "MLB42520227",
       "item_id": "MLB6499968268",
@@ -644,12 +663,13 @@
       "sold_quantity_text": "+50mil",
       "current_price": 339,
       "original_price": 449.9,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "videos": []
     },
     {
       "_id": "MLB63346535",
       "origin": "mercadolivre",
-      "status": "active",
+      "status": "discovered",
       "discovered_at": "2026-04-17T23:17:13.720711",
       "catalog_product_id": "MLB63346535",
       "item_id": "MLB6207554744",
@@ -691,12 +711,13 @@
       "sold_quantity_text": "+5",
       "current_price": 826.42,
       "original_price": 899.9,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB34506161",
       "origin": "mercadolivre",
-      "status": "active",
+      "status": "discovered",
       "discovered_at": "2026-04-17T23:17:13.720711",
       "catalog_product_id": "MLB34506161",
       "item_id": "MLB5424190912",
@@ -739,12 +760,13 @@
       "sold_quantity_text": "+10mil",
       "current_price": 229,
       "original_price": 499,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB55044657",
       "origin": "mercadolivre",
-      "status": "active",
+      "status": "discovered",
       "discovered_at": "2026-04-18T00:12:26.700854",
       "catalog_product_id": "MLB55044657",
       "item_id": "MLB6612203252",
@@ -787,12 +809,13 @@
       "sold_quantity_text": "+5mil",
       "current_price": 949.9,
       "original_price": 1089.9,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB50940215",
       "origin": "mercadolivre",
-      "status": "active",
+      "status": "discovered",
       "discovered_at": "2026-04-18T00:12:26.700854",
       "catalog_product_id": "MLB50940215",
       "item_id": "MLB5418623374",
@@ -829,7 +852,9 @@
       "sold_quantity_text": "+100",
       "current_price": 24.89,
       "original_price": 39.9,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "videos": [],
+      "coupon_texts": []
     },
     {
       "_id": "22394042395",
@@ -849,12 +874,16 @@
       "image_count": 1,
       "scraped_image_count": 0,
       "videos_count": 0,
-      "rating": 0.0,
+      "rating": 0,
       "sold_quantity_text": "0",
       "current_price": 149.99,
       "original_price": 149.99,
       "page_scrape_error": "Não foi possível extrair IDs da URL: https://shopee.com.br/product/1077868451/22394042395",
-      "macrotema": "Ofertas de alto valor percebido"
+      "macrotema": "Ofertas de alto valor percebido",
+      "videos": [],
+      "coupon_texts": [],
+      "main_features": [],
+      "discount_text": ""
     },
     {
       "_id": "8815923778",
@@ -874,12 +903,16 @@
       "image_count": 1,
       "scraped_image_count": 0,
       "videos_count": 0,
-      "rating": 0.0,
+      "rating": 0,
       "sold_quantity_text": "0",
       "current_price": 39.9,
       "original_price": 39.9,
       "page_scrape_error": "Não foi possível extrair IDs da URL: https://shopee.com.br/product/352719102/8815923778",
-      "macrotema": "Ofertas de alto valor percebido"
+      "macrotema": "Ofertas de alto valor percebido",
+      "videos": [],
+      "coupon_texts": [],
+      "main_features": [],
+      "discount_text": ""
     },
     {
       "_id": "22399034069",
@@ -899,12 +932,16 @@
       "image_count": 1,
       "scraped_image_count": 0,
       "videos_count": 0,
-      "rating": 0.0,
+      "rating": 0,
       "sold_quantity_text": "0",
       "current_price": 31.9,
       "original_price": 31.9,
       "page_scrape_error": "Não foi possível extrair IDs da URL: https://shopee.com.br/product/1541984981/22399034069",
-      "macrotema": "Casa e utilidades"
+      "macrotema": "Casa e utilidades",
+      "videos": [],
+      "coupon_texts": [],
+      "main_features": [],
+      "discount_text": ""
     },
     {
       "_id": "19899713433",
@@ -944,9 +981,11 @@
       "rating": 4.8,
       "reviews_count": 1977,
       "sold_quantity_text": "289",
-      "current_price": 19.0,
-      "original_price": 49.0,
-      "macrotema": "Ofertas de alto valor percebido"
+      "current_price": 19,
+      "original_price": 49,
+      "macrotema": "Ofertas de alto valor percebido",
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "22298388070",
@@ -988,12 +1027,14 @@
       "sold_quantity_text": "101",
       "current_price": 24.89,
       "original_price": 24.89,
-      "macrotema": "Ofertas de alto valor percebido"
+      "macrotema": "Ofertas de alto valor percebido",
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "22699173941",
       "origin": "shopee",
-      "status": "discovered",
+      "status": "imported",
       "discovered_at": "2026-04-18T12:13:03.344722",
       "item_id": "22699173941",
       "configured_category_id": "11059989",
@@ -1030,7 +1071,12 @@
       "sold_quantity_text": "270",
       "current_price": 22.4,
       "original_price": 65.87,
-      "macrotema": "Casa e utilidades"
+      "macrotema": "Casa e utilidades",
+      "coupon_texts": [],
+      "discount_text": "",
+      "imported_at": "2026-04-18T15:23:05.665Z",
+      "discarded_at": "",
+      "imported_product_id": "4dfd1be3-e8b7-4fd4-8c70-16dce2febc5a"
     }
   ]
 }

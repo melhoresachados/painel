@@ -1,7 +1,7 @@
 {
   "mercadolivre": {
     "enabled": true,
-    "per_category_limit": 1,
+    "per_category_limit": 2,
     "categories": [
       {
         "id": "MLB3813",
@@ -144,7 +144,7 @@
         "name": "Drones e Acessorios",
         "parent_id": "MLB1000",
         "parent_name": "Eletronicos, Audio e Video",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ofertas de alto valor percebido"
       },
       {
@@ -184,7 +184,7 @@
         "name": "Projetores e Telas",
         "parent_id": "MLB1000",
         "parent_name": "Eletronicos, Audio e Video",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ofertas de alto valor percebido"
       },
       {
@@ -192,7 +192,7 @@
         "name": "Televisores",
         "parent_id": "MLB1000",
         "parent_name": "Eletronicos, Audio e Video",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ofertas de alto valor percebido"
       },
       {
@@ -200,7 +200,7 @@
         "name": "Audio",
         "parent_id": "MLB1000",
         "parent_name": "Eletronicos, Audio e Video",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -216,7 +216,7 @@
         "name": "Acessorios para PC Gaming",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -240,7 +240,7 @@
         "name": "Componentes para PC",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -248,7 +248,7 @@
         "name": "Conectividade e Redes",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ferramentas e itens de resolucao de problema"
       },
       {
@@ -264,7 +264,7 @@
         "name": "Estabilizadores e No Breaks",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ferramentas e itens de resolucao de problema"
       },
       {
@@ -304,7 +304,7 @@
         "name": "Monitores e Acessorios",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ofertas de alto valor percebido"
       },
       {
@@ -336,7 +336,7 @@
         "name": "Perifericos para PC",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -344,7 +344,7 @@
         "name": "Portateis e Acessorios",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ofertas de alto valor percebido"
       },
       {
@@ -368,7 +368,7 @@
         "name": "Tablets e Acessorios",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -392,7 +392,7 @@
         "name": "Cozinha",
         "parent_id": "MLB1574",
         "parent_name": "Casa, Moveis e Decoracao",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Casa e utilidades"
       },
       {
@@ -400,7 +400,7 @@
         "name": "Cuidado da Casa e Lavanderia",
         "parent_id": "MLB1574",
         "parent_name": "Casa, Moveis e Decoracao",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Casa e utilidades"
       },
       {
@@ -448,7 +448,7 @@
         "name": "Organizacao para Casa",
         "parent_id": "MLB1574",
         "parent_name": "Casa, Moveis e Decoracao",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Casa e utilidades"
       },
       {
@@ -464,7 +464,7 @@
         "name": "Seguranca para Casa",
         "parent_id": "MLB1574",
         "parent_name": "Casa, Moveis e Decoracao",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ferramentas e itens de resolucao de problema"
       },
       {
@@ -480,7 +480,7 @@
         "name": "Ar e Ventilacao",
         "parent_id": "MLB5726",
         "parent_name": "Eletrodomesticos",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Casa e utilidades"
       },
       {
@@ -528,7 +528,7 @@
         "name": "Pequenos Eletrodomesticos",
         "parent_id": "MLB5726",
         "parent_name": "Eletrodomesticos",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Casa e utilidades"
       },
       {
@@ -584,7 +584,7 @@
         "name": "Ferramentas Industriais",
         "parent_id": "MLB1499",
         "parent_name": "Industria e Comercio",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Ferramentas e itens de resolucao de problema"
       },
       {
@@ -648,7 +648,248 @@
   "shopee": {
     "enabled": true,
     "per_category_limit": 2,
-    "categories": []
+    "categories": [
+      {
+        "id": "11059998",
+        "name": "Roupas Femininas",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "11059983",
+        "name": "Casa e Construção",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "11116689",
+        "name": "Roupas Plus Size",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "11059974",
+        "name": "Beleza",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "11059986",
+        "name": "Roupas Masculinas",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "11059999",
+        "name": "Sapatos Femininos",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "11059987",
+        "name": "Sapatos Masculinos",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "11059973",
+        "name": "Moda Infantil",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "11059978",
+        "name": "Acessórios de Moda",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "11059996",
+        "name": "Relógios",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "11059988",
+        "name": "Celulares e Dispositivos",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "11059992",
+        "name": "Esportes e Lazer",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "11059984",
+        "name": "Eletrodomésticos",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "11059982",
+        "name": "Brinquedos e Hobbies",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "11059972",
+        "name": "Automóveis",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "11117089",
+        "name": "Acessórios para Veículos",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "11059981",
+        "name": "Saúde",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "11059990",
+        "name": "Motocicletas",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Ferramentas e itens de resolucao de problema"
+      },
+      {
+        "id": "11059971",
+        "name": "Áudio",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "11059989",
+        "name": "Mãe e Bebê",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "11059997",
+        "name": "Bolsas Femininas",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "11059985",
+        "name": "Bolsas Masculinas",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Ofertas de alto valor percebido"
+      },
+      {
+        "id": "11059991",
+        "name": "Animais Domésticos",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "11059993",
+        "name": "Papelaria",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "11059977",
+        "name": "Computadores e Acessórios",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "11059979",
+        "name": "Alimentos e Bebidas",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "11059980",
+        "name": "Jogos e Consoles",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "11059976",
+        "name": "Câmeras e Drones",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": true,
+        "macrotheme": "Gadgets e eletronicos"
+      },
+      {
+        "id": "11059995",
+        "name": "Viagens e Bagagens",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Casa e utilidades"
+      },
+      {
+        "id": "11059975",
+        "name": "Livros e Revistas",
+        "parent_id": "",
+        "parent_name": "",
+        "enabled": false,
+        "macrotheme": "Ofertas de alto valor percebido"
+      }
+    ]
   },
   "shein": {
     "enabled": true,

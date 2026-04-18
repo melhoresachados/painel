@@ -645,6 +645,101 @@
       "current_price": 339,
       "original_price": 449.9,
       "macrotema": "Gadgets e eletronicos"
+    },
+    {
+      "_id": "MLB63346535",
+      "origin": "mercadolivre",
+      "status": "active",
+      "discovered_at": "2026-04-17T23:17:13.720711",
+      "catalog_product_id": "MLB63346535",
+      "item_id": "MLB6207554744",
+      "configured_category_id": "MLB1055",
+      "category_id": "MLB1055",
+      "domain_id": "MLB-CELLPHONES",
+      "name": "Moto G06 Sim Dual Sim",
+      "family_name": "Motorola Liberado Moto G06",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_771064-MLA101917842105_122025-F.jpg",
+      "source_url": "https://www.mercadolivre.com.br/moto-g06-sim-dual-sim/p/MLB63346535",
+      "affiliate_url": "https://meli.la/1SaS4Sv",
+      "main_features": [
+        "Dispositivo desbloqueado para que você escolha a companhia telefônica de sua preferência.",
+        "Tela de 6.9\".",
+        "Câmera frontal de 8Mpx.",
+        "Processador Helio G81 Extreme Octa-Core de 2GHz com 4GB de RAM.",
+        "Bateria de 5.2 Ah.",
+        "Memória interna de 64GB."
+      ],
+      "image_urls": [
+        "https://http2.mlstatic.com/D_NQ_NP_771064-MLA101917842105_122025-F.jpg",
+        "https://http2.mlstatic.com/D_NQ_NP_997816-MLA101415837618_122025-F.jpg",
+        "https://http2.mlstatic.com/D_NQ_NP_955836-MLA101415680184_122025-F.jpg"
+      ],
+      "image_count": 5,
+      "scraped_image_urls": [
+        "https://http2.mlstatic.com/D_NQ_NP_771064-MLA101917842105_122025-F.webp",
+        "https://http2.mlstatic.com/D_NQ_NP_997816-MLA101415837618_122025-F.webp",
+        "https://http2.mlstatic.com/D_NQ_NP_955836-MLA101415680184_122025-F.webp"
+      ],
+      "scraped_image_count": 5,
+      "videos": [
+        "https://http2.mlstatic.com/storage/shorts-api/videos-middleware/playlists/59067ca0-8a5e-4cc8-9ed4-c8852841f024/IQgQtG.m3u8"
+      ],
+      "videos_count": 1,
+      "discount_text": "8%",
+      "rating": 4.9,
+      "reviews_count": 26934,
+      "sold_quantity_text": "+5",
+      "current_price": 826.42,
+      "original_price": 899.9,
+      "macrotema": "Gadgets e eletronicos"
+    },
+    {
+      "_id": "MLB34506161",
+      "origin": "mercadolivre",
+      "status": "active",
+      "discovered_at": "2026-04-17T23:17:13.720711",
+      "catalog_product_id": "MLB34506161",
+      "item_id": "MLB5424190912",
+      "configured_category_id": "MLB417704",
+      "category_id": "MLB417704",
+      "domain_id": "MLB-SMARTWATCHES",
+      "name": "Smartwatch Samsung Galaxy Fit3 Display 1.6\" Rosé",
+      "family_name": "Samsung Galaxy Fit3 SM-R390 1.6 \" 43 mm",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_674204-MLA99446580250_112025-F.jpg",
+      "source_url": "https://www.mercadolivre.com.br/smartwatch-samsung-galaxy-fit3-display-1-6-rose/p/MLB34506161",
+      "affiliate_url": "https://meli.la/15Ci1Dp",
+      "short_description": "Dura até 13 dias com uma única carga. Ele fica levemente no pulso e registra mais de 100 exercícios e atividades diárias, incluindo o sono. Ele permite que você toque música, verifique chamadas e envie mensagens de texto diretamente do seu pulso: mantenha-se capacitado e conectado sem esforço com o Galaxy Fit3. \n \n Delgado. Leve. Pronto para o movimento \n O corpo fino de alumínio, tão leve com 18,",
+      "main_features": [
+        "Tela de 1,6\".",
+        "Resistente à água.",
+        "Capacidade de memória interna de 254MB.",
+        "Aproveite o Galaxy Fit 3 para enviar respostas rápidas em notificações de aplicativos de mensagens como o WhatsApp.",
+        "Você recebe e responde suas notificações de chamadas e mensagens direto no punho.",
+        "Fotos reais do produto. Caixa original. Manual e cabo carregador."
+      ],
+      "image_urls": [
+        "https://http2.mlstatic.com/D_NQ_NP_674204-MLA99446580250_112025-F.jpg",
+        "https://http2.mlstatic.com/D_NQ_NP_740217-MLA83182121258_042025-F.jpg",
+        "https://http2.mlstatic.com/D_NQ_NP_656663-MLA87311767448_072025-F.jpg"
+      ],
+      "image_count": 14,
+      "scraped_image_urls": [
+        "https://http2.mlstatic.com/D_NQ_NP_674204-MLA99446580250_112025-F.webp",
+        "https://http2.mlstatic.com/D_NQ_NP_740217-MLA83182121258_042025-F.webp",
+        "https://http2.mlstatic.com/D_NQ_NP_656663-MLA87311767448_072025-F.webp"
+      ],
+      "scraped_image_count": 4,
+      "videos": [
+        "https://http2.mlstatic.com/storage/shorts-api/videos-middleware/playlists/c8907e75-1182-4de6-ba0c-bd1d9bd1168f/fWSQF4.m3u8"
+      ],
+      "videos_count": 1,
+      "discount_text": "54%",
+      "rating": 4.9,
+      "reviews_count": 22913,
+      "sold_quantity_text": "+10mil",
+      "current_price": 229,
+      "original_price": 499,
+      "macrotema": "Gadgets e eletronicos"
     }
   ]
 }

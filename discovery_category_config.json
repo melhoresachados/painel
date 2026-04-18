@@ -647,7 +647,7 @@
   },
   "shopee": {
     "enabled": true,
-    "per_category_limit": 2,
+    "per_category_limit": 1,
     "categories": [
       {
         "id": "11059998",
@@ -662,7 +662,7 @@
         "name": "Casa e Construção",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Casa e utilidades"
       },
       {
@@ -734,7 +734,7 @@
         "name": "Celulares e Dispositivos",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -742,7 +742,7 @@
         "name": "Esportes e Lazer",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Ferramentas e itens de resolucao de problema"
       },
       {
@@ -782,7 +782,7 @@
         "name": "Saúde",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Ferramentas e itens de resolucao de problema"
       },
       {
@@ -798,7 +798,7 @@
         "name": "Áudio",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -846,7 +846,7 @@
         "name": "Computadores e Acessórios",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -870,7 +870,7 @@
         "name": "Câmeras e Drones",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Gadgets e eletronicos"
       },
       {

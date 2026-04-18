@@ -1,7 +1,7 @@
 {
   "mercadolivre": {
     "enabled": true,
-    "per_category_limit": 2,
+    "per_category_limit": 1,
     "categories": [
       {
         "id": "MLB3813",
@@ -144,7 +144,7 @@
         "name": "Drones e Acessorios",
         "parent_id": "MLB1000",
         "parent_name": "Eletronicos, Audio e Video",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Ofertas de alto valor percebido"
       },
       {
@@ -184,7 +184,7 @@
         "name": "Projetores e Telas",
         "parent_id": "MLB1000",
         "parent_name": "Eletronicos, Audio e Video",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Ofertas de alto valor percebido"
       },
       {
@@ -192,7 +192,7 @@
         "name": "Televisores",
         "parent_id": "MLB1000",
         "parent_name": "Eletronicos, Audio e Video",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Ofertas de alto valor percebido"
       },
       {
@@ -200,7 +200,7 @@
         "name": "Audio",
         "parent_id": "MLB1000",
         "parent_name": "Eletronicos, Audio e Video",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -216,7 +216,7 @@
         "name": "Acessorios para PC Gaming",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -240,7 +240,7 @@
         "name": "Componentes para PC",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -248,7 +248,7 @@
         "name": "Conectividade e Redes",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Ferramentas e itens de resolucao de problema"
       },
       {
@@ -264,7 +264,7 @@
         "name": "Estabilizadores e No Breaks",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Ferramentas e itens de resolucao de problema"
       },
       {
@@ -304,7 +304,7 @@
         "name": "Monitores e Acessorios",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Ofertas de alto valor percebido"
       },
       {
@@ -336,7 +336,7 @@
         "name": "Perifericos para PC",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -344,7 +344,7 @@
         "name": "Portateis e Acessorios",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Ofertas de alto valor percebido"
       },
       {
@@ -368,7 +368,7 @@
         "name": "Tablets e Acessorios",
         "parent_id": "MLB1648",
         "parent_name": "Informatica",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Gadgets e eletronicos"
       },
       {
@@ -392,7 +392,7 @@
         "name": "Cozinha",
         "parent_id": "MLB1574",
         "parent_name": "Casa, Moveis e Decoracao",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Casa e utilidades"
       },
       {
@@ -400,7 +400,7 @@
         "name": "Cuidado da Casa e Lavanderia",
         "parent_id": "MLB1574",
         "parent_name": "Casa, Moveis e Decoracao",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Casa e utilidades"
       },
       {
@@ -448,7 +448,7 @@
         "name": "Organizacao para Casa",
         "parent_id": "MLB1574",
         "parent_name": "Casa, Moveis e Decoracao",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Casa e utilidades"
       },
       {
@@ -464,7 +464,7 @@
         "name": "Seguranca para Casa",
         "parent_id": "MLB1574",
         "parent_name": "Casa, Moveis e Decoracao",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Ferramentas e itens de resolucao de problema"
       },
       {
@@ -480,7 +480,7 @@
         "name": "Ar e Ventilacao",
         "parent_id": "MLB5726",
         "parent_name": "Eletrodomesticos",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Casa e utilidades"
       },
       {
@@ -528,7 +528,7 @@
         "name": "Pequenos Eletrodomesticos",
         "parent_id": "MLB5726",
         "parent_name": "Eletrodomesticos",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Casa e utilidades"
       },
       {
@@ -584,7 +584,7 @@
         "name": "Ferramentas Industriais",
         "parent_id": "MLB1499",
         "parent_name": "Industria e Comercio",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Ferramentas e itens de resolucao de problema"
       },
       {

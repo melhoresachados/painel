@@ -2422,6 +2422,231 @@
       "current_price": 24.2,
       "original_price": 199.9,
       "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "70505363",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-19T10:04:31.151215",
+      "catalog_product_id": "70505363",
+      "item_id": "70505363",
+      "configured_category_id": "017174546",
+      "name": "Calça Pantalona Alfaiataria Feminina Wide Leg Elegante Com Cinto",
+      "thumbnail": "https://img.ltwebstatic.com/v4/j/spmp/2025/12/28/89/17668979860c61e90a51dfb677d79199f4513e03d0.jpg",
+      "source_url": "https://br.shein.com/Women-s-Wide-Leg-Elegant-Tailored-Pantaloons-With-Belt-p-70505363-cat-1740.html",
+      "short_description": "Tipo de Fechamento: Mosca com zíper | Detalhes: Zíper | Possui forro: Sem forro | Estilo: elegante | Ocasião: viagem | Características: Não agride a pele",
+      "main_features": [
+        "Tipo de Fechamento: Mosca com zíper",
+        "Detalhes: Zíper",
+        "Possui forro: Sem forro",
+        "Estilo: elegante",
+        "Ocasião: viagem",
+        "Características: Não agride a pele"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/12/28/89/17668979860c61e90a51dfb677d79199f4513e03d0.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/04/26/8d/1745641361b999e53db6c3f4b8009d8aab41d396cf.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/04/26/b4/1745641360daaeb5f0837ed7b6b3058df3ca2ea39d.jpg"
+      ],
+      "image_count": 9,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/12/28/89/17668979860c61e90a51dfb677d79199f4513e03d0.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/04/26/8d/1745641361b999e53db6c3f4b8009d8aab41d396cf.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/04/26/b4/1745641360daaeb5f0837ed7b6b3058df3ca2ea39d.jpg"
+      ],
+      "scraped_image_count": 9,
+      "videos": [
+        "https://svideo.ltwebstatic.com/spmp/2025/12/07/f6/1765053828016b82068dc871939140a85858c1089a.mp4",
+        "https://svideo.ltwebstatic.com/spmp/2025/12/07/f6/1765053828016b82068dc871939140a85858c1089a_360p.mp4",
+        "https://svideo.ltwebstatic.com/spmp/2025/12/07/f6/1765053828016b82068dc871939140a85858c1089a_720p.mp4"
+      ],
+      "videos_count": 3,
+      "discount_text": "88% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "30",
+      "current_price": 24.21,
+      "original_price": 199.99,
+      "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "315485595",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-19T10:04:31.151215",
+      "catalog_product_id": "315485595",
+      "item_id": "315485595",
+      "configured_category_id": "017174546",
+      "name": "Saia Plissada Elegante de Cintura Elástica Preta e Branca com Bolinhas, Minimalista e Fashionista para o Trajeto Diário na Primavera",
+      "thumbnail": "https://img.ltwebstatic.com/v4/j/spmp/2026/03/04/7f/1772586921a0dfa7319bf0ee1a61f8998501296f94.jpg",
+      "source_url": "https://br.shein.com/Women-s-Elegant-Elastic-Waist-Black-White-Polka-Dot-Pleated-A-Line-Skirt-Minimalist-Fashionable-For-Daily-Commute-Spring-p-315485595-cat-1732.html",
+      "short_description": "Detalhes: Plissado | Possui forro: Sim | Estampa: Geométrico | Estilo: Casual | Tipo: Flared / Alargado | Ocasião: Férias",
+      "main_features": [
+        "Detalhes: Plissado",
+        "Possui forro: Sim",
+        "Estampa: Geométrico",
+        "Estilo: Casual",
+        "Tipo: Flared / Alargado",
+        "Ocasião: Férias"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/03/04/7f/1772586921a0dfa7319bf0ee1a61f8998501296f94.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/03/04/05/1772586911e37a18ad29b844904210625dd8310568.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/03/04/6b/17725869119f5d757fb14aae36caffb158c0607fa0.jpg"
+      ],
+      "image_count": 5,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/03/04/7f/1772586921a0dfa7319bf0ee1a61f8998501296f94.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/03/04/05/1772586911e37a18ad29b844904210625dd8310568.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/03/04/6b/17725869119f5d757fb14aae36caffb158c0607fa0.jpg"
+      ],
+      "scraped_image_count": 5,
+      "videos_count": 0,
+      "discount_text": "10% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "9",
+      "current_price": 139.88,
+      "original_price": 154.99,
+      "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "37800653",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-19T10:04:31.151215",
+      "catalog_product_id": "37800653",
+      "item_id": "37800653",
+      "configured_category_id": "017174546",
+      "name": "Feminina Calça Crepe Duna Pantalona",
+      "thumbnail": "https://img.ltwebstatic.com/images3_spmp/2024/06/26/1f/1719402750c899c2d85b009b3490bba1a3b4ae5b72.jpg",
+      "source_url": "https://br.shein.com/Women-Pants-p-37800653-cat-1740.html",
+      "short_description": "Tipo de Fechamento: Botão | Detalhes: Botão | Possui forro: Sem forro | Estampa: Pied de poule | Estilo: Casual | Ocasião: Diário",
+      "main_features": [
+        "Tipo de Fechamento: Botão",
+        "Detalhes: Botão",
+        "Possui forro: Sem forro",
+        "Estampa: Pied de poule",
+        "Estilo: Casual",
+        "Ocasião: Diário"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/images3_spmp/2024/06/26/1f/1719402750c899c2d85b009b3490bba1a3b4ae5b72.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2024/06/26/1f/1719402750b03963fcd996b75a7edba26eb65e2f71.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2024/06/26/1f/17194027500fd562d8f4db2fc67d2a3814c24cd5dd.jpg"
+      ],
+      "image_count": 4,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/images3_spmp/2024/06/26/1f/1719402750c899c2d85b009b3490bba1a3b4ae5b72.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2024/06/26/1f/1719402750b03963fcd996b75a7edba26eb65e2f71.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2024/06/26/1f/17194027500fd562d8f4db2fc67d2a3814c24cd5dd.jpg"
+      ],
+      "scraped_image_count": 4,
+      "videos": [
+        "https://svideo.ltwebstatic.com/spmp/2025/04/11/ea/1744379123b2654c8cbbc3509c857e8c3686a29961.mp4",
+        "https://svideo.ltwebstatic.com/spmp/2025/04/11/ea/1744379123b2654c8cbbc3509c857e8c3686a29961_360p.mp4",
+        "https://svideo.ltwebstatic.com/spmp/2025/04/11/ea/1744379123b2654c8cbbc3509c857e8c3686a29961_720p.mp4"
+      ],
+      "videos_count": 3,
+      "discount_text": "66% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "29",
+      "current_price": 40.43,
+      "original_price": 119.99,
+      "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "40602936",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-19T10:04:31.151215",
+      "catalog_product_id": "40602936",
+      "item_id": "40602936",
+      "configured_category_id": "017174546",
+      "name": "Saia longa monocromatica em alfataria , com bolsa laterais e detalhas em ziper e botao/DD063",
+      "thumbnail": "https://img.ltwebstatic.com/images3_spmp/2024/08/30/8f/1725021699bcf58c22ec396416dde8700629e938ed.jpg",
+      "source_url": "https://br.shein.com/Long-Monochromatic-Tailored-Skirt-With-Side-Pockets-And-Zipper-And-Button-Details-DD063-p-40602936-cat-1732.html",
+      "short_description": "Detalhes: Bolso | Possui forro: Sem forro | Estilo: elegante | Tipo: Fenda | Ocasião: Diário | Características: Grande Qualidade",
+      "main_features": [
+        "Detalhes: Bolso",
+        "Possui forro: Sem forro",
+        "Estilo: elegante",
+        "Tipo: Fenda",
+        "Ocasião: Diário",
+        "Características: Grande Qualidade"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/images3_spmp/2024/08/30/8f/1725021699bcf58c22ec396416dde8700629e938ed.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2024/08/30/8f/17250216996fe1d30bb768a635fdb048c60c73725a.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2024/08/30/8f/1725021699bbcb2cad932569c0adb6a4ca182dcfb2.jpg"
+      ],
+      "image_count": 5,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/images3_spmp/2024/08/30/8f/1725021699bcf58c22ec396416dde8700629e938ed.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2024/08/30/8f/17250216996fe1d30bb768a635fdb048c60c73725a.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2024/08/30/8f/1725021699bbcb2cad932569c0adb6a4ca182dcfb2.jpg"
+      ],
+      "scraped_image_count": 5,
+      "videos": [
+        "http://svideo.ltwebstatic.com/spmp/2024/10/11/1013212709.mp4",
+        "http://svideo.ltwebstatic.com/spmp/2024/10/11/1013212709_360p.mp4",
+        "http://svideo.ltwebstatic.com/spmp/2024/10/11/1013212709_720p.mp4"
+      ],
+      "videos_count": 3,
+      "discount_text": "76% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "18",
+      "current_price": 44.99,
+      "original_price": 189.9,
+      "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "44643044",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-19T10:04:31.151215",
+      "catalog_product_id": "44643044",
+      "item_id": "44643044",
+      "configured_category_id": "017174546",
+      "name": "Camiseta Masculina Dry Manga Curta Treino Academia",
+      "thumbnail": "https://img.ltwebstatic.com/v4/j/spmp/2026/04/14/95/177617236379e97367b5376044dd12630084ec4ebf.jpg",
+      "source_url": "https://br.shein.com/Men-s-Dry-Short-Sleeve-Gym-Training-T-Shirt-p-44643044-cat-1980.html",
+      "short_description": "Detalhes: Refletivo / Refletor | Estampa: Gráfico | Estação: Verão | Tipo de manga: Manga Regular | Estilo: Casual | Forma da bainha: Regular",
+      "main_features": [
+        "Detalhes: Refletivo / Refletor",
+        "Estampa: Gráfico",
+        "Estação: Verão",
+        "Tipo de manga: Manga Regular",
+        "Estilo: Casual",
+        "Forma da bainha: Regular"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/04/14/95/177617236379e97367b5376044dd12630084ec4ebf.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/04/14/27/177617236374ef768754548fb436a97a5682b75fad.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/04/14/57/177617236347002f8b190d9a73e1288b21349a50d1.jpg"
+      ],
+      "image_count": 3,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/04/14/95/177617236379e97367b5376044dd12630084ec4ebf.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/04/14/27/177617236374ef768754548fb436a97a5682b75fad.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/04/14/57/177617236347002f8b190d9a73e1288b21349a50d1.jpg"
+      ],
+      "scraped_image_count": 3,
+      "videos": [
+        "https://svideo.ltwebstatic.com/spmp/2025/06/03/35/17489522505db63395b5a0af03846a94fae058631a.mp4",
+        "https://svideo.ltwebstatic.com/spmp/2025/06/03/35/17489522505db63395b5a0af03846a94fae058631a_360p.mp4",
+        "https://svideo.ltwebstatic.com/spmp/2025/06/03/35/17489522505db63395b5a0af03846a94fae058631a_720p.mp4"
+      ],
+      "videos_count": 3,
+      "discount_text": "50% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "21",
+      "current_price": 24.85,
+      "original_price": 49.9,
+      "macrotema": "Moda e Beleza"
     }
   ]
 }

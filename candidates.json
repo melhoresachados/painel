@@ -1790,6 +1790,47 @@
       "current_price": 29.9,
       "original_price": 88.0,
       "macrotema": "Gadgets e eletronicos"
+    },
+    {
+      "_id": "298138401",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-18T23:28:05.097302",
+      "catalog_product_id": "298138401",
+      "item_id": "298138401",
+      "configured_category_id": "017172961",
+      "name": "Liu Fashion Saia Longa Casual De Férias De Uma Fileira De Botões Em Cor Sólida Para Mulheres Roupa De Praia Elegante Bainha com babado Saia Flare",
+      "thumbnail": "https://img.ltwebstatic.com/v4/j/spmp/2025/11/20/1f/1763645216f51318b2d12548203c1d4e95e4a0d14b.jpg",
+      "source_url": "https://br.shein.com/Liu-Fashion-Women-s-Casual-Long-Skirt-With-One-Row-Of-Buttons-In-Solid-Color-Elegant-Beachwear-Ruffled-Hem-Flare-Skirt-p-298138401-cat-1732.html",
+      "short_description": "Detalhes: Zíper | Possui forro: Forrado | Estampa: Simples | Estilo: Casual | Tipo: Em Camadas/Escalonado | Ocasião: Diário",
+      "main_features": [
+        "Detalhes: Zíper",
+        "Possui forro: Forrado",
+        "Estampa: Simples",
+        "Estilo: Casual",
+        "Tipo: Em Camadas/Escalonado",
+        "Ocasião: Diário"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/11/20/1f/1763645216f51318b2d12548203c1d4e95e4a0d14b.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/11/20/82/176364521603593ce0a0dfe139bde75a32a8b63dbe.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/11/20/06/17636452160ca992e43bbb5e4ee617e23c51e648c1.jpg"
+      ],
+      "image_count": 3,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/11/20/1f/1763645216f51318b2d12548203c1d4e95e4a0d14b.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/11/20/82/176364521603593ce0a0dfe139bde75a32a8b63dbe.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/11/20/06/17636452160ca992e43bbb5e4ee617e23c51e648c1.jpg"
+      ],
+      "scraped_image_count": 3,
+      "videos_count": 0,
+      "discount_text": "64% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "91",
+      "current_price": 71.99,
+      "original_price": 199.99,
+      "macrotema": "Moda e Beleza"
     }
   ]
 }

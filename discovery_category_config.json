@@ -900,7 +900,7 @@
         "name": "Roupas femininas",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Moda e Beleza"
       },
       {
@@ -916,7 +916,7 @@
         "name": "Sapatos",
         "parent_id": "",
         "parent_name": "",
-        "enabled": false,
+        "enabled": true,
         "macrotheme": "Moda e Beleza"
       },
       {

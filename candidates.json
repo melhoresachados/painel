@@ -2647,6 +2647,46 @@
       "current_price": 24.85,
       "original_price": 49.9,
       "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "36638116",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-19T11:26:17.529308",
+      "catalog_product_id": "36638116",
+      "item_id": "36638116",
+      "configured_category_id": "017174546",
+      "name": "calça feminino de straght com elástico de cor sólida",
+      "thumbnail": "https://img.ltwebstatic.com/images3_spmp/2024/06/10/d4/171798123409b689b64c21f6d48fa9f1683b6d3a98.jpg",
+      "source_url": "https://br.shein.com/Women-Pants-p-36638116-cat-1740.html",
+      "affiliate_url": "https://onelink.shein.com/3/5mzgvcsm10qq",
+      "short_description": "Tipo de Fechamento: Cintura Elástica | Detalhes: Zíper | Possui forro: Sem forro | Estilo: Casual | Linho para manter aquecido: Não | Possui bolso: Sim",
+      "main_features": [
+        "Tipo de Fechamento: Cintura Elástica",
+        "Detalhes: Zíper",
+        "Possui forro: Sem forro",
+        "Estilo: Casual",
+        "Linho para manter aquecido: Não",
+        "Possui bolso: Sim"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/images3_spmp/2024/06/10/d4/171798123409b689b64c21f6d48fa9f1683b6d3a98.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2024/06/10/6e/17179812016325fc66e4c6da2558eb45782a0727ed.jpg"
+      ],
+      "image_count": 2,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/images3_spmp/2024/06/10/d4/171798123409b689b64c21f6d48fa9f1683b6d3a98.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2024/06/10/6e/17179812016325fc66e4c6da2558eb45782a0727ed.jpg"
+      ],
+      "scraped_image_count": 2,
+      "videos_count": 0,
+      "discount_text": "61% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "66",
+      "current_price": 27.29,
+      "original_price": 69.99,
+      "macrotema": "Moda e Beleza"
     }
   ]
 }

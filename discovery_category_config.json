@@ -893,7 +893,7 @@
   },
   "shein": {
     "enabled": true,
-    "per_category_limit": 10,
+    "per_category_limit": 3,
     "categories": [
       {
         "id": "017172961",

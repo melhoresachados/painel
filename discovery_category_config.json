@@ -893,7 +893,7 @@
   },
   "shein": {
     "enabled": true,
-    "per_category_limit": 1,
+    "per_category_limit": 10,
     "categories": [
       {
         "id": "017172961",
@@ -908,7 +908,7 @@
         "name": "Moda praia",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Moda e Beleza"
       },
       {
@@ -916,7 +916,7 @@
         "name": "Sapatos",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Moda e Beleza"
       },
       {
@@ -932,7 +932,7 @@
         "name": "Joias e acessorios",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Moda e Beleza"
       },
       {
@@ -940,7 +940,7 @@
         "name": "Pijamas e roupas intimas",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Moda e Beleza"
       },
       {
@@ -948,7 +948,7 @@
         "name": "Beleza e saude",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Moda e Beleza"
       },
       {
@@ -956,7 +956,7 @@
         "name": "Bolsas e malas",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
+        "enabled": false,
         "macrotheme": "Moda e Beleza"
       },
       {

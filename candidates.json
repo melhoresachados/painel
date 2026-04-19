@@ -1831,6 +1831,214 @@
       "current_price": 71.99,
       "original_price": 199.99,
       "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "24450596",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-18T23:48:54.141430",
+      "catalog_product_id": "24450596",
+      "item_id": "24450596",
+      "configured_category_id": "017172961",
+      "name": "Bolsa Tote Grande de Tecido Liso de Cor Sólida, de Alta Capacidade e com Vários Bolsos, Ideal para Mulheres no Outono/Inverno, Bolsas Tote para Estudantes, com Vários Compartimentos, Perfeita para Praia, Escola, Trabalho e Uso Diário",
+      "thumbnail": "https://img.ltwebstatic.com/images3_spmp/2023/10/10/0d/1696920103e1b9522d5fdce6d7b9688c55e612b25c.jpg",
+      "source_url": "https://br.shein.com/Canvas-Solid-Color-Large-Capacity-Multi-Pocket-Women-s-Autumn-Winter-Tote-Handbag-Tote-Bags-For-Students-Multiple-Compartments-Perfect-For-Beach-School-Work-Daily-Use-Literary-School-Bag-Bookbag-For-Women-Or-Students-Perfect-For-Books-Shopping-Back-To-School-And-More-Tote-Bags-For-Women-College-Essentials-Yellow-p-24450596-cat-2844.html",
+      "short_description": "Estilo: Casual | Ocasião: comprar | Detalhes: Cravejado | Estampa: Bloco de cores | Cor: Amarelo | Características: Multi-compartimento",
+      "main_features": [
+        "Estilo: Casual",
+        "Ocasião: comprar",
+        "Detalhes: Cravejado",
+        "Estampa: Bloco de cores",
+        "Cor: Amarelo",
+        "Características: Multi-compartimento"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/images3_spmp/2023/10/10/0d/1696920103e1b9522d5fdce6d7b9688c55e612b25c.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2023/10/10/24/1696920136a2f0e27fbfba900b993dd1af950e885c.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2023/10/10/24/1696920136ecfd73b7bfde199e97e265db09082c35.jpg"
+      ],
+      "image_count": 7,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/images3_spmp/2023/10/10/0d/1696920103e1b9522d5fdce6d7b9688c55e612b25c.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2023/10/10/24/1696920136a2f0e27fbfba900b993dd1af950e885c.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2023/10/10/24/1696920136ecfd73b7bfde199e97e265db09082c35.jpg"
+      ],
+      "scraped_image_count": 7,
+      "videos_count": 0,
+      "discount_text": "5% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "2",
+      "current_price": 100.49,
+      "original_price": 105.95,
+      "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "370896892",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-18T23:48:54.141430",
+      "catalog_product_id": "370896892",
+      "item_id": "370896892",
+      "configured_category_id": "017172961",
+      "name": "vestido longo midi tres marias confortavel soltinho verão manga curta malha 100% algodão viscolycra elegante evangelica",
+      "thumbnail": "https://img.ltwebstatic.com/v4/j/spmp/2026/01/16/26/17685267332e8d6155d7316249c45703276294b7c1.jpg",
+      "source_url": "https://br.shein.com/Comfortable-Loose-Fitting-Midi-Dress-With-Three-Tiers-For-Summer-Short-Sleeves-100-Cotton-Viscose-Lycra-Knit-Elegant-Modest-p-370896892-cat-12476.html",
+      "short_description": "Detalhes: Bainha com babado | Possui forro: Não | Decote: Gola Redonda | Estampa: Simples | Tipo de manga: Manga Regular | Estilo: Casual",
+      "main_features": [
+        "Detalhes: Bainha com babado",
+        "Possui forro: Não",
+        "Decote: Gola Redonda",
+        "Estampa: Simples",
+        "Tipo de manga: Manga Regular",
+        "Estilo: Casual"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/01/16/26/17685267332e8d6155d7316249c45703276294b7c1.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/01/16/d2/1768526730a582e78be810e3796fb5ef36545f7fdc.jpg"
+      ],
+      "image_count": 2,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/01/16/26/17685267332e8d6155d7316249c45703276294b7c1.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/01/16/d2/1768526730a582e78be810e3796fb5ef36545f7fdc.jpg"
+      ],
+      "scraped_image_count": 2,
+      "videos_count": 0,
+      "discount_text": "50% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "25",
+      "current_price": 64.41,
+      "original_price": 129.9,
+      "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "183214571",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-18T23:48:54.141430",
+      "catalog_product_id": "183214571",
+      "item_id": "183214571",
+      "configured_category_id": "017172961",
+      "name": "SHEIN PETITE Calças retas de cintura baixa 100% algodão lavado, calças de linho para mulheres, calças de verão, calças de algodão para mulheres, calças de perna larga para mulheres, calças de verão, roupas de outono para mulheres, calças de verão",
+      "thumbnail": "https://img.ltwebstatic.com/v4/j/pi/2025/09/15/d2/17579256196496db1a14080773493efa23390f6ff1.jpg",
+      "source_url": "https://br.shein.com/SHEIN-PETITE-100-Washed-Cotton-Low-Waist-Straight-Pants-Linen-Pants-For-Women-Pants-For-Summer-Cotton-Pants-Women-Wide-Leg-Pants-Women-Pants-For-Summer-Fall-Fall-Clothes-For-Women-Pants-For-Summer-p-183214571-cat-1740.html",
+      "short_description": "Tipo de Fechamento: Mosca com zíper | Detalhes: Zíper | Possui forro: Sem forro | Estilo: Casual | Ocasião: Escritório | Linho para manter aquecido: Não",
+      "main_features": [
+        "Tipo de Fechamento: Mosca com zíper",
+        "Detalhes: Zíper",
+        "Possui forro: Sem forro",
+        "Estilo: Casual",
+        "Ocasião: Escritório",
+        "Linho para manter aquecido: Não"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/v4/j/pi/2025/09/15/d2/17579256196496db1a14080773493efa23390f6ff1.jpg",
+        "https://img.ltwebstatic.com/v4/j/pi/2025/09/15/8e/17579256214664bd6e67a1f92dd517caee286cfd65.jpg",
+        "https://img.ltwebstatic.com/v4/j/pi/2025/09/15/2b/17579256221ae49b8e24b1163286a9f6531d8e76bf.jpg"
+      ],
+      "image_count": 8,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/v4/j/pi/2025/09/15/d2/17579256196496db1a14080773493efa23390f6ff1.jpg",
+        "https://img.ltwebstatic.com/v4/j/pi/2025/09/15/8e/17579256214664bd6e67a1f92dd517caee286cfd65.jpg",
+        "https://img.ltwebstatic.com/v4/j/pi/2025/09/15/2b/17579256221ae49b8e24b1163286a9f6531d8e76bf.jpg"
+      ],
+      "scraped_image_count": 8,
+      "videos_count": 0,
+      "discount_text": "7% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "1",
+      "current_price": 119.03,
+      "original_price": 127.99,
+      "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "38293062",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-18T23:48:54.141430",
+      "catalog_product_id": "38293062",
+      "item_id": "38293062",
+      "configured_category_id": "017172961",
+      "name": "Esta bolsa de mão com listras de contraste de palhaço, elegante e clássica, tem grande capacidade, é leve e fácil de carregar. A bolsa apresenta gráficos de letras em ambos os lados. A bolsa de ombro é adequada para viagens, compras, bem como sendo uma bolsa essencial para a escola e faculdade.",
+      "thumbnail": "https://img.ltwebstatic.com/v4/j/spmp/2026/03/29/8f/1774755862df681bb0fb4d6019b8e5581c5d7c5a22.jpg",
+      "source_url": "https://br.shein.com/This-Fashionable-And-Classic-Clown-Contrast-Stripe-Handbag-Has-A-Large-Capacity-Is-Lightweight-And-Easy-To-Carry-The-Bag-Features-Letter-Graphics-On-Both-Sides-The-One-Shoulder-Handbag-Is-Suitable-For-Travel-Shopping-As-Well-As-Being-An-Essential-Bag-For-School-And-College-p-38293062-cat-2844.html",
+      "short_description": "Estilo: Elegante | Ocasião: Desportivo | Detalhes: Cintura contrastada | Cor: Azul | Tipo: Bolsa de ombro | Tipo das alças: Punho Duplo",
+      "main_features": [
+        "Estilo: Elegante",
+        "Ocasião: Desportivo",
+        "Detalhes: Cintura contrastada",
+        "Cor: Azul",
+        "Tipo: Bolsa de ombro",
+        "Tipo das alças: Punho Duplo"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/03/29/8f/1774755862df681bb0fb4d6019b8e5581c5d7c5a22.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2024/06/28/22/17195691933714b1be64d7cbc8ebef250c341dc93a.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2024/06/28/02/17195691944868817e406783f82d3b7a9fa238ef5a.jpg"
+      ],
+      "image_count": 7,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/03/29/8f/1774755862df681bb0fb4d6019b8e5581c5d7c5a22.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2024/06/28/22/17195691933714b1be64d7cbc8ebef250c341dc93a.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2024/06/28/02/17195691944868817e406783f82d3b7a9fa238ef5a.jpg"
+      ],
+      "scraped_image_count": 7,
+      "videos": [
+        "http://svideo.ltwebstatic.com/spmp/2024/09/20/970527743.mp4",
+        "http://svideo.ltwebstatic.com/spmp/2024/09/20/970527743_360p.mp4",
+        "http://svideo.ltwebstatic.com/spmp/2024/09/20/970527743_720p.mp4"
+      ],
+      "videos_count": 3,
+      "discount_text": "1% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "1",
+      "current_price": 79.84,
+      "original_price": 80.95,
+      "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "182947319",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-18T23:48:54.141430",
+      "catalog_product_id": "182947319",
+      "item_id": "182947319",
+      "configured_category_id": "017172961",
+      "name": "Calça Casual Larga e Solta de Cor Sólida na Moda para Mulheres, Elegante e Minimalista em Preto para a Primavera",
+      "thumbnail": "https://img.ltwebstatic.com/v4/j/ssms/2025/11/27/4f/17642402066466c500665a95d559dd238351a4f1ba.jpg",
+      "source_url": "https://br.shein.com/Fashionable-Solid-Color-Casual-Loose-Wide-Leg-Pants-For-Women-Elegant-And-Minimalist-Black-Spring-p-182947319-cat-1740.html",
+      "short_description": "Tipo de Fechamento: Mosca com zíper | Detalhes: Botão | Possui forro: Sem forro | Estilo: Casual | Ocasião: Escritório | Características: leve",
+      "main_features": [
+        "Tipo de Fechamento: Mosca com zíper",
+        "Detalhes: Botão",
+        "Possui forro: Sem forro",
+        "Estilo: Casual",
+        "Ocasião: Escritório",
+        "Características: leve"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/v4/j/ssms/2025/11/27/4f/17642402066466c500665a95d559dd238351a4f1ba.jpg",
+        "https://img.ltwebstatic.com/v4/j/ssms/2025/11/27/1e/176424020638b8aaaec516a5c60f1513d7701d6208.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/10/11/5e/176015613839ead9de97e4818df8ba236d5290211a.jpg"
+      ],
+      "image_count": 7,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/v4/j/ssms/2025/11/27/4f/17642402066466c500665a95d559dd238351a4f1ba.jpg",
+        "https://img.ltwebstatic.com/v4/j/ssms/2025/11/27/1e/176424020638b8aaaec516a5c60f1513d7701d6208.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/10/11/5e/176015613839ead9de97e4818df8ba236d5290211a.jpg"
+      ],
+      "scraped_image_count": 7,
+      "videos_count": 0,
+      "discount_text": "20% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "1",
+      "current_price": 68.79,
+      "original_price": 85.99,
+      "macrotema": "Moda e Beleza"
     }
   ]
 }

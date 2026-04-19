@@ -2039,6 +2039,389 @@
       "current_price": 68.79,
       "original_price": 85.99,
       "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "99795888",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-19T00:29:45.929724",
+      "catalog_product_id": "99795888",
+      "item_id": "99795888",
+      "configured_category_id": "017172966",
+      "name": "Liuhan Modas Saia decintura Ata de cor Sordaeminina com Banha plissada três maria",
+      "thumbnail": "https://img.ltwebstatic.com/v4/j/spmp/2025/06/14/0f/17499123904e017325693995cb88f40cfc66ded8dd.jpg",
+      "source_url": "https://br.shein.com/Liuhan-Modas-Sordaeminina-Colored-High-Waist-Ata-Skirt-With-Pleated-Three-Maria-p-99795888-cat-1732.html",
+      "short_description": "Detalhes: Zíper | Possui forro: Sem forro | Estilo: Casual | Tipo: Em Camadas/Escalonado | Ocasião: Sessão de fotos | Características: secagem rápida",
+      "main_features": [
+        "Detalhes: Zíper",
+        "Possui forro: Sem forro",
+        "Estilo: Casual",
+        "Tipo: Em Camadas/Escalonado",
+        "Ocasião: Sessão de fotos",
+        "Características: secagem rápida"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/06/14/0f/17499123904e017325693995cb88f40cfc66ded8dd.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/06/14/0a/1749912394bc94f1b9e16daf0a2c2f34d3d3c112f0.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/06/14/e2/17499123971d9824f26096892a8ae955a3074fa30c.jpg"
+      ],
+      "image_count": 3,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/06/14/0f/17499123904e017325693995cb88f40cfc66ded8dd.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/06/14/0a/1749912394bc94f1b9e16daf0a2c2f34d3d3c112f0.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/06/14/e2/17499123971d9824f26096892a8ae955a3074fa30c.jpg"
+      ],
+      "scraped_image_count": 3,
+      "videos_count": 0,
+      "discount_text": "64% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "46",
+      "current_price": 71.99,
+      "original_price": 199.99,
+      "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "44384232",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-19T00:29:45.929724",
+      "catalog_product_id": "44384232",
+      "item_id": "44384232",
+      "configured_category_id": "017172966",
+      "name": "Saia Plissada 4 Camadas S-1",
+      "thumbnail": "https://img.ltwebstatic.com/images3_spmp/2024/10/09/84/1728428147faf3806f7e59cc0aed126abfd16720a9.jpg",
+      "source_url": "https://br.shein.com/4-Layer-Pleated-Skirt-S-1-p-44384232-cat-1732.html",
+      "short_description": "Detalhes: Bainha com babado | Possui forro: Sem forro | Estampa: Simples | Estilo: Casual | Tipo: Em Camadas/Escalonado | Ocasião: Casamento",
+      "main_features": [
+        "Detalhes: Bainha com babado",
+        "Possui forro: Sem forro",
+        "Estampa: Simples",
+        "Estilo: Casual",
+        "Tipo: Em Camadas/Escalonado",
+        "Ocasião: Casamento"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/images3_spmp/2024/10/09/84/1728428147faf3806f7e59cc0aed126abfd16720a9.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2024/10/09/35/1728428152e9689abd8de70aef3d05fed630da0e8c.jpg"
+      ],
+      "image_count": 2,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/images3_spmp/2024/10/09/84/1728428147faf3806f7e59cc0aed126abfd16720a9.jpg",
+        "https://img.ltwebstatic.com/images3_spmp/2024/10/09/35/1728428152e9689abd8de70aef3d05fed630da0e8c.jpg"
+      ],
+      "scraped_image_count": 2,
+      "videos": [
+        "https://svideo.ltwebstatic.com/spmp/2025/06/28/50/175104750658f39eeb030b8787825e5eb843e3a813.mp4",
+        "https://svideo.ltwebstatic.com/spmp/2025/06/28/50/175104750658f39eeb030b8787825e5eb843e3a813_360p.mp4",
+        "https://svideo.ltwebstatic.com/spmp/2025/06/28/50/175104750658f39eeb030b8787825e5eb843e3a813_720p.mp4"
+      ],
+      "videos_count": 3,
+      "discount_text": "73% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "21",
+      "current_price": 71.82,
+      "original_price": 268.8,
+      "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "45080011",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-19T00:29:45.929724",
+      "catalog_product_id": "45080011",
+      "item_id": "45080011",
+      "configured_category_id": "017172966",
+      "name": "Vestido longo Crepinho Com Bojo e Botões H-1",
+      "thumbnail": "https://img.ltwebstatic.com/v4/j/spmp/2025/07/13/3c/17524139948b914bab6eeee506a81f61bf4783c1a5.jpg",
+      "source_url": "https://br.shein.com/Long-Crepe-Dress-With-Padded-Cups-And-Buttons-H-1-p-45080011-cat-12476.html",
+      "short_description": "Detalhes: Bainha com babado | Possui forro: Sem forro | Decote: Alças Finas | Estampa: Listrado | Tipo de manga: Ombro à mostra | Estilo: Casual",
+      "main_features": [
+        "Detalhes: Bainha com babado",
+        "Possui forro: Sem forro",
+        "Decote: Alças Finas",
+        "Estampa: Listrado",
+        "Tipo de manga: Ombro à mostra",
+        "Estilo: Casual"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/07/13/3c/17524139948b914bab6eeee506a81f61bf4783c1a5.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/07/13/3b/17524140054f42ff543b0aee4922d83d6a85c80772.jpg"
+      ],
+      "image_count": 2,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/07/13/3c/17524139948b914bab6eeee506a81f61bf4783c1a5.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/07/13/3b/17524140054f42ff543b0aee4922d83d6a85c80772.jpg"
+      ],
+      "scraped_image_count": 2,
+      "videos_count": 0,
+      "discount_text": "76% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "8",
+      "current_price": 60.75,
+      "original_price": 256.8,
+      "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "174080923",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-19T00:29:45.929724",
+      "catalog_product_id": "174080923",
+      "item_id": "174080923",
+      "configured_category_id": "017172966",
+      "name": "Calça de Moletom Streetwear Wide Leg Moderna Casual Confortável Básica Flanelada Moda Tumblr Trovões",
+      "thumbnail": "https://img.ltwebstatic.com/v4/p/spmp/2025/09/06/7c/17571021049188d9bc021864dd0315dc1a2a23d2d9_square.png",
+      "source_url": "https://br.shein.com/Streetwear-Wide-Leg-Sweatpants-Modern-Casual-Comfortable-Basic-Flannel-Fashion-Tumblr-Thunder-p-174080923-cat-1740.html",
+      "short_description": "Tipo de Fechamento: Cintura Elástica | Detalhes: Cordão | Possui forro: Sem forro | Estampa: Simples | Estilo: Festa | Ocasião: Formal e Noturno",
+      "main_features": [
+        "Tipo de Fechamento: Cintura Elástica",
+        "Detalhes: Cordão",
+        "Possui forro: Sem forro",
+        "Estampa: Simples",
+        "Estilo: Festa",
+        "Ocasião: Formal e Noturno"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/v4/p/spmp/2025/09/06/7c/17571021049188d9bc021864dd0315dc1a2a23d2d9_square.png",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/09/06/02/1757091159012c4ab456154bbb0c61d59ad95321d3_square.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/09/06/c7/1757091175fa22ccac211c2be63dbb9712525552a3.jpg"
+      ],
+      "image_count": 4,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/v4/p/spmp/2025/09/06/7c/17571021049188d9bc021864dd0315dc1a2a23d2d9_square.png",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/09/06/02/1757091159012c4ab456154bbb0c61d59ad95321d3_square.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/09/06/c7/1757091175fa22ccac211c2be63dbb9712525552a3.jpg"
+      ],
+      "scraped_image_count": 4,
+      "videos_count": 0,
+      "discount_text": "55% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "26",
+      "current_price": 58.41,
+      "original_price": 129.9,
+      "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "15379371",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-19T00:29:45.929724",
+      "catalog_product_id": "15379371",
+      "item_id": "15379371",
+      "configured_category_id": "017172966",
+      "name": "Bolsa Preta Feminina Grande De Ombro e Transversal Espaçosa Santucci Carnaval",
+      "thumbnail": "https://img.ltwebstatic.com/v4/j/spmp/2026/03/14/a3/17734257826f2f427523062c4f4f7e26363514b1a2_square.jpg",
+      "source_url": "https://br.shein.com/Women-Tote-Bags-p-15379371-cat-2844.html",
+      "short_description": "Ocasião: Escritório | Detalhes: Ilhó | Estampa: Simples | Cor: Preto | Tipo: Bolsa de ombro | Tipo das alças: Cadeia",
+      "main_features": [
+        "Ocasião: Escritório",
+        "Detalhes: Ilhó",
+        "Estampa: Simples",
+        "Cor: Preto",
+        "Tipo: Bolsa de ombro",
+        "Tipo das alças: Cadeia"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/03/14/a3/17734257826f2f427523062c4f4f7e26363514b1a2_square.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/03/14/28/1773425818627fcf925bce9fb6648a4abd24c3d56a_square.jpg",
+        "https://img.ltwebstatic.com/v4/p/spmp/2026/03/14/31/17734255828260a08800f70d5979549fa600c7f4e4_square.png"
+      ],
+      "image_count": 6,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/03/14/a3/17734257826f2f427523062c4f4f7e26363514b1a2_square.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/03/14/28/1773425818627fcf925bce9fb6648a4abd24c3d56a_square.jpg",
+        "https://img.ltwebstatic.com/v4/p/spmp/2026/03/14/31/17734255828260a08800f70d5979549fa600c7f4e4_square.png"
+      ],
+      "scraped_image_count": 6,
+      "videos_count": 0,
+      "discount_text": "53% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "12",
+      "current_price": 42.28,
+      "original_price": 89.99,
+      "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "38522244",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-19T00:29:45.929724",
+      "catalog_product_id": "38522244",
+      "item_id": "38522244",
+      "configured_category_id": "017172966",
+      "name": "Calça Feminina Wide Moletinho Com Bolso Fashion Inverno Moletom",
+      "thumbnail": "https://img.ltwebstatic.com/images3_spmp/2024/07/09/9d/1720461781b91156d025fe01a4409f34aaf65fb065.png",
+      "source_url": "https://br.shein.com/Women-s-Wide-Sweatpants-With-Pocket-Fashion-Winter-Sweatpants-p-38522244-cat-1740.html",
+      "short_description": "Tipo de Fechamento: Cintura Elástica | Detalhes: Bolso | Possui forro: Sem forro | Estilo: Festa | Características: Macio | Linho para manter aquecido: Não",
+      "main_features": [
+        "Tipo de Fechamento: Cintura Elástica",
+        "Detalhes: Bolso",
+        "Possui forro: Sem forro",
+        "Estilo: Festa",
+        "Características: Macio",
+        "Linho para manter aquecido: Não"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/images3_spmp/2024/07/09/9d/1720461781b91156d025fe01a4409f34aaf65fb065.png",
+        "https://img.ltwebstatic.com/images3_spmp/2024/07/09/bb/1720461811f05b2b9edcaac4e9a0b5d527a585cf30.png",
+        "https://img.ltwebstatic.com/images3_spmp/2024/07/09/bb/1720461811e9b502b5c722ac18235e68d393385516.png"
+      ],
+      "image_count": 4,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/images3_spmp/2024/07/09/9d/1720461781b91156d025fe01a4409f34aaf65fb065.png",
+        "https://img.ltwebstatic.com/images3_spmp/2024/07/09/bb/1720461811f05b2b9edcaac4e9a0b5d527a585cf30.png",
+        "https://img.ltwebstatic.com/images3_spmp/2024/07/09/bb/1720461811e9b502b5c722ac18235e68d393385516.png"
+      ],
+      "scraped_image_count": 4,
+      "videos": [
+        "https://svideo.ltwebstatic.com/spmp/2025/10/14/6a/1760452641020f91b2853412346cffba255c1e4a79.mp4",
+        "https://svideo.ltwebstatic.com/spmp/2025/10/14/6a/1760452641020f91b2853412346cffba255c1e4a79_360p.mp4",
+        "https://svideo.ltwebstatic.com/spmp/2025/10/14/6a/1760452641020f91b2853412346cffba255c1e4a79_720p.mp4"
+      ],
+      "videos_count": 3,
+      "discount_text": "50% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "74",
+      "current_price": 37.26,
+      "original_price": 74.9,
+      "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "298579959",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-19T00:29:45.929724",
+      "catalog_product_id": "298579959",
+      "item_id": "298579959",
+      "configured_category_id": "017172966",
+      "name": "Bolsa Estruturada LaytonVivian L8639 PU Texturizado Mão Tiracolo Multi-compartimentos Clássica simples minimalista elegante",
+      "thumbnail": "https://img.ltwebstatic.com/v4/p/spmp/2025/11/21/5c/17637313138d7b672cd82da0a4b82d2f988be33275_square.png",
+      "source_url": "https://br.shein.com/LaytonVivian-L8639-Structured-PU-Textured-Handbag-Shoulder-Strap-Multi-Compartments-Classic-Simple-Minimalist-Elegant-p-298579959-cat-2844.html",
+      "short_description": "Estilo: Minimalista | Ocasião: comprar | Detalhes: Multi-compartimento | Estampa: Simples | Cor: Preto | Tipo: Sacos de alça superiores",
+      "main_features": [
+        "Estilo: Minimalista",
+        "Ocasião: comprar",
+        "Detalhes: Multi-compartimento",
+        "Estampa: Simples",
+        "Cor: Preto",
+        "Tipo: Sacos de alça superiores"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/v4/p/spmp/2025/11/21/5c/17637313138d7b672cd82da0a4b82d2f988be33275_square.png",
+        "https://img.ltwebstatic.com/v4/p/spmp/2025/11/21/99/1763731314314cc1d7724a487baca2eeed71a7d0d3_square.png",
+        "https://img.ltwebstatic.com/v4/p/spmp/2025/11/21/8b/1763731313826395988398aa2ee96b5b3555a9a12d_square.png"
+      ],
+      "image_count": 6,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/v4/p/spmp/2025/11/21/5c/17637313138d7b672cd82da0a4b82d2f988be33275_square.png",
+        "https://img.ltwebstatic.com/v4/p/spmp/2025/11/21/99/1763731314314cc1d7724a487baca2eeed71a7d0d3_square.png",
+        "https://img.ltwebstatic.com/v4/p/spmp/2025/11/21/8b/1763731313826395988398aa2ee96b5b3555a9a12d_square.png"
+      ],
+      "scraped_image_count": 6,
+      "videos": [
+        "https://svideo.ltwebstatic.com/spmp/2025/11/21/2e/1763732249bd5c7db72c1f90d64d166062d193ae5b.mp4",
+        "https://svideo.ltwebstatic.com/spmp/2025/11/21/2e/1763732249bd5c7db72c1f90d64d166062d193ae5b_360p.mp4",
+        "https://svideo.ltwebstatic.com/spmp/2025/11/21/2e/1763732249bd5c7db72c1f90d64d166062d193ae5b_720p.mp4"
+      ],
+      "videos_count": 3,
+      "discount_text": "55% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "3",
+      "current_price": 98.91,
+      "original_price": 220.0,
+      "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "314977666",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-19T00:29:45.929724",
+      "catalog_product_id": "314977666",
+      "item_id": "314977666",
+      "configured_category_id": "017172966",
+      "name": "Saia de tule plana com fundo plano e diamantes brilhantes, saia de gaze, saia de comprimento médio, emenda de fada, corte A, grande, swing slim",
+      "thumbnail": "https://img.ltwebstatic.com/v4/j/spmp/2025/12/02/96/176467535462067160e88504b02d0b5dc3f72d703d.jpg",
+      "source_url": "https://br.shein.com/Flat-Tulle-Skirt-With-Flat-Bottom-And-Sparkling-Diamonds-Gauze-Skirt-Mid-Length-Skirt-Fairy-Seam-A-Line-Large-Swing-Slim-p-314977666-cat-1732.html",
+      "short_description": "Possui forro: Forrado | Estampa: Simples | Estilo: elegante | Tipo: Reto | Ocasião: Rua | Características: Grande Qualidade",
+      "main_features": [
+        "Possui forro: Forrado",
+        "Estampa: Simples",
+        "Estilo: elegante",
+        "Tipo: Reto",
+        "Ocasião: Rua",
+        "Características: Grande Qualidade"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/12/02/96/176467535462067160e88504b02d0b5dc3f72d703d.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/12/02/71/176467535482411a23f10b32ff0dee52e416326fa9.jpg"
+      ],
+      "image_count": 2,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/12/02/96/176467535462067160e88504b02d0b5dc3f72d703d.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2025/12/02/71/176467535482411a23f10b32ff0dee52e416326fa9.jpg"
+      ],
+      "scraped_image_count": 2,
+      "videos_count": 0,
+      "discount_text": "60% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "17",
+      "current_price": 80.99,
+      "original_price": 199.99,
+      "macrotema": "Moda e Beleza"
+    },
+    {
+      "_id": "76278750",
+      "origin": "shein",
+      "status": "discovered",
+      "discovered_at": "2026-04-19T00:29:45.929724",
+      "catalog_product_id": "76278750",
+      "item_id": "76278750",
+      "configured_category_id": "017172966",
+      "name": "Calça Alfaiataria Feminina Pantalona Wide Leg Com Cinto Casual Elegante Bolso Botão Zíper",
+      "thumbnail": "https://img.ltwebstatic.com/v4/j/spmp/2026/02/20/40/1771561168819e26c38b7a27f4292783b256f66103.jpg",
+      "source_url": "https://br.shein.com/Women-s-Tailored-Wide-Leg-Pants-With-Belt-Casual-Elegant-Pocket-Button-Zipper-p-76278750-cat-1740.html",
+      "short_description": "Tipo de Fechamento: Mosca com zíper | Detalhes: Zíper | Possui forro: Sem forro | Estilo: Casual | Ocasião: viagem | Características: Não agride a pele",
+      "main_features": [
+        "Tipo de Fechamento: Mosca com zíper",
+        "Detalhes: Zíper",
+        "Possui forro: Sem forro",
+        "Estilo: Casual",
+        "Ocasião: viagem",
+        "Características: Não agride a pele"
+      ],
+      "image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/02/20/40/1771561168819e26c38b7a27f4292783b256f66103.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/02/20/8b/177156116846eb0f2218614c0e141552340dc8144e.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/02/20/22/1771561168b83cffa7a8373254ba1fdf17eda24ad4.jpg"
+      ],
+      "image_count": 9,
+      "scraped_image_urls": [
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/02/20/40/1771561168819e26c38b7a27f4292783b256f66103.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/02/20/8b/177156116846eb0f2218614c0e141552340dc8144e.jpg",
+        "https://img.ltwebstatic.com/v4/j/spmp/2026/02/20/22/1771561168b83cffa7a8373254ba1fdf17eda24ad4.jpg"
+      ],
+      "scraped_image_count": 9,
+      "videos": [
+        "https://svideo.ltwebstatic.com/spmp/2025/12/07/30/1765054126c38168b1512f4d4b604df0c2c1309547.mp4",
+        "https://svideo.ltwebstatic.com/spmp/2025/12/07/30/1765054126c38168b1512f4d4b604df0c2c1309547_360p.mp4",
+        "https://svideo.ltwebstatic.com/spmp/2025/12/07/30/1765054126c38168b1512f4d4b604df0c2c1309547_720p.mp4"
+      ],
+      "videos_count": 3,
+      "discount_text": "88% OFF",
+      "rating": 0.0,
+      "reviews_count": 0,
+      "sold_quantity_text": "21",
+      "current_price": 24.2,
+      "original_price": 199.9,
+      "macrotema": "Moda e Beleza"
     }
   ]
 }

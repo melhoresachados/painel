@@ -733,7 +733,7 @@
     {
       "_id": "MLB34506161",
       "origin": "mercadolivre",
-      "status": "discovered",
+      "status": "imported",
       "discovered_at": "2026-04-17T23:17:13.720711",
       "catalog_product_id": "MLB34506161",
       "item_id": "MLB5424190912",
@@ -778,7 +778,10 @@
       "current_price": 229,
       "original_price": 499,
       "macrotema": "Gadgets e eletronicos",
-      "coupon_texts": []
+      "coupon_texts": [],
+      "imported_at": "2026-04-20T20:51:47.305Z",
+      "discarded_at": "",
+      "imported_product_id": "f14d605f-da87-468f-ad20-ecf7dba5092f"
     },
     {
       "_id": "MLB55044657",

@@ -273,6 +273,31 @@
       "product": 3,
       "force_publish_only": "",
       "force_facebook_only": ""
+    },
+    {
+      "_id": "fd55f7ae-0511-4d6d-a3f1-75f1c3c7e1ce",
+      "created_at": "2026-04-20T16:18:52.943Z",
+      "candidate_id": "B0CC6RXNLZ",
+      "catalog_product_id": "B0CC6RXNLZ",
+      "discovery_origin": "amazon",
+      "name": "Fritadeira Elétrica Industrial 3,5 Litros Tacho Redondo (220)",
+      "display_name": "Fritadeira Elétrica Industrial",
+      "account": "amazon",
+      "usuario": "",
+      "status": "pendente",
+      "descricao_audio": "Fritadeira Elétrica Industrial 3,5 Litros Tacho Redondo (220)",
+      "flash_offer": "",
+      "coupon_text": "",
+      "rating": "4.5",
+      "reviews": "",
+      "sold_count": "",
+      "image_urls": "https://m.media-amazon.com/images/I/61RPYXSOjhL._AC_SL1000_.jpg; https://m.media-amazon.com/images/I/51RD0imzOwL._AC_SL1023_.jpg; https://m.media-amazon.com/images/I/51eDzyMA8HL._AC_SL1070_.jpg",
+      "video_urls": "",
+      "thumbnail": "https://m.media-amazon.com/images/I/61RPYXSOjhL._AC_SL1000_.jpg",
+      "preview_image_url": "https://m.media-amazon.com/images/I/61RPYXSOjhL._AC_SL1000_.jpg",
+      "preview_thumbnail_url": "",
+      "affiliate_url": "https://amzn.to/4sOPjRg",
+      "source_url": "https://www.amazon.com.br/dp/B0CC6RXNLZ"
     }
   ]
 }

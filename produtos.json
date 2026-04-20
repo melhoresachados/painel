@@ -391,7 +391,7 @@
       "display_name": "Saia longa monocromatica",
       "account": "shein",
       "usuario": "@seulookperfeitoaqui",
-      "status": "processando",
+      "status": "gerado",
       "descricao_audio": "Detalhes: Bolso | Possui forro: Sem forro | Estilo: elegante | Tipo: Fenda | Ocasião: Diário | Características: Grande Qualidade",
       "flash_offer": "76%",
       "coupon_text": "",
@@ -412,7 +412,14 @@
       "force_facebook_only": "",
       "error": "",
       "error_stage": "",
-      "force_regenerate": ""
+      "force_regenerate": "",
+      "video_path": "out_videos\\shein\\produto_4_shein.mp4",
+      "published_at": "",
+      "post_id": "",
+      "facebook_status": "",
+      "facebook_published_at": "",
+      "facebook_post_id": "",
+      "facebook_error": ""
     }
   ]
 }

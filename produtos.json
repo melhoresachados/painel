@@ -368,6 +368,33 @@
       "product_num": 4,
       "product": 4,
       "video_speed": "2"
+    },
+    {
+      "_id": "1db0296f-4867-42cb-baae-e13a5d7f7aff",
+      "created_at": "2026-04-20T21:05:42.308Z",
+      "candidate_id": "40602936",
+      "catalog_product_id": "40602936",
+      "discovery_origin": "shein",
+      "name": "Saia longa monocromatica em alfataria , com bolsa laterais e detalhas em ziper e botao/DD063",
+      "display_name": "Saia longa monocromatica",
+      "account": "shein",
+      "usuario": "@seulookperfeitoaqui",
+      "status": "pendente",
+      "descricao_audio": "Detalhes: Bolso | Possui forro: Sem forro | Estilo: elegante | Tipo: Fenda | Ocasião: Diário | Características: Grande Qualidade",
+      "flash_offer": "76%",
+      "coupon_text": "",
+      "rating": "0",
+      "reviews": "0",
+      "sold_count": "18",
+      "image_urls": "https://img.ltwebstatic.com/images3_spmp/2024/08/30/8f/1725021699bcf58c22ec396416dde8700629e938ed.jpg; https://img.ltwebstatic.com/images3_spmp/2024/08/30/8f/17250216996fe1d30bb768a635fdb048c60c73725a.jpg; https://img.ltwebstatic.com/images3_spmp/2024/08/30/8f/1725021699bbcb2cad932569c0adb6a4ca182dcfb2.jpg",
+      "video_urls": "http://svideo.ltwebstatic.com/spmp/2024/10/11/1013212709.mp4; http://svideo.ltwebstatic.com/spmp/2024/10/11/1013212709_360p.mp4; http://svideo.ltwebstatic.com/spmp/2024/10/11/1013212709_720p.mp4",
+      "thumbnail": "https://img.ltwebstatic.com/images3_spmp/2024/08/30/8f/1725021699bcf58c22ec396416dde8700629e938ed.jpg",
+      "preview_image_url": "https://img.ltwebstatic.com/images3_spmp/2024/08/30/8f/1725021699bcf58c22ec396416dde8700629e938ed.jpg",
+      "preview_thumbnail_url": "",
+      "affiliate_url": "https://onelink.shein.com/3/5n44rvz6beh9",
+      "source_url": "https://br.shein.com/Long-Monochromatic-Tailored-Skirt-With-Side-Pockets-And-Zipper-And-Button-Details-DD063-p-40602936-cat-1732.html",
+      "product_num": 4,
+      "product": 4
     }
   ]
 }

@@ -341,7 +341,10 @@
       "product": 3,
       "video_speed": "",
       "force_publish_only": "",
-      "force_facebook_only": ""
+      "force_facebook_only": "",
+      "error": "",
+      "error_stage": "",
+      "force_regenerate": ""
     },
     {
       "_id": "f14d605f-da87-468f-ad20-ecf7dba5092f",

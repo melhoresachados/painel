@@ -340,6 +340,33 @@
       "product_num": 3,
       "product": 3,
       "video_speed": "2"
+    },
+    {
+      "_id": "f14d605f-da87-468f-ad20-ecf7dba5092f",
+      "created_at": "2026-04-20T20:51:47.304Z",
+      "candidate_id": "MLB34506161",
+      "catalog_product_id": "MLB34506161",
+      "discovery_origin": "mercadolivre",
+      "name": "Smartwatch Samsung Galaxy Fit3 Display 1.6\" Rosé",
+      "display_name": "Samsung Galaxy Fit3 Display",
+      "account": "mercadolivre",
+      "usuario": "@pricebestnet",
+      "status": "pendente",
+      "descricao_audio": "Dura até 13 dias com uma única carga. Ele fica levemente no pulso e registra mais de 100 exercícios e atividades diárias, incluindo o sono. Ele permite que você toque música, verifique chamadas e envie mensagens de texto diretamente do seu pulso: mantenha-se capacitado e conectado sem esforço com o Galaxy Fit3. \n \n Delgado. Leve. Pronto para o movimento \n O corpo fino de alumínio, tão leve com 18,",
+      "flash_offer": "54%",
+      "coupon_text": "",
+      "rating": "4.9",
+      "reviews": "22913",
+      "sold_count": "+10mil",
+      "image_urls": "https://http2.mlstatic.com/D_NQ_NP_674204-MLA99446580250_112025-F.webp; https://http2.mlstatic.com/D_NQ_NP_740217-MLA83182121258_042025-F.webp; https://http2.mlstatic.com/D_NQ_NP_656663-MLA87311767448_072025-F.webp",
+      "video_urls": "https://http2.mlstatic.com/storage/shorts-api/videos-middleware/playlists/c8907e75-1182-4de6-ba0c-bd1d9bd1168f/fWSQF4.m3u8",
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_674204-MLA99446580250_112025-F.jpg",
+      "preview_image_url": "https://http2.mlstatic.com/D_NQ_NP_674204-MLA99446580250_112025-F.jpg",
+      "preview_thumbnail_url": "",
+      "affiliate_url": "https://meli.la/15Ci1Dp",
+      "source_url": "https://www.mercadolivre.com.br/smartwatch-samsung-galaxy-fit3-display-1-6-rose/p/MLB34506161",
+      "product_num": 4,
+      "product": 4
     }
   ]
 }

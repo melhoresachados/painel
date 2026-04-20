@@ -284,7 +284,7 @@
       "display_name": "Papel de Parede Adesivo",
       "account": "amazon",
       "usuario": "@primeofertasnet",
-      "status": "processando",
+      "status": "publicado",
       "descricao_audio": "Papel de Parede Adesivo Autocoloante Imitação Madeira Ripado Decoração Quarto Sala Escritório 3 Metros",
       "flash_offer": "5% off",
       "coupon_text": "",
@@ -306,11 +306,11 @@
       "error_stage": "",
       "force_regenerate": "",
       "video_path": "out_videos\\amazon\\produto_1_amazon.mp4",
-      "published_at": "",
-      "post_id": "",
-      "facebook_status": "",
-      "facebook_published_at": "",
-      "facebook_post_id": "",
+      "published_at": "2026-04-20 17:20",
+      "post_id": "18129970996560011",
+      "facebook_status": "publicado",
+      "facebook_published_at": "2026-04-20 17:20:48",
+      "facebook_post_id": "1448259706494381",
       "facebook_error": ""
     }
   ]

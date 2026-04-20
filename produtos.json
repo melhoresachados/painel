@@ -409,7 +409,10 @@
       "product": 4,
       "video_speed": "",
       "force_publish_only": "",
-      "force_facebook_only": ""
+      "force_facebook_only": "",
+      "error": "",
+      "error_stage": "",
+      "force_regenerate": ""
     }
   ]
 }

@@ -3086,6 +3086,8 @@ function showApp() {
 
   document.getElementById('app-screen').style.display = 'flex';
 
+  history.replaceState({ panelView: 'list' }, '');
+
   buildFilters();
 
   buildCandidateFilters();
@@ -3162,13 +3164,17 @@ function syncResponsiveNavigation() {
 
 
 
-function showPage(page) {
+function showPage(page, _fromPopstate) {
 
   state.currentPage = page;
 
   if (page === 'list') state.editingId = null;
 
   persistViewState();
+
+  if (!_fromPopstate && page !== 'list') {
+    history.pushState({ panelView: page, editingId: state.editingId || null }, '');
+  }
 
   document.getElementById('list-page').style.display = page === 'list' ? 'flex' : 'none';
 
@@ -3197,6 +3203,12 @@ function showPage(page) {
   if (page === 'categories') renderDiscoveryCategories();
 
 }
+
+window.addEventListener('popstate', function() {
+  if (state.currentPage !== 'list') {
+    showPage('list', true);
+  }
+});
 
 
 

@@ -995,7 +995,7 @@
   },
   "amazon": {
     "enabled": true,
-    "per_category_limit": 2,
+    "per_category_limit": 1,
     "categories": [
       {
         "id": "aps",
@@ -1003,11 +1003,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": false,
-        "macrotheme": "",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": ""
       },
       {
         "id": "alexa-skills",
@@ -1015,23 +1011,15 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": false,
-        "macrotheme": "",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": ""
       },
       {
         "id": "grocery",
         "name": "Alimentos e Bebidas",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Casa e organizacao",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Casa e organizacao"
       },
       {
         "id": "warehouse-deals",
@@ -1039,11 +1027,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": false,
-        "macrotheme": "",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": ""
       },
       {
         "id": "mobile-apps",
@@ -1051,11 +1035,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": false,
-        "macrotheme": "",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": ""
       },
       {
         "id": "audible",
@@ -1063,83 +1043,55 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": false,
-        "macrotheme": "",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": ""
       },
       {
         "id": "automotive",
         "name": "Automotivo",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Lifestyle utilitario",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Lifestyle utilitario"
       },
       {
         "id": "baby",
         "name": "Bebes",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Casa e organizacao",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Casa e organizacao"
       },
       {
         "id": "beauty",
         "name": "Beleza",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Produtos evergreen orientados a review",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Produtos evergreen orientados a review"
       },
       {
         "id": "luxury-beauty",
         "name": "Beleza de luxo",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Produtos evergreen orientados a review",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Produtos evergreen orientados a review"
       },
       {
         "id": "fashion-luggage",
         "name": "Bolsas, Malas e Mochilas",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Lifestyle utilitario",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Lifestyle utilitario"
       },
       {
         "id": "toys",
         "name": "Brinquedos e Jogos",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Produtos evergreen orientados a review",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Produtos evergreen orientados a review"
       },
       {
         "id": "home",
@@ -1147,11 +1099,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": true,
-        "macrotheme": "Casa e organizacao",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": "Casa e organizacao"
       },
       {
         "id": "popular",
@@ -1159,23 +1107,15 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": false,
-        "macrotheme": "",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": ""
       },
       {
         "id": "computers",
         "name": "Computadores e Informatica",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Gadgets confiaveis",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Gadgets confiaveis"
       },
       {
         "id": "kitchen",
@@ -1183,11 +1123,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": true,
-        "macrotheme": "Casa e organizacao",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": "Casa e organizacao"
       },
       {
         "id": "amazon-devices",
@@ -1195,11 +1131,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": false,
-        "macrotheme": "",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": ""
       },
       {
         "id": "dvd",
@@ -1207,11 +1139,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": false,
-        "macrotheme": "",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": ""
       },
       {
         "id": "appliances",
@@ -1219,11 +1147,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": true,
-        "macrotheme": "Casa e organizacao",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": "Casa e organizacao"
       },
       {
         "id": "electronics",
@@ -1231,47 +1155,31 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": true,
-        "macrotheme": "Gadgets confiaveis",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": "Gadgets confiaveis"
       },
       {
         "id": "sporting",
         "name": "Esportes e Aventura",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Lifestyle utilitario",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Lifestyle utilitario"
       },
       {
         "id": "hi",
         "name": "Ferramentas e Materiais de Construcao",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Lifestyle utilitario",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Lifestyle utilitario"
       },
       {
         "id": "videogames",
         "name": "Games",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Gadgets confiaveis",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Gadgets confiaveis"
       },
       {
         "id": "industrial",
@@ -1279,47 +1187,31 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": false,
-        "macrotheme": "",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": ""
       },
       {
         "id": "mi",
         "name": "Instrumentos Musicais",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Lifestyle utilitario",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Lifestyle utilitario"
       },
       {
         "id": "garden",
         "name": "Jardim e Piscinas",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Casa e organizacao",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Casa e organizacao"
       },
       {
         "id": "stripbooks",
         "name": "Livros",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Produtos evergreen orientados a review",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Produtos evergreen orientados a review"
       },
       {
         "id": "digital-text",
@@ -1327,47 +1219,31 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": false,
-        "macrotheme": "",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": ""
       },
       {
         "id": "office-products",
         "name": "Material para Escritorio e Papelaria",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Lifestyle utilitario",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Lifestyle utilitario"
       },
       {
         "id": "furniture",
         "name": "Moveis e Decoracao",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Casa e organizacao",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Casa e organizacao"
       },
       {
         "id": "pets",
         "name": "Pet Shop",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Produtos evergreen orientados a review",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Produtos evergreen orientados a review"
       },
       {
         "id": "instant-video",
@@ -1375,11 +1251,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": false,
-        "macrotheme": "",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": ""
       },
       {
         "id": "specialty-aps-sns",
@@ -1387,47 +1259,31 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": false,
-        "macrotheme": "",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": ""
       },
       {
         "id": "fashion",
         "name": "Roupas, Calcados e Joias",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Produtos evergreen orientados a review",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Produtos evergreen orientados a review"
       },
       {
         "id": "fashion-womens",
         "name": "Roupas, sapatos e joias femininas",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Produtos evergreen orientados a review",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Produtos evergreen orientados a review"
       },
       {
         "id": "fashion-mens",
         "name": "Roupas, sapatos e joias masculinas",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Produtos evergreen orientados a review",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Produtos evergreen orientados a review"
       },
       {
         "id": "fashion-girls",
@@ -1435,11 +1291,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": false,
-        "macrotheme": "",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": ""
       },
       {
         "id": "fashion-boys",
@@ -1447,11 +1299,7 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": false,
-        "macrotheme": "",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": ""
       },
       {
         "id": "fashion-baby",
@@ -1459,23 +1307,15 @@
         "parent_id": "",
         "parent_name": "",
         "enabled": false,
-        "macrotheme": "",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "macrotheme": ""
       },
       {
         "id": "hpc",
         "name": "Saude e Cuidados Pessoais",
         "parent_id": "",
         "parent_name": "",
-        "enabled": true,
-        "macrotheme": "Produtos evergreen orientados a review",
-        "url": "",
-        "query": "",
-        "slug": "",
-        "child_cat_id": ""
+        "enabled": false,
+        "macrotheme": "Produtos evergreen orientados a review"
       }
     ]
   }

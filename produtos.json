@@ -323,7 +323,7 @@
       "display_name": "Oculos Sol Redondo",
       "account": "shopee",
       "usuario": "@happydayofertas",
-      "status": "pendente",
+      "status": "processando",
       "descricao_audio": "*ATENÇÃO! TODAS AS PROMOÇÕES E OFERTAS DA FORTUNA SUNGLASSES NA SHOPEE SÃO POR TEMPO LIMITADO, APROVEITE!* MODELO MIAMI Apresentamos o óculos de sol MIAMI em acetato italiano super flexível e resistente, o modelo mais vendido da Fortuna Sunglasses, desejado pelos apaixonados por estilo e moda! Se você procura um acessório que combine perfeitamente com qualquer look, garantindo proteção e elegância",
       "flash_offer": "10%",
       "coupon_text": "Cupom disponível",
@@ -339,7 +339,9 @@
       "source_url": "https://shopee.com.br/product/1386775107/23598666696",
       "product_num": 3,
       "product": 3,
-      "video_speed": ""
+      "video_speed": "",
+      "force_publish_only": "",
+      "force_facebook_only": ""
     },
     {
       "_id": "f14d605f-da87-468f-ad20-ecf7dba5092f",

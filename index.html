@@ -1,605 +1,1207 @@
 ﻿<!DOCTYPE html>
+
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Painel de Afiliados</title>
+
 <link rel="icon" type="image/png" href="logo.png">
+
 <link rel="shortcut icon" type="image/png" href="logo.png">
+
 <script>if (sessionStorage.getItem('token')) document.documentElement.classList.add('is-authed');</script>
+
 <style>
+
 html.is-authed #login-screen { display: none !important; }
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   :root{
+
     --brand-navy:#0a2e63;
+
     --brand-navy-2:#113d7d;
+
     --brand-navy-3:#08244d;
+
     --brand-gold:#f1c40f;
+
     --brand-gold-soft:#f6d84e;
+
     --brand-bg:#f0f2f5;
+
   }
+
 body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 14px; background: #f0f2f5; color: #1a1a2e; min-height: 100vh; }
 
+
+
 /* ── Login ──────────────────────────────────────────────────────────────── */
+
 #login-screen {
+
   display: flex; align-items: center; justify-content: center;
+
   min-height: 100vh; background: linear-gradient(135deg, var(--brand-navy-3) 0%, var(--brand-navy) 55%, var(--brand-navy-2) 100%);
+
 }
+
 .login-card {
+
   background: #fff; border-radius: 12px; padding: 48px 40px;
+
   width: 360px; box-shadow: 0 20px 60px rgba(0,0,0,.25);
+
 }
+
 .login-logo { text-align: center; margin-bottom: 28px; }
+
 .login-logo img { width: 92px; height: 92px; object-fit: cover; display: block; margin: 0 auto 12px; border-radius: 50%; box-shadow: 0 10px 24px rgba(10,46,99,.22); background:transparent; }
+
 .login-logo h1 { font-size: 20px; font-weight: 700; color: var(--brand-navy); }
+
 .login-logo p  { font-size: 13px; color: #64748b; margin-top: 2px; }
+
 .login-field { margin-bottom: 16px; }
+
 .login-field label { display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .04em; }
+
 .login-field input { width: 100%; padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 14px; outline: none; transition: border .15s; }
+
 .login-field input:focus { border-color: var(--brand-navy); }
+
 .btn-login { width: 100%; padding: 11px; background: var(--brand-navy); color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background .15s; }
+
 .btn-login:hover { background: var(--brand-navy-2); }
+
 .login-error { color: #dc2626; font-size: 13px; text-align: center; margin-top: 10px; display: none; }
 
+
+
 /* ── App shell ──────────────────────────────────────────────────────────── */
+
 #app-screen { display: none; flex-direction: column; min-height: 100vh; }
 
+
+
 /* Header */
+
 .app-header {
+
   background: linear-gradient(90deg, var(--brand-navy-3) 0%, var(--brand-navy) 60%, var(--brand-navy-2) 100%);
+
   padding: 0 24px; height: 60px; display: flex; align-items: center;
+
   gap: 0; box-shadow: 0 2px 8px rgba(0,0,0,.2); position: sticky; top: 0; z-index: 100;
+
 }
+
 .app-header .brand {
+
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+
   color: #fff; font-weight: 700; font-size: 17px;
+
   display: flex; align-items: center; gap: 10px; pointer-events: none;
+
   white-space: nowrap;
+
 }
+
 .app-header .brand img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; background:transparent; box-shadow: 0 4px 12px rgba(0,0,0,.18); flex-shrink: 0; }
+
 .app-header .brand span { display: inline-block; line-height: 1; }
+
 .app-header nav { display: flex; gap: 4px; }
+
 .nav-btn {
+
   color: rgba(255,255,255,.75); padding: 6px 14px; border-radius: 6px;
+
   border: none; background: transparent; cursor: pointer; font-size: 13px; font-weight: 500;
+
   transition: all .15s; display: flex; align-items: center; gap: 6px;
+
 }
+
 .nav-btn:hover, .nav-btn.active { background: rgba(255,255,255,.15); color: #fff; }
+
 .mobile-filter-btn { display: none; }
+
 .mobile-page-switch {
+
   display: none;
+
   position: relative;
+
   flex-shrink: 0;
+
 }
+
 .mobile-page-select {
+
   appearance: none;
+
   -webkit-appearance: none;
+
   border: 1.5px solid rgba(255,255,255,.24);
+
   border-radius: 999px;
+
   background: rgba(255,255,255,.12);
+
   color: #fff;
+
   padding: 8px 34px 8px 14px;
+
   font-size: 13px;
+
   font-weight: 700;
+
   cursor: pointer;
+
   transition: all .15s;
+
   min-width: 132px;
+
 }
+
 .mobile-page-select:focus {
+
   outline: none;
+
   border-color: rgba(255,255,255,.55);
+
   background: rgba(255,255,255,.18);
+
 }
+
 .mobile-page-switch::after {
+
   content: '';
+
   position: absolute;
+
   right: 14px;
+
   top: 50%;
+
   width: 8px;
+
   height: 8px;
+
   border-right: 2px solid rgba(255,255,255,.86);
+
   border-bottom: 2px solid rgba(255,255,255,.86);
+
   transform: translateY(-60%) rotate(45deg);
+
   pointer-events: none;
+
 }
+
 .app-header .header-right { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+
 .btn-new {
+
   background: #fff; color: var(--brand-navy); border: none; border-radius: 7px;
+
   padding: 7px 16px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all .15s;
+
   display: flex; align-items: center; gap: 5px;
+
 }
+
 .btn-new:hover { background: #eef4ff; }
+
 .btn-logout { color: rgba(255,255,255,.7); background: none; border: none; cursor: pointer; font-size: 13px; padding: 6px 10px; border-radius: 6px; transition: all .15s; }
+
 .btn-logout:hover { background: rgba(255,255,255,.1); color: #fff; }
+
 .mobile-only { display: none; }
 
+
+
 /* Content area */
+
 .app-body { flex: 1; display: flex; overflow: hidden; }
 
+
+
 /* Sidebar */
+
 .sidebar {
+
   width: 220px; flex-shrink: 0; background: #fff;
+
   border-right: 1px solid #e2e8f0; padding: 20px 12px;
+
   overflow-y: auto; display: flex; flex-direction: column; gap: 20px;
+
 }
+
 .sidebar-backdrop {
+
   position: fixed; inset: 60px 0 0;
+
   background: rgba(15, 23, 42, .46);
+
   opacity: 0;
+
   pointer-events: none;
+
   transition: opacity .18s ease;
+
   z-index: 85;
+
 }
+
 .sidebar-backdrop.open { opacity: 1; pointer-events: auto; }
+
 .filter-group-title { font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: .06em; padding: 0 8px; margin-bottom: 4px; }
+
 .filter-item {
+
   display: flex; align-items: center; justify-content: space-between;
+
   padding: 7px 10px; border-radius: 7px; cursor: pointer;
+
   font-size: 13px; color: #475569; transition: all .15s; border: none; background: none; width: 100%; text-align: left;
+
 }
+
 .filter-item:hover { background: #f1f5f9; color: var(--brand-navy); }
+
 .filter-item.active { background: #e8f0fb; color: var(--brand-navy); font-weight: 600; }
+
 .filter-item .badge-count { font-size: 11px; background: #e2e8f0; color: #64748b; padding: 1px 7px; border-radius: 20px; }
+
 .filter-item.active .badge-count { background: #d6e4f8; color: var(--brand-navy); }
+
 .filter-help { font-size: 11px; color: #94a3b8; padding: 2px 10px 0; line-height: 1.4; }
 
+
+
 /* Main panel */
+
 .main-panel { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 
+
+
 /* Toolbar */
+
 .toolbar {
+
   background: #fff; border-bottom: 1px solid #e2e8f0;
+
   padding: 12px 20px; display: flex; align-items: center; gap: 12px;
+
 }
+
 .toolbar-refresh-row {
+
   display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+
 }
+
 .search-wrap { position: relative; flex: 1; max-width: 380px; }
+
 .search-wrap input { width: 100%; padding: 8px 12px 8px 36px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 13px; outline: none; transition: border .15s; background: #f8fafc; }
+
 .search-wrap input:focus { border-color: var(--brand-navy); background: #fff; }
+
 .search-wrap .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 14px; pointer-events: none; }
+
 .result-count { color: #64748b; font-size: 13px; margin-left: auto; }
 
+
+
 /* Table */
+
 .table-wrap { flex: 1; overflow-y: auto; padding: 16px 20px; }
+
 table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+
 thead th {
+
   text-align: left; padding: 10px 12px; font-size: 11px; font-weight: 700;
+
   color: #64748b; text-transform: uppercase; letter-spacing: .05em;
+
   background: #f8fafc; border-bottom: 1.5px solid #e2e8f0;
+
   position: sticky; top: 0; z-index: 1; white-space: nowrap; overflow: hidden;
+
 }
+
 thead th.th-platform { text-align: center; }
+
 tbody tr { border-bottom: 1px solid #f1f5f9; transition: background .1s; cursor: pointer; }
+
 tbody tr:hover { background: #f8fafc; }
+
 tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: middle; overflow: hidden; }
+
 .td-name .name-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500; color: #1e293b; }
+
 .td-name .sub { font-size: 12px; color: #94a3b8; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
 .account-tag { background: #f1f5f9; color: #475569; border-radius: 5px; padding: 2px 8px; font-size: 12px; font-weight: 500; white-space: nowrap; display: inline-block; }
 
+
+
 /* Status badges */
+
 .badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+
 .badge::before { content:''; width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+
 .badge-pendente    { background: #fef9c3; color: #854d0e; } .badge-pendente::before    { background: #ca8a04; }
+
 .badge-processando { background: #dbeafe; color: #1e40af; } .badge-processando::before { background: #2563eb; }
+
 .badge-gerado      { background: #dcfce7; color: #14532d; } .badge-gerado::before      { background: #16a34a; }
+
 .badge-publicado   { background: #d1fae5; color: #064e3b; } .badge-publicado::before   { background: #059669; }
+
 .badge-erro        { background: #fee2e2; color: #7f1d1d; } .badge-erro::before        { background: #dc2626; }
 
+
+
 /* Platform check indicators */
+
 .plat-cell { text-align: center; }
+
 .plat-icon {
+
   display: inline-flex; align-items: center; justify-content: center;
+
   width: 28px; height: 28px; border-radius: 50%;
+
   transition: all .15s;
+
 }
+
 .plat-icon img { width: 14px; height: 14px; display: block; }
+
 .plat-icon.on  { background: #f0fdf4; }
+
 .plat-icon.off { background: #f1f5f9; opacity: 0.35; filter: grayscale(1); }
+
 .th-platform img { width: 15px; height: 15px; display: inline-block; vertical-align: middle; }
 
+
+
 .error-cell { color: #dc2626; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
 .td-thumb img { width:38px; height:68px; object-fit:cover; border-radius:4px; display:block; }
 
+
+
 /* Empty state */
+
 .empty-state { text-align: center; padding: 80px 20px; color: #94a3b8; }
+
 .empty-state .icon { font-size: 48px; display: block; margin-bottom: 12px; }
+
 .empty-state p { font-size: 15px; }
 
+
+
 /* Candidates page */
+
 #candidates-page { display: none; flex: 1; flex-direction: column; overflow: hidden; }
+
 .candidates-page { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+
 .candidate-toolbar {
+
   background: #fff; border-bottom: 1px solid #e2e8f0;
+
   padding: 12px 20px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+
 }
+
 .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
 .chip-btn {
+
   border: 1px solid #dbe4f0; background: #fff; color: #475569;
+
   border-radius: 999px; padding: 7px 12px; font-size: 12px; font-weight: 600; cursor: pointer;
+
   transition: all .15s;
+
 }
+
 .chip-btn:hover { border-color: #94a3b8; background: #f8fafc; }
+
 .chip-btn.active { background: #e8f0fb; border-color: #bfd3f2; color: var(--brand-navy); }
+
 .candidate-grid-wrap { flex: 1; overflow-y: auto; padding: 16px 18px; }
+
 .candidate-grid {
+
   display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 14px;
+
 }
+
 .candidate-card {
+
   background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+
   border: 1px solid #d9e4f2; border-radius: 16px; overflow: hidden;
+
   box-shadow: 0 10px 24px rgba(15, 23, 42, .05); display: flex; flex-direction: column;
+
 }
+
 .candidate-top {
+
   display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 12px;
+
   padding: 12px 12px 6px;
+
 }
+
 .candidate-hero {
+
   aspect-ratio: 0.82 / 1; background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+
   border-radius: 12px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
+
   border: 1px solid #e2e8f0;
+
 }
+
 .candidate-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
 .candidate-hero-empty { color: #94a3b8; font-size: 11px; padding: 10px; text-align: center; line-height: 1.35; }
+
 .candidate-badges {
+
   display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px;
+
 }
+
 .candidate-badge {
+
   background: #0f254c; color: #fff; border-radius: 999px; padding: 4px 8px;
+
   font-size: 10px; font-weight: 800; letter-spacing: .01em; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+
 }
+
 .candidate-body {
+
   display: flex; flex-direction: column; gap: 8px; min-width: 0; justify-content: flex-start;
+
 }
+
 .candidate-title {
+
   font-size: 14px; line-height: 1.28; font-weight: 800; color: #0f172a;
+
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+
 }
+
 .categories-page { display: none; flex: 1; flex-direction: column; overflow: hidden; }
+
 .categories-toolbar {
+
   background: #fff; border-bottom: 1px solid #e2e8f0;
+
   padding: 14px 20px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+
 }
+
 .categories-toolbar-note {
+
   width: 100%; font-size: 12px; color: #64748b; line-height: 1.5;
+
   background: #f8fbff; border: 1px solid #dbe7f7; border-radius: 10px; padding: 10px 12px;
+
 }
+
 .categories-select,
+
 .categories-limit-input,
+
 .category-macro-select,
+
 .category-text-input {
+
   border: 1.5px solid #dbe4f0; border-radius: 8px; background: #fff; color: #0f172a;
+
   padding: 8px 10px; font-size: 13px; min-height: 38px;
+
 }
+
 .categories-limit-wrap {
+
   display: flex; align-items: center; gap: 8px; color: #475569; font-size: 12px; font-weight: 700;
+
 }
+
 .categories-limit-input { width: 84px; }
+
 .btn-secondary-mini {
+
   border: 1.5px solid #dbe4f0; background: #fff; color: #0a2e63;
+
   border-radius: 8px; padding: 8px 12px; font-size: 12px; font-weight: 700; cursor: pointer;
+
 }
+
 .btn-secondary-mini:hover { background: #f8fbff; }
+
 .discovery-summary {
+
   display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;
+
   padding: 16px 18px 0;
+
 }
+
 .discovery-summary-card {
+
   background: #fff; border: 1px solid #d9e4f2; border-radius: 14px; padding: 14px 16px;
+
   box-shadow: 0 8px 18px rgba(15, 23, 42, .04);
+
 }
+
 .discovery-summary-label { font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #64748b; }
+
 .discovery-summary-value { margin-top: 8px; font-size: 24px; font-weight: 800; color: #0a2e63; }
+
 .categories-table-wrap { flex: 1; overflow: auto; padding: 16px 18px 18px; }
+
 .categories-table {
+
   width: 100%; border-collapse: separate; border-spacing: 0; background: #fff;
+
   border: 1px solid #dbe4f0; border-radius: 16px; overflow: hidden;
+
 }
+
 .categories-table th {
+
   text-align: left; padding: 12px 14px; font-size: 11px; font-weight: 800; color: #64748b;
+
   text-transform: uppercase; letter-spacing: .05em; background: #f8fafc; border-bottom: 1px solid #e2e8f0;
+
 }
+
 .categories-table td {
+
   padding: 12px 14px; font-size: 13px; color: #334155; border-bottom: 1px solid #f1f5f9; vertical-align: middle;
+
 }
+
 .categories-table tbody tr:last-child td { border-bottom: none; }
+
 .category-name-cell { display: flex; flex-direction: column; gap: 4px; }
+
 .category-name-cell strong { color: #0f172a; font-size: 13px; }
+
 .category-meta { font-size: 12px; color: #64748b; }
+
 .category-parent-pill {
+
   display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700;
+
   color: #0a2e63; background: #edf4ff; border-radius: 999px; padding: 4px 8px; width: fit-content;
+
 }
+
 .category-toggle {
+
   width: 18px; height: 18px; cursor: pointer;
+
 }
+
 .category-actions-cell {
+
   display: flex; align-items: center; justify-content: flex-end;
+
 }
+
 .category-empty-state {
+
   display: none; text-align: center; padding: 44px 18px; color: #64748b; font-size: 14px;
+
 }
+
 .category-empty-state strong { display: block; color: #0f172a; margin-bottom: 6px; }
+
 .candidate-summary {
+
   display: flex; flex-direction: column; gap: 8px; padding: 0 12px 0;
+
 }
+
 .candidate-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+
 .meta-pill {
+
   background: #f8fafc; color: #475569; border: 1px solid #e2e8f0;
+
   border-radius: 999px; padding: 4px 7px; font-size: 10px; font-weight: 700;
+
 }
+
 .candidate-text {
+
   font-size: 11px; color: #64748b; line-height: 1.45;
+
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+
 }
+
 .candidate-lower {
+
   display: flex; flex-direction: column; gap: 9px; padding: 10px 12px 12px;
+
 }
+
 .candidate-links {
+
   display: flex; flex-direction: column; gap: 6px; padding: 9px 10px;
+
   background: #f8fbff; border: 1px solid #e6edf7; border-radius: 12px;
+
 }
+
 .candidate-link {
+
   color: var(--brand-navy); font-size: 11px; text-decoration: none; overflow: hidden;
+
   text-overflow: ellipsis; white-space: nowrap;
+
 }
+
 .candidate-link:hover { text-decoration: underline; }
+
 .candidate-actions { display: flex; gap: 8px; margin-top: 1px; }
+
 .candidate-actions .btn-candidate {
+
   flex: 1; border: none; border-radius: 10px; padding: 8px 10px; font-size: 11px; font-weight: 800;
+
   cursor: pointer; transition: all .15s;
+
 }
+
 .btn-candidate-primary { background: var(--brand-navy); color: #fff; }
+
 .btn-candidate-primary:hover { background: var(--brand-navy-2); }
+
 .btn-candidate-ghost { background: #fff7ed; color: #b45309; border: 1px solid #fed7aa; }
+
 .btn-candidate-ghost:hover { background: #ffedd5; }
+
 .btn-candidate:disabled { opacity: .55; cursor: default; }
+
 .candidate-state-note { font-size: 10px; color: #94a3b8; }
+
 @media (max-width: 700px) {
+
   .candidate-grid { grid-template-columns: 1fr; }
+
   .candidate-top { grid-template-columns: 88px minmax(0, 1fr); }
+
 }
+
+
 
 /* ── Form page ──────────────────────────────────────────────────────────── */
+
 #form-page { display: none; flex: 1; overflow-y: auto; padding: 24px 28px; }
+
 .form-page-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+
 .btn-back { background: none; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 7px 14px; color: #475569; cursor: pointer; font-size: 13px; font-weight: 500; transition: all .15s; display: flex; align-items: center; gap: 5px; }
+
 .btn-back:hover { border-color: #94a3b8; background: #f8fafc; }
+
 .form-page-header h2 { font-size: 18px; font-weight: 700; color: #1e293b; }
 
+
+
 .form-grid { display: grid; grid-template-columns: 1fr 320px; gap: 20px; }
+
 @media (max-width: 900px) { .form-grid { grid-template-columns: 1fr; } }
 
+
+
 .form-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 24px; }
+
 .form-card + .form-card { margin-top: 16px; }
+
 .form-card h3 { font-size: 13px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; gap: 7px; }
 
+
+
 .field-row { display: grid; gap: 14px; margin-bottom: 14px; }
+
 .field-row.cols-2 { grid-template-columns: 1fr 1fr; }
+
 .field-row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
 .field-row.full { grid-template-columns: 1fr; }
+
 .field-group { display: flex; flex-direction: column; gap: 5px; }
+
 .field-group label { font-size: 12px; font-weight: 600; color: #475569; }
+
 .field-group label .req { color: #ef4444; margin-left: 2px; }
+
 .field-group input, .field-group select, .field-group textarea {
+
   padding: 8px 12px; border: 1.5px solid #e2e8f0; border-radius: 7px;
+
   font-size: 13px; color: #1e293b; outline: none; background: #fff;
+
   transition: border .15s; width: 100%; font-family: inherit;
+
 }
+
 .field-group input:focus, .field-group select:focus, .field-group textarea:focus { border-color: var(--brand-navy); box-shadow: 0 0 0 3px rgba(10,46,99,.08); }
+
 .field-group input[readonly], .field-group textarea[readonly] { background: #f8fafc; color: #64748b; cursor: default; }
+
 .field-group select option { color: #1e293b; }
 
+
+
 .result-value { font-size: 13px; color: #334155; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 7px; padding: 8px 12px; word-break: break-all; min-height: 36px; }
+
 .result-value.empty { color: #94a3b8; font-style: italic; }
+
 .result-error { color: #dc2626; background: #fef2f2; border-color: #fecaca; }
+
 .preview-grid { display: grid; gap: 12px; }
+
 .preview-card { border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; background: #f8fafc; }
+
 .preview-media { aspect-ratio: 9 / 16; background: #e2e8f0; display: flex; align-items: center; justify-content: center; color: #64748b; font-size: 12px; position: relative; }
+
 .preview-media img, .preview-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
 .preview-label { padding: 8px 10px; font-size: 12px; font-weight: 700; color: #475569; background: #fff; border-top: 1px solid #e2e8f0; }
+
 .preview-note { padding: 10px 12px; font-size: 12px; color: #64748b; line-height: 1.5; background: #fff; border: 1px dashed #cbd5e1; border-radius: 8px; }
 
+
+
 .form-actions { display: flex; gap: 10px; align-items: center; padding-top: 6px; margin-top: 4px; }
+
 .btn-save { background: var(--brand-navy); color: #fff; border: none; border-radius: 8px; padding: 10px 24px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background .15s; }
+
 .btn-save:hover { background: var(--brand-navy-2); }
+
 .btn-save:disabled { opacity: .6; cursor: default; }
+
 .btn-cancel { background: #f1f5f9; color: #475569; border: none; border-radius: 8px; padding: 10px 18px; font-size: 14px; cursor: pointer; transition: background .15s; font-weight: 500; }
+
 .btn-cancel:hover { background: #e2e8f0; }
+
 .btn-secondary { background: #fff; color: var(--brand-navy); border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 10px 18px; font-size: 14px; cursor: pointer; transition: all .15s; font-weight: 600; display: none; }
+
 .btn-secondary:hover { background: #f8fafc; border-color: var(--brand-navy); }
+
 .btn-secondary.warm { color: #b45309; border-color: #fcd34d; }
+
 .btn-secondary.warm:hover { background: #fffbeb; border-color: #f59e0b; }
+
 .btn-delete { background: #fff; color: #dc2626; border: 1.5px solid #fca5a5; border-radius: 8px; padding: 10px 18px; font-size: 14px; cursor: pointer; transition: all .15s; font-weight: 500; margin-left: auto; display: none; }
+
 .btn-delete:hover { background: #fef2f2; border-color: #dc2626; }
 
+
+
 /* Toast notifications */
+
 #toast-container { position:fixed; bottom:24px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:8px; }
+
 .toast { padding:12px 18px; border-radius:8px; font-size:13px; font-weight:500; color:#fff; box-shadow:0 4px 16px rgba(0,0,0,.18); opacity:0; transform:translateY(8px); transition:all .25s; max-width:340px; }
+
 .toast.show { opacity:1; transform:translateY(0); }
+
 .toast-success { background:#16a34a; }
+
 .toast-error { background:#dc2626; }
+
 .toast-info { background:#1e40af; }
+
 .toast-warn { background:#b45309; }
 
+
+
 /* Scrollbars */
+
 ::-webkit-scrollbar { width: 6px; height: 6px; }
+
 ::-webkit-scrollbar-track { background: transparent; }
+
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
 ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
+
+
 @media (max-width: 900px) {
+
   body { overflow-x: hidden; }
+
   .app-header {
+
     height: 58px;
+
     padding: 0 12px;
+
     gap: 8px;
+
     justify-content: flex-start;
+
   }
+
   .app-header .brand,
+
   .app-header nav { display: none; }
+
   .mobile-page-switch { display: block; }
+
   .mobile-page-select {
+
     min-width: 124px;
+
     max-width: 138px;
+
   }
+
   .mobile-filter-btn {
+
     display: inline-flex;
+
     padding: 7px 12px;
+
     white-space: nowrap;
+
   }
+
   .app-header .header-right {
+
     gap: 8px;
+
     margin-left: auto;
+
     min-width: 0;
+
   }
+
   .btn-new {
+
     padding: 7px 12px;
+
     font-size: 12px;
+
     min-width: 0;
+
     white-space: nowrap;
+
   }
+
   .btn-logout {
+
     padding: 6px 8px;
+
     font-size: 12px;
+
     white-space: nowrap;
+
   }
+
   .desktop-only { display: none !important; }
+
   .mobile-only { display: inline; }
 
+
+
   .app-body { position: relative; overflow: hidden; }
+
   .sidebar {
+
     position: fixed;
+
     top: 58px;
+
     left: 0;
+
     bottom: 0;
+
     width: min(82vw, 320px);
+
     max-width: 320px;
+
     z-index: 90;
+
     transform: translateX(-100%);
+
     transition: transform .2s ease;
+
     box-shadow: 10px 0 28px rgba(15, 23, 42, .18);
+
     border-right: none;
+
   }
+
   .sidebar.mobile-open { transform: translateX(0); }
+
   .main-panel { min-width: 0; }
+
   .toolbar {
+
     padding: 12px;
+
     gap: 10px;
+
     flex-wrap: wrap;
+
     align-items: stretch;
+
   }
+
   .search-wrap {
+
     max-width: none;
+
     width: 100%;
+
     flex: 1 1 100%;
+
   }
+
   .result-count {
+
     margin-left: 0;
+
     width: 100%;
+
     font-size: 12px;
+
   }
+
   .toolbar-refresh-row {
+
     width: 100%;
+
     justify-content: space-between;
+
   }
+
   .table-wrap {
+
     padding: 12px;
+
     overflow: auto;
+
     -webkit-overflow-scrolling: touch;
+
   }
+
   table {
+
     min-width: 920px;
+
     table-layout: auto;
+
   }
+
   #form-page { padding: 16px 12px 24px; }
+
   .form-page-header {
+
     align-items: flex-start;
+
     gap: 10px;
+
     margin-bottom: 18px;
+
   }
+
   .form-page-header h2 { font-size: 16px; line-height: 1.3; }
+
   .form-card { padding: 16px; }
+
   .field-row.cols-2,
+
   .field-row.cols-3 { grid-template-columns: 1fr; }
+
   .form-actions { flex-wrap: wrap; }
+
   .form-actions > * {
+
     width: 100%;
+
     justify-content: center;
+
   }
+
   .btn-delete { margin-left: 0; }
+
 }
+
 </style>
+
 </head>
+
 <body>
 
+
+
 <!-- ── LOGIN ─────────────────────────────────────────────────────────────── -->
+
 <div id="login-screen">
+
   <div class="login-card">
+
     <div class="login-logo">
+
       <img src="logo.png" alt="EM Affiliates" onerror="this.style.display='none'">
+
       <h1>Painel EM Affiliates</h1>
+
     </div>
+
     <div class="login-field">
+
       <label>Senha</label>
+
       <input id="pwd-input" type="password" placeholder="Digite sua senha"
+
              onkeydown="if(event.key==='Enter') doLogin()">
+
     </div>
+
     <button class="btn-login" onclick="doLogin()">Entrar</button>
+
     <p id="login-error" class="login-error">Senha incorreta. Tente novamente.</p>
+
   </div>
+
 </div>
 
+
+
 <!-- ── APP ───────────────────────────────────────────────────────────────── -->
+
 <div id="app-screen" style="flex-direction:column;">
 
+
+
   <!-- Header -->
+
   <header class="app-header">
+
     <div class="mobile-page-switch">
+
       <select class="mobile-page-select" id="mobile-page-select" onchange="showPage(this.value)">
+
         <option value="list">Produtos</option>
+
         <option value="candidates">Candidatos</option>
+
         <option value="categories">Categorias</option>
+
       </select>
+
     </div>
+
     <button class="nav-btn mobile-filter-btn" type="button" onclick="toggleSidebarFilters()">☰ Filtros</button>
+
     <div class="brand"><img src="logo.png" alt="EM Affiliates" onerror="this.style.display='none'"><span>EM Affiliates</span></div>
+
     <nav>
+
       <button class="nav-btn active" id="nav-list" onclick="showPage('list')">
+
         ☰ Produtos
+
       </button>
+
       <button class="nav-btn" id="nav-candidates" onclick="showPage('candidates')">
+
         ✦ Candidatos
+
       </button>
+
       <button class="nav-btn" id="nav-categories" onclick="showPage('categories')">
+
         # Categorias
+
       </button>
+
     </nav>
+
     <div class="header-right">
+
       <span id="header-status-badge" style="display:none;font-size:12px;color:#fff;background:rgba(255,255,255,.15);padding:4px 10px;border-radius:20px;white-space:nowrap;"></span>
+
       <button class="btn-new" onclick="openForm(null)">
+
         <span>+</span>
+
         <span class="desktop-only">Novo produto</span>
+
         <span class="mobile-only">Novo</span>
+
       </button>
+
       <button class="btn-logout" onclick="logout()">Sair →</button>
+
     </div>
+
   </header>
 
+
+
   <!-- Body -->
+
   <div class="app-body">
+
     <div class="sidebar-backdrop" id="sidebar-backdrop" onclick="closeSidebarFilters()"></div>
 
+
+
     <!-- Sidebar -->
+
     <aside class="sidebar" id="sidebar">
+
       <div>
+
         <div class="filter-group-title">Conta</div>
+
         <div id="account-filters"></div>
+
       </div>
+
       <div>
+
         <div class="filter-group-title">Status</div>
+
         <div id="status-filters"></div>
+
       </div>
+
       <div>
         <div class="filter-group-title">Publicação</div>
         <div id="publish-filters"></div>
@@ -610,403 +1212,817 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
       </div>
     </aside>
 
+
+
     <!-- Main panel -->
+
     <div class="main-panel">
 
+
+
       <!-- LIST PAGE -->
+
       <div id="list-page" style="display:flex;flex-direction:column;flex:1;overflow:hidden;">
+
         <div class="toolbar">
+
           <div class="search-wrap">
+
             <span class="search-icon">🔍</span>
+
             <input id="search-input" type="text" placeholder="Buscar produto..."
+
                    oninput="renderList()">
+
           </div>
+
           <span id="count-label" class="result-count"></span>
+
           <div class="toolbar-refresh-row">
+
             <span id="last-updated" style="font-size:12px;color:#94a3b8;"></span>
+
             <button onclick="refreshProducts()" style="padding:6px 12px;border:1.5px solid #e2e8f0;border-radius:7px;background:#fff;cursor:pointer;font-size:12px;color:#475569;display:flex;align-items:center;gap:4px;" title="Recarregar dados">↻ Atualizar</button>
+
           </div>
+
         </div>
+
         <div class="table-wrap">
+
           <table>
+
             <colgroup>
+
               <col style="width:135px"><!-- Status -->
+
               <col style="width:48px"><!-- Thumb -->
+
               <col><!-- Produto (flex) -->
+
               <col style="width:130px"><!-- Conta -->
+
               <col style="width:44px"><!-- Nº -->
+
               <col style="width:150px"><!-- Etapa erro -->
+
               <col style="width:120px"><!-- Publicado em -->
+
               <col style="width:48px"><!-- Instagram -->
+
               <col style="width:48px"><!-- Facebook -->
+
               <col style="width:48px"><!-- TikTok -->
+
               <col style="width:180px"><!-- Obs/Erro -->
+
             </colgroup>
+
             <thead>
+
               <tr>
+
                 <th id="th-status" onclick="sortBy('status')" style="cursor:pointer;">Status <span id="sort-arrow-status"></span></th>
+
                 <th style="padding:10px 4px;"></th>
+
                 <th id="th-name" onclick="sortBy('name')" style="cursor:pointer;">Produto <span id="sort-arrow-name"></span></th>
+
                 <th id="th-account" onclick="sortBy('account')" style="cursor:pointer;">Conta <span id="sort-arrow-account"></span></th>
+
                 <th id="th-product_num" onclick="sortBy('product_num')" style="text-align:center;cursor:pointer;">Nº <span id="sort-arrow-product_num"></span></th>
+
                 <th>Etapa erro</th>
+
                 <th id="th-published_at" onclick="sortBy('published_at')" style="cursor:pointer;">Publicado em <span id="sort-arrow-published_at"></span></th>
+
                 <th class="th-platform" title="Instagram"><img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram"></th>
+
                 <th class="th-platform" title="Facebook"><img src="https://cdn.simpleicons.org/facebook/1877F2" alt="Facebook"></th>
+
                 <th class="th-platform" title="TikTok"><img src="https://cdn.simpleicons.org/tiktok/010101" alt="TikTok"></th>
+
                 <th>Obs / Erro</th>
+
               </tr>
+
             </thead>
+
             <tbody id="product-tbody"></tbody>
+
           </table>
+
           <div id="empty-msg" class="empty-state" style="display:none;">
+
             <span class="icon">📦</span>
+
             <p>Nenhum produto encontrado.</p>
+
           </div>
+
         </div>
+
       </div>
+
+
 
       <!-- CANDIDATES PAGE -->
+
       <div id="candidates-page" class="candidates-page">
+
         <div class="candidate-toolbar">
+
           <div class="search-wrap">
+
             <span class="search-icon">🔎</span>
+
             <input id="candidates-search-input" type="text" placeholder="Buscar candidato..." oninput="renderCandidates()">
+
           </div>
+
           <span id="candidates-count-label" class="result-count"></span>
+
           <div class="toolbar-refresh-row">
+
             <button onclick="refreshCandidates()" style="padding:6px 12px;border:1.5px solid #e2e8f0;border-radius:7px;background:#fff;cursor:pointer;font-size:12px;color:#475569;display:flex;align-items:center;gap:4px;" title="Recarregar candidatos">↻ Atualizar</button>
+
           </div>
+
           <div class="chip-row" id="candidate-origin-filters"></div>
+
           <div class="chip-row" id="candidate-status-filters"></div>
+
         </div>
+
         <div class="candidate-grid-wrap">
+
           <div id="candidate-grid" class="candidate-grid"></div>
+
           <div id="candidates-empty-msg" class="empty-state" style="display:none;">
+
             <span class="icon">🧭</span>
+
             <p>Nenhum candidato encontrado.</p>
+
           </div>
+
         </div>
+
       </div>
+
+
 
       <!-- CATEGORIES PAGE -->
+
       <div id="categories-page" class="categories-page">
+
         <div class="categories-toolbar">
+
           <select id="categories-source-select" class="categories-select" onchange="setDiscoverySource(this.value)">
+
             <option value="mercadolivre">Mercado Livre</option>
+
             <option value="shopee">Shopee</option>
+
             <option value="shein">Shein</option>
+
             <option value="amazon">Amazon</option>
+
           </select>
+
           <div class="search-wrap">
+
             <span class="search-icon">#</span>
+
             <input id="categories-search-input" type="text" placeholder="Buscar categoria..." oninput="setDiscoveryCategorySearch(this.value)">
+
           </div>
+
           <label class="categories-limit-wrap">
+
             <span>Produtos por categoria</span>
+
             <input id="categories-limit-input" class="categories-limit-input" type="number" min="1" step="1" onchange="updateDiscoverySourceLimit(this.value)">
+
           </label>
+
           <button type="button" class="btn-secondary-mini" id="btn-add-discovery-category" onclick="promptAddDiscoveryCategory()">+ Adicionar categoria</button>
+
           <button type="button" class="btn-secondary-mini" id="btn-refresh-discovery-categories" onclick="refreshDiscoveryCategories()">↻ Atualizar</button>
+
           <button type="button" class="btn-secondary-mini" id="btn-save-discovery-categories" onclick="saveDiscoveryCategories()">Salvar configuracao</button>
+
           <div class="categories-toolbar-note">
+
             Esta pagina concentra a curadoria de categorias por origem. No Mercado Livre, o discovery passa a buscar apenas as categorias ativas daqui, respeitando o limite por categoria e pulando produtos que ja existem em Candidatos.
+
           </div>
+
         </div>
+
         <div class="discovery-summary">
+
           <div class="discovery-summary-card">
+
             <div class="discovery-summary-label">Origem selecionada</div>
+
             <div class="discovery-summary-value" id="categories-source-label">Mercado Livre</div>
+
           </div>
+
           <div class="discovery-summary-card">
+
             <div class="discovery-summary-label">Categorias ativas</div>
+
             <div class="discovery-summary-value" id="categories-enabled-count">0</div>
+
           </div>
+
           <div class="discovery-summary-card">
+
             <div class="discovery-summary-label">Categorias visiveis</div>
+
             <div class="discovery-summary-value" id="categories-visible-count">0</div>
+
           </div>
+
           <div class="discovery-summary-card">
+
             <div class="discovery-summary-label">Produtos por ciclo</div>
+
             <div class="discovery-summary-value" id="categories-cycle-count">0</div>
+
           </div>
+
         </div>
+
         <div class="categories-table-wrap">
+
           <table class="categories-table">
+
             <thead>
+
               <tr>
+
                 <th style="width:88px;">Ativa</th>
+
                 <th>Categoria</th>
+
                 <th style="width:260px;">Macrotema</th>
+
                 <th style="width:120px;text-align:right;">Acoes</th>
+
               </tr>
+
             </thead>
+
             <tbody id="categories-tbody"></tbody>
+
           </table>
+
           <div id="categories-empty-msg" class="category-empty-state">
+
             <strong>Nenhuma categoria encontrada.</strong>
+
             Ajuste o filtro de busca ou adicione uma categoria manualmente para esta origem.
+
           </div>
+
         </div>
+
       </div>
 
+
+
       <!-- FORM PAGE -->
+
       <div id="form-page">
+
         <div class="form-page-header">
+
           <button class="btn-back" onclick="showPage('list')">← Voltar</button>
+
           <div>
+
             <h2 id="form-title">Novo produto</h2>
+
           </div>
+
         </div>
 
+
+
         <form id="product-form" onsubmit="submitForm(event)">
+
           <div class="form-grid">
 
+
+
             <!-- Left column -->
+
             <div>
+
               <!-- Identificação -->
+
               <div class="form-card">
+
                 <h3>📋 Identificação</h3>
+
                 <div class="field-row full">
+
                   <div class="field-group">
+
                     <label>Nome do produto <span class="req">*</span></label>
+
                     <input id="f-name" type="text" required placeholder="Ex: Calça Skinny Com Cinto">
+
                   </div>
+
                 </div>
+
                 <div class="field-row full">
+
                   <div class="field-group">
+
                     <label>Nome curto para thumbnail</label>
+
                     <input id="f-display_name" type="text" placeholder="Ex: Samsung Galaxy A17">
+
                     <small style="font-size:11px;color:#94a3b8;">Gerado automaticamente para capa/vídeo. Você pode ajustar manualmente se quiser.</small>
+
                   </div>
+
                 </div>
+
                 <div class="field-row cols-2">
+
                   <div class="field-group">
+
                     <label>Conta <span class="req">*</span></label>
+
                     <select id="f-account" required onchange="onAccountChange()">
+
                       <option value="">Selecione...</option>
+
                       <option value="shopee">Shopee</option>
+
                       <option value="shein">Shein</option>
+
                       <option value="mercadolivre">Mercado Livre</option>
+
                       <option value="amazon">Amazon</option>
+
                     </select>
+
                   </div>
+
                   <div class="field-group">
+
                     <label>Usuário (watermark)</label>
+
                     <select id="f-usuario">
+
                       <option value="">— selecione a conta primeiro —</option>
+
                     </select>
+
                   </div>
+
                 </div>
+
                 <div class="field-row cols-2">
+
                   <div class="field-group">
+
                     <label>Status</label>
+
                     <select id="f-status">
+
                       <option value="pendente">Pendente</option>
+
                       <option value="gerado">Gerado</option>
+
                       <option value="publicado">Publicado</option>
+
                       <option value="erro">Erro</option>
+
                     </select>
+
                   </div>
+
                   <div class="field-group">
+
                     <label>Nº do produto</label>
+
                     <input id="f-product_num" type="text" readonly placeholder="Gerado automaticamente">
+
                   </div>
+
                 </div>
+
               </div>
+
+
 
               <!-- Conteúdo -->
+
               <div class="form-card">
+
                 <h3>✏️ Conteúdo</h3>
+
                 <div class="field-row full">
+
                   <div class="field-group">
+
                     <label>Descrição para narração</label>
+
                     <textarea id="f-descricao_audio" rows="3" placeholder="Frase curta sobre o produto para o áudio"></textarea>
+
                   </div>
+
                 </div>
+
                 <div class="field-row cols-2">
+
                   <div class="field-group">
+
                     <label>Oferta relâmpago</label>
+
                     <input id="f-flash_offer" type="text" placeholder="Ex: 37%">
+
                   </div>
+
                   <div class="field-group">
+
                     <label>Cupom</label>
+
                     <input id="f-coupon_text" type="text" placeholder="Ex: PROMO10">
+
                   </div>
+
                 </div>
+
               </div>
+
+
 
               <!-- Estatísticas -->
+
               <div class="form-card">
+
                 <h3>📊 Estatísticas</h3>
+
                 <div class="field-row cols-3">
+
                   <div class="field-group">
+
                     <label>Nota</label>
+
                     <input id="f-rating" type="text" placeholder="Ex: 4.8">
+
                   </div>
+
                   <div class="field-group">
+
                     <label>Avaliações</label>
+
                     <input id="f-reviews" type="text" placeholder="Ex: 1500">
+
                   </div>
+
                   <div class="field-group">
+
                     <label>Vendidos</label>
+
                     <input id="f-sold_count" type="text" placeholder="Ex: +10mil">
+
                   </div>
+
                 </div>
+
               </div>
+
+
 
               <!-- Mídia -->
+
               <div class="form-card">
+
                 <h3>🖼️ Mídia</h3>
+
                 <div class="field-row full">
+
                   <div class="field-group">
+
                     <label>Imagens (URLs ou caminhos separados por ;)</label>
+
                     <textarea id="f-image_urls" rows="2" placeholder="https://img1.jpg; C:\midias\img2.jpg"></textarea>
+
                   </div>
+
                 </div>
+
                 <div class="field-row full">
+
                   <div class="field-group">
+
                     <label>Vídeos (URLs ou caminhos separados por ;)</label>
+
                     <textarea id="f-video_urls" rows="2" placeholder="https://video.mp4; C:\midias\video2.mp4"></textarea>
+
                   </div>
+
                 </div>
-                <div class="field-row full">
-                  <div class="field-group">
-                    <label>Thumbnail (URL ou caminho)</label>
-                    <input id="f-thumbnail" type="text" placeholder="https://thumb.jpg">
-                  </div>
-                </div>
+
                 <div class="field-row cols-2">
+
                   <div class="field-group">
-                    <label>URL pública preview thumbnail</label>
-                    <input id="f-preview_thumbnail_url" type="text" placeholder="https://...">
+
+                    <label>Acelerar vídeo <span style="font-weight:400;font-size:.82em;opacity:.7">(ex: 1.5 = 1.5× | 2 = dobro | vazio = normal)</span></label>
+
+                    <input id="f-video_speed" type="number" min="0.1" max="4" step="0.1" placeholder="ex: 1.5">
+
                   </div>
-                  <div class="field-group">
-                    <label>URL pública preview imagem</label>
-                    <input id="f-preview_image_url" type="text" placeholder="https://...">
-                  </div>
+
+                  <div style="flex:1"></div>
+
                 </div>
+
+                <div class="field-row full">
+
+                  <div class="field-group">
+
+                    <label>Thumbnail (URL ou caminho)</label>
+
+                    <input id="f-thumbnail" type="text" placeholder="https://thumb.jpg">
+
+                  </div>
+
+                </div>
+
+                <div class="field-row cols-2">
+
+                  <div class="field-group">
+
+                    <label>URL pública preview thumbnail</label>
+
+                    <input id="f-preview_thumbnail_url" type="text" placeholder="https://...">
+
+                  </div>
+
+                  <div class="field-group">
+
+                    <label>URL pública preview imagem</label>
+
+                    <input id="f-preview_image_url" type="text" placeholder="https://...">
+
+                  </div>
+
+                </div>
+
               </div>
+
+
 
               <!-- Links -->
+
               <div class="form-card">
+
                 <h3>🔗 Links</h3>
+
                 <div class="field-row full">
+
                   <div class="field-group">
+
                     <label>Link de afiliado</label>
+
                     <input id="f-affiliate_url" type="text" placeholder="https://...">
+
                   </div>
+
                 </div>
+
                 <div class="field-row full">
+
                   <div class="field-group">
+
                     <label>Link original do produto</label>
+
                     <input id="f-source_url" type="text" placeholder="https://...">
+
                   </div>
+
                 </div>
+
               </div>
+
+
 
               <!-- Ações -->
+
               <div class="form-actions">
+
                 <button type="submit" class="btn-save" id="btn-save">Salvar produto</button>
+
                 <button type="button" class="btn-cancel" onclick="showPage('list')">Cancelar</button>
+
                 <button type="button" class="btn-secondary warm" id="btn-republish" onclick="requestRepublish()">Publicar novamente</button>
+
                 <button type="button" class="btn-secondary warm" id="btn-facebook-republish" onclick="requestFacebookRepublish()">Publicar Face novamente</button>
+
                 <button type="button" class="btn-secondary" id="btn-regenerate" onclick="requestRegenerate()">Regerar</button>
+
                 <button type="button" class="btn-delete" id="btn-delete" onclick="deleteProduct()">🗑 Excluir</button>
+
               </div>
+
             </div>
+
+
 
             <!-- Right column -->
+
             <div>
+
               <div class="form-card" id="preview-section">
+
                 <h3>🖼️ Pré-visualização</h3>
+
                 <div class="preview-grid">
+
                   <div class="preview-card">
+
                     <div class="preview-media" id="preview-thumbnail-media">Thumbnail não informada</div>
+
                     <div class="preview-label">Thumbnail / capa</div>
+
                   </div>
+
                   <div class="preview-card">
+
                     <div class="preview-media" id="preview-image-media">Imagem principal não encontrada</div>
+
                     <div class="preview-label">Primeira imagem do produto</div>
+
                   </div>
+
                   <div class="preview-note">
+
                     Use apenas URLs públicas. O fluxo novo não aceita mais caminhos locais como entrada de mídia.
+
                   </div>
+
                 </div>
+
               </div>
+
+
 
               <!-- Resultado do pipeline -->
+
               <div class="form-card" id="result-section" style="display:none;">
+
                 <h3>⚙️ Resultado do pipeline</h3>
+
                 <div style="display:flex;flex-direction:column;gap:12px;">
+
                   <div class="field-group">
+
                     <label>Vídeo gerado</label>
+
                     <div id="r-video_path" class="result-value empty">—</div>
+
                   </div>
+
                   <div class="field-group">
+
                     <label>Publicado em</label>
+
                     <div id="r-published_at" class="result-value empty">—</div>
+
                   </div>
+
                   <div class="field-group">
+
                     <label>Post ID (Instagram)</label>
+
                     <div id="r-post_id" class="result-value empty">—</div>
+
                   </div>
+
                   <div class="field-group">
+
                     <label>Post ID (Facebook)</label>
+
                     <div id="r-facebook_post_id" class="result-value empty">—</div>
+
                   </div>
+
                   <div class="field-group">
+
                     <label>Post ID (TikTok)</label>
+
                     <div id="r-tiktok_post_id" class="result-value empty">—</div>
+
                   </div>
+
                   <div id="r-error-stage-wrap" style="display:none;" class="field-group">
+
                     <label>Etapa do erro</label>
+
                     <div id="r-error_stage" class="result-value"></div>
+
                   </div>
+
                   <div id="r-error-wrap" style="display:none;" class="field-group">
+
                     <label>Erro</label>
+
                     <div id="r-error" class="result-value result-error"></div>
+
                   </div>
+
                 </div>
+
               </div>
+
+
 
               <!-- Dicas -->
+
               <div class="form-card" style="margin-top:16px;">
+
                 <h3>💡 Dicas de preenchimento</h3>
+
                 <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13px;color:#64748b;line-height:1.5;">
+
                   <li><b>Descrição:</b> Uma frase curta e objetiva sobre o produto para guiar o áudio narrado.</li>
+
                   <li><b>Imagens/Vídeos:</b> Separe múltiplos arquivos com <code style="background:#f1f5f9;padding:1px 5px;border-radius:4px;">;</code></li>
+
                   <li><b>Status pendente:</b> O pipeline irá processar este produto automaticamente.</li>
+
                   <li><b>Nº do produto:</b> Atribuído automaticamente. Ao excluir um produto, os demais são renumerados.</li>
+
                 </ul>
+
               </div>
+
             </div>
+
           </div>
+
         </form>
+
       </div><!-- /#form-page -->
 
+
+
     </div><!-- /.main-panel -->
+
   </div><!-- /.app-body -->
+
 </div><!-- /#app-screen -->
+
+
 
 <div id="toast-container"></div>
 
+
+
 <div id="modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:8000;align-items:center;justify-content:center;">
+
   <div style="background:#fff;border-radius:12px;padding:28px 24px;max-width:380px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.25);">
+
     <p id="modal-msg" style="font-size:15px;color:#1e293b;margin-bottom:20px;line-height:1.5;"></p>
+
     <div style="display:flex;gap:10px;justify-content:flex-end;">
+
       <button id="modal-cancel-btn" style="padding:8px 18px;border:1.5px solid #e2e8f0;border-radius:7px;background:#f8fafc;cursor:pointer;font-size:13px;">Cancelar</button>
+
       <button id="modal-confirm-btn" style="padding:8px 18px;border:none;border-radius:7px;background:#dc2626;color:#fff;cursor:pointer;font-size:13px;font-weight:600;">Confirmar</button>
+
     </div>
+
   </div>
+
 </div>
 
+
+
 <script>
+
 // ── Config ────────────────────────────────────────────────────────────────────
+
 const CONFIG_URL = 'config.json';
+
 const GITHUB_API = 'https://api.github.com';
+
 const CANDIDATES_FILE_PATH = 'candidates.json';
+
 const DISCOVERY_CATEGORY_CONFIG_FILE_PATH = 'discovery_category_config.json';
+
+
 
 const ACCOUNT_USERS = {
   shopee:       ['@happydayofertas'],
@@ -1015,512 +2031,1020 @@ const ACCOUNT_USERS = {
   amazon:       ['@primeofertasnet'],
 };
 
+
 const ACCOUNT_LABELS = { all:'Todas as contas', shopee:'Shopee', shein:'Shein', mercadolivre:'Mercado Livre', amazon:'Amazon' };
+
 const DISCOVERY_SOURCE_LABELS = { mercadolivre:'Mercado Livre', shopee:'Shopee', shein:'Shein', amazon:'Amazon' };
+
 const DISCOVERY_MACROTHEMES = [
+
   'Gadgets e eletronicos',
+
   'Ferramentas e itens de resolucao de problema',
+
   'Casa e utilidades',
+
   'Ofertas de alto valor percebido',
+
 ];
+
 const STATUS_LABELS  = { all:'Todos', pendente:'Pendente', gerado:'Gerado', publicado:'Publicado', processando:'Processando', erro:'Erro' };
+
 const PUBLISH_LABELS = { all:'Todos', facebook_pending:'Facebook pendente', facebook_published:'Facebook publicado' };
+
 const ERROR_STAGE_LABELS = { all:'Todas', 'Geração video':'Geração video', 'Erro na postagem':'Erro na postagem', 'Pipeline':'Pipeline' };
+
 const publishStates = ['all','facebook_pending','facebook_published'];
 
+
+
 // ── State ─────────────────────────────────────────────────────────────────────
+
 let state = {
+
   token: null, githubUser: null, githubRepo: null, panelConfig: null,
+
   products: [], baseProducts: [], sha: '',
+
   candidates: [], baseCandidates: [], candidatesSha: '',
+
   discoveryCategoryConfig: null, baseDiscoveryCategoryConfig: null, discoveryCategorySha: '',
+
   filterAccount: 'all', filterStatus: 'all', filterPublish: 'all', filterErrorStage: 'all',
+
   filterCandidateOrigin: 'all', filterCandidateStatus: 'active',
+
   selectedDiscoverySource: 'mercadolivre', discoveryCategorySearch: '',
+
   editingId: null, currentPage: 'list',
+
 };
+
 let sortState = { col: 'status', dir: 'asc' };
 
+
+
 function persistViewState() {
+
   sessionStorage.setItem('painel_current_page', state.currentPage || 'list');
+
   if (state.editingId) sessionStorage.setItem('painel_editing_id', state.editingId);
+
   else sessionStorage.removeItem('painel_editing_id');
+
 }
 
+
+
 function clearViewState() {
+
   sessionStorage.removeItem('painel_current_page');
+
   sessionStorage.removeItem('painel_editing_id');
+
 }
+
+
+
 
 
 // ── Crypto helpers ────────────────────────────────────────────────────────────
+
 async function sha256hex(str) {
+
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+
 }
+
 function hexToBytes(hex) {
+
   const normalized = String(hex || '').trim();
+
   if (!normalized || normalized.length % 2 !== 0) return new Uint8Array();
+
   const bytes = new Uint8Array(normalized.length / 2);
+
   for (let i = 0; i < normalized.length; i += 2) {
+
     bytes[i / 2] = parseInt(normalized.slice(i, i + 2), 16);
+
   }
+
   return bytes;
+
 }
+
 async function deriveBytes(password, saltB64, length) {
+
   const salt = Uint8Array.from(atob(saltB64), c => c.charCodeAt(0));
+
   const baseKey = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey']);
+
   const bits = await crypto.subtle.deriveBits(
+
     { name:'PBKDF2', salt, iterations:100000, hash:'SHA-256' },
+
     baseKey, length * 8
+
   );
+
   return new Uint8Array(bits);
+
 }
+
 async function decryptToken(password, cfg, passwordHash = '') {
+
   if (cfg.token_masked_b64 && passwordHash) {
+
     const masked = Uint8Array.from(atob(cfg.token_masked_b64), c => c.charCodeAt(0));
+
     const hashBytes = hexToBytes(passwordHash);
+
     if (!hashBytes.length) throw new Error('hash inválido para decifrar token');
+
     const plain = new Uint8Array(masked.length);
+
     for (let i = 0; i < masked.length; i += 1) plain[i] = masked[i] ^ hashBytes[i % hashBytes.length];
+
     return new TextDecoder().decode(plain);
+
   }
+
   const ct  = Uint8Array.from(atob(cfg.token_encrypted), c => c.charCodeAt(0));
+
   const keyBytes = await deriveBytes(password, cfg.token_salt, ct.length);
+
   const plain = new Uint8Array(ct.length);
+
   for (let i = 0; i < ct.length; i += 1) plain[i] = ct[i] ^ keyBytes[i];
+
   return new TextDecoder().decode(plain);
+
 }
+
+
 
 async function loadPanelConfig(force = false) {
+
   if (state.panelConfig && !force) return state.panelConfig;
+
   try {
+
     const response = await fetch(CONFIG_URL + '?t=' + Date.now(), { cache: 'no-store' });
+
     state.panelConfig = response.ok ? await response.json() : {};
+
   } catch {
+
     state.panelConfig = {};
+
   }
+
   return state.panelConfig;
+
 }
+
+
 
 // ── Login ─────────────────────────────────────────────────────────────────────
+
 async function doLogin() {
+
   const pwd = document.getElementById('pwd-input').value;
+
   if (!pwd) return;
+
   const errEl = document.getElementById('login-error');
+
   errEl.style.display = 'none';
+
   let cfg;
+
   try {
+
     cfg = await loadPanelConfig(true);
+
   } catch {
+
     showToast('Erro ao carregar config.json', 'error');
+
     return;
+
   }
+
   const hash = await sha256hex(pwd);
+
   if (hash !== cfg.password_hash) {
+
     errEl.style.display = 'block';
+
     return;
+
   }
+
   let token;
+
   try {
+
     token = await decryptToken(pwd, cfg, hash);
+
   } catch {
+
     showToast('Erro ao decifrar token. Rode o setup novamente.', 'error');
+
     return;
+
   }
+
   try {
+
     state.token = token;
+
     state.githubUser = cfg.github_user;
+
     state.githubRepo = cfg.github_repo;
+
     sessionStorage.setItem('token', token);
+
     sessionStorage.setItem('guser', cfg.github_user);
+
     sessionStorage.setItem('grepo', cfg.github_repo);
+
     sessionStorage.setItem('painel_current_page', 'list');
+
     sessionStorage.removeItem('painel_editing_id');
+
     document.documentElement.classList.add('is-authed');
+
     await loadProducts();
+
     await loadCandidatesSafe({ silent: true });
+
     await loadDiscoveryCategoryConfigSafe({ silent: true });
+
     showApp();
+
   } catch (error) {
+
     console.error('Falha no login do painel:', error);
+
     sessionStorage.removeItem('token');
+
     sessionStorage.removeItem('guser');
+
     sessionStorage.removeItem('grepo');
+
     document.documentElement.classList.remove('is-authed');
+
     showToast(error.message || 'Erro ao autenticar no painel.', 'error');
+
   }
+
 }
+
 function logout() {
+
   sessionStorage.clear();
+
   state.token = null;
+
   state.githubUser = null;
+
   state.githubRepo = null;
+
   state.products = [];
+
   state.baseProducts = [];
+
   state.sha = '';
+
   state.candidates = [];
+
   state.baseCandidates = [];
+
   state.candidatesSha = '';
+
   state.discoveryCategoryConfig = null;
+
   state.baseDiscoveryCategoryConfig = null;
+
   state.discoveryCategorySha = '';
+
   document.documentElement.classList.remove('is-authed');
+
   document.getElementById('app-screen').style.display = 'none';
+
   document.getElementById('login-screen').style.display = 'flex';
+
   document.getElementById('pwd-input').value = '';
+
 }
+
+
 
 // ── GitHub data ───────────────────────────────────────────────────────────────
+
 function ghHeaders() {
+
   return { 'Authorization':'token ' + state.token, 'Accept':'application/vnd.github.v3+json' };
+
 }
+
 function cloneProducts(products) {
+
   return JSON.parse(JSON.stringify(products || []));
+
 }
+
 function pickPanelManagedFields(product) {
+
   const picked = {};
+
   [...FORM_FIELDS, '_id', 'created_at', 'product_num', 'candidate_id', 'catalog_product_id', 'discovery_origin'].forEach(field => {
+
     if (product && Object.prototype.hasOwnProperty.call(product, field)) picked[field] = product[field];
+
   });
+
   return picked;
+
 }
+
 function panelManagedDiffers(baseProduct, localProduct) {
+
   return JSON.stringify(pickPanelManagedFields(baseProduct || {})) !== JSON.stringify(pickPanelManagedFields(localProduct || {}));
+
 }
+
 function mergeProductsForRetry(baseProducts, localProducts, remoteProducts) {
+
   const baseMap = new Map((baseProducts || []).map(p => [p._id, p]));
+
   const localMap = new Map((localProducts || []).map(p => [p._id, p]));
+
   const remoteMap = new Map((remoteProducts || []).map(p => [p._id, p]));
+
   const mergedMap = new Map((remoteProducts || []).map(p => [p._id, JSON.parse(JSON.stringify(p))]));
+
   const keepFields = new Set([...FORM_FIELDS, '_id', 'created_at', 'product_num', 'candidate_id', 'catalog_product_id', 'discovery_origin']);
 
+
+
   function mergeEditableFields(remoteProduct, localProduct) {
+
     const merged = { ...(remoteProduct || {}) };
+
     keepFields.forEach(field => {
+
       if (localProduct && Object.prototype.hasOwnProperty.call(localProduct, field)) merged[field] = localProduct[field];
+
     });
+
     return merged;
+
   }
+
+
 
   localMap.forEach((localProduct, id) => {
+
     const baseProduct = baseMap.get(id);
+
     if (!baseProduct) {
+
       mergedMap.set(id, JSON.parse(JSON.stringify(localProduct)));
+
       return;
+
     }
+
     if (panelManagedDiffers(baseProduct, localProduct)) {
+
       mergedMap.set(id, mergeEditableFields(remoteMap.get(id) || baseProduct, localProduct));
+
     }
+
   });
+
+
 
   baseMap.forEach((_baseProduct, id) => {
+
     if (!localMap.has(id)) mergedMap.delete(id);
+
   });
+
+
 
   const ordered = [];
+
   (localProducts || []).forEach(localProduct => {
+
     const merged = mergedMap.get(localProduct._id);
+
     if (merged) {
+
       ordered.push(merged);
+
       mergedMap.delete(localProduct._id);
+
     }
+
   });
+
   (remoteProducts || []).forEach(remoteProduct => {
+
     const merged = mergedMap.get(remoteProduct._id);
+
     if (merged) {
+
       ordered.push(merged);
+
       mergedMap.delete(remoteProduct._id);
+
     }
+
   });
+
   return ordered;
+
 }
+
 async function fetchProductsDocument() {
+
   const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/produtos.json`;
+
   const r = await fetch(url, { headers: ghHeaders() });
+
   if (r.status === 404) return { products: [], sha: '' };
+
   if (!r.ok) throw new Error(await r.text());
+
   const data = await r.json();
+
   const bytes = Uint8Array.from(atob(data.content.replace(/\n/g,'')), c => c.charCodeAt(0));
+
   const content = JSON.parse(new TextDecoder('utf-8').decode(bytes));
+
   return { products: content.products || [], sha: data.sha || '' };
+
 }
+
+
 
 function inferCandidateOrigin(candidate) {
+
   const explicit = String(candidate.account || candidate.origin || '').trim().toLowerCase();
+
   if (explicit) return explicit;
+
   const source = String(candidate.source || '').toLowerCase();
+
   if (source.includes('mercadolivre')) return 'mercadolivre';
+
   if (source.includes('shopee')) return 'shopee';
+
   if (source.includes('shein')) return 'shein';
+
   return 'desconhecido';
+
 }
+
+
 
 function normalizeCandidate(candidate) {
+
   const normalized = { ...(candidate || {}) };
+
   normalized._id = normalized._id || normalized.candidate_id || crypto.randomUUID();
+
   normalized.origin = inferCandidateOrigin(normalized);
+
   const rawStatus = String(normalized.status || 'discovered').trim().toLowerCase();
+
   normalized.status = ['active', 'complete', 'completed'].includes(rawStatus) ? 'discovered' : rawStatus;
+
   normalized.name = String(normalized.name || normalized.title || '').trim();
+
   normalized.image_urls = Array.isArray(normalized.image_urls) ? normalized.image_urls : [];
+
   normalized.videos = Array.isArray(normalized.videos) ? normalized.videos : [];
+
   normalized.coupon_texts = Array.isArray(normalized.coupon_texts) ? normalized.coupon_texts : [];
+
   normalized.main_features = Array.isArray(normalized.main_features) ? normalized.main_features : [];
+
   normalized.discount_text = normalizeDiscountText(normalized.discount_text || '');
+
   normalized.sold_quantity_text = normalizeSoldCountText(normalized.sold_quantity_text || '');
+
   normalized.discovered_at = normalized.discovered_at || normalized.created_at || new Date().toISOString();
+
   return normalized;
+
 }
+
+
 
 function normalizeCandidates(candidates) {
+
   return Array.isArray(candidates) ? candidates.map(normalizeCandidate) : [];
+
 }
+
+
 
 function createEmptyDiscoveryCategoryConfig() {
+
   return {
+
     mercadolivre: { enabled: true, per_category_limit: 2, categories: [] },
+
     shopee: { enabled: true, per_category_limit: 2, categories: [] },
+
     shein: { enabled: true, per_category_limit: 2, categories: [] },
+
     amazon: { enabled: true, per_category_limit: 2, categories: [] },
+
   };
+
 }
+
+
 
 function normalizeDiscoveryCategoryConfig(rawConfig) {
+
   const normalized = createEmptyDiscoveryCategoryConfig();
+
   if (!rawConfig || typeof rawConfig !== 'object') return normalized;
 
+
+
   Object.keys(normalized).forEach(source => {
+
     const rawSource = rawConfig[source];
+
     if (!rawSource || typeof rawSource !== 'object') return;
+
     const categories = Array.isArray(rawSource.categories) ? rawSource.categories : [];
+
     normalized[source] = {
+
       enabled: rawSource.enabled !== false,
+
       per_category_limit: Math.max(1, parseInt(rawSource.per_category_limit, 10) || 2),
+
       categories: categories
+
         .map(category => ({
+
           id: String(category?.id || '').trim(),
+
           name: String(category?.name || '').trim(),
+
           parent_id: String(category?.parent_id || '').trim(),
+
           parent_name: String(category?.parent_name || '').trim(),
+
           enabled: !!category?.enabled,
+
           macrotheme: String(category?.macrotheme || '').trim(),
+
         }))
+
         .filter(category => category.id || category.name),
+
     };
+
   });
 
+
+
   return normalized;
+
 }
+
+
 
 function cloneDiscoveryCategoryConfig(config) {
+
   return JSON.parse(JSON.stringify(normalizeDiscoveryCategoryConfig(config)));
+
 }
+
+
 
 function getDiscoverySourceConfig(source = state.selectedDiscoverySource) {
+
   if (!state.discoveryCategoryConfig) state.discoveryCategoryConfig = createEmptyDiscoveryCategoryConfig();
+
   if (!state.discoveryCategoryConfig[source]) {
+
     state.discoveryCategoryConfig[source] = { enabled: true, per_category_limit: 2, categories: [] };
+
   }
+
   return state.discoveryCategoryConfig[source];
+
 }
+
+
 
 function normalizeDiscountText(value) {
+
   const text = String(value || '').trim();
+
   if (!text) return '';
+
   const match = text.match(/(\d+(?:[.,]\d+)?)\s*%/i);
+
   if (!match) return text;
+
   let number = match[1].replace(',', '.');
+
   if (number.endsWith('.0')) number = number.slice(0, -2);
+
   return `${number}%`;
+
 }
+
+
 
 function normalizeSoldCountText(value) {
+
   const text = String(value || '').trim();
+
   if (!text) return '';
+
   const match = text.match(/([+]?\s*\d+(?:[.,]\d+)?\s*(?:mil|mi|milhao|milhoes|milhão|milhões)?)/i);
+
   if (!match) return text;
+
   return match[1]
+
     .replace(/\s+/g, '')
+
     .replace(/milhao|milhoes|milhão|milhões/ig, 'mil');
+
 }
+
+
 
 async function fetchCandidatesDocument(options = {}) {
+
   const { preferApi = false } = options;
+
   if (!preferApi) {
+
     const publicResponse = await fetch(`${CANDIDATES_FILE_PATH}?t=${Date.now()}`, { cache: 'no-store' });
+
     if (publicResponse.ok) {
+
       const content = await publicResponse.json();
+
       return { candidates: normalizeCandidates(content.candidates || []), sha: '' };
+
     }
+
   }
+
   const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/${CANDIDATES_FILE_PATH}`;
+
   const r = await fetch(url, { headers: ghHeaders() });
+
   if (r.status === 404) return { candidates: [], sha: '' };
+
   if (!r.ok) throw new Error(await r.text());
+
   const data = await r.json();
+
   if (preferApi && (!data.content || typeof data.content !== 'string')) {
+
     return { candidates: [], sha: data.sha || '' };
+
   }
+
   const encodedContent = typeof data.content === 'string' ? data.content.replace(/\n/g,'') : '';
+
   if (!encodedContent) throw new Error('candidates.json sem content utilizável na API do GitHub');
+
   const bytes = Uint8Array.from(atob(encodedContent), c => c.charCodeAt(0));
+
   const content = JSON.parse(new TextDecoder('utf-8').decode(bytes));
+
   return { candidates: normalizeCandidates(content.candidates || []), sha: data.sha || '' };
+
 }
+
+
 
 async function fetchDiscoveryCategoryConfigDocument() {
+
   const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/${DISCOVERY_CATEGORY_CONFIG_FILE_PATH}`;
+
   const response = await fetch(url, { headers: ghHeaders() });
+
   if (response.status === 404) return { config: createEmptyDiscoveryCategoryConfig(), sha: '' };
+
   if (!response.ok) throw new Error(await response.text());
+
   const data = await response.json();
+
   const encodedContent = typeof data.content === 'string' ? data.content.replace(/\n/g, '') : '';
+
   if (!encodedContent) return { config: createEmptyDiscoveryCategoryConfig(), sha: data.sha || '' };
+
   const bytes = Uint8Array.from(atob(encodedContent), c => c.charCodeAt(0));
+
   const content = JSON.parse(new TextDecoder('utf-8').decode(bytes));
+
   return { config: normalizeDiscoveryCategoryConfig(content), sha: data.sha || '' };
+
 }
+
+
 
 async function loadProducts() {
+
   const doc = await fetchProductsDocument();
+
   state.products = doc.products;
+
   state.baseProducts = cloneProducts(doc.products);
+
   state.sha = doc.sha;
+
 }
+
 async function loadCandidates() {
+
   const doc = await fetchCandidatesDocument();
+
   state.candidates = doc.candidates;
+
   state.baseCandidates = cloneProducts(doc.candidates);
+
   state.candidatesSha = doc.sha;
+
 }
+
 async function loadDiscoveryCategoryConfig() {
+
   const doc = await fetchDiscoveryCategoryConfigDocument();
+
   state.discoveryCategoryConfig = doc.config;
+
   state.baseDiscoveryCategoryConfig = cloneDiscoveryCategoryConfig(doc.config);
+
   state.discoveryCategorySha = doc.sha;
+
 }
+
 async function loadCandidatesSafe(options = {}) {
+
   const { silent = false } = options;
+
   try {
+
     await loadCandidates();
+
     return true;
+
   } catch (error) {
+
     console.warn('Falha ao carregar candidates.json:', error);
+
     state.candidates = [];
+
     state.baseCandidates = [];
+
     state.candidatesSha = '';
+
     if (!silent) showToast('Não foi possível carregar os candidatos agora.', 'warn');
+
     return false;
+
   }
+
 }
+
 async function loadDiscoveryCategoryConfigSafe(options = {}) {
+
   const { silent = false } = options;
+
   try {
+
     await loadDiscoveryCategoryConfig();
+
     return true;
+
   } catch (error) {
+
     console.warn('Falha ao carregar discovery_category_config.json:', error);
+
     state.discoveryCategoryConfig = createEmptyDiscoveryCategoryConfig();
+
     state.baseDiscoveryCategoryConfig = cloneDiscoveryCategoryConfig(state.discoveryCategoryConfig);
+
     state.discoveryCategorySha = '';
+
     if (!silent) showToast('Nao foi possivel carregar a configuracao de categorias agora.', 'warn');
+
     return false;
+
   }
+
 }
+
 async function saveProducts() {
+
   const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/produtos.json`;
+
   const putDocument = async (products, sha) => {
+
     const body = JSON.stringify({ products }, null, 2);
+
     const encoded = btoa(unescape(encodeURIComponent(body)));
+
     const payload = { message:'painel: atualiza produtos.json', content: encoded, branch:'main' };
+
     if (sha) payload.sha = sha;
+
     return fetch(url, {
+
       method:'PUT',
+
       headers:{ ...ghHeaders(), 'Content-Type':'application/json' },
+
       body: JSON.stringify(payload)
+
     });
+
   };
+
+
 
   let r = await putDocument(state.products, state.sha);
+
   if (r.status === 409) {
+
     const latest = await fetchProductsDocument();
+
     const mergedProducts = mergeProductsForRetry(state.baseProducts, state.products, latest.products || []);
+
     state.products = mergedProducts;
+
     renumberProducts();
+
     r = await putDocument(state.products, latest.sha);
+
   }
 
+
+
   if (!r.ok) throw new Error(await r.text());
+
   const saved = await r.json();
+
   state.sha = saved.content.sha;
+
   state.baseProducts = cloneProducts(state.products);
+
 }
+
 async function saveCandidates() {
+
   state.candidates = normalizeCandidates(state.candidates);
+
   const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/${CANDIDATES_FILE_PATH}`;
+
   const putDocument = async (candidates, sha) => {
+
     const body = JSON.stringify({ candidates }, null, 2);
+
     const encoded = btoa(unescape(encodeURIComponent(body)));
+
     const payload = {
+
       message: 'painel: atualiza candidates.json',
+
       content: encoded,
+
       branch: 'main',
+
     };
+
     if (sha) payload.sha = sha;
+
     return fetch(url, {
+
       method: 'PUT',
+
       headers: { ...ghHeaders(), 'Content-Type': 'application/json' },
+
       body: JSON.stringify(payload),
+
     });
+
   };
+
+
 
   const latestBeforeSave = await fetchCandidatesDocument({ preferApi: true });
+
   const currentSha = latestBeforeSave.sha || state.candidatesSha || '';
+
   if (!currentSha) throw new Error('Não foi possível obter o SHA atual de candidates.json para salvar.');
 
+
+
   let r = await putDocument(state.candidates, currentSha);
+
   if (r.status === 409) {
+
     const latest = await fetchCandidatesDocument({ preferApi: true });
+
     state.candidates = normalizeCandidates(state.candidates);
+
     r = await putDocument(state.candidates, latest.sha);
+
   }
+
   if (!r.ok) throw new Error(await r.text());
+
   const saved = await r.json();
+
   state.candidatesSha = saved.content.sha;
+
   state.baseCandidates = cloneProducts(state.candidates);
+
 }
+
 async function saveDiscoveryCategoryConfig() {
+
   state.discoveryCategoryConfig = normalizeDiscoveryCategoryConfig(state.discoveryCategoryConfig);
+
   const url = `${GITHUB_API}/repos/${state.githubUser}/${state.githubRepo}/contents/${DISCOVERY_CATEGORY_CONFIG_FILE_PATH}`;
+
   const putDocument = async (config, sha) => {
+
     const body = JSON.stringify(config, null, 2);
+
     const encoded = btoa(unescape(encodeURIComponent(body)));
+
     const payload = {
+
       message: 'painel: atualiza discovery_category_config.json',
+
       content: encoded,
+
       branch: 'main',
+
     };
+
     if (sha) payload.sha = sha;
+
     return fetch(url, {
+
       method: 'PUT',
+
       headers: { ...ghHeaders(), 'Content-Type': 'application/json' },
+
       body: JSON.stringify(payload),
+
     });
+
   };
 
+
+
   const latestBeforeSave = await fetchDiscoveryCategoryConfigDocument();
+
   const currentSha = latestBeforeSave.sha || state.discoveryCategorySha || '';
+
   let response = await putDocument(state.discoveryCategoryConfig, currentSha);
+
   if (response.status === 409) {
+
     const latest = await fetchDiscoveryCategoryConfigDocument();
+
     response = await putDocument(state.discoveryCategoryConfig, latest.sha);
+
   }
+
   if (!response.ok) throw new Error(await response.text());
+
   const saved = await response.json();
+
   state.discoveryCategorySha = saved.content.sha;
+
   state.baseDiscoveryCategoryConfig = cloneDiscoveryCategoryConfig(state.discoveryCategoryConfig);
+
 }
+
+
 
 // ── Product numbering ─────────────────────────────────────────────────────────
 // Assigns sequential product_num per account, ordered by created_at then _id.
@@ -1537,1315 +3061,2627 @@ function renumberProducts() {
         const da = a.created_at || '', db = b.created_at || '';
         if (da && db) return da.localeCompare(db);
         return (parseInt(a.product_num) || 999999) - (parseInt(b.product_num) || 999999);
+
       });
+
     group.forEach((p, i) => {
+
       p.product_num = i + 1;
+
       p.product     = i + 1;
+
     });
+
   });
+
 }
+
+
 
 // ── App shell ─────────────────────────────────────────────────────────────────
+
 function showApp() {
+
   document.getElementById('login-screen').style.display = 'none';
+
   document.getElementById('app-screen').style.display = 'flex';
+
   buildFilters();
+
   buildCandidateFilters();
+
   updateHeaderBadge();
+
   renderList();
+
   renderCandidates();
+
   renderDiscoveryCategories();
+
   const now = new Date();
+
   const lu = document.getElementById('last-updated');
+
   if (lu) lu.textContent = `Atualizado às ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+
   const savedPage = sessionStorage.getItem('painel_current_page');
+
   const savedEditingId = sessionStorage.getItem('painel_editing_id');
+
   if (savedPage === 'form' && savedEditingId) openForm(savedEditingId);
+
   else if (savedPage === 'categories') showPage('categories');
+
   else if (savedPage === 'candidates') showPage('candidates');
+
   else showPage('list');
+
 }
+
+
 
 function syncResponsiveNavigation() {
+
   const mobilePageSwitch = document.querySelector('.mobile-page-switch');
+
   const mobilePageSelect = document.getElementById('mobile-page-select');
+
   const mobileFilterBtn = document.querySelector('.mobile-filter-btn');
+
   const newButton = document.querySelector('.btn-new');
+
   const mobile = isMobileView();
 
+
+
   if (mobilePageSwitch) {
+
     mobilePageSwitch.style.display = mobile && state.currentPage !== 'form' ? 'block' : 'none';
+
   }
+
   if (mobilePageSelect) {
+
     mobilePageSelect.value = ['list', 'candidates', 'categories'].includes(state.currentPage) ? state.currentPage : 'list';
+
   }
+
   if (mobileFilterBtn) {
+
     mobileFilterBtn.style.display = mobile && state.currentPage === 'list' ? 'inline-flex' : 'none';
+
   }
+
   if (newButton) {
+
     newButton.style.display = mobile ? (state.currentPage === 'list' ? 'inline-flex' : 'none') : 'inline-flex';
+
   }
+
 }
+
+
 
 function showPage(page) {
+
   state.currentPage = page;
+
   if (page === 'list') state.editingId = null;
+
   persistViewState();
+
   document.getElementById('list-page').style.display = page === 'list' ? 'flex' : 'none';
+
   document.getElementById('candidates-page').style.display = page === 'candidates' ? 'flex' : 'none';
+
   document.getElementById('categories-page').style.display = page === 'categories' ? 'flex' : 'none';
+
   document.getElementById('form-page').style.display = page === 'form' ? 'block' : 'none';
+
   document.getElementById('sidebar').style.display   = page === 'list' ? 'flex'  : 'none';
+
   document.getElementById('nav-list').classList.toggle('active', page === 'list');
+
   document.getElementById('nav-candidates').classList.toggle('active', page === 'candidates');
+
   document.getElementById('nav-categories').classList.toggle('active', page === 'categories');
+
   syncResponsiveNavigation();
+
   if (page !== 'list') closeSidebarFilters();
+
   if (page === 'list') { buildFilters(); renderList(); }
+
   if (page === 'candidates') { buildCandidateFilters(); renderCandidates(); }
+
   if (page === 'categories') renderDiscoveryCategories();
+
 }
+
+
 
 function isMobileView() {
+
   return window.innerWidth <= 900;
+
 }
+
+
 
 function openSidebarFilters() {
+
   if (!isMobileView() || state.currentPage !== 'list') return;
+
   document.getElementById('sidebar').classList.add('mobile-open');
+
   document.getElementById('sidebar-backdrop').classList.add('open');
+
   document.body.style.overflow = 'hidden';
+
 }
+
+
 
 function closeSidebarFilters() {
+
   const sidebar = document.getElementById('sidebar');
+
   const backdrop = document.getElementById('sidebar-backdrop');
+
   if (sidebar) sidebar.classList.remove('mobile-open');
+
   if (backdrop) backdrop.classList.remove('open');
+
   document.body.style.overflow = '';
+
 }
+
+
 
 function toggleSidebarFilters() {
+
   const sidebar = document.getElementById('sidebar');
+
   if (!sidebar) return;
+
   if (sidebar.classList.contains('mobile-open')) closeSidebarFilters();
+
   else openSidebarFilters();
+
 }
 
+
+
 // ── Filters ───────────────────────────────────────────────────────────────────
+
 function countFor(type, val) {
+
   return state.products.filter(p => {
+
     if (type === 'account') return val === 'all' || p.account === val;
+
     if (type === 'publish') {
+
       const hasInstagram = !!(p.post_id && String(p.post_id).trim());
+
       const hasFacebook = !!(p.facebook_post_id && String(p.facebook_post_id).trim());
+
       if (val === 'all') return true;
+
       if (val === 'facebook_pending') return hasInstagram && !hasFacebook;
+
       if (val === 'facebook_published') return hasFacebook;
+
       return true;
+
     }
+
     if (type === 'error_stage') return val === 'all' || (p.error_stage || '') === val;
+
     return val === 'all' || p.status === val;
+
   }).length;
+
 }
+
 function buildFilters() {
   const accounts = ['all','shopee','shein','mercadolivre','amazon'];
   const statuses  = ['all','pendente','gerado','publicado','processando','erro'];
+
   const errorStages = ['all','Geração video','Erro na postagem','Pipeline'];
+
   document.getElementById('account-filters').innerHTML = accounts.map(a =>
+
     `<button class="filter-item ${state.filterAccount===a?'active':''}" onclick="setFilter('account','${a}')">
+
       ${ACCOUNT_LABELS[a]} <span class="badge-count">${countFor('account',a)}</span>
+
     </button>`).join('');
+
   document.getElementById('status-filters').innerHTML = statuses.map(s =>
+
     `<button class="filter-item ${state.filterStatus===s?'active':''}" onclick="setFilter('status','${s}')">
+
       ${STATUS_LABELS[s]} <span class="badge-count">${countFor('status',s)}</span>
+
     </button>`).join('');
+
   document.getElementById('publish-filters').innerHTML = publishStates.map(s =>
+
     `<button class="filter-item ${state.filterPublish===s?'active':''}" onclick="setFilter('publish','${s}')">
+
       ${PUBLISH_LABELS[s]} <span class="badge-count">${countFor('publish',s)}</span>
+
     </button>`).join('');
+
   document.getElementById('error-stage-filters').innerHTML = errorStages.map(s =>
+
     `<button class="filter-item ${state.filterErrorStage===s?'active':''}" onclick="setFilter('error_stage','${s}')">
+
       ${ERROR_STAGE_LABELS[s]} <span class="badge-count">${countFor('error_stage',s)}</span>
+
     </button>`).join('');
+
   updateHeaderBadge();
+
 }
+
 function setFilter(type, val) {
+
   if (type === 'account') state.filterAccount = val;
+
   else if (type === 'status') state.filterStatus = val;
+
   else if (type === 'publish') state.filterPublish = val;
+
   else state.filterErrorStage = val;
+
   if (isMobileView()) closeSidebarFilters();
+
   buildFilters(); renderList();
+
 }
+
+
 
 const CANDIDATE_STATUS_LABELS = {
+
   active: 'Ativos',
+
   all: 'Todos',
+
   discovered: 'Descobertos',
+
   imported: 'Importados',
+
   discarded: 'Descartados',
+
   duplicate: 'Duplicados',
+
 };
+
+
 
 function candidateStatusBadgeClass(status) {
+
   if (status === 'imported') return 'badge-publicado';
+
   if (status === 'discarded') return 'badge-erro';
+
   if (status === 'duplicate') return 'badge-processando';
+
   return 'badge-gerado';
+
 }
+
+
 
 function buildCandidateFilters() {
+
   const origins = ['all', ...new Set(state.candidates.map(c => c.origin || 'desconhecido'))];
+
   const statuses = ['active', 'all', 'discovered', 'imported', 'discarded', 'duplicate'];
+
   document.getElementById('candidate-origin-filters').innerHTML = origins.map(origin => {
+
     const label = origin === 'all' ? 'Todas origens' : origin.charAt(0).toUpperCase() + origin.slice(1);
+
     const count = state.candidates.filter(candidate => origin === 'all' || candidate.origin === origin).length;
+
     return `<button class="chip-btn ${state.filterCandidateOrigin===origin?'active':''}" onclick="setCandidateFilter('origin','${origin}')">${escHtml(label)} <span class="badge-count">${count}</span></button>`;
+
   }).join('');
+
   document.getElementById('candidate-status-filters').innerHTML = statuses.map(status => {
+
     const count = state.candidates.filter(candidate => {
+
       const resolved = resolveCandidateStatus(candidate);
+
       if (status === 'active') return resolved === 'discovered';
+
       if (status === 'all') return true;
+
       return resolved === status;
+
     }).length;
+
     return `<button class="chip-btn ${state.filterCandidateStatus===status?'active':''}" onclick="setCandidateFilter('status','${status}')">${CANDIDATE_STATUS_LABELS[status]} <span class="badge-count">${count}</span></button>`;
+
   }).join('');
+
 }
+
+
 
 function setCandidateFilter(type, value) {
+
   if (type === 'origin') state.filterCandidateOrigin = value;
+
   else state.filterCandidateStatus = value;
+
   renderCandidates();
+
 }
+
+
 
 function buildDiscoveryMacrothemeOptions(selectedValue) {
+
   return DISCOVERY_MACROTHEMES.map(macrotheme => (
+
     `<option value="${escHtml(macrotheme)}" ${selectedValue === macrotheme ? 'selected' : ''}>${escHtml(macrotheme)}</option>`
+
   )).join('');
+
 }
+
+
 
 function getFilteredDiscoveryCategoryEntries() {
+
   const sourceConfig = getDiscoverySourceConfig();
+
   const search = String(state.discoveryCategorySearch || '').trim().toLowerCase();
+
   return sourceConfig.categories
+
     .map((category, index) => ({ ...category, index }))
+
     .filter(category => {
+
       if (!search) return true;
+
       const haystack = [
+
         category.id,
+
         category.name,
+
         category.parent_name,
+
         category.macrotheme,
+
       ].join(' ').toLowerCase();
+
       return haystack.includes(search);
+
     });
+
 }
+
+
 
 function updateDiscoveryCategorySummary(filteredEntries) {
+
   const sourceConfig = getDiscoverySourceConfig();
+
   const sourceLabel = DISCOVERY_SOURCE_LABELS[state.selectedDiscoverySource] || state.selectedDiscoverySource;
+
   const enabledCount = sourceConfig.categories.filter(category => category.enabled).length;
+
   const visibleCount = filteredEntries.length;
+
   const perCategoryLimit = Math.max(1, parseInt(sourceConfig.per_category_limit, 10) || 2);
 
+
+
   document.getElementById('categories-source-label').textContent = sourceLabel;
+
   document.getElementById('categories-enabled-count').textContent = enabledCount;
+
   document.getElementById('categories-visible-count').textContent = visibleCount;
+
   document.getElementById('categories-cycle-count').textContent = enabledCount * perCategoryLimit;
+
 }
+
+
 
 function renderDiscoveryCategories() {
+
   const sourceConfig = getDiscoverySourceConfig();
+
   const sourceSelect = document.getElementById('categories-source-select');
+
   const searchInput = document.getElementById('categories-search-input');
+
   const limitInput = document.getElementById('categories-limit-input');
+
   if (sourceSelect) sourceSelect.value = state.selectedDiscoverySource;
+
   if (searchInput) searchInput.value = state.discoveryCategorySearch || '';
+
   if (limitInput) limitInput.value = Math.max(1, parseInt(sourceConfig.per_category_limit, 10) || 2);
 
+
+
   const filteredEntries = getFilteredDiscoveryCategoryEntries();
+
   updateDiscoveryCategorySummary(filteredEntries);
 
+
+
   const tbody = document.getElementById('categories-tbody');
+
   const empty = document.getElementById('categories-empty-msg');
+
   if (!tbody || !empty) return;
 
+
+
   if (!filteredEntries.length) {
+
     tbody.innerHTML = '';
+
     empty.style.display = 'block';
+
     return;
+
   }
 
+
+
   empty.style.display = 'none';
+
   tbody.innerHTML = filteredEntries.map(category => `
+
     <tr>
+
       <td>
+
         <input
+
           class="category-toggle"
+
           type="checkbox"
+
           ${category.enabled ? 'checked' : ''}
+
           onchange="toggleDiscoveryCategoryEnabled(${category.index}, this.checked)"
+
         >
+
       </td>
+
       <td>
+
         <div class="category-name-cell">
+
           <strong>${escHtml(category.name || category.id)}</strong>
+
           <span class="category-parent-pill">${escHtml(category.parent_name || 'Sem grupo')}</span>
+
           <span class="category-meta">${escHtml(category.id)}</span>
+
         </div>
+
       </td>
+
       <td>
+
         <select class="category-macro-select categories-select" onchange="updateDiscoveryCategoryMacrotheme(${category.index}, this.value)">
+
           ${buildDiscoveryMacrothemeOptions(category.macrotheme)}
+
         </select>
+
       </td>
+
       <td>
+
         <div class="category-actions-cell">
+
           <button type="button" class="btn-secondary-mini" onclick="removeDiscoveryCategory(${category.index})">Remover</button>
+
         </div>
+
       </td>
+
     </tr>
+
   `).join('');
+
 }
+
+
 
 function setDiscoverySource(value) {
+
   state.selectedDiscoverySource = value || 'mercadolivre';
+
   renderDiscoveryCategories();
+
 }
+
+
 
 function setDiscoveryCategorySearch(value) {
+
   state.discoveryCategorySearch = String(value || '');
+
   renderDiscoveryCategories();
+
 }
+
+
 
 function updateDiscoverySourceLimit(value) {
+
   const sourceConfig = getDiscoverySourceConfig();
+
   sourceConfig.per_category_limit = Math.max(1, parseInt(value, 10) || 2);
+
   renderDiscoveryCategories();
+
 }
+
+
 
 function toggleDiscoveryCategoryEnabled(index, checked) {
+
   const sourceConfig = getDiscoverySourceConfig();
+
   if (!sourceConfig.categories[index]) return;
+
   sourceConfig.categories[index].enabled = !!checked;
+
   updateDiscoveryCategorySummary(getFilteredDiscoveryCategoryEntries());
+
 }
+
+
 
 function updateDiscoveryCategoryMacrotheme(index, value) {
+
   const sourceConfig = getDiscoverySourceConfig();
+
   if (!sourceConfig.categories[index]) return;
+
   sourceConfig.categories[index].macrotheme = String(value || '').trim();
+
 }
+
+
 
 function promptAddDiscoveryCategory() {
+
   const sourceConfig = getDiscoverySourceConfig();
+
   const categoryId = String(window.prompt('ID da categoria:', '') || '').trim().toUpperCase();
+
   if (!categoryId) return;
+
   if (sourceConfig.categories.some(category => String(category.id || '').trim().toUpperCase() === categoryId)) {
+
     showToast('Essa categoria ja esta cadastrada para a origem selecionada.', 'warn');
+
     return;
+
   }
+
   const categoryName = String(window.prompt('Nome da categoria:', '') || '').trim();
+
   if (!categoryName) {
+
     showToast('Informe um nome para a categoria.', 'warn');
+
     return;
+
   }
+
   const parentName = String(window.prompt('Grupo/pai da categoria (opcional):', '') || '').trim();
+
   sourceConfig.categories.push({
+
     id: categoryId,
+
     name: categoryName,
+
     parent_id: '',
+
     parent_name: parentName,
+
     enabled: false,
+
     macrotheme: DISCOVERY_MACROTHEMES[0],
+
   });
+
   renderDiscoveryCategories();
+
   showToast('Categoria adicionada. Salve a configuracao para publicar.', 'info');
+
 }
+
+
 
 function removeDiscoveryCategory(index) {
+
   const sourceConfig = getDiscoverySourceConfig();
+
   const category = sourceConfig.categories[index];
+
   if (!category) return;
+
   showConfirm(`Remover a categoria ${category.name || category.id}?`, () => {
+
     sourceConfig.categories.splice(index, 1);
+
     renderDiscoveryCategories();
+
     showToast('Categoria removida da configuracao local.', 'info');
+
   });
+
 }
+
+
 
 async function saveDiscoveryCategories() {
+
   const btn = document.getElementById('btn-save-discovery-categories');
+
   if (btn) {
+
     btn.disabled = true;
+
     btn.textContent = 'Salvando...';
+
   }
+
   try {
+
     await saveDiscoveryCategoryConfig();
+
     showToast('Configuracao de categorias salva com sucesso.', 'success');
+
   } catch (error) {
+
     showToast('Erro ao salvar configuracao de categorias: ' + error.message, 'error');
+
   } finally {
+
     if (btn) {
+
       btn.disabled = false;
+
       btn.textContent = 'Salvar configuracao';
+
     }
+
   }
+
 }
+
+
 
 async function refreshDiscoveryCategories() {
+
   const btn = document.getElementById('btn-refresh-discovery-categories');
+
   if (btn) {
+
     btn.disabled = true;
+
     btn.textContent = '↻ ...';
+
   }
+
   try {
+
     const loaded = await loadDiscoveryCategoryConfigSafe();
+
     renderDiscoveryCategories();
+
     if (loaded) showToast('Configuracao de categorias atualizada.', 'success');
+
   } catch (error) {
+
     showToast('Erro ao atualizar configuracao de categorias: ' + error.message, 'error');
+
   } finally {
+
     if (btn) {
+
       btn.disabled = false;
+
       btn.textContent = '↻ Atualizar';
+
     }
+
   }
+
 }
+
+
 
 function normalizeCompareValue(value) {
+
   return String(value || '').trim().toLowerCase();
+
 }
+
+
 
 function resolveCandidateStatus(candidate) {
+
   const sourceUrl = normalizeCompareValue(candidate.source_url);
+
   const affiliateUrl = normalizeCompareValue(candidate.affiliate_url);
+
   const catalogProductId = normalizeCompareValue(candidate.catalog_product_id);
+
   const explicitStatus = normalizeCompareValue(candidate.status || 'discovered');
+
   const duplicate = state.products.some(product => {
+
     if (catalogProductId && normalizeCompareValue(product.catalog_product_id) === catalogProductId) return true;
+
     if (sourceUrl && normalizeCompareValue(product.source_url) === sourceUrl) return true;
+
     if (affiliateUrl && normalizeCompareValue(product.affiliate_url) === affiliateUrl) return true;
+
     return false;
+
   });
+
   if (duplicate && explicitStatus === 'discovered') return 'duplicate';
+
   return explicitStatus || 'discovered';
+
 }
+
+
 
 function canImportCandidateStatus(status) {
+
   return ['discovered', 'discarded', 'imported'].includes(status);
+
 }
+
+
 
 function candidateImportActionLabel(status) {
+
   if (status === 'discarded') return 'Importar novamente';
+
   if (status === 'imported') return 'Reimportar';
+
   return 'Importar produto';
+
 }
+
+
 
 function candidatePrimaryImage(candidate) {
+
   const scraped = Array.isArray(candidate.scraped_image_urls) ? candidate.scraped_image_urls : [];
+
   const base = Array.isArray(candidate.image_urls) ? candidate.image_urls : [];
+
   return String(candidate.thumbnail || scraped[0] || base[0] || '').trim();
+
 }
+
+
 
 // ── List render ───────────────────────────────────────────────────────────────
+
 const PLAT_ICONS = {
+
   instagram: 'https://cdn.simpleicons.org/instagram/E4405F',
+
   facebook:  'https://cdn.simpleicons.org/facebook/1877F2',
+
   tiktok:    'https://cdn.simpleicons.org/tiktok/010101',
+
 };
+
 function platIcon(value, platform) {
+
   const on = !!(value && String(value).trim());
+
   return `<span class="plat-icon ${on?'on':'off'}"><img src="${PLAT_ICONS[platform]}" alt="${platform}"></span>`;
+
 }
+
+
 
 function formatDate(iso) {
+
   if (!iso) return '—';
+
   try {
+
     const d = new Date(iso);
+
     return `${d.getDate().toString().padStart(2,'0')}/${(d.getMonth()+1).toString().padStart(2,'0')} ${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}`;
+
   } catch { return iso; }
+
 }
+
+
 
 function sortBy(col) {
+
   if (sortState.col === col) sortState.dir = sortState.dir === 'asc' ? 'desc' : 'asc';
+
   else { sortState.col = col; sortState.dir = 'asc'; }
+
   renderList();
+
 }
+
+
 
 function renderList() {
+
   const rawQuery = (document.getElementById('search-input').value || '').trim();
+
   const q = rawQuery.toLowerCase();
+
   const numericQuery = q.replace(/^#\s*/, '');
+
   const isNumericSearch = /^[0-9]+$/.test(numericQuery);
+
   const listDisplayName = product => String(product.display_name || product.name || '').trim();
+
   let products = state.products.filter(p => {
+
     if (state.filterAccount !== 'all' && p.account !== state.filterAccount) return false;
+
     if (state.filterStatus  !== 'all' && p.status  !== state.filterStatus)  return false;
+
     if (state.filterPublish !== 'all') {
+
       const hasInstagram = !!(p.post_id && String(p.post_id).trim());
+
       const hasFacebook = !!(p.facebook_post_id && String(p.facebook_post_id).trim());
+
       if (state.filterPublish === 'facebook_pending' && !(hasInstagram && !hasFacebook)) return false;
+
       if (state.filterPublish === 'facebook_published' && !hasFacebook) return false;
+
     }
+
     if (state.filterErrorStage !== 'all' && (p.error_stage || '') !== state.filterErrorStage) return false;
+
     if (q) {
+
       if (isNumericSearch) {
+
         const productNum = String(p.product_num || '').trim();
+
         const product = String(p.product || '').trim();
+
         if (productNum !== numericQuery && product !== numericQuery) return false;
+
       } else {
+
         const productName = String(p.name || '').toLowerCase();
+
         const productDisplayName = listDisplayName(p).toLowerCase();
+
         if (!productName.includes(q) && !productDisplayName.includes(q)) return false;
+
       }
+
     }
+
     return true;
+
   });
+
+
 
   const statusOrder = { pendente:0, processando:1, gerado:2, publicado:3, erro:4 };
+
   const col = sortState.col;
+
   const dir = sortState.dir;
+
   products.sort((a, b) => {
+
     let av, bv;
+
     if (col === 'status') {
+
       av = statusOrder[a.status] ?? 5;
+
       bv = statusOrder[b.status] ?? 5;
+
       return dir === 'asc' ? av - bv : bv - av;
+
     } else if (col === 'name') {
+
       av = listDisplayName(a).toLowerCase();
+
       bv = listDisplayName(b).toLowerCase();
+
       return dir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
+
     } else if (col === 'account') {
+
       av = (a.account || '').toLowerCase();
+
       bv = (b.account || '').toLowerCase();
+
       return dir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
+
     } else if (col === 'product_num') {
+
       av = parseInt(a.product_num) || 0;
+
       bv = parseInt(b.product_num) || 0;
+
       return dir === 'asc' ? av - bv : bv - av;
+
     } else if (col === 'published_at') {
+
       av = a.published_at || '';
+
       bv = b.published_at || '';
+
       return dir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
+
     }
+
     return 0;
+
   });
+
+
 
   // Update sort arrow indicators
+
   ['status','name','account','product_num','published_at'].forEach(c => {
+
     const el = document.getElementById('sort-arrow-' + c);
+
     if (el) el.textContent = sortState.col === c ? (sortState.dir === 'asc' ? ' ▲' : ' ▼') : '';
+
   });
+
+
 
   const total = state.products.length;
+
   document.getElementById('count-label').textContent =
+
     `${products.length} de ${total} produto${total !== 1 ? 's' : ''}`;
 
+
+
   const tbody = document.getElementById('product-tbody');
+
   const empty = document.getElementById('empty-msg');
 
+
+
   if (!products.length) {
+
     tbody.innerHTML = '';
+
     empty.style.display = 'block';
+
     return;
+
   }
+
   empty.style.display = 'none';
 
+
+
   const accountLabel = { shopee:'Shopee', shein:'Shein', mercadolivre:'Mercado Livre', amazon:'Amazon' };
+
   tbody.innerHTML = products.map(p => {
+
     const obs = p.status === 'erro' ? (p.error || '') : (p.descricao_audio || p.affiliate_url || '');
+
     const errorStage = p.error_stage || '—';
+
     const productLabel = listDisplayName(p) || '(sem nome)';
+
     const thumbCell = p.preview_image_url
+
       ? `<td class="td-thumb" style="padding:4px 4px;"><img src="${escHtml(p.preview_image_url)}" alt="" loading="lazy"></td>`
+
       : `<td class="td-thumb"></td>`;
+
     return `
+
     <tr onclick="openForm('${p._id}')">
+
       <td><span class="badge badge-${p.status||'pendente'}">${p.status||'pendente'}</span></td>
+
       ${thumbCell}
+
       <td class="td-name">
+
         <div class="name-text">${escHtml(productLabel)}</div>
+
         ${p.affiliate_url ? `<div class="sub">${escHtml(p.affiliate_url)}</div>` : ''}
+
       </td>
+
       <td><span class="account-tag">${escHtml(accountLabel[p.account]||p.account||'—')}</span></td>
+
       <td style="text-align:center;color:#94a3b8;font-size:13px;">${p.product_num||'—'}</td>
+
       <td style="font-size:12px;color:${p.error_stage?'#b45309':'#94a3b8'};white-space:nowrap;"
+
           title="${escHtml(errorStage)}">${escHtml(errorStage)}</td>
+
       <td style="color:#64748b;font-size:12px;white-space:nowrap;">${formatDate(p.published_at)}</td>
+
       <td class="plat-cell">${platIcon(p.post_id,          'instagram')}</td>
+
       <td class="plat-cell">${platIcon(p.facebook_post_id, 'facebook')}</td>
+
       <td class="plat-cell">${platIcon(p.tiktok_post_id,   'tiktok')}</td>
+
       <td class="${p.status==='erro'?'error-cell':''}" style="font-size:12px;color:${p.status==='erro'?'#dc2626':'#94a3b8'};"
+
           title="${escHtml(obs)}">${escHtml(obs.slice(0,60))}${obs.length>60?'…':''}</td>
+
     </tr>`;
+
   }).join('');
+
 }
+
+
 
 function renderCandidates() {
+
   const rawQuery = (document.getElementById('candidates-search-input')?.value || '').trim().toLowerCase();
+
   const grid = document.getElementById('candidate-grid');
+
   const empty = document.getElementById('candidates-empty-msg');
+
   const countLabel = document.getElementById('candidates-count-label');
+
   const filtered = state.candidates.filter(candidate => {
+
     const resolvedStatus = resolveCandidateStatus(candidate);
+
     if (state.filterCandidateOrigin !== 'all' && candidate.origin !== state.filterCandidateOrigin) return false;
+
     if (state.filterCandidateStatus !== 'all') {
+
       if (state.filterCandidateStatus === 'active' && resolvedStatus !== 'discovered') return false;
+
       if (state.filterCandidateStatus !== 'active' && resolvedStatus !== state.filterCandidateStatus) return false;
+
     }
+
     if (rawQuery) {
+
       const haystack = [
+
         candidate.name,
+
         candidate.family_name,
+
         candidate.origin,
+
         candidate.source_url,
+
         candidate.affiliate_url,
+
         candidate.catalog_product_id,
+
       ].join(' ').toLowerCase();
+
       if (!haystack.includes(rawQuery)) return false;
+
     }
+
     return true;
+
   });
 
+
+
   if (countLabel) countLabel.textContent = `${filtered.length} de ${state.candidates.length} candidato(s)`;
+
   if (!filtered.length) {
+
     if (grid) grid.innerHTML = '';
+
     if (empty) empty.style.display = 'block';
+
     return;
+
   }
+
   if (empty) empty.style.display = 'none';
 
+
+
   grid.innerHTML = filtered.map(candidate => {
+
     const resolvedStatus = resolveCandidateStatus(candidate);
+
     const image = candidatePrimaryImage(candidate);
+
     const title = candidate.name || '(sem nome)';
+
     const hasVideo = Array.isArray(candidate.videos) && candidate.videos.length > 0;
+
     const imageCount = candidate.scraped_image_count || candidate.image_count || 0;
+
     const description = candidate.short_description || (candidate.main_features || []).join(' • ');
+
     const rating = candidate.rating ? `⭐ ${candidate.rating}` : '';
+
     const reviews = candidate.reviews_count ? `💬 ${candidate.reviews_count}` : '';
+
     const sold = candidate.sold_quantity_text ? `🔥 ${candidate.sold_quantity_text}` : '';
+
     const originLabel = (candidate.origin || 'desconhecido').replace(/^./, c => c.toUpperCase());
+
     return `
+
       <article class="candidate-card">
+
         <div class="candidate-top">
+
           <div class="candidate-hero">
+
             ${image ? `<img src="${escHtml(image)}" alt="${escHtml(title)}" loading="lazy">` : `<div class="candidate-hero-empty">Sem imagem de preview</div>`}
+
           </div>
+
           <div class="candidate-body">
+
             <div class="candidate-badges">
+
               <span class="candidate-badge">${escHtml(originLabel)}</span>
+
               <span class="candidate-badge">${escHtml(CANDIDATE_STATUS_LABELS[resolvedStatus] || resolvedStatus)}</span>
+
               ${hasVideo ? '<span class="candidate-badge">Vídeo</span>' : ''}
+
               ${imageCount ? `<span class="candidate-badge">${imageCount} imagens</span>` : ''}
+
             </div>
+
           </div>
+
         </div>
+
         <div class="candidate-summary">
+
           <div class="candidate-title">${escHtml(title)}</div>
+
           <div class="candidate-meta">
+
             ${rating ? `<span class="meta-pill">${escHtml(rating)}</span>` : ''}
+
             ${reviews ? `<span class="meta-pill">${escHtml(reviews)}</span>` : ''}
+
             ${sold ? `<span class="meta-pill">${escHtml(sold)}</span>` : ''}
+
             ${candidate.discount_text ? `<span class="meta-pill">${escHtml(candidate.discount_text)}</span>` : ''}
+
           </div>
+
           <div class="candidate-text">${escHtml(description || 'Sem descrição resumida')}</div>
+
         </div>
+
         <div class="candidate-lower">
+
           <div class="candidate-links">
+
             ${candidate.source_url ? `<a class="candidate-link" href="${escHtml(candidate.source_url)}" target="_blank" rel="noopener noreferrer">Origem: ${escHtml(candidate.source_url)}</a>` : ''}
+
             ${candidate.affiliate_url ? `<a class="candidate-link" href="${escHtml(candidate.affiliate_url)}" target="_blank" rel="noopener noreferrer">Afiliado: ${escHtml(candidate.affiliate_url)}</a>` : ''}
+
           </div>
+
           <div class="candidate-actions">
+
             <button class="btn-candidate btn-candidate-primary" onclick="importCandidate('${candidate._id}')" ${!canImportCandidateStatus(resolvedStatus) ? 'disabled' : ''}>${candidateImportActionLabel(resolvedStatus)}</button>
+
             <button class="btn-candidate btn-candidate-ghost" onclick="discardCandidate('${candidate._id}')" ${resolvedStatus === 'duplicate' ? 'disabled' : ''}>Descartar</button>
+
           </div>
+
           <div class="candidate-state-note">
+
             Descoberto em ${escHtml(formatDate(candidate.discovered_at))}${candidate.imported_at ? ` • Importado em ${escHtml(formatDate(candidate.imported_at))}` : ''}${candidate.discarded_at ? ` • Descartado em ${escHtml(formatDate(candidate.discarded_at))}` : ''}
+
           </div>
+
         </div>
+
       </article>
+
     `;
+
   }).join('');
+
 }
+
+
 
 async function discardCandidate(candidateId) {
+
   const idx = state.candidates.findIndex(candidate => candidate._id === candidateId);
+
   if (idx < 0) return;
+
   state.candidates[idx] = {
+
     ...state.candidates[idx],
+
     status: 'discarded',
+
     discarded_at: new Date().toISOString(),
+
   };
+
   try {
+
     await saveCandidates();
+
     buildCandidateFilters();
+
     renderCandidates();
+
     showToast('Candidato descartado.', 'info');
+
   } catch (error) {
+
     showToast('Erro ao descartar candidato: ' + error.message, 'error');
+
   }
+
 }
+
+
 
 async function importCandidate(candidateId) {
+
   const idx = state.candidates.findIndex(candidate => candidate._id === candidateId);
+
   if (idx < 0) return;
+
   const candidate = state.candidates[idx];
+
   const resolvedStatus = resolveCandidateStatus(candidate);
+
   if (!canImportCandidateStatus(resolvedStatus)) {
+
     showToast('Esse candidato já foi tratado anteriormente.', 'warn');
+
     return;
+
   }
+
+
 
   const account = candidate.origin || 'mercadolivre';
+
   const users = ACCOUNT_USERS[account] || [];
+
   const imageUrls = Array.isArray(candidate.scraped_image_urls) && candidate.scraped_image_urls.length
+
     ? candidate.scraped_image_urls
+
     : (Array.isArray(candidate.image_urls) ? candidate.image_urls : []);
+
   const videoUrls = Array.isArray(candidate.videos) ? candidate.videos : [];
+
   const thumbnail = candidate.thumbnail || imageUrls[0] || '';
+
   const product = {
+
     _id: crypto.randomUUID(),
+
     created_at: new Date().toISOString(),
+
     candidate_id: candidate._id,
+
     catalog_product_id: candidate.catalog_product_id || '',
+
     discovery_origin: account,
+
     name: candidate.name || '',
+
     display_name: generateDisplayName(candidate.name || ''),
+
     account,
+
     usuario: users[0] || '',
+
     status: 'pendente',
+
     descricao_audio: candidate.short_description || '',
+
     flash_offer: normalizeDiscountText(candidate.discount_text || ''),
+
     coupon_text: (candidate.coupon_texts || []).join(' | '),
+
     rating: candidate.rating != null ? String(candidate.rating) : '',
+
     reviews: candidate.reviews_count != null ? String(candidate.reviews_count) : '',
+
     sold_count: normalizeSoldCountText(candidate.sold_quantity_text || ''),
+
     image_urls: imageUrls.join('; '),
+
     video_urls: videoUrls.join('; '),
+
     thumbnail,
+
     preview_image_url: thumbnail,
+
     preview_thumbnail_url: '',
+
     affiliate_url: candidate.affiliate_url || '',
+
     source_url: candidate.source_url || '',
+
   };
+
+
 
   const validationErrors = validateFormData(product);
+
   if (validationErrors.length) {
+
     showToast('Não foi possível importar: ' + validationErrors[0], 'warn');
+
     return;
+
   }
+
+
 
   state.products.push(product);
+
   renumberProducts();
+
   state.candidates[idx] = {
+
     ...candidate,
+
     status: 'imported',
+
     imported_at: new Date().toISOString(),
+
     discarded_at: '',
+
     imported_product_id: product._id,
+
   };
 
+
+
   try {
+
     await saveProducts();
+
     await saveCandidates();
+
     buildFilters();
+
     buildCandidateFilters();
+
     updateHeaderBadge();
+
     renderList();
+
     renderCandidates();
+
     showToast('Candidato importado para o painel principal.', 'success');
+
   } catch (error) {
+
     showToast('Erro ao importar candidato: ' + error.message, 'error');
+
   }
+
 }
+
+
 
 function escHtml(str) {
+
   return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
 }
+
+
 
 // ── Form ──────────────────────────────────────────────────────────────────────
+
 // product_num is excluded — it's read-only and managed by renumberProducts()
+
 const FORM_FIELDS = ['name','account','usuario','status','descricao_audio',
+
   'flash_offer','coupon_text','rating','reviews','sold_count',
-  'image_urls','video_urls','thumbnail','preview_image_url','preview_thumbnail_url','affiliate_url','source_url','display_name'];
+
+  'image_urls','video_urls','video_speed','thumbnail','preview_image_url','preview_thumbnail_url','affiliate_url','source_url','display_name'];
+
+
 
 const DISPLAY_NAME_BRANDS = new Set([
+
   'samsung','motorola','xiaomi','poco','redmi','oppo','realme','apple','iphone','jbl','lenovo','asus','acer','dell','hp',
+
   'philips','mondial','oster','electrolux','philco','britania','stanley','lg','sony','epson','canon','nike','adidas',
+
   'mizuno','vans','converse','avell','positivo','multilaser','tramontina','wap'
+
 ]);
+
 const DISPLAY_NAME_LEADING_GENERIC = new Set(['celular','smartphone','fone','fones','headset','tablet','notebook','laptop','camera','câmera','smartwatch','relogio','relógio','kit']);
+
 const DISPLAY_NAME_STOPWORDS = new Set(['de','do','da','dos','das','com','para','por','e','em','a','o','na','no']);
+
 const DISPLAY_NAME_COLORS = new Set(['preto','branco','cinza','grafite','azul','verde','rosa','vermelho','violeta','lilas','lilás','roxo','prata','dourado','bege','marrom','offwhite','off-white']);
+
 const DISPLAY_NAME_NOISE = new Set(['ram','gb','tb','mp','mah','hz','nfc','wifi','bluetooth','android','ios','amoled','oled','lcd','fullhd','fhd','ip54','ip55','ip64','ip67','ip68','polegadas','polegada','tela','camera','câmera','bateria','virtual']);
 
+
+
 function normalizeAscii(value) {
+
   return String(value || '')
+
     .normalize('NFD')
+
     .replace(/[\u0300-\u036f]/g, '')
+
     .toLowerCase();
+
 }
+
+
 
 function displayNameTokenPairs(name) {
+
   const cleaned = String(name || '')
+
     .replace(/[\(\[\{].*?[\)\]\}]/g, ' ')
+
     .replace(/[\/|,;]+/g, ' ');
+
   const tokens = cleaned.match(/[A-Za-zÀ-ÿ0-9]+/g) || [];
+
   return tokens.map(token => ({ raw: token, norm: normalizeAscii(token) })).filter(token => token.raw.trim());
+
 }
+
+
 
 function isDisplayNoise(tokenNorm) {
+
   return /^\d+$/.test(tokenNorm)
+
     || DISPLAY_NAME_NOISE.has(tokenNorm)
+
     || DISPLAY_NAME_COLORS.has(tokenNorm)
+
     || /^(?:\d+(?:gb|tb|mp|mah|hz|w|v|ml|l|cm|mm|m)|[45]g|ip\d{2}|wifi|nfc)$/i.test(tokenNorm);
+
 }
+
+
 
 function generateDisplayName(name) {
+
   const pairs = displayNameTokenPairs(name);
+
   if (!pairs.length) return String(name || '').trim();
 
+
+
   const brandIdx = pairs.findIndex(token => DISPLAY_NAME_BRANDS.has(token.norm));
+
   const result = [];
 
+
+
   if (brandIdx >= 0) {
+
     const prefix = [];
+
     for (const token of pairs.slice(0, brandIdx)) {
+
       if (!DISPLAY_NAME_STOPWORDS.has(token.norm) && !DISPLAY_NAME_LEADING_GENERIC.has(token.norm) && !isDisplayNoise(token.norm)) {
+
         prefix.push(token.raw);
+
       }
+
       if (prefix.length >= 2) break;
+
     }
+
     result.push(...prefix);
 
+
+
     for (let idx = brandIdx; idx < pairs.length; idx += 1) {
+
       const token = pairs[idx];
+
       if (idx > brandIdx && (DISPLAY_NAME_STOPWORDS.has(token.norm) || isDisplayNoise(token.norm))) {
+
         if (result.length >= 2) break;
+
         continue;
+
       }
+
       result.push(token.raw);
+
       if (result.length >= 4) break;
+
     }
+
   } else {
+
     let started = false;
+
     for (const token of pairs) {
+
       if (!started && DISPLAY_NAME_LEADING_GENERIC.has(token.norm)) continue;
+
       started = true;
+
       if (DISPLAY_NAME_STOPWORDS.has(token.norm)) continue;
+
       if (isDisplayNoise(token.norm) && result.length >= 2) break;
+
       if (isDisplayNoise(token.norm)) continue;
+
       result.push(token.raw);
+
       if (result.length >= 3) break;
+
     }
+
   }
+
+
 
   const displayName = (result.length ? result : pairs.slice(0, 4).map(token => token.raw)).join(' ').replace(/\s+/g, ' ').trim();
+
   return displayName || String(name || '').trim();
+
 }
+
+
 
 function isProbablyRenderableMedia(value) {
+
   const s = String(value || '').trim();
+
   if (!s) return false;
+
   return /^https?:\/\//i.test(s);
+
 }
+
+
 
 function isBrowserPreviewable(value) {
+
   const s = String(value || '').trim();
+
   if (!s) return false;
+
   return /^https?:\/\//i.test(s);
+
 }
+
+
 
 function splitMediaCandidates(raw) {
+
   return String(raw || '')
+
     .split(';')
+
     .map(v => v.trim())
+
     .filter(Boolean);
+
 }
+
+
 
 function firstRenderableMedia(raw) {
+
   const candidates = splitMediaCandidates(raw);
+
   return candidates.find(isProbablyRenderableMedia) || '';
+
 }
+
+
 
 function renderPreviewBox(targetId, html) {
+
   const el = document.getElementById(targetId);
+
   if (!el) return;
+
   el.innerHTML = html;
+
 }
+
+
 
 function renderImagePreview(targetId, src, emptyText) {
+
   if (!src) {
+
     renderPreviewBox(targetId, escHtml(emptyText));
+
     return;
+
   }
+
   renderPreviewBox(
+
     targetId,
+
     `<img src="${escHtml(src)}" alt="preview" loading="lazy" onerror="this.parentElement.textContent='${escHtml(emptyText)}'">`
+
   );
+
 }
+
+
 
 function refreshPreviews(product = null) {
+
   const previewThumbnailValue = product ? (product.preview_thumbnail_url || '') : (document.getElementById('f-preview_thumbnail_url')?.value || '');
+
   const previewImageValue = product ? (product.preview_image_url || '') : (document.getElementById('f-preview_image_url')?.value || '');
 
+
+
   const thumbnailSrc = firstRenderableMedia(previewThumbnailValue);
+
   const imageSrc = firstRenderableMedia(previewImageValue);
 
+
+
   if (thumbnailSrc && !isBrowserPreviewable(thumbnailSrc)) {
+
     renderPreviewBox('preview-thumbnail-media', 'A URL pública da thumbnail não pôde ser renderizada no navegador.');
+
   } else {
+
     renderImagePreview('preview-thumbnail-media', thumbnailSrc, 'Thumbnail não informada');
+
   }
 
+
+
   if (imageSrc && !isBrowserPreviewable(imageSrc)) {
+
     renderPreviewBox('preview-image-media', 'A URL pública da imagem não pôde ser renderizada no navegador.');
+
   } else {
+
     renderImagePreview('preview-image-media', imageSrc, 'Imagem principal não encontrada');
+
   }
+
 }
+
+
 
 const VIDEO_URL_EXTENSIONS = ['.mp4', '.mov', '.m4v', '.webm', '.m3u8'];
 
+
+
 function splitMediaEntries(value) {
+
   return String(value || '')
+
     .split(';')
+
     .map(item => item.trim())
+
     .filter(Boolean);
+
 }
+
+
 
 function mediaPathWithoutQuery(value) {
+
   const text = String(value || '').trim();
+
   if (!text) return '';
+
   const noHash = text.split('#')[0];
+
   const noQuery = noHash.split('?')[0];
+
   return noQuery.trim().toLowerCase();
+
 }
+
+
 
 function isAllowedVideoEntry(value) {
+
   const normalized = mediaPathWithoutQuery(value);
+
   return /^https?:\/\//i.test(String(value || '').trim()) && VIDEO_URL_EXTENSIONS.some(ext => normalized.endsWith(ext));
+
 }
+
+
 
 function isHttpUrl(value) {
+
   return /^https?:\/\//i.test(String(value || '').trim());
+
 }
+
+
 
 function validateFormData(data) {
+
   const errors = [];
+
   if (!data.name) errors.push('Informe o nome do produto.');
+
   if (!data.account) errors.push('Selecione a conta.');
+
   if (!data.affiliate_url) errors.push('Preencha o link de afiliado.');
+
   if (!data.source_url) errors.push('Preencha o link original do produto.');
+
   if (data.affiliate_url && !isHttpUrl(data.affiliate_url)) errors.push('O link de afiliado deve ser uma URL pública (http/https).');
+
   if (data.source_url && !isHttpUrl(data.source_url)) errors.push('O link original do produto deve ser uma URL pública (http/https).');
+
   if (!data.image_urls && !data.video_urls) errors.push('Informe ao menos uma mídia em Imagens ou Vídeos.');
+
   if (data.video_urls && !data.thumbnail) errors.push('Quando houver vídeo, preencha também a thumbnail para garantir a capa.');
+
   const invalidImageEntries = splitMediaEntries(data.image_urls).filter(item => !isHttpUrl(item));
+
   if (invalidImageEntries.length) {
+
     const listed = invalidImageEntries.map(item => `"${item}"`).join(', ');
+
     errors.push(`O campo Imagens aceita apenas URLs públicas (http/https). Itens inválidos: ${listed}`);
+
   }
+
   const invalidVideoEntries = splitMediaEntries(data.video_urls).filter(item => !isAllowedVideoEntry(item));
+
   if (invalidVideoEntries.length) {
+
     const listed = invalidVideoEntries.map(item => `"${item}"`).join(', ');
+
     errors.push(`O campo Vídeos aceita apenas URLs públicas com extensão válida (.mp4, .mov, .m4v, .webm, .m3u8). Itens inválidos: ${listed}`);
+
   }
+
   if (data.thumbnail && !isHttpUrl(data.thumbnail)) errors.push('A thumbnail deve ser uma URL pública (http/https).');
+
   if (data.preview_thumbnail_url && !isHttpUrl(data.preview_thumbnail_url)) errors.push('A preview thumbnail deve ser uma URL pública (http/https).');
+
   if (data.preview_image_url && !isHttpUrl(data.preview_image_url)) errors.push('A preview imagem deve ser uma URL pública (http/https).');
+
   return errors;
+
 }
+
+
 
 function onAccountChange() {
+
   const acc = document.getElementById('f-account').value;
+
   const sel = document.getElementById('f-usuario');
+
   const users = ACCOUNT_USERS[acc] || [];
+
   sel.innerHTML = users.length
+
     ? users.map(u => `<option value="${u}">${u}</option>`).join('')
+
     : '<option value="">—</option>';
+
 }
+
+
 
 function bindPreviewInputs() {
+
   ['f-thumbnail', 'f-image_urls', 'f-preview_thumbnail_url', 'f-preview_image_url'].forEach(id => {
+
     const el = document.getElementById(id);
+
     if (!el || el.dataset.previewBound === '1') return;
+
     el.addEventListener('input', () => refreshPreviews());
+
     el.dataset.previewBound = '1';
+
   });
+
 }
+
+
 
 function bindDisplayNameInputs() {
+
   const nameInput = document.getElementById('f-name');
+
   const displayInput = document.getElementById('f-display_name');
+
   if (!nameInput || !displayInput || nameInput.dataset.displayNameBound === '1') return;
 
+
+
   nameInput.addEventListener('input', () => {
+
     const autoDisplay = generateDisplayName(nameInput.value);
+
     if (!displayInput.value.trim() || displayInput.dataset.autoDisplay === '1') {
+
       displayInput.value = autoDisplay;
+
       displayInput.dataset.autoDisplay = '1';
+
     }
+
   });
+
+
 
   displayInput.addEventListener('input', () => {
+
     const autoDisplay = generateDisplayName(nameInput.value);
+
     displayInput.dataset.autoDisplay = (!displayInput.value.trim() || displayInput.value.trim() === autoDisplay) ? '1' : '0';
+
   });
+
+
 
   nameInput.dataset.displayNameBound = '1';
+
 }
+
+
 
 function buildFormTitle(product) {
+
   if (!product) return 'Novo produto';
+
   const shortName = String(product.display_name || '').trim() || generateDisplayName(product.name || '');
+
   return `Editar produto — ${shortName}`;
+
 }
+
+
 
 function openForm(id) {
+
   state.editingId = id;
+
   state.currentPage = 'form';
+
   persistViewState();
+
   const p = id ? state.products.find(x => x._id === id) : null;
+
   document.getElementById('form-title').textContent = buildFormTitle(p);
+
   document.getElementById('btn-delete').style.display = p ? 'block' : 'none';
+
   document.getElementById('btn-regenerate').style.display = (p && p.video_path) ? 'inline-flex' : 'none';
+
   document.getElementById('btn-republish').style.display  = (p && (p.post_id || p.facebook_post_id)) ? 'inline-flex' : 'none';
+
   document.getElementById('btn-facebook-republish').style.display = (p && (p.video_path || p.post_id) && (p.status === 'publicado' || p.post_id)) ? 'inline-flex' : 'none';
 
+
+
   FORM_FIELDS.forEach(f => {
+
     const el = document.getElementById('f-' + f);
+
     if (el) el.value = '';
+
   });
+
   document.getElementById('f-status').value = 'pendente';
+
   document.getElementById('f-product_num').value = '';
 
+
+
   if (p) {
+
     FORM_FIELDS.forEach(f => {
+
       const el = document.getElementById('f-' + f);
+
       if (el && p[f] !== undefined) el.value = p[f];
+
     });
+
     const displayInput = document.getElementById('f-display_name');
+
     if (displayInput) {
+
       const autoDisplay = generateDisplayName(p.name || '');
+
       if (!displayInput.value.trim()) {
+
         displayInput.value = autoDisplay;
+
         displayInput.dataset.autoDisplay = '1';
+
       } else {
+
         displayInput.dataset.autoDisplay = displayInput.value.trim() === autoDisplay ? '1' : '0';
+
       }
+
     }
+
     onAccountChange();
+
     document.getElementById('f-usuario').value = p.usuario || '';
+
     document.getElementById('f-product_num').value = p.product_num
+
       ? `#${p.product_num} (${p.account || ''})`
+
       : 'Será gerado ao salvar';
 
+
+
     const rs = document.getElementById('result-section');
+
     const hasResult = p.video_path || p.published_at || p.post_id || p.facebook_post_id || p.tiktok_post_id || p.error;
+
     rs.style.display = hasResult ? 'block' : 'none';
+
     if (hasResult) {
+
       setResult('r-video_path',       p.video_path);
+
       setResult('r-published_at',     p.published_at);
+
       setResult('r-post_id',          p.post_id);
+
       setResult('r-facebook_post_id', p.facebook_post_id);
+
       setResult('r-tiktok_post_id',   p.tiktok_post_id);
+
       const errStageWrap = document.getElementById('r-error-stage-wrap');
+
       if (p.error_stage) {
+
         document.getElementById('r-error_stage').textContent = p.error_stage;
+
         errStageWrap.style.display = 'block';
+
       } else {
+
         errStageWrap.style.display = 'none';
+
       }
+
       const errWrap = document.getElementById('r-error-wrap');
+
       if (p.error) {
+
         document.getElementById('r-error').textContent = p.error;
+
         errWrap.style.display = 'block';
+
       } else {
+
         errWrap.style.display = 'none';
+
       }
+
     }
+
     refreshPreviews(p);
+
   } else {
+
     document.getElementById('result-section').style.display = 'none';
+
     document.getElementById('f-product_num').value = 'Será gerado ao salvar';
+
     onAccountChange();
+
     const displayInput = document.getElementById('f-display_name');
+
     if (displayInput) displayInput.dataset.autoDisplay = '1';
+
     refreshPreviews();
+
   }
+
+
 
   bindPreviewInputs();
+
   bindDisplayNameInputs();
+
   showPage('form');
+
 }
+
+
 
 async function requestRegenerate() {
+
   if (!state.editingId) return;
+
   const idx = state.products.findIndex(p => p._id === state.editingId);
+
   if (idx < 0) return;
+
   const current = state.products[idx];
+
   state.products[idx] = {
+
     ...current,
+
     status: 'pendente',
+
     force_regenerate: '1',
+
     force_publish_only: '',
+
     error: '',
+
     error_stage: '',
+
     published_at: '',
+
     post_id: '',
+
     facebook_post_id: '',
+
     facebook_published_at: '',
+
     facebook_status: '',
+
     facebook_error: '',
+
   };
 
+
+
   try {
+
     await saveProducts();
+
     showToast('Regeração solicitada. Na próxima execução do pipeline, este produto será gerado novamente e republicado.', 'success');
+
     openForm(state.editingId);
+
   } catch (err) {
+
     showToast('Erro ao solicitar regeneração: ' + err.message, 'error');
+
   }
+
 }
+
+
 
 async function requestRepublish() {
+
   if (!state.editingId) return;
+
   const idx = state.products.findIndex(p => p._id === state.editingId);
+
   if (idx < 0) return;
+
   const current = state.products[idx];
+
   state.products[idx] = {
+
     ...current,
+
     status: 'erro',
+
     force_publish_only: '1',
+
     force_regenerate: '',
+
     error_stage: 'Erro na postagem',
+
     error: 'Republicação solicitada manualmente pelo painel.',
+
     post_id: '',
+
     facebook_post_id: '',
+
     facebook_published_at: '',
+
     facebook_status: '',
+
     facebook_error: '',
+
   };
 
+
+
   try {
+
     await saveProducts();
+
     showToast('Republicação solicitada. Na próxima execução do pipeline, o sistema tentará reaproveitar o vídeo atual e publicar novamente.', 'success');
+
     openForm(state.editingId);
+
   } catch (err) {
+
     showToast('Erro ao solicitar republicação: ' + err.message, 'error');
+
   }
+
 }
+
+
 
 async function requestFacebookRepublish() {
+
   if (!state.editingId) return;
+
   const idx = state.products.findIndex(p => p._id === state.editingId);
+
   if (idx < 0) return;
+
   const current = state.products[idx];
+
   state.products[idx] = {
+
     ...current,
+
     status: 'publicado',
+
     force_facebook_only: '1',
+
     force_publish_only: '',
+
     force_regenerate: '',
+
     facebook_post_id: '',
+
     facebook_published_at: '',
+
     facebook_status: '',
+
     facebook_error: '',
+
   };
 
+
+
   try {
+
     await saveProducts();
+
     showToast('Republicação apenas no Facebook solicitada. Na próxima execução do pipeline, o sistema tentará reaproveitar o vídeo atual e publicar só na página do Facebook.', 'success');
+
     openForm(state.editingId);
+
   } catch (err) {
+
     showToast('Erro ao solicitar republicação no Facebook: ' + err.message, 'error');
+
   }
+
 }
+
+
 
 function setResult(id, val) {
+
   const el = document.getElementById(id);
+
   if (!el) return;
+
   el.textContent = val || '—';
+
   el.classList.toggle('empty', !val);
+
 }
+
+
 
 async function submitForm(e) {
+
   e.preventDefault();
+
   const btn = document.getElementById('btn-save');
+
   btn.textContent = 'Salvando...'; btn.disabled = true;
 
+
+
   const data = {};
+
   FORM_FIELDS.forEach(f => {
+
     const el = document.getElementById('f-' + f);
+
     if (el) data[f] = el.value.trim();
+
   });
+
   data.display_name = data.display_name || generateDisplayName(data.name);
+
   if (data.account === 'mercadolivre') {
+
     data.flash_offer = normalizeDiscountText(data.flash_offer);
+
     data.sold_count = normalizeSoldCountText(data.sold_count);
+
   }
+
   const displayInput = document.getElementById('f-display_name');
+
   if (displayInput && !displayInput.value.trim()) {
+
     displayInput.value = data.display_name;
+
     displayInput.dataset.autoDisplay = '1';
+
   }
+
+
 
   const validationErrors = validateFormData(data);
+
   if (validationErrors.length) {
+
     showToast('Antes de salvar: ' + validationErrors[0], 'warn');
+
     btn.textContent = 'Salvar produto'; btn.disabled = false;
+
     return;
+
   }
+
+
 
   if (state.editingId) {
+
     const idx = state.products.findIndex(p => p._id === state.editingId);
+
     if (idx >= 0) state.products[idx] = { ...state.products[idx], ...data };
+
   } else {
+
     data._id = crypto.randomUUID();
+
     data.created_at = new Date().toISOString();
+
     state.products.push(data);
+
   }
+
+
 
   // Renumber all products per account after any change
+
   renumberProducts();
 
+
+
   try {
+
     await saveProducts();
+
     showToast('Produto salvo com sucesso!', 'success');
+
     showPage('list');
+
   } catch(err) {
+
     showToast('Erro ao salvar: ' + err.message, 'error');
+
   }
+
   btn.textContent = 'Salvar produto'; btn.disabled = false;
+
 }
+
+
 
 function deleteProduct() {
+
   if (!state.editingId) return;
+
   showConfirm('Excluir este produto? Esta ação não pode ser desfeita.', async () => {
+
     state.products = state.products.filter(p => p._id !== state.editingId);
 
+
+
     // Renumber remaining products after deletion
+
     renumberProducts();
 
+
+
     try {
+
       await saveProducts();
+
       showToast('Produto excluído.', 'info');
+
       showPage('list');
+
     } catch(err) {
+
       showToast('Erro ao excluir: ' + err.message, 'error');
+
     }
+
   });
+
 }
+
+
 
 // ── Toast notifications ───────────────────────────────────────────────────────
+
 function showToast(msg, type = 'info') {
+
   const t = document.createElement('div');
+
   t.className = `toast toast-${type}`;
+
   t.textContent = msg;
+
   document.getElementById('toast-container').appendChild(t);
+
   requestAnimationFrame(() => t.classList.add('show'));
+
   setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 3500);
+
 }
+
+
 
 // ── Confirm modal ─────────────────────────────────────────────────────────────
+
 function showConfirm(msg, onConfirm) {
+
   const overlay = document.getElementById('modal-overlay');
+
   document.getElementById('modal-msg').textContent = msg;
+
   overlay.style.display = 'flex';
+
   document.getElementById('modal-confirm-btn').onclick = () => { overlay.style.display='none'; onConfirm(); };
+
   document.getElementById('modal-cancel-btn').onclick = () => { overlay.style.display='none'; };
+
 }
+
+
 
 // ── Header badge ──────────────────────────────────────────────────────────────
+
 function updateHeaderBadge() {
+
   const pending = state.products.filter(p => p.status === 'pendente').length;
+
   const errors  = state.products.filter(p => p.status === 'erro').length;
+
   const badge   = document.getElementById('header-status-badge');
+
   if (!badge) return;
+
   const parts = [];
+
   if (pending > 0) parts.push(`● ${pending} pendente${pending > 1 ? 's' : ''}`);
+
   if (errors  > 0) parts.push(`● ${errors} erro${errors  > 1 ? 's' : ''}`);
+
   badge.textContent = parts.join('  ');
+
   badge.style.display = parts.length ? 'inline-flex' : 'none';
+
 }
+
+
 
 // ── Refresh ───────────────────────────────────────────────────────────────────
+
 async function refreshProducts() {
+
   const btn = document.querySelector('[onclick="refreshProducts()"]');
+
   if (btn) { btn.textContent = '↻ ...'; btn.disabled = true; }
+
   try {
+
     await loadProducts();
+
     await loadCandidatesSafe({ silent: true });
+
     updateHeaderBadge();
+
     buildFilters();
+
     buildCandidateFilters();
+
     renderList();
+
     renderCandidates();
+
     const now = new Date();
+
     document.getElementById('last-updated').textContent = `Atualizado às ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+
     showToast('Dados atualizados', 'success');
+
   } catch(e) {
+
     showToast('Erro ao atualizar: ' + e.message, 'error');
+
   } finally {
+
     if (btn) { btn.textContent = '↻ Atualizar'; btn.disabled = false; }
+
   }
+
 }
+
+
 
 async function refreshCandidates() {
+
   const btn = document.querySelector('[onclick="refreshCandidates()"]');
+
   if (btn) { btn.textContent = '↻ ...'; btn.disabled = true; }
+
   try {
+
     const loaded = await loadCandidatesSafe();
+
     buildCandidateFilters();
+
     renderCandidates();
+
     if (loaded) showToast('Candidatos atualizados', 'success');
+
   } catch (error) {
+
     showToast('Erro ao atualizar candidatos: ' + error.message, 'error');
+
   } finally {
+
     if (btn) { btn.textContent = '↻ Atualizar'; btn.disabled = false; }
+
   }
+
 }
 
+
+
 // ── Init ──────────────────────────────────────────────────────────────────────
+
 window.addEventListener('resize', () => {
+
   syncResponsiveNavigation();
+
   if (!isMobileView()) closeSidebarFilters();
+
 });
+
+
 
 window.addEventListener('keydown', (event) => {
+
   if (event.key === 'Escape') closeSidebarFilters();
+
 });
 
+
+
 (async function init() {
+
   const token = sessionStorage.getItem('token');
+
   if (token) {
+
     try {
+
       state.token = token;
+
       state.githubUser = sessionStorage.getItem('guser');
+
       state.githubRepo = sessionStorage.getItem('grepo');
+
       await loadProducts();
+
       await loadCandidatesSafe({ silent: true });
+
       await loadDiscoveryCategoryConfigSafe({ silent: true });
+
       showApp();
+
     } catch (error) {
+
       console.error('Falha ao inicializar painel:', error);
+
       sessionStorage.removeItem('token');
+
       sessionStorage.removeItem('guser');
+
       sessionStorage.removeItem('grepo');
+
       document.documentElement.classList.remove('is-authed');
+
       document.getElementById('login-screen').style.display = 'flex';
+
       document.getElementById('app-screen').style.display = 'none';
+
     }
+
   }
+
 })();
+
 </script>
+
 </body>
+
 </html>
+
+
+
+
+
 
 
 

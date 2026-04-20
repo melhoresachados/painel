@@ -603,12 +603,10 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
       <div>
         <div class="filter-group-title">Publicação</div>
         <div id="publish-filters"></div>
-        <div class="filter-help">Permite ver rapidamente o que ainda está pendente só no Facebook.</div>
       </div>
       <div>
         <div class="filter-group-title">Etapa erro</div>
         <div id="error-stage-filters"></div>
-        <div class="filter-help">Ajuda a separar erro de postagem de erro que exige novo vídeo.</div>
       </div>
     </aside>
 
@@ -1014,6 +1012,7 @@ const ACCOUNT_USERS = {
   shopee:       ['@happydayofertas'],
   shein:        ['@seulookperfeitoaqui'],
   mercadolivre: ['@pricebestnet'],
+  amazon:       ['@primeofertasnet'],
 };
 
 const ACCOUNT_LABELS = { all:'Todas as contas', shopee:'Shopee', shein:'Shein', mercadolivre:'Mercado Livre', amazon:'Amazon' };
@@ -1645,7 +1644,7 @@ function countFor(type, val) {
   }).length;
 }
 function buildFilters() {
-  const accounts = ['all','shopee','shein','mercadolivre'];
+  const accounts = ['all','shopee','shein','mercadolivre','amazon'];
   const statuses  = ['all','pendente','gerado','publicado','processando','erro'];
   const errorStages = ['all','Geração video','Erro na postagem','Pipeline'];
   document.getElementById('account-filters').innerHTML = accounts.map(a =>

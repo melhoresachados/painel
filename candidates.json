@@ -1279,7 +1279,7 @@
     {
       "_id": "23598666696",
       "origin": "shopee",
-      "status": "discovered",
+      "status": "imported",
       "discovered_at": "2026-04-18T22:54:09.027378",
       "item_id": "23598666696",
       "configured_category_id": "11059978",
@@ -1319,7 +1319,10 @@
       "current_price": 59.99,
       "original_price": 59.99,
       "macrotema": "Ofertas de alto valor percebido",
-      "coupon_texts": []
+      "coupon_texts": [],
+      "imported_at": "2026-04-20T20:27:13.408Z",
+      "discarded_at": "",
+      "imported_product_id": "2c029e60-1c9f-4486-9a23-e7c130595533"
     },
     {
       "_id": "22197735473",

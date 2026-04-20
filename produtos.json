@@ -391,7 +391,7 @@
       "display_name": "Saia longa monocromatica",
       "account": "shein",
       "usuario": "@seulookperfeitoaqui",
-      "status": "pendente",
+      "status": "processando",
       "descricao_audio": "Detalhes: Bolso | Possui forro: Sem forro | Estilo: elegante | Tipo: Fenda | Ocasião: Diário | Características: Grande Qualidade",
       "flash_offer": "76%",
       "coupon_text": "",
@@ -407,7 +407,9 @@
       "source_url": "https://br.shein.com/Long-Monochromatic-Tailored-Skirt-With-Side-Pockets-And-Zipper-And-Button-Details-DD063-p-40602936-cat-1732.html",
       "product_num": 4,
       "product": 4,
-      "video_speed": ""
+      "video_speed": "",
+      "force_publish_only": "",
+      "force_facebook_only": ""
     }
   ]
 }

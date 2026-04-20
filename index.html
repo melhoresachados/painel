@@ -1525,7 +1525,12 @@ async function saveDiscoveryCategoryConfig() {
 // ── Product numbering ─────────────────────────────────────────────────────────
 // Assigns sequential product_num per account, ordered by created_at then _id.
 function renumberProducts() {
-  ['shopee', 'shein', 'mercadolivre'].forEach(acc => {
+  const accounts = Array.from(new Set(
+    state.products
+      .map(p => String(p.account || '').trim())
+      .filter(Boolean)
+  ));
+  accounts.forEach(acc => {
     const group = state.products
       .filter(p => p.account === acc)
       .sort((a, b) => {

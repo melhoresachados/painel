@@ -382,8 +382,8 @@
       "video_speed": "2",
       "force_publish_only": "",
       "force_facebook_only": "",
-      "error": "enrich falhou",
-      "error_stage": "Pipeline",
+      "error": "",
+      "error_stage": "",
       "force_regenerate": "",
       "video_path": "",
       "facebook_error": ""

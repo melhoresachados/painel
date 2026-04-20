@@ -790,6 +790,7 @@ tbody td { padding: 10px 12px; font-size: 13px; color: #334155; vertical-align: 
                       <option value="shopee">Shopee</option>
                       <option value="shein">Shein</option>
                       <option value="mercadolivre">Mercado Livre</option>
+                      <option value="amazon">Amazon</option>
                     </select>
                   </div>
                   <div class="field-group">
@@ -1015,7 +1016,7 @@ const ACCOUNT_USERS = {
   mercadolivre: ['@pricebestnet'],
 };
 
-const ACCOUNT_LABELS = { all:'Todas as contas', shopee:'Shopee', shein:'Shein', mercadolivre:'Mercado Livre' };
+const ACCOUNT_LABELS = { all:'Todas as contas', shopee:'Shopee', shein:'Shein', mercadolivre:'Mercado Livre', amazon:'Amazon' };
 const DISCOVERY_SOURCE_LABELS = { mercadolivre:'Mercado Livre', shopee:'Shopee', shein:'Shein', amazon:'Amazon' };
 const DISCOVERY_MACROTHEMES = [
   'Gadgets e eletronicos',
@@ -2049,7 +2050,7 @@ function renderList() {
   }
   empty.style.display = 'none';
 
-  const accountLabel = { shopee:'Shopee', shein:'Shein', mercadolivre:'Mercado Livre' };
+  const accountLabel = { shopee:'Shopee', shein:'Shein', mercadolivre:'Mercado Livre', amazon:'Amazon' };
   tbody.innerHTML = products.map(p => {
     const obs = p.status === 'erro' ? (p.error || '') : (p.descricao_audio || p.affiliate_url || '');
     const errorStage = p.error_stage || '—';

@@ -49,7 +49,8 @@
       "imported_at": "2026-04-16T17:00:34.417Z",
       "discarded_at": "2026-04-16T17:01:29.107Z",
       "imported_product_id": "eb0d4f00-ecc2-4d1a-b1f4-6e345e8ce56b",
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB55762050",
@@ -98,7 +99,8 @@
       "current_price": 725.9,
       "original_price": 1349,
       "discarded_at": "2026-04-16T16:14:11.137Z",
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB54984333",
@@ -148,7 +150,8 @@
       "original_price": 1999,
       "imported_at": "2026-04-16T17:17:23.577Z",
       "imported_product_id": "a1f86375-6dc6-490c-9393-533843af3c84",
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB44665542",
@@ -194,7 +197,8 @@
       "sold_quantity_text": "+10mil",
       "current_price": 989.1,
       "original_price": 1499,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB47112282",
@@ -240,7 +244,9 @@
       "reviews_count": 57784,
       "sold_quantity_text": "+10mil",
       "current_price": 2399,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "MLB41540844",
@@ -288,7 +294,8 @@
       "sold_quantity_text": "+50mil",
       "current_price": 934.15,
       "original_price": 1324.29,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB47424244",
@@ -333,7 +340,9 @@
       "sold_quantity_text": "+50mil",
       "current_price": 1405.93,
       "original_price": 2167.14,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "videos": [],
+      "coupon_texts": []
     },
     {
       "_id": "MLB47115842",
@@ -381,7 +390,8 @@
       "sold_quantity_text": "+10mil",
       "current_price": 1430.1,
       "original_price": 2815.19,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB58315694",
@@ -424,7 +434,9 @@
       "sold_quantity_text": "+50mil",
       "current_price": 259.25,
       "original_price": 284.07,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "videos": [],
+      "coupon_texts": []
     },
     {
       "_id": "MLB55027309",
@@ -472,7 +484,8 @@
       "sold_quantity_text": "+1000",
       "current_price": 1209,
       "original_price": 1899,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB57767498",
@@ -519,7 +532,9 @@
       "reviews_count": 54204,
       "sold_quantity_text": "+10mil",
       "current_price": 799,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "MLB47354382",
@@ -561,7 +576,10 @@
       "reviews_count": 31194,
       "sold_quantity_text": "+5mil",
       "current_price": 229,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "videos": [],
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "MLB61424002",
@@ -611,7 +629,8 @@
       "reviews_count": 26746,
       "sold_quantity_text": "+10mil",
       "current_price": 799,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "discount_text": ""
     },
     {
       "_id": "MLB42520227",
@@ -658,7 +677,8 @@
       "sold_quantity_text": "+50mil",
       "current_price": 339,
       "original_price": 449.9,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "videos": []
     },
     {
       "_id": "MLB63346535",
@@ -706,7 +726,8 @@
       "sold_quantity_text": "+5",
       "current_price": 826.42,
       "original_price": 899.9,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB34506161",
@@ -755,7 +776,8 @@
       "sold_quantity_text": "+10mil",
       "current_price": 229,
       "original_price": 499,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB55044657",
@@ -804,7 +826,8 @@
       "sold_quantity_text": "+5mil",
       "current_price": 949.9,
       "original_price": 1089.9,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "MLB50940215",
@@ -847,7 +870,9 @@
       "sold_quantity_text": "+100",
       "current_price": 24.89,
       "original_price": 39.9,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "videos": [],
+      "coupon_texts": []
     },
     {
       "_id": "22394042395",
@@ -873,7 +898,11 @@
       "current_price": 149.99,
       "original_price": 149.99,
       "page_scrape_error": "Não foi possível extrair IDs da URL: https://shopee.com.br/product/1077868451/22394042395",
-      "macrotema": "Ofertas de alto valor percebido"
+      "macrotema": "Ofertas de alto valor percebido",
+      "videos": [],
+      "coupon_texts": [],
+      "main_features": [],
+      "discount_text": ""
     },
     {
       "_id": "8815923778",
@@ -899,7 +928,11 @@
       "current_price": 39.9,
       "original_price": 39.9,
       "page_scrape_error": "Não foi possível extrair IDs da URL: https://shopee.com.br/product/352719102/8815923778",
-      "macrotema": "Ofertas de alto valor percebido"
+      "macrotema": "Ofertas de alto valor percebido",
+      "videos": [],
+      "coupon_texts": [],
+      "main_features": [],
+      "discount_text": ""
     },
     {
       "_id": "22399034069",
@@ -925,7 +958,11 @@
       "current_price": 31.9,
       "original_price": 31.9,
       "page_scrape_error": "Não foi possível extrair IDs da URL: https://shopee.com.br/product/1541984981/22399034069",
-      "macrotema": "Casa e utilidades"
+      "macrotema": "Casa e utilidades",
+      "videos": [],
+      "coupon_texts": [],
+      "main_features": [],
+      "discount_text": ""
     },
     {
       "_id": "19899713433",
@@ -968,7 +1005,9 @@
       "sold_quantity_text": "289",
       "current_price": 19,
       "original_price": 49,
-      "macrotema": "Ofertas de alto valor percebido"
+      "macrotema": "Ofertas de alto valor percebido",
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "22298388070",
@@ -1011,7 +1050,9 @@
       "sold_quantity_text": "101",
       "current_price": 24.89,
       "original_price": 24.89,
-      "macrotema": "Ofertas de alto valor percebido"
+      "macrotema": "Ofertas de alto valor percebido",
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "22699173941",
@@ -1056,7 +1097,9 @@
       "original_price": 65.87,
       "imported_at": "2026-04-18T15:23:05.665Z",
       "imported_product_id": "4dfd1be3-e8b7-4fd4-8c70-16dce2febc5a",
-      "macrotema": "Casa e utilidades"
+      "macrotema": "Casa e utilidades",
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "22693753520",
@@ -1100,7 +1143,8 @@
       "sold_quantity_text": "305",
       "current_price": 219.99,
       "original_price": 224.91,
-      "macrotema": "Casa e utilidades"
+      "macrotema": "Casa e utilidades",
+      "coupon_texts": []
     },
     {
       "_id": "22794520438",
@@ -1143,7 +1187,9 @@
       "sold_quantity_text": "439",
       "current_price": 179.4,
       "original_price": 179.4,
-      "macrotema": "Casa e utilidades"
+      "macrotema": "Casa e utilidades",
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "58202953426",
@@ -1182,7 +1228,10 @@
       "sold_quantity_text": "123",
       "current_price": 19.92,
       "original_price": 49.9,
-      "macrotema": "Ofertas de alto valor percebido"
+      "macrotema": "Ofertas de alto valor percebido",
+      "videos": [],
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "19398683412",
@@ -1221,7 +1270,10 @@
       "sold_quantity_text": "229",
       "current_price": 25,
       "original_price": 50,
-      "macrotema": "Ofertas de alto valor percebido"
+      "macrotema": "Ofertas de alto valor percebido",
+      "videos": [],
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "23598666696",
@@ -1265,7 +1317,8 @@
       "sold_quantity_text": "104",
       "current_price": 59.99,
       "original_price": 59.99,
-      "macrotema": "Ofertas de alto valor percebido"
+      "macrotema": "Ofertas de alto valor percebido",
+      "coupon_texts": []
     },
     {
       "_id": "22197735473",
@@ -1308,7 +1361,9 @@
       "sold_quantity_text": "735",
       "current_price": 49.99,
       "original_price": 69.99,
-      "macrotema": "Ofertas de alto valor percebido"
+      "macrotema": "Ofertas de alto valor percebido",
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "58203031222",
@@ -1351,7 +1406,9 @@
       "sold_quantity_text": "170",
       "current_price": 16.56,
       "original_price": 17.05,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "20099574878",
@@ -1390,7 +1447,10 @@
       "sold_quantity_text": "133",
       "current_price": 99.89,
       "original_price": 139.89,
-      "macrotema": "Ferramentas e itens de resolucao de problema"
+      "macrotema": "Ferramentas e itens de resolucao de problema",
+      "videos": [],
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "21640099105",
@@ -1426,7 +1486,9 @@
       "sold_quantity_text": "1,5mil",
       "current_price": 17.99,
       "original_price": 57.99,
-      "macrotema": "Ferramentas e itens de resolucao de problema"
+      "macrotema": "Ferramentas e itens de resolucao de problema",
+      "coupon_texts": [],
+      "main_features": []
     },
     {
       "_id": "22793936297",
@@ -1465,7 +1527,10 @@
       "sold_quantity_text": "146",
       "current_price": 12.9,
       "original_price": 19.9,
-      "macrotema": "Ferramentas e itens de resolucao de problema"
+      "macrotema": "Ferramentas e itens de resolucao de problema",
+      "videos": [],
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "23794200831",
@@ -1504,7 +1569,10 @@
       "sold_quantity_text": "130",
       "current_price": 16.99,
       "original_price": 63.9,
-      "macrotema": "Ferramentas e itens de resolucao de problema"
+      "macrotema": "Ferramentas e itens de resolucao de problema",
+      "videos": [],
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "23198241566",
@@ -1547,7 +1615,9 @@
       "sold_quantity_text": "161",
       "current_price": 72.99,
       "original_price": 72.99,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "23893867402",
@@ -1586,7 +1656,10 @@
       "sold_quantity_text": "203",
       "current_price": 18.98,
       "original_price": 18.98,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "videos": [],
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "23399299152",
@@ -1628,7 +1701,9 @@
       "sold_quantity_text": "1,0mil",
       "current_price": 68.49,
       "original_price": 68.49,
-      "macrotema": "Casa e utilidades"
+      "macrotema": "Casa e utilidades",
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "23599239333",
@@ -1667,7 +1742,10 @@
       "sold_quantity_text": "223",
       "current_price": 68.49,
       "original_price": 68.49,
-      "macrotema": "Casa e utilidades"
+      "macrotema": "Casa e utilidades",
+      "videos": [],
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "18778448446",
@@ -1710,7 +1788,9 @@
       "sold_quantity_text": "124",
       "current_price": 22.99,
       "original_price": 26.99,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "26490291206",
@@ -1749,7 +1829,10 @@
       "sold_quantity_text": "167",
       "current_price": 9.9,
       "original_price": 18.9,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "videos": [],
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "44424394569",
@@ -1793,7 +1876,8 @@
       "sold_quantity_text": "133",
       "current_price": 28.8,
       "original_price": 28.8,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "coupon_texts": []
     },
     {
       "_id": "19699869932",
@@ -1832,7 +1916,10 @@
       "sold_quantity_text": "130",
       "current_price": 29.9,
       "original_price": 88,
-      "macrotema": "Gadgets e eletronicos"
+      "macrotema": "Gadgets e eletronicos",
+      "videos": [],
+      "coupon_texts": [],
+      "discount_text": ""
     },
     {
       "_id": "298138401",
@@ -1874,7 +1961,9 @@
       "sold_quantity_text": "91",
       "current_price": 71.99,
       "original_price": 199.99,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "videos": [],
+      "coupon_texts": []
     },
     {
       "_id": "24450596",
@@ -1916,7 +2005,9 @@
       "sold_quantity_text": "2",
       "current_price": 100.49,
       "original_price": 105.95,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "videos": [],
+      "coupon_texts": []
     },
     {
       "_id": "370896892",
@@ -1956,7 +2047,9 @@
       "sold_quantity_text": "25",
       "current_price": 64.41,
       "original_price": 129.9,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "videos": [],
+      "coupon_texts": []
     },
     {
       "_id": "183214571",
@@ -1998,7 +2091,9 @@
       "sold_quantity_text": "1",
       "current_price": 119.03,
       "original_price": 127.99,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "videos": [],
+      "coupon_texts": []
     },
     {
       "_id": "38293062",
@@ -2045,7 +2140,8 @@
       "sold_quantity_text": "1",
       "current_price": 79.84,
       "original_price": 80.95,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "coupon_texts": []
     },
     {
       "_id": "182947319",
@@ -2087,7 +2183,9 @@
       "sold_quantity_text": "1",
       "current_price": 68.79,
       "original_price": 85.99,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "videos": [],
+      "coupon_texts": []
     },
     {
       "_id": "99795888",
@@ -2129,7 +2227,9 @@
       "sold_quantity_text": "46",
       "current_price": 71.99,
       "original_price": 199.99,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "videos": [],
+      "coupon_texts": []
     },
     {
       "_id": "44384232",
@@ -2174,7 +2274,8 @@
       "sold_quantity_text": "21",
       "current_price": 71.82,
       "original_price": 268.8,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "coupon_texts": []
     },
     {
       "_id": "45080011",
@@ -2214,7 +2315,9 @@
       "sold_quantity_text": "8",
       "current_price": 60.75,
       "original_price": 256.8,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "videos": [],
+      "coupon_texts": []
     },
     {
       "_id": "174080923",
@@ -2256,7 +2359,9 @@
       "sold_quantity_text": "26",
       "current_price": 58.41,
       "original_price": 129.9,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "videos": [],
+      "coupon_texts": []
     },
     {
       "_id": "15379371",
@@ -2298,7 +2403,9 @@
       "sold_quantity_text": "12",
       "current_price": 42.28,
       "original_price": 89.99,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "videos": [],
+      "coupon_texts": []
     },
     {
       "_id": "38522244",
@@ -2345,7 +2452,8 @@
       "sold_quantity_text": "74",
       "current_price": 37.26,
       "original_price": 74.9,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "coupon_texts": []
     },
     {
       "_id": "298579959",
@@ -2392,7 +2500,8 @@
       "sold_quantity_text": "3",
       "current_price": 98.91,
       "original_price": 220,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "coupon_texts": []
     },
     {
       "_id": "314977666",
@@ -2432,7 +2541,9 @@
       "sold_quantity_text": "17",
       "current_price": 80.99,
       "original_price": 199.99,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "videos": [],
+      "coupon_texts": []
     },
     {
       "_id": "76278750",
@@ -2479,7 +2590,8 @@
       "sold_quantity_text": "21",
       "current_price": 24.2,
       "original_price": 199.9,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "coupon_texts": []
     },
     {
       "_id": "70505363",
@@ -2526,7 +2638,8 @@
       "sold_quantity_text": "30",
       "current_price": 24.21,
       "original_price": 199.99,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "coupon_texts": []
     },
     {
       "_id": "315485595",
@@ -2568,7 +2681,9 @@
       "sold_quantity_text": "9",
       "current_price": 139.88,
       "original_price": 154.99,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "videos": [],
+      "coupon_texts": []
     },
     {
       "_id": "37800653",
@@ -2615,7 +2730,8 @@
       "sold_quantity_text": "29",
       "current_price": 40.43,
       "original_price": 119.99,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "coupon_texts": []
     },
     {
       "_id": "40602936",
@@ -2662,7 +2778,8 @@
       "sold_quantity_text": "18",
       "current_price": 44.99,
       "original_price": 189.9,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "coupon_texts": []
     },
     {
       "_id": "44643044",
@@ -2709,7 +2826,8 @@
       "sold_quantity_text": "21",
       "current_price": 24.85,
       "original_price": 49.9,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "coupon_texts": []
     },
     {
       "_id": "36638116",
@@ -2750,7 +2868,9 @@
       "sold_quantity_text": "66",
       "current_price": 27.29,
       "original_price": 69.99,
-      "macrotema": "Moda e Beleza"
+      "macrotema": "Moda e Beleza",
+      "videos": [],
+      "coupon_texts": []
     },
     {
       "_id": "B0DMFXRSC3",
@@ -2770,7 +2890,13 @@
       "videos_count": 0,
       "rating": 3.6,
       "current_price": 23.9,
-      "macrotema": "Casa e organizacao"
+      "macrotema": "Casa e organizacao",
+      "image_urls": [],
+      "videos": [],
+      "coupon_texts": [],
+      "main_features": [],
+      "discount_text": "",
+      "sold_quantity_text": ""
     },
     {
       "_id": "B0GQVJ38XL",
@@ -2798,7 +2924,11 @@
       "rating": 5,
       "current_price": 142.49,
       "original_price": 179.99,
-      "macrotema": "Casa e organizacao"
+      "macrotema": "Casa e organizacao",
+      "videos": [],
+      "coupon_texts": [],
+      "main_features": [],
+      "sold_quantity_text": ""
     },
     {
       "_id": "B00R0Z7TFM",
@@ -2826,7 +2956,12 @@
       "reviews_count": 400,
       "current_price": 385,
       "original_price": 55,
-      "macrotema": "Gadgets confiaveis"
+      "macrotema": "Gadgets confiaveis",
+      "videos": [],
+      "coupon_texts": [],
+      "main_features": [],
+      "discount_text": "",
+      "sold_quantity_text": ""
     },
     {
       "_id": "B096SRWZJR",
@@ -2861,7 +2996,11 @@
       "videos_count": 2,
       "rating": 4.1,
       "current_price": 29.9,
-      "macrotema": "Casa e organizacao"
+      "macrotema": "Casa e organizacao",
+      "coupon_texts": [],
+      "main_features": [],
+      "discount_text": "",
+      "sold_quantity_text": ""
     },
     {
       "_id": "B0FCS3X8DK",
@@ -2900,7 +3039,11 @@
       "original_price": 33.8,
       "imported_at": "2026-04-20T16:04:32.678Z",
       "imported_product_id": "b9e12cd4-c44a-4a64-b56d-e865e2cb85a1",
-      "macrotema": "Casa e organizacao"
+      "macrotema": "Casa e organizacao",
+      "coupon_texts": [],
+      "main_features": [],
+      "discount_text": "",
+      "sold_quantity_text": ""
     },
     {
       "_id": "B0GQP58CCM",
@@ -2932,7 +3075,11 @@
       "discount_text": "5%",
       "current_price": 185.23,
       "original_price": 194.98,
-      "macrotema": "Gadgets confiaveis"
+      "macrotema": "Gadgets confiaveis",
+      "videos": [],
+      "coupon_texts": [],
+      "main_features": [],
+      "sold_quantity_text": ""
     },
     {
       "_id": "B0CTJ42KYB",
@@ -2959,7 +3106,12 @@
       "videos_count": 0,
       "rating": 3.5,
       "current_price": 132.99,
-      "macrotema": "Casa e organizacao"
+      "macrotema": "Casa e organizacao",
+      "videos": [],
+      "coupon_texts": [],
+      "main_features": [],
+      "discount_text": "",
+      "sold_quantity_text": ""
     },
     {
       "_id": "B0CKWDY274",
@@ -2988,17 +3140,21 @@
       ],
       "scraped_image_count": 7,
       "videos_count": 0,
-      "discount_text": "-9%",
+      "discount_text": "9%",
       "rating": 4.2,
       "reviews_count": 2,
-      "current_price": 33.0,
+      "current_price": 33,
       "original_price": 36.4,
-      "macrotema": "Casa e organizacao"
+      "macrotema": "Casa e organizacao",
+      "videos": [],
+      "coupon_texts": [],
+      "main_features": [],
+      "sold_quantity_text": ""
     },
     {
       "_id": "B0CC6RXNLZ",
       "origin": "amazon",
-      "status": "discovered",
+      "status": "imported",
       "discovered_at": "2026-04-20T13:16:55.380750",
       "catalog_product_id": "B0CC6RXNLZ",
       "item_id": "B0CC6RXNLZ",
@@ -3024,7 +3180,15 @@
       "videos_count": 0,
       "rating": 4.5,
       "current_price": 152.99,
-      "macrotema": "Casa e organizacao"
+      "macrotema": "Casa e organizacao",
+      "videos": [],
+      "coupon_texts": [],
+      "main_features": [],
+      "discount_text": "",
+      "sold_quantity_text": "",
+      "imported_at": "2026-04-20T16:18:52.944Z",
+      "discarded_at": "",
+      "imported_product_id": "fd55f7ae-0511-4d6d-a3f1-75f1c3c7e1ce"
     },
     {
       "_id": "B0D3R8H5M4",
@@ -3055,9 +3219,14 @@
       "videos_count": 0,
       "rating": 4.7,
       "reviews_count": 50,
-      "current_price": 264.0,
-      "original_price": 44.0,
-      "macrotema": "Gadgets confiaveis"
+      "current_price": 264,
+      "original_price": 44,
+      "macrotema": "Gadgets confiaveis",
+      "videos": [],
+      "coupon_texts": [],
+      "main_features": [],
+      "discount_text": "",
+      "sold_quantity_text": ""
     }
   ]
 }

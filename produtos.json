@@ -363,7 +363,7 @@
       "display_name": "Samsung Galaxy Fit3 Display",
       "account": "mercadolivre",
       "usuario": "@pricebestnet",
-      "status": "pendente",
+      "status": "processando",
       "descricao_audio": "Dura até 13 dias com uma única carga. Ele fica levemente no pulso e registra mais de 100 exercícios e atividades diárias, incluindo o sono. Ele permite que você toque música, verifique chamadas e envie mensagens de texto diretamente do seu pulso: mantenha-se capacitado e conectado sem esforço com o Galaxy Fit3. \n \n Delgado. Leve. Pronto para o movimento \n O corpo fino de alumínio, tão leve com 18,",
       "flash_offer": "54%",
       "coupon_text": "",
@@ -379,7 +379,9 @@
       "source_url": "https://www.mercadolivre.com.br/smartwatch-samsung-galaxy-fit3-display-1-6-rose/p/MLB34506161",
       "product_num": 4,
       "product": 4,
-      "video_speed": "2"
+      "video_speed": "2",
+      "force_publish_only": "",
+      "force_facebook_only": ""
     },
     {
       "_id": "1db0296f-4867-42cb-baae-e13a5d7f7aff",

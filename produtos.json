@@ -312,6 +312,33 @@
       "facebook_published_at": "2026-04-20 17:20:48",
       "facebook_post_id": "1448259706494381",
       "facebook_error": ""
+    },
+    {
+      "_id": "bfe1ebbb-65de-4082-ba32-ff82ac73c6e8",
+      "created_at": "2026-04-20T20:25:51.182Z",
+      "candidate_id": "23893867402",
+      "catalog_product_id": "",
+      "discovery_origin": "shopee",
+      "name": "Fone de Ouvido com Fio X-BASS Sem Ruídos LE-0201",
+      "display_name": "Ouvido Fio X",
+      "account": "shopee",
+      "usuario": "@happydayofertas",
+      "status": "pendente",
+      "descricao_audio": "O Fone de Ouvido Lelong LE-0201 oferece som potente e sem ruídos, ideal para quem busca qualidade e conforto no dia a dia. Com tecnologia X-BASS, ele proporciona graves intensos e uma experiência sonora envolvente, perfeita para músicas, filmes e chamadas. Seu design ergonômico intra-auricular se adapta ao formato da orelha, garantindo isolamento de ruído e conforto mesmo após longas horas de uso.",
+      "flash_offer": "",
+      "coupon_text": "",
+      "rating": "4.8",
+      "reviews": "253",
+      "sold_count": "203",
+      "image_urls": "https://down-br.img.susercontent.com/file/br-11134207-81z1k-mfzjzvq3axon15; https://down-br.img.susercontent.com/file/br-11134207-81z1k-mfzjzvpc5af908; https://down-br.img.susercontent.com/file/br-11134207-81z1k-mfzjzvqp1c07e9",
+      "video_urls": "",
+      "thumbnail": "https://down-br.img.susercontent.com/file/br-11134207-81z1k-mfzjzvq3axon15",
+      "preview_image_url": "https://down-br.img.susercontent.com/file/br-11134207-81z1k-mfzjzvq3axon15",
+      "preview_thumbnail_url": "",
+      "affiliate_url": "https://s.shopee.com.br/8V56wuISG1",
+      "source_url": "https://shopee.com.br/product/841019441/23893867402",
+      "product_num": 3,
+      "product": 3
     }
   ]
 }

@@ -2746,7 +2746,7 @@
     {
       "_id": "40602936",
       "origin": "shein",
-      "status": "discovered",
+      "status": "imported",
       "discovered_at": "2026-04-19T10:04:31.151215",
       "catalog_product_id": "40602936",
       "item_id": "40602936",
@@ -2790,7 +2790,10 @@
       "current_price": 44.99,
       "original_price": 189.9,
       "macrotema": "Moda e Beleza",
-      "coupon_texts": []
+      "coupon_texts": [],
+      "imported_at": "2026-04-20T21:05:42.309Z",
+      "discarded_at": "",
+      "imported_product_id": "1db0296f-4867-42cb-baae-e13a5d7f7aff"
     },
     {
       "_id": "44643044",

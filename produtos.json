@@ -273,6 +273,33 @@
       "product": 3,
       "force_publish_only": "",
       "force_facebook_only": ""
+    },
+    {
+      "_id": "b9b7164a-0521-4c84-8661-eb0cad5299c2",
+      "created_at": "2026-04-20T16:38:01.935Z",
+      "candidate_id": "B096SRWZJR",
+      "catalog_product_id": "B096SRWZJR",
+      "discovery_origin": "amazon",
+      "name": "Papel de Parede Adesivo Autocoloante Imitação Madeira Ripado Decoração Quarto Sala Escritório 3 Metros",
+      "display_name": "Papel Parede Adesivo",
+      "account": "amazon",
+      "usuario": "@primeofertasnet",
+      "status": "pendente",
+      "descricao_audio": "Papel de Parede Adesivo Autocoloante Imitação Madeira Ripado Decoração Quarto Sala Escritório 3 Metros",
+      "flash_offer": "",
+      "coupon_text": "",
+      "rating": "4.1",
+      "reviews": "",
+      "sold_count": "",
+      "image_urls": "https://m.media-amazon.com/images/I/71Gmp12SvUL._AC_SL1000_.jpg; https://m.media-amazon.com/images/I/619Lo5dEUSL._AC_SL1080_.jpg; https://m.media-amazon.com/images/I/51kUOZMJh9L._AC_SL1200_.jpg",
+      "video_urls": "https://m.media-amazon.com/images/S/vse-vms-transcoding-artifact-us-east-1-prod/f6ca19e3-871b-48a9-a83f-7ff69c75d999/default.vertical.jobtemplate.hls.m3u8; https://m.media-amazon.com/images/S/vse-vms-transcoding-artifact-us-east-1-prod/f586b934-d866-4328-b22e-7f76e60fbad7/default.vertical.jobtemplate.hls.m3u8",
+      "thumbnail": "https://m.media-amazon.com/images/I/71Gmp12SvUL._AC_SL1000_.jpg",
+      "preview_image_url": "https://m.media-amazon.com/images/I/71Gmp12SvUL._AC_SL1000_.jpg",
+      "preview_thumbnail_url": "",
+      "affiliate_url": "https://amzn.to/4cCFtfp",
+      "source_url": "https://www.amazon.com.br/dp/B096SRWZJR",
+      "product_num": 1,
+      "product": 1
     }
   ]
 }

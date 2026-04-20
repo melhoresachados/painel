@@ -2967,7 +2967,7 @@
     {
       "_id": "B096SRWZJR",
       "origin": "amazon",
-      "status": "discovered",
+      "status": "imported",
       "discovered_at": "2026-04-20T13:01:13.878253",
       "catalog_product_id": "B096SRWZJR",
       "item_id": "B096SRWZJR",
@@ -3001,7 +3001,10 @@
       "coupon_texts": [],
       "main_features": [],
       "discount_text": "",
-      "sold_quantity_text": ""
+      "sold_quantity_text": "",
+      "imported_at": "2026-04-20T16:38:01.935Z",
+      "discarded_at": "",
+      "imported_product_id": "b9b7164a-0521-4c84-8661-eb0cad5299c2"
     },
     {
       "_id": "B0FCS3X8DK",

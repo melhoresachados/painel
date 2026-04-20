@@ -273,31 +273,6 @@
       "product": 3,
       "force_publish_only": "",
       "force_facebook_only": ""
-    },
-    {
-      "_id": "b9e12cd4-c44a-4a64-b56d-e865e2cb85a1",
-      "created_at": "2026-04-20T16:04:32.609Z",
-      "candidate_id": "B0FCS3X8DK",
-      "catalog_product_id": "B0FCS3X8DK",
-      "discovery_origin": "amazon",
-      "name": "Mixer de Mão 3 em 1 Portátil KOOKIN 800W inox com 8 Velocidades Ajustáveis, Função Turbo e Lâminas 2 Afiadas + 2 Reforçadas em Aço Inox 304, Corpo em Inox e Fácil de Limpar(220V)",
-      "display_name": "Mixer Mão",
-      "account": "amazon",
-      "usuario": "",
-      "status": "pendente",
-      "descricao_audio": "Mixer de Mão 3 em 1 Portátil KOOKIN 800W inox com 8 Velocidades Ajustáveis, Função Turbo e Lâminas 2 Afiadas + 2 Reforçadas em Aço Inox 304, Corpo em Inox e Fácil de Limpar(220V)",
-      "flash_offer": "",
-      "coupon_text": "",
-      "rating": "4.7",
-      "reviews": "200",
-      "sold_count": "",
-      "image_urls": "https://m.media-amazon.com/images/I/61HObNBOEJL._AC_SL1500_.jpg; https://m.media-amazon.com/images/I/311dOJIHGXL._AC_.jpg; https://m.media-amazon.com/images/I/311dOJIHGXL._AC_US100_.jpg",
-      "video_urls": "https://m.media-amazon.com/images/S/vse-vms-transcoding-artifact-us-east-1-prod/5da563f4-91bf-4e9d-8651-dc713cbf3f5d/default.jobtemplate.hls.m3u8; https://m.media-amazon.com/images/S/vse-vms-transcoding-artifact-us-east-1-prod/0a732f3a-7722-4856-970c-1d985651f4df/default.jobtemplate.hls.m3u8",
-      "thumbnail": "https://m.media-amazon.com/images/I/61HObNBOEJL._AC_SL1500_.jpg",
-      "preview_image_url": "https://m.media-amazon.com/images/I/61HObNBOEJL._AC_SL1500_.jpg",
-      "preview_thumbnail_url": "",
-      "affiliate_url": "https://amzn.to/4dXQaeP",
-      "source_url": "https://www.amazon.com.br/dp/B0FCS3X8DK"
     }
   ]
 }

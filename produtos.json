@@ -384,7 +384,9 @@
       "force_facebook_only": "",
       "error": "enrich falhou",
       "error_stage": "Pipeline",
-      "force_regenerate": ""
+      "force_regenerate": "",
+      "video_path": "",
+      "facebook_error": ""
     },
     {
       "_id": "1db0296f-4867-42cb-baae-e13a5d7f7aff",

@@ -339,6 +339,33 @@
       "source_url": "https://shopee.com.br/product/841019441/23893867402",
       "product_num": 3,
       "product": 3
+    },
+    {
+      "_id": "2c029e60-1c9f-4486-9a23-e7c130595533",
+      "created_at": "2026-04-20T20:27:13.408Z",
+      "candidate_id": "23598666696",
+      "catalog_product_id": "",
+      "discovery_origin": "shopee",
+      "name": "Oculos de Sol Redondo Premium Flexivel Blogueira Moderno Luxo uv400 Feminino Masculino",
+      "display_name": "Oculos Sol Redondo",
+      "account": "shopee",
+      "usuario": "@happydayofertas",
+      "status": "pendente",
+      "descricao_audio": "*ATENÇÃO! TODAS AS PROMOÇÕES E OFERTAS DA FORTUNA SUNGLASSES NA SHOPEE SÃO POR TEMPO LIMITADO, APROVEITE!* MODELO MIAMI Apresentamos o óculos de sol MIAMI em acetato italiano super flexível e resistente, o modelo mais vendido da Fortuna Sunglasses, desejado pelos apaixonados por estilo e moda! Se você procura um acessório que combine perfeitamente com qualquer look, garantindo proteção e elegância",
+      "flash_offer": "10%",
+      "coupon_text": "",
+      "rating": "4.9",
+      "reviews": "126",
+      "sold_count": "104",
+      "image_urls": "https://down-br.img.susercontent.com/file/br-11134207-820ln-mn4rvueics8xa9; https://down-br.img.susercontent.com/file/br-11134207-820l8-mn4rvue9kqgw53; https://down-br.img.susercontent.com/file/br-11134207-820m0-mn4rb2d5vu9tc1",
+      "video_urls": "https://down-bs-br.vod.susercontent.com/api/v4/11110105/mms/br-11110105-6v6x6-mn4riedwfpq961.16000081776369215.mp4; https://mms.vod.susercontent.com/api/v4/11110105/mms/br-11110105-6v6x6-mn4riedwfpq961.default.mp4",
+      "thumbnail": "https://down-br.img.susercontent.com/file/br-11134207-820ln-mn4rvueics8xa9",
+      "preview_image_url": "https://down-br.img.susercontent.com/file/br-11134207-820ln-mn4rvueics8xa9",
+      "preview_thumbnail_url": "",
+      "affiliate_url": "https://s.shopee.com.br/7fVzxLe2DX",
+      "source_url": "https://shopee.com.br/product/1386775107/23598666696",
+      "product_num": 4,
+      "product": 4
     }
   ]
 }

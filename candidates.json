@@ -148,10 +148,11 @@
       "sold_quantity_text": "+10mil",
       "current_price": 1259.1,
       "original_price": 1999,
-      "imported_at": "2026-04-16T17:17:23.577Z",
-      "imported_product_id": "a1f86375-6dc6-490c-9393-533843af3c84",
+      "imported_at": "2026-04-20T16:36:56.731Z",
+      "imported_product_id": "5a6038dc-ba3c-48b0-bc29-3ce591f05a11",
       "macrotema": "Gadgets e eletronicos",
-      "coupon_texts": []
+      "coupon_texts": [],
+      "discarded_at": ""
     },
     {
       "_id": "MLB44665542",

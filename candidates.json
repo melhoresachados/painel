@@ -2760,6 +2760,107 @@
       "current_price": 385.0,
       "original_price": 55.0,
       "macrotema": "Gadgets confiaveis"
+    },
+    {
+      "_id": "B096SRWZJR",
+      "origin": "amazon",
+      "status": "discovered",
+      "discovered_at": "2026-04-20T13:01:13.878253",
+      "catalog_product_id": "B096SRWZJR",
+      "item_id": "B096SRWZJR",
+      "configured_category_id": "home",
+      "name": "Papel de Parede Adesivo Autocoloante Imitação Madeira Ripado Decoração Quarto Sala Escritório 3 Metros",
+      "thumbnail": "https://m.media-amazon.com/images/I/71Gmp12SvUL._AC_SL1000_.jpg",
+      "source_url": "https://www.amazon.com.br/dp/B096SRWZJR",
+      "affiliate_url": "https://amzn.to/4cCFtfp",
+      "short_description": "Papel de Parede Adesivo Autocoloante Imitação Madeira Ripado Decoração Quarto Sala Escritório 3 Metros",
+      "image_urls": [
+        "https://m.media-amazon.com/images/I/71Gmp12SvUL._AC_SL1000_.jpg",
+        "https://m.media-amazon.com/images/I/619Lo5dEUSL._AC_SL1080_.jpg",
+        "https://m.media-amazon.com/images/I/51kUOZMJh9L._AC_SL1200_.jpg"
+      ],
+      "image_count": 7,
+      "scraped_image_urls": [
+        "https://m.media-amazon.com/images/I/71Gmp12SvUL._AC_SL1000_.jpg",
+        "https://m.media-amazon.com/images/I/619Lo5dEUSL._AC_SL1080_.jpg",
+        "https://m.media-amazon.com/images/I/51kUOZMJh9L._AC_SL1200_.jpg"
+      ],
+      "scraped_image_count": 7,
+      "videos": [
+        "https://m.media-amazon.com/images/S/vse-vms-transcoding-artifact-us-east-1-prod/f6ca19e3-871b-48a9-a83f-7ff69c75d999/default.vertical.jobtemplate.hls.m3u8",
+        "https://m.media-amazon.com/images/S/vse-vms-transcoding-artifact-us-east-1-prod/f586b934-d866-4328-b22e-7f76e60fbad7/default.vertical.jobtemplate.hls.m3u8"
+      ],
+      "videos_count": 2,
+      "rating": 4.1,
+      "current_price": 29.9,
+      "macrotema": "Casa e organizacao"
+    },
+    {
+      "_id": "B0FCS3X8DK",
+      "origin": "amazon",
+      "status": "discovered",
+      "discovered_at": "2026-04-20T13:01:13.878253",
+      "catalog_product_id": "B0FCS3X8DK",
+      "item_id": "B0FCS3X8DK",
+      "configured_category_id": "kitchen",
+      "name": "Mixer de Mão 3 em 1 Portátil KOOKIN 800W inox com 8 Velocidades Ajustáveis, Função Turbo e Lâminas 2 Afiadas + 2 Reforçadas em Aço Inox 304, Corpo em Inox e Fácil de Limpar(220V)",
+      "thumbnail": "https://m.media-amazon.com/images/I/61HObNBOEJL._AC_SL1500_.jpg",
+      "source_url": "https://www.amazon.com.br/dp/B0FCS3X8DK",
+      "affiliate_url": "https://amzn.to/4dXQaeP",
+      "short_description": "Mixer de Mão 3 em 1 Portátil KOOKIN 800W inox com 8 Velocidades Ajustáveis, Função Turbo e Lâminas 2 Afiadas + 2 Reforçadas em Aço Inox 304, Corpo em Inox e Fácil de Limpar(220V)",
+      "image_urls": [
+        "https://m.media-amazon.com/images/I/61HObNBOEJL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/311dOJIHGXL._AC_.jpg",
+        "https://m.media-amazon.com/images/I/311dOJIHGXL._AC_US100_.jpg"
+      ],
+      "image_count": 10,
+      "scraped_image_urls": [
+        "https://m.media-amazon.com/images/I/61HObNBOEJL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/311dOJIHGXL._AC_.jpg",
+        "https://m.media-amazon.com/images/I/311dOJIHGXL._AC_US100_.jpg"
+      ],
+      "scraped_image_count": 10,
+      "videos": [
+        "https://m.media-amazon.com/images/S/vse-vms-transcoding-artifact-us-east-1-prod/5da563f4-91bf-4e9d-8651-dc713cbf3f5d/default.jobtemplate.hls.m3u8",
+        "https://m.media-amazon.com/images/S/vse-vms-transcoding-artifact-us-east-1-prod/0a732f3a-7722-4856-970c-1d985651f4df/default.jobtemplate.hls.m3u8"
+      ],
+      "videos_count": 2,
+      "rating": 4.7,
+      "reviews_count": 200,
+      "current_price": 169.0,
+      "original_price": 33.8,
+      "macrotema": "Casa e organizacao"
+    },
+    {
+      "_id": "B0GQP58CCM",
+      "origin": "amazon",
+      "status": "discovered",
+      "discovered_at": "2026-04-20T13:01:13.878253",
+      "catalog_product_id": "B0GQP58CCM",
+      "item_id": "B0GQP58CCM",
+      "configured_category_id": "electronics",
+      "name": "Relógio Ponto Biométrico com Impressão Digital, Sistema de Controle de Acesso Eletrônico, Máquina Para Empresa, Tela Colorida, Controle de Jornada Inclui Pen Drive Não Requer Instalação de Software",
+      "thumbnail": "https://m.media-amazon.com/images/I/61WrVi7OZxL._AC_SL1200_.jpg",
+      "source_url": "https://www.amazon.com.br/dp/B0GQP58CCM",
+      "affiliate_url": "https://amzn.to/4dZJSez",
+      "short_description": "Relógio Ponto Biométrico com Impressão Digital, Sistema de Controle de Acesso Eletrônico, Máquina Para Empresa, Tela Colorida, Controle de Jornada Inclui Pen Drive Não Requer Instalação de Software",
+      "image_urls": [
+        "https://m.media-amazon.com/images/I/61WrVi7OZxL._AC_SL1200_.jpg",
+        "https://m.media-amazon.com/images/I/51el+mC9O+L._AC_SL1200_.jpg",
+        "https://m.media-amazon.com/images/I/61AIgyo96eL._AC_SL1200_.jpg"
+      ],
+      "image_count": 6,
+      "scraped_image_urls": [
+        "https://m.media-amazon.com/images/I/61WrVi7OZxL._AC_SL1200_.jpg",
+        "https://m.media-amazon.com/images/I/51el+mC9O+L._AC_SL1200_.jpg",
+        "https://m.media-amazon.com/images/I/61AIgyo96eL._AC_SL1200_.jpg"
+      ],
+      "scraped_image_count": 6,
+      "videos_count": 0,
+      "discount_text": "-5%",
+      "current_price": 185.23,
+      "original_price": 194.98,
+      "macrotema": "Gadgets confiaveis"
     }
   ]
 }

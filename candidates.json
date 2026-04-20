@@ -1623,7 +1623,7 @@
     {
       "_id": "23893867402",
       "origin": "shopee",
-      "status": "discovered",
+      "status": "imported",
       "discovered_at": "2026-04-18T22:54:09.027378",
       "item_id": "23893867402",
       "configured_category_id": "11059971",
@@ -1660,7 +1660,10 @@
       "macrotema": "Gadgets e eletronicos",
       "videos": [],
       "coupon_texts": [],
-      "discount_text": ""
+      "discount_text": "",
+      "imported_at": "2026-04-20T20:25:51.183Z",
+      "discarded_at": "",
+      "imported_product_id": "bfe1ebbb-65de-4082-ba32-ff82ac73c6e8"
     },
     {
       "_id": "23399299152",
